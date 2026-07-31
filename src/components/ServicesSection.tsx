@@ -113,7 +113,11 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             
             {/* Left: Description & Key Features */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-orange-50 border border-orange-200 text-orange-600 text-xs font-bold uppercase">
+              <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-md border text-xs font-bold uppercase ${
+                isLightMode
+                  ? 'bg-orange-50 border-orange-200 text-orange-600'
+                  : 'bg-orange-500/10 border-orange-500/30 text-orange-400'
+              }`}>
                 {getIcon(activeService.iconName)}
                 <span>{activeService.title}</span>
               </div>
@@ -187,7 +191,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             </div>
 
             {/* Right: Architecture Visual Card */}
-            <div className={`rounded-2xl p-6 border space-y-4 ${
+            <div className={`lg:col-span-5 rounded-2xl p-6 border space-y-4 ${
               isLightMode
                 ? 'bg-slate-900 text-white border-slate-800'
                 : 'bg-black/80 border-zinc-800'

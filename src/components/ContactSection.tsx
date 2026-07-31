@@ -5,11 +5,15 @@ import { Phone, Mail, Globe, MapPin, Send, CheckCircle2, MessageCircle } from 'l
 
 interface ContactSectionProps {
   initialService?: string;
+  initialPrice?: number;
+  initialTimeline?: string;
   isLightMode?: boolean;
 }
 
 export const ContactSection: React.FC<ContactSectionProps> = ({
   initialService = 'Custom Software Development',
+  initialPrice,
+  initialTimeline,
   isLightMode = true,
 }) => {
   const [formState, setFormState] = useState<ContactFormState>({
@@ -18,35 +22,53 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
     phone: '',
     service: initialService,
     message: '',
-    budget: '$500 - $1,000',
+    budget: '₹5,000 - ₹15,000',
   });
 
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [feedbackMsg, setFeedbackMsg] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Builds the full inquiry message including all project details.
+  const buildInquiryMessage = () => {
+    const priceText = typeof initialPrice === 'number'
+      ? `₹${initialPrice.toLocaleString('en-IN')}`
+      : 'Not calculated yet';
+    const timelineText = initialTimeline || 'To be discussed';
+
+    return `Hi Soaib Akhtar (Spesio Technologies),\n\nNew Project Inquiry from the website:\nName: ${formState.name || 'Not provided'}\nEmail: ${formState.email || 'Not provided'}\nPhone: ${formState.phone || 'Not provided'}\nSelected Project: ${formState.service}\nEstimated Price: ${priceText}\nTimeline: ${timelineText}\nAdditional Notes: ${formState.message || 'N/A'}`;
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('submitting');
 
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formState),
-      });
+    const message = buildInquiryMessage();
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/918957833269?text=${encodedMessage}`;
 
-      const data = await response.json();
-      setStatus('success');
-      setFeedbackMsg(data.message || 'Thank you! Your message has been sent to Soaib Akhtar.');
+    let whatsappWindow: Window | null = null;
+    try {
+      whatsappWindow = window.open(whatsappUrl, '_blank');
     } catch (err) {
+      whatsappWindow = null;
+    }
+
+    if (whatsappWindow) {
       setStatus('success');
-      setFeedbackMsg(`Thank you! Message received. You can also connect directly on WhatsApp at ${COMPANY_INFO.founder.phone}`);
+      setFeedbackMsg("Thank you! We've opened WhatsApp with your inquiry details — just hit send to reach Soaib Akhtar directly.");
+    } else {
+      // WhatsApp could not be opened (e.g. popup blocked) — fall back to email.
+      const mailtoUrl = `mailto:${COMPANY_INFO.founder.email}?subject=${encodeURIComponent(
+        `New Project Inquiry - ${formState.service}`
+      )}&body=${encodedMessage}`;
+      window.location.href = mailtoUrl;
+      setStatus('success');
+      setFeedbackMsg(`Thank you! We couldn't open WhatsApp automatically, so we've opened your email client instead, addressed to ${COMPANY_INFO.founder.email}.`);
     }
   };
 
   const handleWhatsAppDirect = () => {
-    const text = `Hi Soaib Akhtar (Spesio Technologies),\n\nName: ${formState.name || 'Client'}\nEmail: ${formState.email}\nPhone: ${formState.phone}\nService Interested: ${formState.service}\nBudget Range: ${formState.budget}\nMessage: ${formState.message || 'Interested in your development services.'}`;
-    const encoded = encodeURIComponent(text);
+    const encoded = encodeURIComponent(buildInquiryMessage());
     window.open(`https://wa.me/918957833269?text=${encoded}`, '_blank');
   };
 

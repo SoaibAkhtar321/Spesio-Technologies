@@ -9,12 +9,15 @@ import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { AiAssistantModal } from './components/AiAssistantModal';
 import { WhatsAppFloat } from './components/WhatsAppFloat';
+import { SERVICES } from './data/companyData';
 
 export default function App() {
   const [isLightMode, setIsLightMode] = useState(true);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [selectedServiceForEstimate, setSelectedServiceForEstimate] = useState<string>('software');
   const [contactInitialService, setContactInitialService] = useState<string>('Custom Software Development');
+  const [contactInitialPrice, setContactInitialPrice] = useState<number | undefined>(undefined);
+  const [contactInitialTimeline, setContactInitialTimeline] = useState<string | undefined>(undefined);
 
   const handleSelectServiceForEstimate = (serviceId: string) => {
     setSelectedServiceForEstimate(serviceId);
@@ -31,9 +34,25 @@ export default function App() {
     }
   };
 
+  const handleOpenContact = () => {
+    const contactElem = document.getElementById('contact');
+    if (contactElem) {
+      contactElem.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const handleSendInquiryFromEstimator = (details: any) => {
     if (details?.service) {
-      setContactInitialService(details.service);
+      // The estimator works with service ids (e.g. 'web'), while the Contact
+      // form's dropdown expects the full service title — map between the two.
+      const matchedService = SERVICES.find((s) => s.id === details.service);
+      setContactInitialService(matchedService?.title || details.service);
+    }
+    if (typeof details?.estimatedPrice === 'number') {
+      setContactInitialPrice(details.estimatedPrice);
+    }
+    if (details?.estimatedWeeks) {
+      setContactInitialTimeline(details.estimatedWeeks);
     }
     const contactElem = document.getElementById('contact');
     if (contactElem) {
@@ -58,10 +77,12 @@ export default function App() {
         isLightMode={isLightMode}
         onOpenAiAssistant={() => setIsAiModalOpen(true)}
         onOpenEstimator={handleOpenEstimator}
+        onOpenContact={handleOpenContact}
       />
 
-      {/* Digital Twin Business Card Section */}
-      <DigitalBusinessCard isLightMode={isLightMode} />
+      {/* Digital Twin Business Card Section is intentionally not rendered on the homepage.
+          The component is preserved in the codebase (see DigitalBusinessCard import above)
+          in case it needs to be re-enabled in the future. */}
 
       {/* Services Showcase */}
       <ServicesSection
@@ -83,6 +104,8 @@ export default function App() {
       <ContactSection
         isLightMode={isLightMode}
         initialService={contactInitialService}
+        initialPrice={contactInitialPrice}
+        initialTimeline={contactInitialTimeline}
       />
 
       {/* Footer */}

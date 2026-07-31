@@ -1,0 +1,40 @@
+diff a/src/components/AiAssistantModal.tsx b/src/components/AiAssistantModal.tsx	(rejected hunks)
+@@ -35,32 +36,13 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
+     setMessages((prev) => [...prev, { sender: 'user', text: userText }]);
+     setLoading(true);
+ 
+-    try {
+-      const response = await fetch('/api/chat', {
+-        method: 'POST',
+-        headers: { 'Content-Type': 'application/json' },
+-        body: JSON.stringify({ message: userText }),
+-      });
+-
+-      const data = await response.json();
+-      setMessages((prev) => [
+-        ...prev,
+-        {
+-          sender: 'ai',
+-          text: data.reply || 'Thank you for your message! You can reach Soaib Akhtar directly at +91 8957833269 or spesiotechnologies@gmail.com.',
+-        }
+-      ]);
+-    } catch (err) {
+-      setMessages((prev) => [
+-        ...prev,
+-        {
+-          sender: 'ai',
+-          text: `Spesio Technologies offers Custom Software, Web & App Development, and AI Integrations. Reach Soaib Akhtar directly at +91 8957833269 or spesiotechnologies@gmail.com.`,
+-        }
+-      ]);
+-    } finally {
++    // Rule-based assistant: no LLM or network call required.
++    // A short delay keeps the "thinking" indicator feeling natural.
++    window.setTimeout(() => {
++      const reply = getAssistantReply(userText);
++      setMessages((prev) => [...prev, { sender: 'ai', text: reply }]);
+       setLoading(false);
+-    }
++    }, 450);
+   };
+ 
+   const quickPrompts = [

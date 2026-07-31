@@ -26,12 +26,12 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
   }, [preselectedServiceId]);
 
   const featureOptions = [
-    { id: 'auth', label: 'User Authentication & Roles', cost: 150 },
-    { id: 'admin_dashboard', label: 'Admin Analytics Dashboard', cost: 300 },
-    { id: 'payment', label: 'Payment Gateway Integration', cost: 250 },
-    { id: 'notifications', label: 'Push Notifications & Email Alerts', cost: 200 },
-    { id: 'offline', label: 'Offline Sync & Local DB', cost: 300 },
-    { id: 'api_export', label: 'Data Export & REST API Suite', cost: 250 },
+    { id: 'auth', label: 'User Authentication & Roles', cost: 500 },
+    { id: 'admin_dashboard', label: 'Admin Analytics Dashboard', cost: 1000 },
+    { id: 'payment', label: 'Payment Gateway Integration', cost: 800 },
+    { id: 'notifications', label: 'Push Notifications & Email Alerts', cost: 600 },
+    { id: 'offline', label: 'Offline Sync & Local DB', cost: 900 },
+    { id: 'api_export', label: 'Data Export & REST API Suite', cost: 700 },
   ];
 
   const toggleFeature = (id: string) => {
@@ -40,12 +40,14 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
     );
   };
 
-  // Base price calculation algorithm
+  // Base price calculation algorithm — realistic Indian market pricing (INR).
+  // At maximum settings (Enterprise complexity + all add-ons + AI module + Express pace),
+  // Website tops out around ₹20,000 and Mobile App around ₹40,000.
   const calculatePrice = () => {
-    let base = 500;
-    if (selectedService === 'web') base = 400;
-    if (selectedService === 'app') base = 700;
-    if (selectedService === 'ai') base = 600;
+    let base = 4200; // Custom Software Development
+    if (selectedService === 'web') base = 2800;
+    if (selectedService === 'app') base = 7400;
+    if (selectedService === 'ai') base = 4800;
 
     let multiplier = 1;
     if (complexity === 'medium') multiplier = 1.5;
@@ -57,10 +59,10 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
       return sum + (feat ? feat.cost : 0);
     }, 0);
 
-    let aiCost = aiModule ? 350 : 0;
+    let aiCost = aiModule ? 1500 : 0;
     let timelineMultiplier = timeline === 'express' ? 1.25 : timeline === 'flexible' ? 0.95 : 1;
 
-    const totalInUSD = Math.round((base * multiplier + featureTotal + aiCost) * timelineMultiplier);
+    const totalInINR = Math.round((base * multiplier + featureTotal + aiCost) * timelineMultiplier);
     const estimatedWeeks =
       complexity === 'simple'
         ? '1 - 2 Weeks'
@@ -70,14 +72,14 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
         ? '4 - 8 Weeks'
         : '8+ Weeks';
 
-    return { totalInUSD, estimatedWeeks };
+    return { totalInINR, estimatedWeeks };
   };
 
-  const { totalInUSD, estimatedWeeks } = calculatePrice();
+  const { totalInINR, estimatedWeeks } = calculatePrice();
 
   const handleWhatsAppSend = () => {
     const serviceName = SERVICES.find((s) => s.id === selectedService)?.title || selectedService;
-    const text = `Hi Soaib Akhtar (Spesio Technologies),\n\nI created a project estimate on your website:\n- Service: ${serviceName}\n- Complexity: ${complexity.toUpperCase()}\n- AI Integration: ${aiModule ? 'Yes' : 'No'}\n- Timeline: ${timeline.toUpperCase()}\n- Selected Features: ${customFeatures.join(', ')}\n- Estimated Budget: ~$${totalInUSD}\n- Estimated Delivery: ${estimatedWeeks}\n\nCan we discuss starting this project?`;
+    const text = `Hi Soaib Akhtar (Spesio Technologies),\n\nI created a project estimate on your website:\n- Service: ${serviceName}\n- Complexity: ${complexity.toUpperCase()}\n- AI Integration: ${aiModule ? 'Yes' : 'No'}\n- Timeline: ${timeline.toUpperCase()}\n- Selected Features: ${customFeatures.join(', ')}\n- Estimated Budget: ~₹${totalInINR.toLocaleString('en-IN')}\n- Estimated Delivery: ${estimatedWeeks}\n\nCan we discuss starting this project?`;
 
     const encoded = encodeURIComponent(text);
     window.open(`https://wa.me/918957833269?text=${encoded}`, '_blank');
@@ -298,8 +300,8 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
               <div className={`text-4xl sm:text-5xl font-black mt-1 flex items-baseline gap-2 ${
                 isLightMode ? 'text-slate-900' : 'text-white'
               }`}>
-                <span>${totalInUSD.toLocaleString()}</span>
-                <span className={`text-xs font-semibold ${isLightMode ? 'text-slate-500' : 'text-zinc-400'}`}>USD (Approx)</span>
+                <span>₹{totalInINR.toLocaleString('en-IN')}</span>
+                <span className={`text-xs font-semibold ${isLightMode ? 'text-slate-500' : 'text-zinc-400'}`}>INR (Approx)</span>
               </div>
               <p className="text-[11px] text-orange-600 font-medium mt-1">
                 *Final price confirmed after detailed requirement review.
@@ -355,7 +357,8 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                     aiModule,
                     timeline,
                     features: customFeatures,
-                    estimatedPrice: totalInUSD,
+                    estimatedPrice: totalInINR,
+                    estimatedWeeks,
                   })
                 }
                 className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl text-xs font-bold bg-orange-600 hover:bg-orange-500 text-white shadow-lg shadow-orange-500/20 transition-all cursor-pointer"

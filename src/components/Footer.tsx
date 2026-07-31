@@ -95,7 +95,6 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
             }`}>Quick Navigation</h4>
             <ul className="space-y-2 text-xs">
               <li><a href="#services" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>Services Domain</a></li>
-              <li><a href="#card" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>Digital Business Card</a></li>
               <li><a href="#estimator" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>Scope & Budget Calculator</a></li>
               <li><a href="#founder" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>About Soaib Akhtar</a></li>
               <li><a href="#contact" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>Direct Contact</a></li>

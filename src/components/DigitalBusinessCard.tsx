@@ -126,7 +126,7 @@ END:VCARD`;
                     </div>
                   </div>
 
-                  {/* Right Column: Soaib Akhtar Contact Details */}
+                  {/* Right Column: Founder Contact Details */}
                   <div className="w-[58%] flex flex-col justify-between h-full pl-4 border-l border-zinc-800/80">
                     <div>
                       <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">{COMPANY_INFO.founder.name}</h3>

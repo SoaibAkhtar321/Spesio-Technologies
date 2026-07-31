@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Sparkles, X, Send, Bot, User, Phone, Mail } from 'lucide-react';
 import { COMPANY_INFO } from '../data/companyData';
+import { getAssistantReply } from '../data/aiKnowledgeBase';
 import { SpesioLogo } from './SpesioLogo';
 
 interface AiAssistantModalProps {
@@ -67,25 +68,16 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
     setLoading(true);
     setLastFailedText(null);
 
-    // Conversation memory: everything except the initial greeting, mapped to API roles.
-    const history = messages
-      .slice(1)
-      .map((m) => ({ role: m.sender === 'user' ? ('user' as const) : ('assistant' as const), content: m.text }));
-
+    // Rule-based assistant: answers come from the local knowledge base
+    // (src/data/aiKnowledgeBase.ts) — no network call or LLM required.
+    // The try/catch is kept so the existing retry/error UX still works
+    // if a lookup ever throws unexpectedly.
     try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: userText, history }),
-      });
+      // Small artificial delay keeps the "thinking" indicator feeling natural.
+      await new Promise((resolve) => window.setTimeout(resolve, 450));
 
-      if (!response.ok) throw new Error(`Request failed (${response.status})`);
-
-      const data = await response.json();
-      setMessages((prev) => [
-        ...prev,
-        { sender: 'ai', text: data.reply || "Sorry, I didn't catch that — could you try again?" },
-      ]);
+      const reply = getAssistantReply(userText);
+      setMessages((prev) => [...prev, { sender: 'ai', text: reply }]);
     } catch (err) {
       setLastFailedText(userText);
       setMessages((prev) => [
@@ -93,7 +85,7 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
         {
           sender: 'ai',
           isError: true,
-          text: `Something went wrong reaching Spesio AI. You can retry, or reach Soaib Akhtar directly at **+91 8957833269** or **spesiotechnologies@gmail.com**.`,
+          text: `Something went wrong finding an answer. You can retry, or reach Soaib Akhtar directly at **+91 8957833269** or **spesiotechnologies@gmail.com**.`,
         },
       ]);
     } finally {

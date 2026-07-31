@@ -1,15 +1,16 @@
 import React from 'react';
 import { COMPANY_INFO } from '../data/companyData';
-import { ArrowRight, Code, Globe, Smartphone, Brain, CheckCircle2, Sparkles } from 'lucide-react';
+import { ArrowRight, Code, Globe, Smartphone, Brain, CheckCircle2, Sparkles, Phone } from 'lucide-react';
 import { SpesioLogo } from './SpesioLogo';
 
 interface HeroProps {
   onOpenAiAssistant: () => void;
   onOpenEstimator: () => void;
+  onOpenContact: () => void;
   isLightMode: boolean;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, isLightMode }) => {
+export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, onOpenContact, isLightMode }) => {
   return (
     <section className={`relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-28 transition-colors duration-200 ${
       isLightMode ? 'bg-[#FAFAFB]' : 'bg-[#0A0D14]'
@@ -101,6 +102,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
               >
                 <Sparkles className="w-4 h-4 text-orange-500" />
                 Ask Spesio AI Assistant
+              </button>
+
+              <button
+                onClick={onOpenContact}
+                className={`inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold border transition-all cursor-pointer ${
+                  isLightMode
+                    ? 'bg-white hover:bg-slate-50 text-slate-800 border-slate-300 shadow-2xs'
+                    : 'bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border-orange-500/30'
+                }`}
+              >
+                <Phone className="w-4 h-4 text-orange-500" />
+                Contact Us
               </button>
             </div>
 
