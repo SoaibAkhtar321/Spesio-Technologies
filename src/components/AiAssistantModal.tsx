@@ -12,19 +12,94 @@ interface AiAssistantModalProps {
 interface ChatMessage {
   sender: 'ai' | 'user';
   text: string;
+  isError?: boolean;
 }
+
+// Very small markdown renderer: supports **bold**, `code`, and - bullet lines.
+// Kept intentionally minimal (no external dep) since responses are short chat text.
+function renderMarkdown(text: string): React.ReactNode {
+  const lines = text.split('\n');
+  const applyInline = (line: string, keyPrefix: string): React.ReactNode[] => {
+    const parts = line.split(/(\*\*[^*]+\*\*|`[^`]+`)/g).filter(Boolean);
+    return parts.map((part, i) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={`${keyPrefix}-${i}`}>{part.slice(2, -2)}</strong>;
+      }
+      if (part.startsWith('`') && part.endsWith('`')) {
+        return (
+          <code key={`${keyPrefix}-${i}`} className="px-1 py-0.5 rounded bg-black/10 dark:bg-white/10 text-[0.9em]">
+            {part.slice(1, -1)}
+          </code>
+        );
+      }
+      return <React.Fragment key={`${keyPrefix}-${i}`}>{part}</React.Fragment>;
+    });
+  };
+
+  return lines.map((line, idx) => {
+    const trimmed = line.trim();
+    if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
+      return (
+        <div key={idx} className="flex gap-2 pl-1">
+          <span className="opacity-60">•</span>
+          <span>{applyInline(trimmed.slice(2), `li-${idx}`)}</span>
+        </div>
+      );
+    }
+    if (trimmed === '') return <div key={idx} className="h-1.5" />;
+    return <div key={idx}>{applyInline(line, `l-${idx}`)}</div>;
+  });
+}
+
+const GREETING = `Hello! I am Spesio AI, the official assistant for Spesio Technologies (Founded by Soaib Akhtar). How can I assist you today with Software Development, Web Development, Mobile Apps, or AI Integrations?`;
 
 export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onClose, isLightMode = true }) => {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [lastFailedText, setLastFailedText] = useState<string | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([
-    {
-      sender: 'ai',
-      text: `Hello! I am Spesio AI, the official assistant for Spesio Technologies (Founded by Soaib Akhtar). How can I assist you today with Software Development, Web Development, Mobile Apps, or AI Integrations?`
-    }
+    { sender: 'ai', text: GREETING }
   ]);
 
   if (!isOpen) return null;
+
+  const sendMessage = async (userText: string) => {
+    setLoading(true);
+    setLastFailedText(null);
+
+    // Conversation memory: everything except the initial greeting, mapped to API roles.
+    const history = messages
+      .slice(1)
+      .map((m) => ({ role: m.sender === 'user' ? ('user' as const) : ('assistant' as const), content: m.text }));
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: userText, history }),
+      });
+
+      if (!response.ok) throw new Error(`Request failed (${response.status})`);
+
+      const data = await response.json();
+      setMessages((prev) => [
+        ...prev,
+        { sender: 'ai', text: data.reply || "Sorry, I didn't catch that — could you try again?" },
+      ]);
+    } catch (err) {
+      setLastFailedText(userText);
+      setMessages((prev) => [
+        ...prev,
+        {
+          sender: 'ai',
+          isError: true,
+          text: `Something went wrong reaching Spesio AI. You can retry, or reach Soaib Akhtar directly at **+91 8957833269** or **spesiotechnologies@gmail.com**.`,
+        },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleSend = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
@@ -33,34 +108,14 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
     const userText = input;
     setInput('');
     setMessages((prev) => [...prev, { sender: 'user', text: userText }]);
-    setLoading(true);
+    await sendMessage(userText);
+  };
 
-    try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: userText }),
-      });
-
-      const data = await response.json();
-      setMessages((prev) => [
-        ...prev,
-        {
-          sender: 'ai',
-          text: data.reply || 'Thank you for your message! You can reach Soaib Akhtar directly at +91 8957833269 or spesiotechnologies@gmail.com.',
-        }
-      ]);
-    } catch (err) {
-      setMessages((prev) => [
-        ...prev,
-        {
-          sender: 'ai',
-          text: `Spesio Technologies offers Custom Software, Web & App Development, and AI Integrations. Reach Soaib Akhtar directly at +91 8957833269 or spesiotechnologies@gmail.com.`,
-        }
-      ]);
-    } finally {
-      setLoading(false);
-    }
+  const handleRetry = async () => {
+    if (!lastFailedText || loading) return;
+    // Drop the trailing error message before retrying so it doesn't pollute history.
+    setMessages((prev) => (prev[prev.length - 1]?.isError ? prev.slice(0, -1) : prev));
+    await sendMessage(lastFailedText);
   };
 
   const quickPrompts = [
@@ -129,11 +184,25 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
               <div className={`p-3.5 rounded-2xl text-xs sm:text-sm max-w-[80%] leading-relaxed ${
                 msg.sender === 'user'
                   ? 'bg-orange-600 text-white font-medium rounded-tr-none'
-                  : isLightMode
-                    ? 'bg-white text-slate-800 border border-slate-200 rounded-tl-none shadow-2xs'
-                    : 'bg-zinc-900 text-zinc-200 border border-zinc-800 rounded-tl-none'
+                  : msg.isError
+                    ? isLightMode
+                      ? 'bg-red-50 text-red-800 border border-red-200 rounded-tl-none'
+                      : 'bg-red-950/40 text-red-300 border border-red-900/50 rounded-tl-none'
+                    : isLightMode
+                      ? 'bg-white text-slate-800 border border-slate-200 rounded-tl-none shadow-2xs'
+                      : 'bg-zinc-900 text-zinc-200 border border-zinc-800 rounded-tl-none'
               }`}>
-                {msg.text}
+                {msg.sender === 'ai' ? renderMarkdown(msg.text) : msg.text}
+                {msg.isError && index === messages.length - 1 && lastFailedText && (
+                  <button
+                    type="button"
+                    onClick={handleRetry}
+                    disabled={loading}
+                    className="mt-2 text-[11px] font-semibold underline underline-offset-2 hover:opacity-80 disabled:opacity-50 cursor-pointer"
+                  >
+                    Retry
+                  </button>
+                )}
               </div>
             </div>
           ))}
