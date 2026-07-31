@@ -1,0 +1,6 @@
+{
+  "name": "Spesio Technologies",
+  "description": "Digital agency website and interactive showcase for Spesio Technologies, offering Software, Web, App, and AI solutions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

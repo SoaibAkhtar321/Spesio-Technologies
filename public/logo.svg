@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 420" width="100%" height="100%">
+  <defs>
+    <linearGradient id="stOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF7700" />
+      <stop offset="50%" stop-color="#FF6A00" />
+      <stop offset="100%" stop-color="#E65100" />
+    </linearGradient>
+
+    <filter id="dropShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <!-- ST Emblem Monogram -->
+  <g transform="translate(130, 20)" filter="url(#dropShadow)">
+    <!-- Letter S (Solid White Ribbon) -->
+    <path d="
+      M 105 20
+      L 205 20
+      L 175 55
+      L 135 55
+      L 135 68
+      L 168 68
+      L 205 105
+      L 205 175
+      L 170 210
+      L 70 210
+      L 35 175
+      L 35 135
+      L 70 100
+      L 105 100
+      L 105 85
+      L 70 85
+      L 35 50
+      Z
+    " fill="#FFFFFF" />
+
+    <!-- S Cutout 1 -->
+    <path d="
+      M 75 58
+      L 95 38
+      L 155 38
+      L 140 58
+      Z
+    " fill="#000000" />
+
+    <!-- S Cutout 2 -->
+    <path d="
+      M 70 140
+      L 70 170
+      L 95 192
+      L 165 192
+      L 175 180
+      L 175 130
+      L 142 130
+      L 142 165
+      L 130 175
+      L 95 175
+      L 88 165
+      L 88 140
+      Z
+    " fill="#000000" />
+
+    <!-- Letter T (Vivid Orange Overlapping) -->
+    <polygon points="108,55 220,55 200,88 135,88" fill="url(#stOrange)" />
+    <polygon points="150,88 182,88 182,185 150,210" fill="url(#stOrange)" />
+  </g>
+
+  <!-- SPESIO Text -->
+  <text x="250" y="315" text-anchor="middle" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="54" letter-spacing="20">
+    SPESIO
+  </text>
+
+  <!-- TECHNOLOGIES Text -->
+  <text x="250" y="370" text-anchor="middle" fill="#FF6A00" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="26" letter-spacing="16">
+    TECHNOLOGIES
+  </text>
+</svg>
