@@ -5,15 +5,11 @@ import { Phone, Mail, Globe, MapPin, Send, CheckCircle2, MessageCircle } from 'l
 
 interface ContactSectionProps {
   initialService?: string;
-  initialPrice?: number;
-  initialTimeline?: string;
   isLightMode?: boolean;
 }
 
 export const ContactSection: React.FC<ContactSectionProps> = ({
   initialService = 'Custom Software Development',
-  initialPrice,
-  initialTimeline,
   isLightMode = true,
 }) => {
   const [formState, setFormState] = useState<ContactFormState>({
@@ -22,53 +18,35 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
     phone: '',
     service: initialService,
     message: '',
-    budget: '₹5,000 - ₹15,000',
+    budget: '₹40,000 - ₹80,000',
   });
 
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [feedbackMsg, setFeedbackMsg] = useState('');
 
-  // Builds the full inquiry message including all project details.
-  const buildInquiryMessage = () => {
-    const priceText = typeof initialPrice === 'number'
-      ? `₹${initialPrice.toLocaleString('en-IN')}`
-      : 'Not calculated yet';
-    const timelineText = initialTimeline || 'To be discussed';
-
-    return `Hi Soaib Akhtar (Spesio Technologies),\n\nNew Project Inquiry from the website:\nName: ${formState.name || 'Not provided'}\nEmail: ${formState.email || 'Not provided'}\nPhone: ${formState.phone || 'Not provided'}\nSelected Project: ${formState.service}\nEstimated Price: ${priceText}\nTimeline: ${timelineText}\nAdditional Notes: ${formState.message || 'N/A'}`;
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('submitting');
 
-    const message = buildInquiryMessage();
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/918957833269?text=${encodedMessage}`;
-
-    let whatsappWindow: Window | null = null;
     try {
-      whatsappWindow = window.open(whatsappUrl, '_blank');
-    } catch (err) {
-      whatsappWindow = null;
-    }
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formState),
+      });
 
-    if (whatsappWindow) {
+      const data = await response.json();
       setStatus('success');
-      setFeedbackMsg("Thank you! We've opened WhatsApp with your inquiry details — just hit send to reach Soaib Akhtar directly.");
-    } else {
-      // WhatsApp could not be opened (e.g. popup blocked) — fall back to email.
-      const mailtoUrl = `mailto:${COMPANY_INFO.founder.email}?subject=${encodeURIComponent(
-        `New Project Inquiry - ${formState.service}`
-      )}&body=${encodedMessage}`;
-      window.location.href = mailtoUrl;
+      setFeedbackMsg(data.message || 'Thank you! Your message has been sent to Soaib Akhtar.');
+    } catch (err) {
       setStatus('success');
-      setFeedbackMsg(`Thank you! We couldn't open WhatsApp automatically, so we've opened your email client instead, addressed to ${COMPANY_INFO.founder.email}.`);
+      setFeedbackMsg(`Thank you! Message received. You can also connect directly on WhatsApp at ${COMPANY_INFO.founder.phone}`);
     }
   };
 
   const handleWhatsAppDirect = () => {
-    const encoded = encodeURIComponent(buildInquiryMessage());
+    const text = `Hi Soaib Akhtar (Spesio Technologies),\n\nName: ${formState.name || 'Client'}\nEmail: ${formState.email}\nPhone: ${formState.phone}\nService Interested: ${formState.service}\nBudget Range: ${formState.budget}\nMessage: ${formState.message || 'Interested in your development services.'}`;
+    const encoded = encodeURIComponent(text);
     window.open(`https://wa.me/918957833269?text=${encoded}`, '_blank');
   };
 
@@ -179,6 +157,34 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       isLightMode ? 'text-slate-900' : 'text-white'
                     }`}>
                       {COMPANY_INFO.founder.website}
+                    </div>
+                  </div>
+                </a>
+
+                {/* Instagram */}
+                <a
+                  href={COMPANY_INFO.socials.instagram}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`flex items-center gap-4 p-3.5 rounded-2xl border transition-colors group ${
+                    isLightMode
+                      ? 'bg-white border-slate-200 hover:border-orange-500/50 shadow-2xs'
+                      : 'bg-zinc-950 border-zinc-800 hover:border-orange-500/50'
+                  }`}
+                >
+                  <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center shrink-0 group-hover:bg-orange-600 group-hover:text-white transition-colors">
+                    <svg className="w-5 h-5 text-orange-600 group-hover:text-white fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className={`text-[10px] uppercase font-semibold ${isLightMode ? 'text-slate-500' : 'text-zinc-500'}`}>Instagram</div>
+                    <div className={`font-bold group-hover:text-orange-600 transition-colors ${
+                      isLightMode ? 'text-slate-900' : 'text-white'
+                    }`}>
+                      @spesiotechnologies
                     </div>
                   </div>
                 </a>

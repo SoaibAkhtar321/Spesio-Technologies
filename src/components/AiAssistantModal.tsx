@@ -8,6 +8,7 @@ interface AiAssistantModalProps {
   isOpen: boolean;
   onClose: () => void;
   isLightMode?: boolean;
+  
 }
 
 interface ChatMessage {
@@ -68,10 +69,6 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
     setLoading(true);
     setLastFailedText(null);
 
-    // Rule-based assistant: answers come from the local knowledge base
-    // (src/data/aiKnowledgeBase.ts) — no network call or LLM required.
-    // The try/catch is kept so the existing retry/error UX still works
-    // if a lookup ever throws unexpectedly.
     try {
       // Small artificial delay keeps the "thinking" indicator feeling natural.
       await new Promise((resolve) => window.setTimeout(resolve, 450));

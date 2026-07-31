@@ -26,12 +26,12 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
   }, [preselectedServiceId]);
 
   const featureOptions = [
-    { id: 'auth', label: 'User Authentication & Roles', cost: 500 },
-    { id: 'admin_dashboard', label: 'Admin Analytics Dashboard', cost: 1000 },
-    { id: 'payment', label: 'Payment Gateway Integration', cost: 800 },
-    { id: 'notifications', label: 'Push Notifications & Email Alerts', cost: 600 },
-    { id: 'offline', label: 'Offline Sync & Local DB', cost: 900 },
-    { id: 'api_export', label: 'Data Export & REST API Suite', cost: 700 },
+    { id: 'auth', label: 'User Authentication & Roles', cost: 12000 },
+    { id: 'admin_dashboard', label: 'Admin Analytics Dashboard', cost: 25000 },
+    { id: 'payment', label: 'Payment Gateway Integration', cost: 21000 },
+    { id: 'notifications', label: 'Push Notifications & Email Alerts', cost: 17000 },
+    { id: 'offline', label: 'Offline Sync & Local DB', cost: 25000 },
+    { id: 'api_export', label: 'Data Export & REST API Suite', cost: 21000 },
   ];
 
   const toggleFeature = (id: string) => {
@@ -40,14 +40,12 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
     );
   };
 
-  // Base price calculation algorithm — realistic Indian market pricing (INR).
-  // At maximum settings (Enterprise complexity + all add-ons + AI module + Express pace),
-  // Website tops out around ₹20,000 and Mobile App around ₹40,000.
+  // Base price calculation algorithm (all figures in INR)
   const calculatePrice = () => {
-    let base = 4200; // Custom Software Development
-    if (selectedService === 'web') base = 2800;
-    if (selectedService === 'app') base = 7400;
-    if (selectedService === 'ai') base = 4800;
+    let base = 40000;
+    if (selectedService === 'web') base = 33000;
+    if (selectedService === 'app') base = 58000;
+    if (selectedService === 'ai') base = 50000;
 
     let multiplier = 1;
     if (complexity === 'medium') multiplier = 1.5;
@@ -59,10 +57,13 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
       return sum + (feat ? feat.cost : 0);
     }, 0);
 
-    let aiCost = aiModule ? 1500 : 0;
+    let aiCost = aiModule ? 29000 : 0;
     let timelineMultiplier = timeline === 'express' ? 1.25 : timeline === 'flexible' ? 0.95 : 1;
 
-    const totalInINR = Math.round((base * multiplier + featureTotal + aiCost) * timelineMultiplier);
+    // Round to the nearest ₹500 for a clean, non-arbitrary-looking figure
+    const rawTotal = (base * multiplier + featureTotal + aiCost) * timelineMultiplier;
+    const totalInINR = Math.round(rawTotal / 500) * 500;
+
     const estimatedWeeks =
       complexity === 'simple'
         ? '1 - 2 Weeks'
@@ -358,7 +359,6 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                     timeline,
                     features: customFeatures,
                     estimatedPrice: totalInINR,
-                    estimatedWeeks,
                   })
                 }
                 className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl text-xs font-bold bg-orange-600 hover:bg-orange-500 text-white shadow-lg shadow-orange-500/20 transition-all cursor-pointer"
