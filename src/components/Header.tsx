@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { motion } from 'motion/react';
 import { COMPANY_INFO } from '../data/companyData';
 import { Phone, Menu, X, Sparkles, Sun, Moon } from 'lucide-react';
 import { SpesioLogo } from './SpesioLogo';
@@ -10,6 +11,16 @@ interface HeaderProps {
   onToggleTheme: () => void;
 }
 
+const NAV_LINKS = [
+  { name: 'Services', href: '#services' },
+  { name: 'Why Us', href: '#why-choose-us' },
+  { name: 'Process', href: '#process' },
+  { name: 'Portfolio', href: '#portfolio' },
+  { name: 'Estimator', href: '#estimator' },
+  { name: 'Founder', href: '#founder' },
+  { name: 'Contact', href: '#contact' },
+];
+
 export const Header: React.FC<HeaderProps> = ({
   onOpenAiAssistant,
   onOpenEstimator,
@@ -17,14 +28,29 @@ export const Header: React.FC<HeaderProps> = ({
   onToggleTheme,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>('#services');
 
-  const navLinks = [
-    { name: 'Services', href: '#services' },
-    { name: 'Why Us', href: '#why-us' },
-    { name: 'Work', href: '#portfolio' },
-    { name: 'Estimator', href: '#estimator' },
-    { name: 'Contact', href: '#contact' },
-  ];
+  // Scroll-spy: highlight whichever nav section is currently in view.
+  useEffect(() => {
+    const sectionIds = NAV_LINKS.map((link) => link.href.slice(1));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${entry.target.id}`);
+          }
+        });
+      },
+      { rootMargin: '-40% 0px -50% 0px', threshold: 0 }
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <header className={`sticky top-0 z-40 backdrop-blur-md transition-colors duration-200 border-b ${
@@ -33,27 +59,39 @@ export const Header: React.FC<HeaderProps> = ({
         : 'bg-[#0A0D14]/85 border-orange-500/15'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        
+
         {/* Brand Logo & Real ST Monogram */}
         <a href="#" className="flex items-center gap-2.5 group">
           <SpesioLogo isLightMode={isLightMode} variant="horizontal" size="md" />
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className={`text-sm font-medium transition-colors ${
-                isLightMode
-                  ? 'text-slate-700 hover:text-orange-600'
-                  : 'text-zinc-300 hover:text-orange-400'
-              }`}
-            >
-              {link.name}
-            </a>
-          ))}
+        <nav className="hidden md:flex items-center gap-6 lg:gap-7">
+          {NAV_LINKS.map((link) => {
+            const isActive = activeSection === link.href;
+            return (
+              <a
+                key={link.name}
+                href={link.href}
+                className={`relative text-sm font-medium transition-colors py-1 ${
+                  isActive
+                    ? 'text-orange-600'
+                    : isLightMode
+                      ? 'text-slate-700 hover:text-orange-600'
+                      : 'text-zinc-300 hover:text-orange-400'
+                }`}
+              >
+                {link.name}
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-underline"
+                    className="absolute left-0 right-0 -bottom-1 h-0.5 rounded-full bg-orange-500"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </a>
+            );
+          })}
         </nav>
 
         {/* Action Buttons */}
@@ -61,7 +99,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Theme Switcher Button */}
           <button
             onClick={onToggleTheme}
-            className={`p-2 rounded-lg border transition-all cursor-pointer ${
+            className={`p-2 rounded-lg border transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 ${
               isLightMode
                 ? 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200'
                 : 'bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border-zinc-800'
@@ -74,7 +112,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={onOpenAiAssistant}
-            className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
+            className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold border transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 ${
               isLightMode
                 ? 'bg-orange-50 hover:bg-orange-100/80 text-orange-600 border-orange-200'
                 : 'bg-zinc-900 hover:bg-orange-500/10 text-orange-400 border-orange-500/30'
@@ -98,7 +136,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={onOpenEstimator}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold bg-gradient-to-r from-orange-600 to-orange-500 text-white shadow-md shadow-orange-500/20 hover:from-orange-500 hover:to-orange-400 transition-all cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold bg-gradient-to-r from-orange-600 to-orange-500 text-white shadow-md shadow-orange-500/20 hover:from-orange-500 hover:to-orange-400 transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
           >
             Get Scope & Quote
           </button>
@@ -128,6 +166,7 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className={`p-2 ${isLightMode ? 'text-slate-700 hover:text-slate-900' : 'text-zinc-400 hover:text-white'}`}
             aria-label="Toggle menu"
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -136,16 +175,24 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Mobile Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className={`md:hidden border-b px-4 pt-3 pb-6 space-y-3 ${
-          isLightMode ? 'bg-white border-slate-200' : 'bg-[#0D111A] border-orange-500/20'
-        }`}>
-          {navLinks.map((link) => (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.25 }}
+          className={`md:hidden border-b px-4 pt-3 pb-6 space-y-3 overflow-hidden ${
+            isLightMode ? 'bg-white border-slate-200' : 'bg-[#0D111A] border-orange-500/20'
+          }`}
+        >
+          {NAV_LINKS.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
               className={`block text-sm font-medium py-1 ${
-                isLightMode ? 'text-slate-700 hover:text-orange-600' : 'text-zinc-200 hover:text-orange-400'
+                activeSection === link.href
+                  ? 'text-orange-600'
+                  : isLightMode ? 'text-slate-700 hover:text-orange-600' : 'text-zinc-200 hover:text-orange-400'
               }`}
             >
               {link.name}
@@ -171,7 +218,7 @@ export const Header: React.FC<HeaderProps> = ({
               Call {COMPANY_INFO.founder.formattedPhone}
             </a>
           </div>
-        </div>
+        </motion.div>
       )}
     </header>
   );

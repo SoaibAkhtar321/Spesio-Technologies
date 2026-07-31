@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { SERVICES } from '../data/companyData';
 import { ServiceItem } from '../types';
 import { Code, Globe, Smartphone, Brain, Check, ArrowRight, Layers, Cpu, Sparkles } from 'lucide-react';
@@ -38,7 +39,13 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-600 font-bold text-xs tracking-wider uppercase mb-3">
             What We Build
           </div>
@@ -52,36 +59,48 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           }`}>
             Engineered with high precision to help businesses scale seamlessly and operate smarter.
           </p>
-        </div>
+        </motion.div>
 
         {/* 4 Main Service Selector Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10"
+        >
           {SERVICES.map((service) => {
             const isSelected = service.id === activeServiceId;
             return (
-              <div
+              <motion.div
                 key={service.id}
+                variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } } }}
+                whileHover={{ y: -4 }}
                 onClick={() => setActiveServiceId(service.id)}
-                className={`p-6 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between ${
+                className={`p-6 rounded-2xl border transition-colors duration-300 cursor-pointer flex flex-col justify-between ${
                   isSelected
                     ? isLightMode
-                      ? 'bg-white border-orange-500 shadow-xl shadow-orange-500/10 ring-2 ring-orange-500/20 scale-[1.02]'
-                      : 'bg-gradient-to-b from-zinc-900 to-black border-orange-500 shadow-xl shadow-orange-500/10 scale-[1.02]'
+                      ? 'bg-white border-orange-500 shadow-xl shadow-orange-500/10 ring-2 ring-orange-500/20'
+                      : 'bg-gradient-to-b from-zinc-900 to-black border-orange-500 shadow-xl shadow-orange-500/10'
                     : isLightMode
                       ? 'bg-white border-slate-200 hover:border-slate-300 hover:shadow-md'
                       : 'bg-zinc-900/40 border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900/80'
                 }`}
               >
                 <div>
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
-                    isSelected
-                      ? 'bg-orange-500/10 border border-orange-500/30'
-                      : isLightMode
-                        ? 'bg-slate-100 border border-slate-200'
-                        : 'bg-zinc-800 border border-zinc-700'
-                  }`}>
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+                    className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
+                      isSelected
+                        ? 'bg-orange-500/10 border border-orange-500/30'
+                        : isLightMode
+                          ? 'bg-slate-100 border border-slate-200'
+                          : 'bg-zinc-800 border border-zinc-700'
+                    }`}
+                  >
                     {getIcon(service.iconName)}
-                  </div>
+                  </motion.div>
                   <h3 className={`text-lg font-bold mb-1.5 ${isLightMode ? 'text-slate-900' : 'text-white'}`}>
                     {service.title}
                   </h3>
@@ -96,10 +115,10 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                   </span>
                   <ArrowRight className={`w-3.5 h-3.5 ml-auto transition-transform ${isSelected ? 'translate-x-1 text-orange-500' : ''}`} />
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Active Service Detailed Drawer Showcase */}
         <div className={`rounded-3xl p-8 sm:p-10 border shadow-2xl relative overflow-hidden transition-colors ${
@@ -109,15 +128,18 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
         }`}>
           <div className="absolute top-0 right-0 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+          <AnimatePresence mode="wait">
+          <motion.div
+            key={activeService.id}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.3 }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
             
             {/* Left: Description & Key Features */}
             <div className="lg:col-span-7 space-y-6">
-              <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-md border text-xs font-bold uppercase ${
-                isLightMode
-                  ? 'bg-orange-50 border-orange-200 text-orange-600'
-                  : 'bg-orange-500/10 border-orange-500/30 text-orange-400'
-              }`}>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-orange-50 border border-orange-200 text-orange-600 text-xs font-bold uppercase">
                 {getIcon(activeService.iconName)}
                 <span>{activeService.title}</span>
               </div>
@@ -191,7 +213,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             </div>
 
             {/* Right: Architecture Visual Card */}
-            <div className={`lg:col-span-5 rounded-2xl p-6 border space-y-4 ${
+            <div className={`rounded-2xl p-6 border space-y-4 ${
               isLightMode
                 ? 'bg-slate-900 text-white border-slate-800'
                 : 'bg-black/80 border-zinc-800'
@@ -217,7 +239,8 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
               </div>
             </div>
 
-          </div>
+          </motion.div>
+          </AnimatePresence>
         </div>
 
       </div>

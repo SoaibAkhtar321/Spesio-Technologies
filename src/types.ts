@@ -8,6 +8,15 @@ export interface ServiceItem {
   features: string[];
 }
 
+export interface PortfolioItem {
+  id: string;
+  name: string;
+  category: string;
+  status: 'Production' | 'In Development';
+  description: string;
+  stack: string[];
+}
+
 export interface EstimateOptions {
   serviceType: string;
   platform: string;

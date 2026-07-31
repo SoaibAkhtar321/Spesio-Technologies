@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { COMPANY_INFO } from '../data/companyData';
 import { ContactFormState } from '../types';
-import { Phone, Mail, Globe, MapPin, Send, CheckCircle2, MessageCircle } from 'lucide-react';
+import { Phone, Mail, Globe, MapPin, Send, CheckCircle2, MessageCircle, Clock } from 'lucide-react';
 
 interface ContactSectionProps {
   initialService?: string;
@@ -18,7 +19,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
     phone: '',
     service: initialService,
     message: '',
-    budget: '₹40,000 - ₹80,000',
+    budget: '$500 - $1,000',
   });
 
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -161,34 +162,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   </div>
                 </a>
 
-                {/* Instagram */}
-                <a
-                  href={COMPANY_INFO.socials.instagram}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={`flex items-center gap-4 p-3.5 rounded-2xl border transition-colors group ${
-                    isLightMode
-                      ? 'bg-white border-slate-200 hover:border-orange-500/50 shadow-2xs'
-                      : 'bg-zinc-950 border-zinc-800 hover:border-orange-500/50'
-                  }`}
-                >
-                  <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center shrink-0 group-hover:bg-orange-600 group-hover:text-white transition-colors">
-                    <svg className="w-5 h-5 text-orange-600 group-hover:text-white fill-none stroke-current stroke-2" viewBox="0 0 24 24">
-                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className={`text-[10px] uppercase font-semibold ${isLightMode ? 'text-slate-500' : 'text-zinc-500'}`}>Instagram</div>
-                    <div className={`font-bold group-hover:text-orange-600 transition-colors ${
-                      isLightMode ? 'text-slate-900' : 'text-white'
-                    }`}>
-                      @spesiotechnologies
-                    </div>
-                  </div>
-                </a>
-
                 {/* Location */}
                 <div className={`flex items-start gap-4 p-3.5 rounded-2xl border ${
                   isLightMode ? 'bg-white border-slate-200 shadow-2xs' : 'bg-zinc-950 border-zinc-800'
@@ -203,6 +176,24 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     }`}>
                       {COMPANY_INFO.founder.location}
                     </div>
+                  </div>
+                </div>
+
+                {/* Working Hours & Response Time */}
+                <div className={`flex items-start gap-4 p-3.5 rounded-2xl border ${
+                  isLightMode ? 'bg-white border-slate-200 shadow-2xs' : 'bg-zinc-950 border-zinc-800'
+                }`}>
+                  <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center shrink-0 mt-0.5">
+                    <Clock className="w-5 h-5 text-orange-600" />
+                  </div>
+                  <div>
+                    <div className={`text-[10px] uppercase font-semibold ${isLightMode ? 'text-slate-500' : 'text-zinc-500'}`}>Working Hours</div>
+                    <div className={`font-bold text-xs leading-snug mt-0.5 ${
+                      isLightMode ? 'text-slate-900' : 'text-white'
+                    }`}>
+                      Monday – Saturday, 9 AM – 8 PM IST
+                    </div>
+                    <div className="text-[11px] font-medium text-emerald-600 mt-1">Usually replies within 2 hours</div>
                   </div>
                 </div>
 
@@ -230,23 +221,32 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           }`}>
             
             {status === 'success' ? (
-              <div className={`p-8 text-center space-y-4 rounded-2xl border ${
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className={`p-8 text-center space-y-4 rounded-2xl border ${
                 isLightMode ? 'bg-white border-slate-200' : 'bg-zinc-950 border-orange-500/30'
               }`}>
-                <div className="w-16 h-16 rounded-full bg-orange-500/20 text-orange-600 border border-orange-500 flex items-center justify-center mx-auto">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: 'spring', stiffness: 260, damping: 16, delay: 0.1 }}
+                  className="w-16 h-16 rounded-full bg-orange-500/20 text-orange-600 border border-orange-500 flex items-center justify-center mx-auto"
+                >
                   <CheckCircle2 className="w-8 h-8" />
-                </div>
+                </motion.div>
                 <h3 className={`text-2xl font-black ${isLightMode ? 'text-slate-900' : 'text-white'}`}>Inquiry Received!</h3>
                 <p className={`text-sm max-w-md mx-auto ${isLightMode ? 'text-slate-600' : 'text-zinc-300'}`}>
                   {feedbackMsg}
                 </p>
                 <button
                   onClick={() => setStatus('idle')}
-                  className="px-6 py-2.5 rounded-xl bg-orange-600 text-white text-xs font-bold hover:bg-orange-500 transition-colors"
+                  className="px-6 py-2.5 rounded-xl bg-orange-600 text-white text-xs font-bold hover:bg-orange-500 transition-colors cursor-pointer"
                 >
                   Send Another Inquiry
                 </button>
-              </div>
+              </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <h3 className={`text-xl font-black ${isLightMode ? 'text-slate-900' : 'text-white'}`}>Project Inquiry Form</h3>
@@ -345,14 +345,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   />
                 </div>
 
-                <button
+                <motion.button
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="w-full py-3.5 px-6 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-orange-500/20 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="w-full py-3.5 px-6 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-orange-500/20 transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                 >
                   <Send className="w-4 h-4" />
                   {status === 'submitting' ? 'Submitting...' : 'Submit Inquiry To Spesio Technologies'}
-                </button>
+                </motion.button>
               </form>
             )}
 

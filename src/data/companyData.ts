@@ -1,4 +1,4 @@
-import { ServiceItem } from '../types';
+import { ServiceItem, PortfolioItem } from '../types';
 
 export const COMPANY_INFO = {
   name: 'Spesio Technologies',
@@ -31,6 +31,40 @@ export const COMPANY_INFO = {
     { label: 'Support Availability', value: '24 / 7' }
   ]
 };
+
+export const PORTFOLIO: PortfolioItem[] = [
+  {
+    id: 'campusbite',
+    name: 'CampusBite',
+    category: 'Campus Dining Platform',
+    status: 'Production',
+    description: 'Smart campus dining and queue management platform that reduces wait times and streamlines food ordering for students.',
+    stack: ['Kotlin', 'Firebase', 'Jetpack Compose'],
+  },
+  {
+    id: 'eifa-couture',
+    name: 'Eifa Couture',
+    category: 'Luxury E-Commerce',
+    status: 'In Development',
+    description: 'Luxury e-commerce storefront engineered for a premium shopping experience with fast performance and clean checkout flows.',
+    stack: ['Next.js', 'Supabase', 'Tailwind'],
+  },
+];
+
+export const PROCESS_STEPS = [
+  {
+    title: 'Discovery & Architecture',
+    desc: 'In-depth requirement analysis and scalable database schema mapping before a single line of code is written.',
+  },
+  {
+    title: 'Agile Development & Testing',
+    desc: 'Rapid iterations with clean, type-safe code, code review, and security validations at every stage.',
+  },
+  {
+    title: 'Cloud Deployment & Support',
+    desc: 'CI/CD pipelines, SSL configuration, and ongoing performance monitoring post-launch.',
+  },
+];
 
 export const SERVICES: ServiceItem[] = [
   {

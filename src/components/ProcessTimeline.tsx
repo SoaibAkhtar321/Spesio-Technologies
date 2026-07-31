@@ -1,121 +1,73 @@
 import React from 'react';
-import { Search, ClipboardList, Palette, Code2, FlaskConical, Rocket, LifeBuoy } from 'lucide-react';
+import { motion } from 'motion/react';
+import { PROCESS_STEPS } from '../data/companyData';
+import { Search, Code2, Rocket } from 'lucide-react';
+import { SectionHeader } from './SectionHeader';
 
 interface ProcessTimelineProps {
   isLightMode?: boolean;
 }
 
-const STEPS = [
-  {
-    icon: Search,
-    title: 'Discovery',
-    desc: 'Understanding your business goals, users, and constraints before a single line of code is written.',
-  },
-  {
-    icon: ClipboardList,
-    title: 'Planning',
-    desc: 'Scoping features, mapping the data model, and setting a realistic, transparent timeline.',
-  },
-  {
-    icon: Palette,
-    title: 'Design',
-    desc: 'Wireframes and UI direction that match your brand and keep the user experience intuitive.',
-  },
-  {
-    icon: Code2,
-    title: 'Development',
-    desc: 'Clean, type-safe, well-structured code built in focused, reviewable iterations.',
-  },
-  {
-    icon: FlaskConical,
-    title: 'Testing',
-    desc: 'Functional, performance, and security checks before anything reaches production.',
-  },
-  {
-    icon: Rocket,
-    title: 'Deployment',
-    desc: 'A smooth, monitored launch with proper environment and infrastructure configuration.',
-  },
-  {
-    icon: LifeBuoy,
-    title: 'Support',
-    desc: 'Ongoing post-launch monitoring, fixes, and improvements as your product grows.',
-  },
-];
+const STEP_ICONS = [Search, Code2, Rocket];
 
 export const ProcessTimeline: React.FC<ProcessTimelineProps> = ({ isLightMode = true }) => {
   return (
-    <section
-      id="process"
-      aria-labelledby="process-heading"
-      className={`py-20 transition-colors duration-200 border-t relative overflow-hidden ${
-        isLightMode ? 'bg-[#FAFAFB] border-slate-200' : 'bg-[#0A0D14] border-zinc-900'
-      }`}
-    >
-      <div className={`absolute top-0 left-1/3 w-96 h-96 rounded-full blur-3xl pointer-events-none ${
-        isLightMode ? 'bg-orange-500/10' : 'bg-orange-600/5'
-      }`} />
+    <section id="process" className={`py-20 transition-colors duration-200 relative border-t ${
+      isLightMode ? 'bg-[#FAFAFB] border-slate-200' : 'bg-[#0A0D14] border-zinc-900'
+    }`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionHeader
+          isLightMode={isLightMode}
+          eyebrow="How We Work"
+          title="Our Delivery Process"
+          description="A straightforward three-phase workflow that keeps every project on schedule and on scope."
+        />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-600 font-bold text-xs tracking-wider uppercase mb-3">
-            How We Work
-          </div>
-          <h2
-            id="process-heading"
-            className={`text-3xl sm:text-4xl font-black tracking-tight ${
-              isLightMode ? 'text-slate-900' : 'text-white'
-            }`}
-          >
-            Our Development Process
-          </h2>
-          <p className={`mt-3 text-base font-medium ${isLightMode ? 'text-slate-600' : 'text-zinc-400'}`}>
-            A structured, predictable path from first conversation to a product you can rely on.
-          </p>
-        </div>
-
-        {/* Timeline */}
-        <div className="relative">
-          {/* Connector line (desktop only) */}
-          <div
-            className={`hidden lg:block absolute top-8 left-0 right-0 h-px ${
-              isLightMode ? 'bg-slate-200' : 'bg-zinc-800'
-            }`}
-            aria-hidden="true"
+        <div className="relative max-w-3xl mx-auto">
+          {/* Vertical track */}
+          <div className={`absolute left-6 sm:left-7 top-2 bottom-2 w-0.5 ${isLightMode ? 'bg-slate-200' : 'bg-zinc-800'}`} />
+          {/* Animated progress fill */}
+          <motion.div
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            style={{ transformOrigin: 'top' }}
+            className="absolute left-6 sm:left-7 top-2 bottom-2 w-0.5 bg-gradient-to-b from-orange-600 via-orange-500 to-amber-400"
           />
 
-          <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-6 lg:gap-4">
-            {STEPS.map((step, idx) => {
-              const Icon = step.icon;
+          <div className="space-y-10">
+            {PROCESS_STEPS.map((step, idx) => {
+              const Icon = STEP_ICONS[idx % STEP_ICONS.length];
               return (
-                <li key={step.title} className="relative flex flex-col items-start lg:items-center lg:text-center">
+                <motion.div
+                  key={step.title}
+                  initial={{ opacity: 0, x: -16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative flex gap-5 pl-0"
+                >
                   <div
-                    className={`relative z-10 w-16 h-16 rounded-2xl flex items-center justify-center border shrink-0 ${
-                      isLightMode
-                        ? 'bg-white border-orange-200 shadow-sm'
-                        : 'bg-zinc-900 border-orange-500/30'
+                    className={`relative z-10 shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center border-2 ${
+                      isLightMode ? 'bg-white border-orange-500 shadow-md' : 'bg-zinc-950 border-orange-500 shadow-lg shadow-orange-950/30'
                     }`}
                   >
-                    <Icon className="w-6 h-6 text-orange-500" aria-hidden="true" />
-                    <span
-                      className={`absolute -top-2 -right-2 w-5 h-5 rounded-full text-[10px] font-bold flex items-center justify-center ${
-                        isLightMode ? 'bg-orange-600 text-white' : 'bg-orange-500 text-black'
-                      }`}
-                    >
-                      {idx + 1}
-                    </span>
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />
                   </div>
-                  <h3 className={`mt-4 text-sm font-bold ${isLightMode ? 'text-slate-900' : 'text-white'}`}>
-                    {step.title}
-                  </h3>
-                  <p className={`mt-1.5 text-xs leading-relaxed ${isLightMode ? 'text-slate-600' : 'text-zinc-400'}`}>
-                    {step.desc}
-                  </p>
-                </li>
+                  <div className={`flex-1 p-5 rounded-2xl border ${
+                    isLightMode ? 'bg-white border-slate-200 shadow-2xs' : 'bg-zinc-900/60 border-zinc-800'
+                  }`}>
+                    <div className="flex items-center gap-2 mb-1.5">
+                      <span className="text-[10px] font-black text-orange-600">STEP {idx + 1}</span>
+                    </div>
+                    <h3 className={`text-base sm:text-lg font-bold mb-1.5 ${isLightMode ? 'text-slate-900' : 'text-white'}`}>{step.title}</h3>
+                    <p className={`text-xs sm:text-sm leading-relaxed ${isLightMode ? 'text-slate-600' : 'text-zinc-400'}`}>{step.desc}</p>
+                  </div>
+                </motion.div>
               );
             })}
-          </ol>
+          </div>
         </div>
       </div>
     </section>
