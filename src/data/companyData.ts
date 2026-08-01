@@ -53,6 +53,41 @@ export const PORTFOLIO: PortfolioItem[] = [
   },
 ];
 
+export const FAQS = [
+  {
+    question: 'How much does a website cost?',
+    answer: 'Our fixed-price website packages start at ₹3,500 (Bronze) and go up to ₹17,500 (Diamond) for a full e-commerce platform with ERP integration. Every tier includes 1 year of free maintenance.',
+  },
+  {
+    question: 'How much does an Android app cost?',
+    answer: 'Native Android app packages start at ₹7,500 for a Bronze information app, scaling up based on features like offline sync, push notifications, and backend integrations. See the Project Estimator for a tailored quote.',
+  },
+  {
+    question: 'Do you provide free maintenance?',
+    answer: 'Yes. Every website and app package from Spesio Technologies includes 1 year of free maintenance, covering bug fixes and minor updates after launch.',
+  },
+  {
+    question: 'Do you develop ERP software?',
+    answer: 'Yes. We build custom ERP and CRM systems, including school ERP and restaurant/queue-management software, tailored to your business workflows.',
+  },
+  {
+    question: 'How long does a website take?',
+    answer: 'Most business websites are delivered within a few weeks depending on the package and scope. Our Agile development process breaks the build into discovery, iterative development, and deployment stages.',
+  },
+  {
+    question: 'Do you provide payment gateway integration?',
+    answer: 'Yes. Diamond-tier websites and custom e-commerce builds include full payment gateway integration alongside order and inventory management.',
+  },
+  {
+    question: 'Do you develop Android apps only?',
+    answer: 'No. Alongside native Android apps, we build business websites, custom software, ERP systems, and AI integrations — Android is one of four core service areas.',
+  },
+  {
+    question: 'Can I upgrade later?',
+    answer: 'Yes. You can start with a lower-tier package and upgrade as your business grows — for example, moving from a Silver website to a full Diamond e-commerce platform.',
+  },
+];
+
 export const PROCESS_STEPS = [
   {
     title: 'Discovery & Architecture',

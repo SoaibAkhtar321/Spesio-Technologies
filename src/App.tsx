@@ -17,6 +17,7 @@ const Portfolio = lazy(() => import('./components/Portfolio').then((m) => ({ def
 const ProjectEstimator = lazy(() => import('./components/ProjectEstimator').then((m) => ({ default: m.ProjectEstimator })));
 const FounderSection = lazy(() => import('./components/FounderSection').then((m) => ({ default: m.FounderSection })));
 const ContactSection = lazy(() => import('./components/ContactSection').then((m) => ({ default: m.ContactSection })));
+const FAQSection = lazy(() => import('./components/FAQSection').then((m) => ({ default: m.FAQSection })));
 const Footer = lazy(() => import('./components/Footer').then((m) => ({ default: m.Footer })));
 
 interface SectionSkeletonProps {
@@ -78,6 +79,14 @@ export default function App() {
         isLightMode ? 'bg-white text-slate-900' : 'bg-[#0A0D14] text-zinc-100'
       }`}
     >
+      {/* Skip link for keyboard/screen-reader users */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-maroon-600 focus:text-white focus:text-sm focus:font-semibold"
+      >
+        Skip to main content
+      </a>
+
       {/* Scroll Progress Indicator */}
       <ScrollProgressBar />
 
@@ -89,39 +98,46 @@ export default function App() {
         onOpenEstimator={handleOpenEstimator}
       />
 
-      {/* Hero Section */}
-      <Hero isLightMode={isLightMode} onOpenAiAssistant={handleOpenAiAssistant} onOpenEstimator={handleOpenEstimator} />
+      <main id="main-content">
+        {/* Hero Section */}
+        <Hero isLightMode={isLightMode} onOpenAiAssistant={handleOpenAiAssistant} onOpenEstimator={handleOpenEstimator} />
 
-      {/* Services Showcase */}
-      <ServicesSection isLightMode={isLightMode} onSelectServiceForEstimate={handleSelectServiceForEstimate} />
-<Suspense fallback={<SectionSkeleton isLightMode={isLightMode} />}>
-  {/* Why Choose Spesio */}
-  <WhyChooseUs isLightMode={isLightMode} />
+        {/* Services Showcase */}
+        <ServicesSection isLightMode={isLightMode} onSelectServiceForEstimate={handleSelectServiceForEstimate} />
+        <Suspense fallback={<SectionSkeleton isLightMode={isLightMode} />}>
+          {/* Why Choose Spesio */}
+          <WhyChooseUs isLightMode={isLightMode} />
 
-  <SectionDivider isLightMode={isLightMode} />
+          <SectionDivider isLightMode={isLightMode} />
 
-  {/* Interactive Scope & Cost Calculator */}
-  <ProjectEstimator
-    isLightMode={isLightMode}
-    preselectedServiceId={selectedServiceForEstimate}
-    onSendInquiry={handleSendInquiryFromEstimator}
-  />
+          {/* Interactive Scope & Cost Calculator */}
+          <ProjectEstimator
+            isLightMode={isLightMode}
+            preselectedServiceId={selectedServiceForEstimate}
+            onSendInquiry={handleSendInquiryFromEstimator}
+          />
 
-  {/* Delivery Process Timeline */}
-  <ProcessTimeline isLightMode={isLightMode} />
+          {/* Delivery Process Timeline */}
+          <ProcessTimeline isLightMode={isLightMode} />
 
-  {/* Selected Work / Portfolio */}
-  <Portfolio isLightMode={isLightMode} />
+          {/* Selected Work / Portfolio */}
+          <Portfolio isLightMode={isLightMode} />
 
-  {/* Founder Spotlight: Soaib Akhtar */}
-  <FounderSection isLightMode={isLightMode} />
+          {/* Founder Spotlight: Soaib Akhtar */}
+          <FounderSection isLightMode={isLightMode} />
 
-  {/* Direct Contact & Inquiry Form */}
-  <ContactSection isLightMode={isLightMode} initialService={contactInitialService} />
+          {/* Direct Contact & Inquiry Form */}
+          <ContactSection isLightMode={isLightMode} initialService={contactInitialService} />
 
-  {/* Footer */}
-  <Footer isLightMode={isLightMode} />
-</Suspense>
+          {/* Frequently Asked Questions */}
+          <FAQSection isLightMode={isLightMode} />
+        </Suspense>
+      </main>
+
+      <Suspense fallback={null}>
+        {/* Footer */}
+        <Footer isLightMode={isLightMode} />
+      </Suspense>
 
       {/* AI Assistant Chat Modal */}
       <AiAssistantModal isLightMode={isLightMode} isOpen={isAiModalOpen} onClose={handleCloseAiAssistant} />
