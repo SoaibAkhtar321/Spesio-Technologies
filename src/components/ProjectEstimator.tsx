@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SERVICES, COMPANY_INFO } from '../data/companyData';
-import { Calculator, Check, ArrowRight, MessageCircle, Mail, Sparkles, Clock, ShieldCheck } from 'lucide-react';
+import { Calculator, Check, ArrowRight, MessageCircle, Mail, Sparkles, Clock, ShieldCheck, RotateCcw } from 'lucide-react';
 
 interface ProjectEstimatorProps {
   preselectedServiceId?: string;
@@ -8,22 +8,44 @@ interface ProjectEstimatorProps {
   isLightMode?: boolean;
 }
 
+const DEFAULT_COMPLEXITY = '' as const;
+const DEFAULT_AI_MODULE = false;
+const DEFAULT_TIMELINE = '' as const;
+const DEFAULT_FEATURES: string[] = [];
+const DEFAULT_SERVICE = '';
+
 export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
   preselectedServiceId = 'software',
   onSendInquiry,
   isLightMode = true,
 }) => {
   const [selectedService, setSelectedService] = useState<string>(preselectedServiceId);
-  const [complexity, setComplexity] = useState<'simple' | 'medium' | 'advanced' | 'enterprise'>('medium');
-  const [aiModule, setAiModule] = useState<boolean>(true);
-  const [timeline, setTimeline] = useState<'express' | 'standard' | 'flexible'>('standard');
-  const [customFeatures, setCustomFeatures] = useState<string[]>(['auth', 'admin_dashboard']);
+  const [complexity, setComplexity] = useState<'' | 'simple' | 'medium' | 'advanced' | 'enterprise'>(DEFAULT_COMPLEXITY);
+  const [aiModule, setAiModule] = useState<boolean>(DEFAULT_AI_MODULE);
+  const [timeline, setTimeline] = useState<'' | 'express' | 'standard' | 'flexible'>(DEFAULT_TIMELINE);
+  const [customFeatures, setCustomFeatures] = useState<string[]>(DEFAULT_FEATURES);
+  const [justReset, setJustReset] = useState(false);
 
   useEffect(() => {
     if (preselectedServiceId) {
       setSelectedService(preselectedServiceId);
     }
   }, [preselectedServiceId]);
+
+  // Resets every field to a genuinely blank state — no service, no
+  // complexity tier, no AI module, no features, no timeline — so the price
+  // reads ₹0 and every option is visibly unselected, rather than snapping
+  // back to a "medium business" preset that still had a nonzero price.
+  const handleStartNewEstimate = () => {
+    setSelectedService(DEFAULT_SERVICE);
+    setComplexity(DEFAULT_COMPLEXITY);
+    setAiModule(DEFAULT_AI_MODULE);
+    setTimeline(DEFAULT_TIMELINE);
+    setCustomFeatures(DEFAULT_FEATURES);
+    setJustReset(true);
+    document.getElementById('estimator')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    window.setTimeout(() => setJustReset(false), 1500);
+  };
 
   const featureOptions = [
     { id: 'auth', label: 'User Authentication & Roles', cost: 12000 },
@@ -42,6 +64,12 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
 
   // Base price calculation algorithm (all figures in INR)
   const calculatePrice = () => {
+    // Nothing selected yet (fresh / just-reset state) — show a true ₹0,
+    // rather than silently falling back to a base tier's price.
+    if (!selectedService || !complexity) {
+      return { totalInINR: 0, estimatedWeeks: 'Select options to estimate' };
+    }
+
     let base = 40000;
     if (selectedService === 'web') base = 33000;
     if (selectedService === 'app') base = 58000;
@@ -107,6 +135,18 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
           }`}>
             Select your requirements to get an instant cost range and timeline estimate from Spesio Technologies.
           </p>
+          <button
+            type="button"
+            onClick={handleStartNewEstimate}
+            className={`mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold border transition-all cursor-pointer ${
+              isLightMode
+                ? 'bg-white border-slate-300 text-slate-700 hover:border-orange-400 hover:text-orange-600'
+                : 'bg-zinc-900 border-zinc-700 text-zinc-300 hover:border-orange-500/50 hover:text-orange-400'
+            }`}
+          >
+            <RotateCcw className={`w-3.5 h-3.5 transition-transform duration-500 ${justReset ? '-rotate-[360deg]' : ''}`} />
+            {justReset ? 'Estimate Reset' : 'Start a New Estimate'}
+          </button>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -290,7 +330,20 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
               isLightMode ? 'border-slate-100' : 'border-zinc-800'
             }`}>
               <span className="text-xs font-extrabold tracking-widest uppercase text-orange-600">Live Estimate Breakdown</span>
-              <Calculator className="w-5 h-5 text-orange-500" />
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={handleStartNewEstimate}
+                  title="Start a new estimate"
+                  className={`inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wide transition-colors cursor-pointer ${
+                    isLightMode ? 'text-slate-400 hover:text-orange-600' : 'text-zinc-500 hover:text-orange-400'
+                  }`}
+                >
+                  <RotateCcw className="w-3 h-3" />
+                  Reset
+                </button>
+                <Calculator className="w-5 h-5 text-orange-500" />
+              </div>
             </div>
 
             {/* Total Price Display */}
@@ -319,7 +372,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                 <Clock className="w-4 h-4 text-orange-500" />
                 <span>Estimated Delivery Schedule</span>
               </div>
-              <div className={`text-lg font-bold pl-6 ${isLightMode ? 'text-slate-900' : 'text-white'}`}>{estimatedWeeks}</div>
+              <div className={`font-bold pl-6 ${totalInINR === 0 ? 'text-sm' : 'text-lg'} ${isLightMode ? 'text-slate-900' : 'text-white'}`}>{estimatedWeeks}</div>
             </div>
 
             {/* Included Guarantees */}
@@ -344,7 +397,8 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
             <div className="space-y-2.5 pt-2">
               <button
                 onClick={handleWhatsAppSend}
-                className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-600/20 transition-all cursor-pointer"
+                disabled={totalInINR === 0}
+                className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-emerald-600 text-white shadow-lg shadow-emerald-600/20 transition-all cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4" />
                 Send Estimate to WhatsApp (+91 8957833269)
@@ -361,7 +415,8 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                     estimatedPrice: totalInINR,
                   })
                 }
-                className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl text-xs font-bold bg-orange-600 hover:bg-orange-500 text-white shadow-lg shadow-orange-500/20 transition-all cursor-pointer"
+                disabled={totalInINR === 0}
+                className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl text-xs font-bold bg-orange-600 hover:bg-orange-500 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-orange-600 text-white shadow-lg shadow-orange-500/20 transition-all cursor-pointer"
               >
                 <Mail className="w-4 h-4" />
                 Submit Inquiry Form

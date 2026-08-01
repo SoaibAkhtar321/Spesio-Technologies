@@ -87,9 +87,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
             <motion.h1 variants={fadeUp} className={`text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] ${
               isLightMode ? 'text-slate-900' : 'text-white'
             }`}>
-              We build.{' '}
+              Websites, Apps &amp; AI{' '}
               <span className="bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradient-shift_6s_ease_infinite]">
-                You grow.
+                Built to Grow Your Business.
               </span>
             </motion.h1>
 
@@ -97,56 +97,63 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
             <motion.p variants={fadeUp} className={`text-lg sm:text-xl font-medium max-w-2xl leading-relaxed ${
               isLightMode ? 'text-slate-600' : 'text-zinc-300'
             }`}>
-              {COMPANY_INFO.subTagline} High-performance custom software, mobile apps, scalable web systems, and intelligent AI automation for growing modern businesses.
+              Spesio Technologies designs and builds business websites, mobile apps, custom software, AI automation, and ERP/CRM systems — engineered for speed, scale, and real results.
             </motion.p>
 
             {/* Quick 4 Core Service Icons Bar */}
-            <motion.div variants={containerStagger} className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+            <motion.div variants={containerStagger} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 pt-2">
               {[
+                { icon: Globe, label: 'WEBSITES' },
+                { icon: Smartphone, label: 'MOBILE APPS' },
                 { icon: Code, label: 'SOFTWARE' },
-                { icon: Globe, label: 'WEB' },
-                { icon: Smartphone, label: 'APP' },
-                { icon: Brain, label: 'AI' },
+                { icon: Brain, label: 'AI AUTOMATION' },
+                { icon: CheckCircle2, label: 'ERP / CRM' },
               ].map(({ icon: Icon, label }) => (
                 <motion.div
                   key={label}
                   variants={fadeUp}
-                  whileHover={{ y: -3 }}
-                  className={`p-3 rounded-xl border flex items-center gap-2.5 shadow-2xs transition-colors ${
+                  whileHover={{ y: -3, scale: 1.03 }}
+                  className={`p-3 rounded-xl border flex items-center gap-2.5 shadow-2xs transition-all will-change-transform ${
                     isLightMode
-                      ? 'bg-white border-slate-200/90'
-                      : 'bg-zinc-900/80 border-zinc-800'
+                      ? 'bg-white border-slate-200/90 hover:border-orange-300'
+                      : 'bg-zinc-900/80 border-zinc-800 hover:border-orange-500/40'
                   }`}
                 >
-                  <Icon className="w-5 h-5 text-orange-500 shrink-0" />
-                  <div className={`text-xs font-bold ${isLightMode ? 'text-slate-800' : 'text-zinc-200'}`}>{label}</div>
+                  <motion.div whileHover={{ rotate: 12 }} className="shrink-0">
+                    <Icon className="w-5 h-5 text-orange-500" />
+                  </motion.div>
+                  <div className={`text-[11px] font-bold ${isLightMode ? 'text-slate-800' : 'text-zinc-200'}`}>{label}</div>
                 </motion.div>
               ))}
             </motion.div>
 
             {/* Action Buttons */}
-            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
+            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5 pt-5">
               <motion.button
                 onClick={onOpenEstimator}
-                whileHover={{ y: -2, boxShadow: '0 12px 28px -6px rgba(249,115,22,0.45)' }}
-                whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-bold bg-gradient-to-r from-orange-600 to-orange-500 text-white shadow-lg shadow-orange-500/25 transition-colors cursor-pointer"
+                whileHover={{ y: -3, boxShadow: '0 16px 36px -6px rgba(249,115,22,0.55)' }}
+                whileTap={{ scale: 0.97, y: 0 }}
+                className="group relative inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl text-sm font-bold bg-gradient-to-r from-orange-600 to-orange-500 text-white shadow-lg shadow-orange-500/25 transition-shadow cursor-pointer overflow-hidden will-change-transform"
               >
-                Calculate Project Scope
-                <ArrowRight className="w-4 h-4" />
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 rounded-xl bg-orange-400/40 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                />
+                <span className="relative">Calculate Project Scope</span>
+                <ArrowRight className="relative w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </motion.button>
 
               <motion.button
                 onClick={onOpenAiAssistant}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.97 }}
-                className={`inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold border transition-colors cursor-pointer ${
+                whileHover={{ y: -3 }}
+                whileTap={{ scale: 0.97, y: 0 }}
+                className={`group inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl text-sm font-semibold border transition-colors cursor-pointer will-change-transform ${
                   isLightMode
-                    ? 'bg-white hover:bg-slate-50 text-slate-800 border-slate-300 shadow-2xs'
+                    ? 'bg-white hover:bg-orange-50/60 text-slate-800 border-slate-300 hover:border-orange-300 shadow-2xs'
                     : 'bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border-orange-500/30'
                 }`}
               >
-                <Sparkles className="w-4 h-4 text-orange-500" />
+                <Sparkles className="w-4 h-4 text-orange-500 transition-transform duration-300 group-hover:rotate-12" />
                 Ask Spesio AI Assistant
               </motion.button>
             </motion.div>
@@ -156,10 +163,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
               isLightMode ? 'text-slate-600' : 'text-zinc-400'
             }`}>
               {COMPANY_INFO.pillars.map((pillar) => (
-                <div key={pillar.title} className="flex items-center gap-1.5">
+                <motion.div key={pillar.title} whileHover={{ y: -1 }} className="flex items-center gap-1.5 will-change-transform">
                   <CheckCircle2 className="w-4 h-4 text-orange-500" />
                   <span>{pillar.title}</span>
-                </div>
+                </motion.div>
               ))}
             </motion.div>
 

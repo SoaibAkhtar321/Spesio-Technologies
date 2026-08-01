@@ -20,9 +20,10 @@ export const COMPANY_INFO = {
     instagram: 'https://instagram.com/spesiotechnologies',
   },
   pillars: [
-    { title: 'Modern Solutions', desc: 'Cutting-edge tech stack tailored for high speed and durability.' },
-    { title: 'Reliable Support', desc: 'End-to-end guidance from initial concept to post-launch optimization.' },
-    { title: 'Scalable Growth', desc: 'Architectures engineered to handle growing traffic and business operations.' }
+    { title: 'Fast Delivery', desc: 'Cutting-edge tech stack tailored for high speed and durability.' },
+    { title: 'Scalable Architecture', desc: 'Architectures engineered to handle growing traffic and business operations.' },
+    { title: 'Full Ownership', desc: 'You own the code, the data, and the platform — no vendor lock-in.' },
+    { title: 'Post-Launch Support', desc: 'End-to-end guidance from initial concept to post-launch optimization.' }
   ],
   stats: [
     { label: 'Client Satisfaction', value: '100%' },

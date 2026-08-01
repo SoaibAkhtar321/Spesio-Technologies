@@ -38,19 +38,41 @@ const markSizeClasses = {
  * entrance + hover shine so it feels alive without being distracting on
  * repeat use across the header/footer/modal.
  */
-const Emblem: React.FC<{ heightClass: string; animateIn: boolean }> = ({ heightClass, animateIn }) => {
+const Emblem: React.FC<{ heightClass: string; animateIn: boolean; isLightMode: boolean }> = ({ heightClass, animateIn, isLightMode }) => {
+  // IMPORTANT: `h-full` on the <img> only resolves correctly if this wrapper
+  // has an explicit (non-auto) height. Previously the wrapper was plain
+  // `inline-block` with no height class, so `h-full` had nothing real to
+  // measure against and browsers fell back to the image's native pixel
+  // dimensions — causing the mark to render at full intrinsic size and blow
+  // out the header/footer layout. Applying the same explicit heightClass to
+  // the wrapper (not just the image) fixes that at the root.
+  //
+  // The mark art itself is a white "S" + orange "T" on a transparent
+  // background. That's fine on dark surfaces, but on light/white surfaces
+  // (header, footer, light mode generally) the white S has almost no
+  // contrast and effectively disappears. Since we can't repaint the raster
+  // art, we stack several zero-blur `drop-shadow` filters around the alpha
+  // silhouette to create a thin dark contour — this only outlines opaque
+  // pixels (the S and T shapes), so it doesn't add a visible box around the
+  // transparent background. Only applied in light mode; dark mode is left
+  // untouched since the white S already reads fine there.
   const img = (
     <img
       src={MARK_SRC}
       alt="Spesio Technologies"
       draggable={false}
-      className={`${heightClass} w-auto object-contain select-none pointer-events-none drop-shadow-[0_2px_10px_rgba(255,106,0,0.25)]`}
+      className="h-full w-auto object-contain select-none pointer-events-none"
+      style={{
+        filter: isLightMode
+          ? 'drop-shadow(1px 0 0 rgba(15,23,42,0.55)) drop-shadow(-1px 0 0 rgba(15,23,42,0.55)) drop-shadow(0 1px 0 rgba(15,23,42,0.55)) drop-shadow(0 -1px 0 rgba(15,23,42,0.55)) drop-shadow(0 2px 10px rgba(255,106,0,0.25))'
+          : 'drop-shadow(0 2px 10px rgba(255,106,0,0.25))',
+      }}
     />
   );
 
   return (
     <motion.div
-      className="relative inline-block overflow-hidden spesio-mark-shine rounded-sm"
+      className={`relative inline-flex overflow-hidden spesio-mark-shine rounded-sm shrink-0 ${heightClass}`}
       initial={animateIn ? { opacity: 0, scale: 0.6, rotate: -12 } : false}
       animate={{ opacity: 1, scale: 1, rotate: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -72,7 +94,7 @@ export const SpesioLogo: React.FC<SpesioLogoProps> = ({
   if (variant === 'full') {
     return (
       <div className={`flex flex-col items-center text-center ${className}`}>
-        <Emblem heightClass={markSizeClasses[size] || 'h-16'} animateIn={animateIn} />
+        <Emblem heightClass={size === 'custom' ? 'h-16' : markSizeClasses[size]} animateIn={animateIn} isLightMode={isLightMode} />
         <div className="mt-3 tracking-widest uppercase">
           <div className={`text-xl sm:text-2xl font-black tracking-[0.28em] ${
             isLightMode ? 'text-slate-900' : 'text-white'
@@ -91,7 +113,7 @@ export const SpesioLogo: React.FC<SpesioLogoProps> = ({
   if (variant === 'mark') {
     return (
       <div className={className}>
-        <Emblem heightClass={markSizeClasses[size] || 'h-10'} animateIn={animateIn} />
+        <Emblem heightClass={size === 'custom' ? 'h-10' : markSizeClasses[size]} animateIn={animateIn} isLightMode={isLightMode} />
       </div>
     );
   }
@@ -99,7 +121,7 @@ export const SpesioLogo: React.FC<SpesioLogoProps> = ({
   // Horizontal Layout (Emblem next to text)
   return (
     <div className={`inline-flex items-center gap-3 ${heightClasses[size]} ${className}`}>
-      <Emblem heightClass="h-full" animateIn={animateIn} />
+      <Emblem heightClass="h-full" animateIn={animateIn} isLightMode={isLightMode} />
       <div className="flex flex-col justify-center leading-none">
         <span className={`font-black tracking-[0.24em] text-base sm:text-lg ${
           isLightMode ? 'text-slate-900' : 'text-white'
