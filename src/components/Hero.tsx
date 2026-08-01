@@ -97,14 +97,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
             <motion.p variants={fadeUp} className={`text-lg sm:text-xl font-medium max-w-2xl leading-relaxed ${
               isLightMode ? 'text-slate-600' : 'text-zinc-300'
             }`}>
-              Spesio Technologies designs and builds business websites, mobile apps, custom software, AI automation, and ERP/CRM systems — engineered for speed, scale, and real results.
+              We design and develop business websites, Android applications, admin panels, ERP systems, and e-commerce solutions that help businesses attract customers, streamline operations, and increase revenue.
             </motion.p>
 
             {/* Quick 4 Core Service Icons Bar */}
             <motion.div variants={containerStagger} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 pt-2">
               {[
                 { icon: Globe, label: 'WEBSITES' },
-                { icon: Smartphone, label: 'MOBILE APPS' },
+                { icon: Smartphone, label: 'ANDROID APPS' },
                 { icon: Code, label: 'SOFTWARE' },
                 { icon: Brain, label: 'AI AUTOMATION' },
                 { icon: CheckCircle2, label: 'ERP / CRM' },
@@ -167,6 +167,30 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
                   <CheckCircle2 className="w-4 h-4 text-orange-500" />
                   <span>{pillar.title}</span>
                 </motion.div>
+              ))}
+            </motion.div>
+
+            {/* Trust Badges */}
+            <motion.div variants={fadeUp} className="pt-3 flex flex-wrap gap-2">
+              {[
+                '1 Year Free Maintenance',
+                'Native Android Development',
+                'Business Websites',
+                'Fast Delivery',
+                'SEO Ready',
+                'WhatsApp Integration',
+              ].map((badge) => (
+                <span
+                  key={badge}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold border ${
+                    isLightMode
+                      ? 'bg-white border-slate-200 text-slate-700'
+                      : 'bg-zinc-900/80 border-zinc-800 text-zinc-300'
+                  }`}
+                >
+                  <CheckCircle2 className="w-3 h-3 text-orange-500" />
+                  {badge}
+                </span>
               ))}
             </motion.div>
 

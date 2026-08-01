@@ -322,7 +322,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     >
                       <option value="Custom Software Development">Custom Software Development</option>
                       <option value="Web Development">Web Development</option>
-                      <option value="App Development">App Development</option>
+                      <option value="Android App Development">Android App Development</option>
                       <option value="AI Integrations">AI Integrations</option>
                     </select>
                   </div>

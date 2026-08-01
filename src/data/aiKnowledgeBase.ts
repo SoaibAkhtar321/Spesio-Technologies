@@ -16,7 +16,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     id: 'services',
     keywords: ['service', 'services', 'what do you do', 'what do you offer', 'offerings', 'what can you build'],
     answer:
-      "Spesio Technologies offers 4 core services: Custom Software Development, Web Development, App Development (iOS & Android), and AI Integrations (chatbots, automation, LLM workflows). Ask me about any of these for more detail!",
+      "Spesio Technologies offers 4 core services: Custom Software Development, Web Development, Android App Development (native Kotlin apps), and AI Integrations (chatbots, automation, LLM workflows). Ask me about any of these for more detail!",
   },
   {
     id: 'founder',
@@ -28,7 +28,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     id: 'technologies',
     keywords: ['technology', 'technologies', 'tech stack', 'stack', 'programming language', 'frameworks', 'tools you use'],
     answer:
-      "We work with a modern tech stack: React.js, Next.js, Node.js, Python, TypeScript, Tailwind CSS, PostgreSQL, React Native, Flutter, Firebase, and AI tools like the Gemini API and LangChain.",
+      "We work with a modern tech stack: React.js, Next.js, Node.js, Python, TypeScript, Tailwind CSS, PostgreSQL, Kotlin, Jetpack Compose, Firebase, and AI tools like the Gemini API and LangChain.",
   },
   {
     id: 'website',
@@ -38,9 +38,9 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
   },
   {
     id: 'mobile-app',
-    keywords: ['mobile app', 'app development', 'android', 'ios app', 'play store', 'app store'],
+    keywords: ['mobile app', 'app development', 'android', 'android app', 'play store'],
     answer:
-      "We build cross-platform iOS & Android apps using React Native and Flutter, with smooth 60fps UI, offline sync, push notifications, and full App Store / Play Store publishing support.",
+      "We build native Android business apps using Kotlin and Jetpack Compose, with smooth 60fps UI, offline sync, push notifications, and full Play Store publishing support. We only build for Android.",
   },
   {
     id: 'ai-integration',
@@ -52,7 +52,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     id: 'timeline',
     keywords: ['timeline', 'how long', 'duration', 'delivery time', 'turnaround', 'how much time'],
     answer:
-      "Project timelines depend on scope: Simple MVPs typically take 1-2 weeks, Medium projects 2-4 weeks, Advanced builds 4-8 weeks, and Enterprise projects 8+ weeks. Use our Project Estimator above for a precise estimate.",
+      "Delivery timelines depend on your package tier: Bronze 1-2 weeks, Silver 2-3 weeks, Gold 3-5 weeks, and Diamond 5-8 weeks. See the Packages section above for the exact tier breakdown.",
   },
   {
     id: 'contact',
@@ -80,9 +80,9 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
   },
   {
     id: 'pricing',
-    keywords: ['price', 'pricing', 'cost', 'budget', 'how much', 'charge', 'quote'],
+    keywords: ['price', 'pricing', 'cost', 'budget', 'how much', 'charge', 'quote', 'package', 'packages'],
     answer:
-      "Pricing depends on scope and complexity. Use our interactive Project Estimator above to get an instant cost estimate in Indian Rupees (₹), or contact us directly for a custom quote.",
+      "We use fixed, transparent packages (Bronze, Silver, Gold, Diamond) for both Website and Android App projects, plus discounted bundles, all in Indian Rupees (₹). See \"View Packages\" above for the full price list, or use \"Find My Package\" for a guided recommendation.",
   },
   {
     id: 'greeting',

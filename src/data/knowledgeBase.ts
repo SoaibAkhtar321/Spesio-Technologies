@@ -18,14 +18,14 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     id: 'services',
     triggers: ['service', 'services', 'what do you do', 'what do you offer', 'what can you build', 'offerings', 'capabilities'],
     answer:
-      'Spesio Technologies offers four core services: Custom Software Development (SaaS, ERP/CRM, backend systems), Web Development (React/Next.js, SEO-optimized), App Development (iOS & Android, React Native/Flutter), and AI Integrations (chatbots, automation, LLM workflows). Want details on a specific one?',
+      'Spesio Technologies offers four core services: Custom Software Development (SaaS, ERP/CRM, backend systems), Web Development (React/Next.js, SEO-optimized), Android App Development (native Kotlin apps), and AI Integrations (chatbots, automation, LLM workflows). Want details on a specific one?',
     followUps: ['How much does a website cost?', 'Can you build AI products?', 'How do I start?'],
   },
   {
     id: 'technologies',
     triggers: ['technolog', 'tech stack', 'what tools', 'what languages', 'what framework', 'stack do you use', 'programming'],
     answer:
-      'Our stack varies by project: Node.js, Python and TypeScript on the backend with PostgreSQL and Docker; React, Next.js, Vite and Tailwind CSS for web; React Native and Flutter for mobile; and Gemini/OpenAI with LangChain for AI features. We pick the right stack for your product, not the other way around.',
+      'Our stack varies by project: Node.js, Python and TypeScript on the backend with PostgreSQL and Docker; React, Next.js, Vite and Tailwind CSS for web; Kotlin and Jetpack Compose for native Android apps; and Gemini/OpenAI with LangChain for AI features. We pick the right stack for your product, not the other way around.',
     followUps: ['What services do you provide?', 'What is CampusBite?'],
   },
   {
@@ -46,21 +46,21 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     id: 'timeline',
     triggers: ['how long', 'timeline', 'turnaround', 'duration', 'how much time', 'delivery time'],
     answer:
-      'Timelines depend on scope: a simple marketing website usually takes 1-2 weeks, a full web app or MVP takes 3-6 weeks, and mobile apps or complex AI integrations typically run 6-10+ weeks. Use the Project Estimator above for a scope-specific timeline.',
+      'Timelines depend on your package tier: Bronze packages typically take 1-2 weeks, Silver 2-3 weeks, Gold 3-5 weeks, and Diamond 5-8 weeks. See the "View Packages" section above for the exact tier breakdown.',
     followUps: ['How much does a website cost?', 'Can I schedule a consultation?'],
   },
   {
     id: 'website-cost',
     triggers: ['website cost', 'web cost', 'cost of website', 'price of website', 'how much for a website', 'pricing web'],
     answer:
-      'Website pricing depends on complexity — a landing page differs a lot from a full web app with a database and admin panel. Rather than quote a number blind, use the Project Estimator above: pick "Web Development," set your requirements, and you will get a live scope-based estimate instantly.',
-    followUps: ['How much does an app cost?', 'How do payments work?'],
+      'We use fixed website packages, not arbitrary quotes: Bronze ₹3,500, Silver ₹6,500, Gold ₹9,000, and Diamond ₹17,500 — each includes 1 year FREE maintenance. Check "View Packages" above for full feature breakdowns, or use "Find My Package" for a guided recommendation.',
+    followUps: ['How much does an Android app cost?', 'How do payments work?'],
   },
   {
     id: 'app-cost',
-    triggers: ['app cost', 'cost of app', 'price of app', 'how much for an app', 'mobile app price', 'pricing app'],
+    triggers: ['app cost', 'cost of app', 'price of app', 'how much for an app', 'mobile app price', 'pricing app', 'android app cost'],
     answer:
-      'App pricing depends on platform (iOS, Android, or both), feature complexity, and backend needs. Use the Project Estimator above and choose "App Development" for a live scope-based estimate, or share your feature list on WhatsApp for a quick manual quote.',
+      'We use fixed Android app packages, not arbitrary quotes: Bronze ₹7,500, Silver ₹12,500, Gold ₹18,500, and Diamond ₹30,000 — each includes 1 year FREE maintenance. We also offer discounted Website + App bundles. Check "View Packages" above, or use "Find My Package" for a guided recommendation.',
     followUps: ['How much does a website cost?', 'How do payments work?'],
   },
   {
@@ -81,7 +81,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     id: 'get-started',
     triggers: ['how do i start', 'how to start', 'get started', 'begin a project', 'how does it work', 'process', 'next steps'],
     answer:
-      'Getting started is simple: 1) Tell us about your project via the Project Estimator or Contact form. 2) We review scope and send a proposal. 3) We agree on timeline and payment terms. 4) Development begins with regular progress updates until launch. You can also just message us on WhatsApp to kick things off.',
+      'Getting started is simple: 1) Pick a package via "View Packages" or "Find My Package," or tell us about your project via the Contact form. 2) We confirm scope and send a proposal. 3) We agree on timeline and payment terms. 4) Development begins with regular progress updates until launch. You can also just message us on WhatsApp to kick things off.',
     followUps: ['How do payments work?', 'Can I schedule a consultation?'],
   },
   {
@@ -132,6 +132,13 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     answer:
       'Hey there! I am Spesio AI. Ask me about our services, pricing, timelines, tech stack, or the team — I am happy to help.',
     followUps: ['What services do you provide?', 'How much does a website cost?'],
+  },
+  {
+    id: 'packages',
+    triggers: ['package', 'packages', 'bundle', 'bundles', 'pricing plan', 'plans', 'what packages'],
+    answer:
+      'We offer four fixed tiers — Bronze, Silver, Gold, and Diamond — for both Website and Android App packages, plus discounted Website + App bundles (Starter, Business, Professional, Enterprise). Every package includes 1 year of FREE maintenance. See "View Packages" above for full details, or use "Find My Package" for a guided recommendation.',
+    followUps: ['How much does a website cost?', 'How much does an Android app cost?'],
   },
   {
     id: 'thanks',

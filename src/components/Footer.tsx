@@ -32,7 +32,7 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
             <p className={`text-xs max-w-sm leading-relaxed ${
               isLightMode ? 'text-slate-600' : 'text-zinc-400'
             }`}>
-              "{COMPANY_INFO.subTagline}" We engineer high-performance software, modern websites, cross-platform mobile apps, and intelligent AI automation.
+              "{COMPANY_INFO.subTagline}" We engineer high-performance software, modern websites, native Android applications, and intelligent AI automation.
             </p>
 
             <p className="text-xs text-orange-600 font-bold">
@@ -99,7 +99,7 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
               <li><a href="#process" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>Delivery Process</a></li>
               <li><a href="#portfolio" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>Portfolio</a></li>
               <li><a href="#card" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>Digital Business Card</a></li>
-              <li><a href="#estimator" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>Scope & Budget Calculator</a></li>
+              <li><a href="#estimator" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>Packages & Pricing</a></li>
               <li><a href="#founder" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>About Soaib Akhtar</a></li>
               <li><a href="#contact" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>Direct Contact</a></li>
             </ul>

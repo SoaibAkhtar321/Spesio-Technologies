@@ -1,4 +1,4 @@
-import { ServiceItem, PortfolioItem } from '../types';
+import { ServiceItem, PortfolioItem, PricingPackage, BundlePackage, MaintenancePlan } from '../types';
 
 export const COMPANY_INFO = {
   name: 'Spesio Technologies',
@@ -98,16 +98,16 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     id: 'app',
-    title: 'App Development',
-    shortDesc: 'Beautiful, Fast & User-Friendly Mobile Apps',
-    fullDesc: 'Native and cross-platform iOS & Android apps that deliver fluid 60fps user experiences, offline synchronization, push notifications, and intuitive UI design.',
+    title: 'Android App Development',
+    shortDesc: 'Beautiful, Fast & User-Friendly Native Android Apps',
+    fullDesc: 'Native Android business apps built with Kotlin that deliver fluid 60fps user experiences, offline synchronization, push notifications, and intuitive UI design.',
     iconName: 'smartphone',
-    technologies: ['React Native', 'Flutter', 'iOS / Android', 'Firebase', 'SQLite'],
+    technologies: ['Kotlin', 'Jetpack Compose', 'Android', 'Firebase', 'SQLite'],
     features: [
-      'Cross-Platform iOS & Android Apps',
+      'Native Android Applications',
       'Smooth Touch & Gesture UI',
       'Real-Time Offline Syncing',
-      'App Store & Play Store Publishing'
+      'Play Store Publishing'
     ]
   },
   {
@@ -125,3 +125,173 @@ export const SERVICES: ServiceItem[] = [
     ]
   }
 ];
+
+/**
+ * Fixed, professional package pricing (all figures in INR).
+ * These are the ONLY prices used anywhere on the site — the AI Assistant,
+ * pricing cards, and the "Find My Package" wizard all read from this list
+ * rather than calculating arbitrary numbers.
+ */
+export const WEBSITE_PACKAGES: PricingPackage[] = [
+  {
+    id: 'bronze',
+    emoji: '🥉',
+    name: 'Bronze Website',
+    price: 3500,
+    features: [
+      'Business landing page',
+      'Up to 8 pages',
+      'Contact section',
+      'Google Maps integration',
+      'Mobile responsive design',
+      'Basic SEO setup',
+      '1 year FREE maintenance',
+    ],
+    cta: 'Get Bronze Website',
+  },
+  {
+    id: 'silver',
+    emoji: '🥈',
+    name: 'Silver Website',
+    price: 6500,
+    features: [
+      'Everything in Bronze, PLUS',
+      'Product / service listing',
+      'WhatsApp Buy buttons',
+      'Instagram feed integration',
+      'Facebook integration',
+      'Email integration',
+      'Up to 12 pages',
+      'Enhanced animations',
+      '1 year FREE maintenance',
+    ],
+    cta: 'Get Silver Website',
+  },
+  {
+    id: 'gold',
+    emoji: '🥇',
+    name: 'Gold Website',
+    price: 9000,
+    features: [
+      'Everything in Silver, PLUS',
+      'Admin panel access',
+      'Manage products',
+      'Manage services',
+      'Manage enquiries',
+      'Advanced dashboard',
+      '1 year FREE maintenance',
+    ],
+    cta: 'Get Gold Website',
+    highlight: true,
+  },
+  {
+    id: 'diamond',
+    emoji: '💎',
+    name: 'Diamond Website',
+    price: 17500,
+    features: [
+      'Everything in Gold, PLUS',
+      'Full eCommerce platform',
+      'ERP integration',
+      'Payment gateway',
+      'Analytics dashboard',
+      'Order management',
+      'Inventory management',
+      'Restaurant / school / clothing / grocery ready',
+      '1 year FREE maintenance',
+    ],
+    cta: 'Get Diamond Website',
+  },
+];
+
+export const ANDROID_PACKAGES: PricingPackage[] = [
+  {
+    id: 'bronze',
+    emoji: '🥉',
+    name: 'Bronze Android App',
+    price: 7500,
+    features: [
+      'Business information screens',
+      'Contact screen',
+      'About screen',
+      'Services screen',
+      'WhatsApp integration',
+      'Social media links',
+      'Push notifications',
+      '8–10 screens',
+      '1 year FREE maintenance',
+    ],
+    cta: 'Get Bronze Android App',
+  },
+  {
+    id: 'silver',
+    emoji: '🥈',
+    name: 'Silver Android App',
+    price: 12500,
+    features: [
+      'Everything in Bronze, PLUS',
+      'Login & authentication',
+      'Firebase integration',
+      'Category browsing',
+      'Product listing',
+      'Search functionality',
+      'WhatsApp ordering',
+      'Social integration',
+      'Up to 15 screens',
+      '1 year FREE maintenance',
+    ],
+    cta: 'Get Silver Android App',
+  },
+  {
+    id: 'gold',
+    emoji: '🥇',
+    name: 'Gold Android App',
+    price: 18500,
+    features: [
+      'Everything in Silver, PLUS',
+      'Web admin panel',
+      'Product management',
+      'Notification panel',
+      'Analytics',
+      'User management',
+      'Order management',
+      'Dashboard',
+      '1 year FREE maintenance',
+    ],
+    cta: 'Get Gold Android App',
+    highlight: true,
+  },
+  {
+    id: 'diamond',
+    emoji: '💎',
+    name: 'Diamond Android App',
+    price: 30000,
+    features: [
+      'Everything in Gold, PLUS',
+      'Payment gateway',
+      'ERP integration',
+      'Restaurant / grocery / school ready',
+      'Inventory management',
+      'Analytics & reports',
+      'Complete business solution',
+      '1 year FREE maintenance',
+    ],
+    cta: 'Get Diamond Android App',
+  },
+];
+
+export const BUNDLES: BundlePackage[] = [
+  { id: 'starter', name: 'Starter Bundle', websiteTier: 'bronze', androidTier: 'bronze', price: 10000 },
+  { id: 'business', name: 'Business Bundle', websiteTier: 'silver', androidTier: 'silver', price: 17500 },
+  { id: 'professional', name: 'Professional Bundle', websiteTier: 'gold', androidTier: 'gold', price: 25000 },
+  { id: 'enterprise', name: 'Enterprise Bundle', websiteTier: 'diamond', androidTier: 'diamond', price: 45000, highlight: true },
+];
+
+export const WEBSITE_MAINTENANCE: MaintenancePlan[] = [
+  { tier: 'bronze', priceLabel: '₹700/year' },
+  { tier: 'silver', priceLabel: '₹1,200/year' },
+  { tier: 'gold', priceLabel: '₹1,700/year' },
+  { tier: 'diamond', priceLabel: '₹2,200/year' },
+];
+
+export const ANDROID_MAINTENANCE_LABEL = '₹2,500 – ₹4,000/year';

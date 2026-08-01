@@ -25,6 +25,32 @@ export interface EstimateOptions {
   timeline: string;
 }
 
+export type PackageTierId = 'bronze' | 'silver' | 'gold' | 'diamond';
+
+export interface PricingPackage {
+  id: PackageTierId;
+  emoji: string;
+  name: string;
+  price: number;
+  features: string[];
+  cta: string;
+  highlight?: boolean;
+}
+
+export interface BundlePackage {
+  id: string;
+  name: string;
+  websiteTier: PackageTierId;
+  androidTier: PackageTierId;
+  price: number;
+  highlight?: boolean;
+}
+
+export interface MaintenancePlan {
+  tier: PackageTierId;
+  priceLabel: string;
+}
+
 export interface ContactFormState {
   name: string;
   email: string;
