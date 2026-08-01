@@ -47,7 +47,7 @@ const Emblem: React.FC<{ heightClass: string; animateIn: boolean; isLightMode: b
   // out the header/footer layout. Applying the same explicit heightClass to
   // the wrapper (not just the image) fixes that at the root.
   //
-  // The mark art itself is a white "S" + orange "T" on a transparent
+  // The mark art itself is a white "S" + maroon "T" on a transparent
   // background. That's fine on dark surfaces, but on light/white surfaces
   // (header, footer, light mode generally) the white S has almost no
   // contrast and effectively disappears. Since we can't repaint the raster
@@ -64,8 +64,8 @@ const Emblem: React.FC<{ heightClass: string; animateIn: boolean; isLightMode: b
       className="h-full w-auto object-contain select-none pointer-events-none"
       style={{
         filter: isLightMode
-          ? 'drop-shadow(1px 0 0 rgba(15,23,42,0.55)) drop-shadow(-1px 0 0 rgba(15,23,42,0.55)) drop-shadow(0 1px 0 rgba(15,23,42,0.55)) drop-shadow(0 -1px 0 rgba(15,23,42,0.55)) drop-shadow(0 2px 10px rgba(255,106,0,0.25))'
-          : 'drop-shadow(0 2px 10px rgba(255,106,0,0.25))',
+          ? 'drop-shadow(1px 0 0 rgba(15,23,42,0.55)) drop-shadow(-1px 0 0 rgba(15,23,42,0.55)) drop-shadow(0 1px 0 rgba(15,23,42,0.55)) drop-shadow(0 -1px 0 rgba(15,23,42,0.55)) drop-shadow(0 2px 10px rgba(128,0,32,0.35))'
+          : 'drop-shadow(0 2px 10px rgba(128,0,32,0.35))',
       }}
     />
   );
@@ -101,7 +101,7 @@ export const SpesioLogo: React.FC<SpesioLogoProps> = ({
           }`} style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
             SPESIO
           </div>
-          <div className="text-[10px] sm:text-xs font-black text-orange-600 tracking-[0.45em] mt-0.5">
+          <div className="text-[10px] sm:text-xs font-black text-maroon-600 tracking-[0.45em] mt-0.5">
             TECHNOLOGIES
           </div>
         </div>
@@ -128,7 +128,7 @@ export const SpesioLogo: React.FC<SpesioLogoProps> = ({
         }`}>
           SPESIO
         </span>
-        <span className="text-[9px] sm:text-[10px] font-black text-orange-600 tracking-[0.42em] mt-1 uppercase">
+        <span className="text-[9px] sm:text-[10px] font-black text-maroon-600 tracking-[0.42em] mt-1 uppercase">
           TECHNOLOGIES
         </span>
       </div>

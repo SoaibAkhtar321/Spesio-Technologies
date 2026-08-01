@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+@theme {
+  --color-maroon-50: #fbeef0;
+  --color-maroon-100: #f6d9dd;
+  --color-maroon-200: #edb3ba;
+  --color-maroon-300: #de8290;
+  --color-maroon-400: #c94f61;
+  --color-maroon-500: #a52a3d;
+  --color-maroon-600: #800020;
+  --color-maroon-700: #64001a;
+  --color-maroon-800: #4d0014;
+  --color-maroon-900: #38000e;
+  --color-maroon-950: #200008;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -51,6 +65,6 @@ button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: 2px solid #f97316;
+  outline: 2px solid #800020;
   outline-offset: 2px;
 }

@@ -74,7 +74,7 @@ export default function App() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
-      className={`min-h-screen font-sans antialiased transition-colors duration-200 selection:bg-orange-500 selection:text-white ${
+      className={`min-h-screen font-sans antialiased transition-colors duration-200 selection:bg-maroon-500 selection:text-white ${
         isLightMode ? 'bg-white text-slate-900' : 'bg-[#0A0D14] text-zinc-100'
       }`}
     >

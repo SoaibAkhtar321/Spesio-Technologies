@@ -23,10 +23,10 @@ export const SectionDivider: React.FC<SectionDividerProps> = ({ isLightMode = tr
       >
         <path d="M0,0 C360,90 1080,0 1440,70 L1440,90 L0,90 Z" fill={nextBg} />
       </svg>
-      {/* Orange seam marking the exact fold */}
+      {/* Maroon seam marking the exact fold */}
       <div
         className="absolute left-1/2 top-0 -translate-x-1/2 w-24 sm:w-40 h-px"
-        style={{ backgroundImage: 'linear-gradient(to right, transparent, rgba(249,115,22,0.6), transparent)' }}
+        style={{ backgroundImage: 'linear-gradient(to right, transparent, rgba(128,0,32,0.6), transparent)' }}
       />
     </div>
   );

@@ -22,7 +22,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     id: 'founder',
     keywords: ['founder', 'soaib', 'akhtar', 'owner', 'who created', 'who made', 'who runs', 'ceo'],
     answer:
-      "Spesio Technologies was founded by Soaib Akhtar, Founder & Software Developer. He personally leads development on every project, based in Gorakhpur, Uttar Pradesh, India.",
+      "Spesio Technologies was founded by Soaib Akhtar, Founder & Software Developer. He personally leads development on every project, based in Kushinagar, Uttar Pradesh, India.",
   },
   {
     id: 'technologies',
@@ -70,7 +70,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     id: 'location',
     keywords: ['location', 'where are you', 'based in', 'address', 'city', 'country'],
     answer:
-      "Spesio Technologies is based in Gorakhpur, Uttar Pradesh, India - 273001. We work with clients across India and internationally, remotely.",
+      "Spesio Technologies is based in Kushinagar, Uttar Pradesh, India - 274401. We work with clients across India and internationally, remotely.",
   },
   {
     id: 'hours',

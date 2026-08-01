@@ -8,7 +8,7 @@ export const COMPANY_INFO = {
   founder: {
     name: 'Soaib Akhtar',
     title: 'Founder & Software Developer',
-    location: 'Gorakhpur, Uttar Pradesh, India - 273001',
+    location: 'Kushinagar, Uttar Pradesh, India - 274401',
     phone: '+91 8957833269',
     formattedPhone: '+91 89578 33269',
     email: 'spesiotechnologies@gmail.com',

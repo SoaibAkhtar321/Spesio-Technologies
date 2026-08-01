@@ -99,7 +99,7 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             onClick={(e) => e.stopPropagation()}
             className={`w-full max-w-xl border rounded-3xl shadow-2xl flex flex-col h-[600px] max-h-[90vh] overflow-hidden ${
-              isLightMode ? 'bg-white border-slate-200' : 'bg-[#0D111A] border-orange-500/30'
+              isLightMode ? 'bg-white border-slate-200' : 'bg-[#0D111A] border-maroon-500/30'
             }`}
           >
             {/* Modal Header */}
@@ -123,7 +123,7 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
               <button
                 onClick={onClose}
                 aria-label="Close AI assistant"
-                className={`p-2 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 cursor-pointer ${
+                className={`p-2 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-maroon-500 cursor-pointer ${
                   isLightMode ? 'text-slate-500 hover:text-slate-900 hover:bg-slate-200/60' : 'text-zinc-400 hover:text-white hover:bg-zinc-800'
                 }`}
               >
@@ -144,10 +144,10 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
                     <div
                       className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
                         msg.sender === 'user'
-                          ? 'bg-orange-600 text-white'
+                          ? 'bg-maroon-600 text-white'
                           : isLightMode
-                          ? 'bg-white text-orange-600 border border-slate-200 shadow-2xs'
-                          : 'bg-zinc-800 text-orange-400 border border-orange-500/30'
+                          ? 'bg-white text-maroon-600 border border-slate-200 shadow-2xs'
+                          : 'bg-zinc-800 text-maroon-400 border border-maroon-500/30'
                       }`}
                     >
                       {msg.sender === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
@@ -155,7 +155,7 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
                     <div
                       className={`p-3.5 rounded-2xl text-xs sm:text-sm max-w-[80%] leading-relaxed ${
                         msg.sender === 'user'
-                          ? 'bg-orange-600 text-white font-medium rounded-tr-none'
+                          ? 'bg-maroon-600 text-white font-medium rounded-tr-none'
                           : isLightMode
                           ? 'bg-white text-slate-800 border border-slate-200 rounded-tl-none shadow-2xs'
                           : 'bg-zinc-900 text-zinc-200 border border-zinc-800 rounded-tl-none'
@@ -172,10 +172,10 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
                         <button
                           key={prompt}
                           onClick={() => handleFollowUp(prompt)}
-                          className={`px-3 py-1.5 rounded-lg text-[11px] font-medium transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 ${
+                          className={`px-3 py-1.5 rounded-lg text-[11px] font-medium transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-maroon-500 ${
                             isLightMode
-                              ? 'bg-orange-50 hover:bg-orange-100 border border-orange-200 text-orange-700'
-                              : 'bg-orange-500/10 hover:bg-orange-500/20 border border-orange-500/30 text-orange-300'
+                              ? 'bg-maroon-50 hover:bg-maroon-100 border border-maroon-200 text-maroon-700'
+                              : 'bg-maroon-500/10 hover:bg-maroon-500/20 border border-maroon-500/30 text-maroon-300'
                           }`}
                         >
                           {prompt}
@@ -190,7 +190,7 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-3">
                   <div
                     className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                      isLightMode ? 'bg-white text-orange-600 border border-slate-200' : 'bg-zinc-800 border border-orange-500/30 text-orange-400'
+                      isLightMode ? 'bg-white text-maroon-600 border border-slate-200' : 'bg-zinc-800 border border-maroon-500/30 text-maroon-400'
                     }`}
                   >
                     <Bot className="w-4 h-4" />
@@ -237,7 +237,7 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask anything about Spesio Technologies..."
                 aria-label="Message Spesio AI Assistant"
-                className={`flex-1 rounded-xl px-4 py-2.5 text-xs sm:text-sm border focus:outline-none focus:border-orange-500 ${
+                className={`flex-1 rounded-xl px-4 py-2.5 text-xs sm:text-sm border focus:outline-none focus:border-maroon-500 ${
                   isLightMode ? 'bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400' : 'bg-black border-zinc-800 text-white placeholder-zinc-500'
                 }`}
               />
@@ -245,7 +245,7 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
                 type="submit"
                 disabled={loading || !input.trim()}
                 aria-label="Send message"
-                className="p-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white disabled:opacity-50 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
+                className="p-2.5 rounded-xl bg-maroon-600 hover:bg-maroon-500 text-white disabled:opacity-50 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-maroon-500"
               >
                 <Send className="w-4 h-4" />
               </button>

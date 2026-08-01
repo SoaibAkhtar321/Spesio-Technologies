@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, useSpring } from 'motion/react';
 
 /**
- * Thin orange progress indicator fixed to the very top of the viewport,
+ * Thin maroon progress indicator fixed to the very top of the viewport,
  * reflecting how far the user has scrolled down the page.
  */
 export const ScrollProgressBar: React.FC = () => {
@@ -33,7 +33,7 @@ export const ScrollProgressBar: React.FC = () => {
   return (
     <div className="fixed top-0 left-0 right-0 h-[3px] z-[60] bg-transparent pointer-events-none" aria-hidden="true">
       <motion.div
-        className="h-full bg-gradient-to-r from-orange-600 via-orange-500 to-amber-400 origin-left"
+        className="h-full bg-gradient-to-r from-maroon-600 via-maroon-500 to-maroon-400 origin-left"
         style={{ scaleX: smoothScaleX }}
       />
     </div>

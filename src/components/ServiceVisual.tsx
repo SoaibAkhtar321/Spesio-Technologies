@@ -33,10 +33,10 @@ const CONTENT: Record<string, VisualContent> = {
   software: {
     fileName: 'order-engine.ts',
     lines: [
-      [{ text: 'class', cls: 'text-orange-400' }, { text: ' OrderEngine {', cls: 'text-zinc-300' }],
-      [{ text: '  async', cls: 'text-orange-400' }, { text: ' process(order) {', cls: 'text-zinc-300' }],
-      [{ text: '    await', cls: 'text-orange-400' }, { text: ' db.', cls: 'text-zinc-300' }, { text: 'transaction', cls: 'text-sky-400' }, { text: '(order)', cls: 'text-zinc-300' }],
-      [{ text: '    return', cls: 'text-orange-400' }, { text: ' { status: ', cls: 'text-zinc-300' }, { text: "'confirmed'", cls: 'text-emerald-400' }, { text: ' }', cls: 'text-zinc-300' }],
+      [{ text: 'class', cls: 'text-maroon-400' }, { text: ' OrderEngine {', cls: 'text-zinc-300' }],
+      [{ text: '  async', cls: 'text-maroon-400' }, { text: ' process(order) {', cls: 'text-zinc-300' }],
+      [{ text: '    await', cls: 'text-maroon-400' }, { text: ' db.', cls: 'text-zinc-300' }, { text: 'transaction', cls: 'text-sky-400' }, { text: '(order)', cls: 'text-zinc-300' }],
+      [{ text: '    return', cls: 'text-maroon-400' }, { text: ' { status: ', cls: 'text-zinc-300' }, { text: "'confirmed'", cls: 'text-emerald-400' }, { text: ' }', cls: 'text-zinc-300' }],
       [{ text: '  }', cls: 'text-zinc-500' }],
       [{ text: '}', cls: 'text-zinc-500' }],
     ],
@@ -54,9 +54,9 @@ const CONTENT: Record<string, VisualContent> = {
   web: {
     fileName: 'App.tsx',
     lines: [
-      [{ text: 'export', cls: 'text-orange-400' }, { text: ' default ', cls: 'text-orange-400' }, { text: 'function', cls: 'text-orange-400' }, { text: ' App() {', cls: 'text-zinc-300' }],
-      [{ text: '  const', cls: 'text-orange-400' }, { text: ' data = ', cls: 'text-zinc-300' }, { text: 'use', cls: 'text-sky-400' }, { text: 'Query(', cls: 'text-zinc-300' }, { text: "'/products'", cls: 'text-emerald-400' }, { text: ')', cls: 'text-zinc-300' }],
-      [{ text: '  return', cls: 'text-orange-400' }, { text: ' <', cls: 'text-zinc-300' }, { text: 'Storefront', cls: 'text-sky-400' }, { text: ' fast />', cls: 'text-zinc-300' }],
+      [{ text: 'export', cls: 'text-maroon-400' }, { text: ' default ', cls: 'text-maroon-400' }, { text: 'function', cls: 'text-maroon-400' }, { text: ' App() {', cls: 'text-zinc-300' }],
+      [{ text: '  const', cls: 'text-maroon-400' }, { text: ' data = ', cls: 'text-zinc-300' }, { text: 'use', cls: 'text-sky-400' }, { text: 'Query(', cls: 'text-zinc-300' }, { text: "'/products'", cls: 'text-emerald-400' }, { text: ')', cls: 'text-zinc-300' }],
+      [{ text: '  return', cls: 'text-maroon-400' }, { text: ' <', cls: 'text-zinc-300' }, { text: 'Storefront', cls: 'text-sky-400' }, { text: ' fast />', cls: 'text-zinc-300' }],
       [{ text: '}', cls: 'text-zinc-500' }],
     ],
     flow: [
@@ -73,9 +73,9 @@ const CONTENT: Record<string, VisualContent> = {
   app: {
     fileName: 'HomeScreen.tsx',
     lines: [
-      [{ text: 'function', cls: 'text-orange-400' }, { text: ' HomeScreen() {', cls: 'text-zinc-300' }],
-      [{ text: '  const', cls: 'text-orange-400' }, { text: ' [synced] = ', cls: 'text-zinc-300' }, { text: 'useOffline', cls: 'text-sky-400' }, { text: 'Sync()', cls: 'text-zinc-300' }],
-      [{ text: '  return', cls: 'text-orange-400' }, { text: ' <', cls: 'text-zinc-300' }, { text: 'FeedList', cls: 'text-sky-400' }, { text: ' data={synced} />', cls: 'text-zinc-300' }],
+      [{ text: 'function', cls: 'text-maroon-400' }, { text: ' HomeScreen() {', cls: 'text-zinc-300' }],
+      [{ text: '  const', cls: 'text-maroon-400' }, { text: ' [synced] = ', cls: 'text-zinc-300' }, { text: 'useOffline', cls: 'text-sky-400' }, { text: 'Sync()', cls: 'text-zinc-300' }],
+      [{ text: '  return', cls: 'text-maroon-400' }, { text: ' <', cls: 'text-zinc-300' }, { text: 'FeedList', cls: 'text-sky-400' }, { text: ' data={synced} />', cls: 'text-zinc-300' }],
       [{ text: '}', cls: 'text-zinc-500' }],
     ],
     flow: [
@@ -92,8 +92,8 @@ const CONTENT: Record<string, VisualContent> = {
   ai: {
     fileName: 'assistant.ts',
     lines: [
-      [{ text: 'const', cls: 'text-orange-400' }, { text: ' reply = ', cls: 'text-zinc-300' }, { text: 'await', cls: 'text-orange-400' }, { text: ' model.', cls: 'text-zinc-300' }, { text: 'infer', cls: 'text-sky-400' }, { text: '(prompt)', cls: 'text-zinc-300' }],
-      [{ text: 'if', cls: 'text-orange-400' }, { text: ' (reply.', cls: 'text-zinc-300' }, { text: 'confidence', cls: 'text-sky-400' }, { text: ' > 0.9) {', cls: 'text-zinc-300' }],
+      [{ text: 'const', cls: 'text-maroon-400' }, { text: ' reply = ', cls: 'text-zinc-300' }, { text: 'await', cls: 'text-maroon-400' }, { text: ' model.', cls: 'text-zinc-300' }, { text: 'infer', cls: 'text-sky-400' }, { text: '(prompt)', cls: 'text-zinc-300' }],
+      [{ text: 'if', cls: 'text-maroon-400' }, { text: ' (reply.', cls: 'text-zinc-300' }, { text: 'confidence', cls: 'text-sky-400' }, { text: ' > 0.9) {', cls: 'text-zinc-300' }],
       [{ text: '  ', cls: 'text-zinc-300' }, { text: 'notify', cls: 'text-sky-400' }, { text: '(', cls: 'text-zinc-300' }, { text: "'insight ready'", cls: 'text-emerald-400' }, { text: ')', cls: 'text-zinc-300' }],
       [{ text: '}', cls: 'text-zinc-500' }],
     ],
@@ -184,11 +184,11 @@ export const ServiceVisual: React.FC<ServiceVisualProps> = ({ service, isLightMo
       <div className="px-5 pb-5 shrink-0">
         <div className="relative flex items-center justify-between py-3">
           {/* connecting line */}
-          <div className="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-px bg-gradient-to-r from-orange-500/10 via-orange-500/40 to-orange-500/10" />
+          <div className="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-px bg-gradient-to-r from-maroon-500/10 via-maroon-500/40 to-maroon-500/10" />
           {/* animated traveling dot */}
           <motion.span
             aria-hidden="true"
-            className="absolute top-1/2 w-1.5 h-1.5 rounded-full bg-orange-400 shadow-[0_0_8px_2px_rgba(251,146,60,0.6)]"
+            className="absolute top-1/2 w-1.5 h-1.5 rounded-full bg-maroon-400 shadow-[0_0_8px_2px_rgba(251,146,60,0.6)]"
             style={{ left: '1.5rem', translateY: '-50%' }}
             animate={{ left: ['1.5rem', 'calc(100% - 1.5rem)', '1.5rem'] }}
             transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
@@ -206,8 +206,8 @@ export const ServiceVisual: React.FC<ServiceVisualProps> = ({ service, isLightMo
                 const Icon = node.icon;
                 return (
                   <div key={idx} className="flex flex-col items-center gap-1.5">
-                    <div className="w-9 h-9 rounded-xl bg-slate-800 border border-orange-500/30 flex items-center justify-center">
-                      <Icon className="w-4 h-4 text-orange-400" />
+                    <div className="w-9 h-9 rounded-xl bg-slate-800 border border-maroon-500/30 flex items-center justify-center">
+                      <Icon className="w-4 h-4 text-maroon-400" />
                     </div>
                     <span className="text-[9px] font-semibold text-zinc-400 uppercase tracking-wide">{node.label}</span>
                   </div>

@@ -56,7 +56,7 @@ export const Header: React.FC<HeaderProps> = ({
     <header className={`sticky top-0 z-40 backdrop-blur-md transition-colors duration-200 border-b ${
       isLightMode
         ? 'bg-white/90 border-slate-200/80 shadow-xs'
-        : 'bg-[#0A0D14]/85 border-orange-500/15'
+        : 'bg-[#0A0D14]/85 border-maroon-500/15'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-20 flex items-center justify-between">
 
@@ -75,17 +75,17 @@ export const Header: React.FC<HeaderProps> = ({
                 href={link.href}
                 className={`relative text-sm font-medium transition-colors py-1 ${
                   isActive
-                    ? 'text-orange-600'
+                    ? 'text-maroon-600'
                     : isLightMode
-                      ? 'text-slate-700 hover:text-orange-600'
-                      : 'text-zinc-300 hover:text-orange-400'
+                      ? 'text-slate-700 hover:text-maroon-600'
+                      : 'text-zinc-300 hover:text-maroon-400'
                 }`}
               >
                 {link.name}
                 {isActive && (
                   <motion.span
                     layoutId="nav-underline"
-                    className="absolute left-0 right-0 -bottom-1 h-0.5 rounded-full bg-orange-500"
+                    className="absolute left-0 right-0 -bottom-1 h-0.5 rounded-full bg-maroon-500"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -95,11 +95,11 @@ export const Header: React.FC<HeaderProps> = ({
         </nav>
 
         {/* Action Buttons */}
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="hidden xl:flex items-center gap-2.5">
           {/* Theme Switcher Button */}
           <button
             onClick={onToggleTheme}
-            className={`p-2 rounded-lg border transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 ${
+            className={`p-2 rounded-lg border transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-maroon-500 shrink-0 ${
               isLightMode
                 ? 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200'
                 : 'bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border-zinc-800'
@@ -112,45 +112,62 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={onOpenAiAssistant}
-            className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold border transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 ${
+            className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold border transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-maroon-500 whitespace-nowrap shrink-0 ${
               isLightMode
-                ? 'bg-orange-50 hover:bg-orange-100/80 text-orange-600 border-orange-200'
-                : 'bg-zinc-900 hover:bg-orange-500/10 text-orange-400 border-orange-500/30'
+                ? 'bg-maroon-50 hover:bg-maroon-100/80 text-maroon-600 border-maroon-200'
+                : 'bg-zinc-900 hover:bg-maroon-500/10 text-maroon-400 border-maroon-500/30'
             }`}
           >
-            <Sparkles className="w-3.5 h-3.5 text-orange-500 animate-pulse" />
+            <Sparkles className="w-3.5 h-3.5 text-maroon-500 animate-pulse shrink-0" />
             Spesio AI
           </button>
 
           <a
             href={`tel:${COMPANY_INFO.founder.phone}`}
-            className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all ${
+            className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all whitespace-nowrap shrink-0 ${
               isLightMode
                 ? 'text-slate-700 hover:text-slate-900 hover:bg-slate-100'
                 : 'text-zinc-300 hover:text-white hover:bg-zinc-800'
             }`}
           >
-            <Phone className="w-3.5 h-3.5 text-orange-500" />
+            <Phone className="w-3.5 h-3.5 text-maroon-500 shrink-0" />
             {COMPANY_INFO.founder.formattedPhone}
           </a>
 
           <button
             onClick={onOpenEstimator}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold bg-gradient-to-r from-orange-600 to-orange-500 text-white shadow-md shadow-orange-500/20 hover:from-orange-500 hover:to-orange-400 transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold bg-gradient-to-r from-maroon-600 to-maroon-500 text-white shadow-md shadow-maroon-500/20 hover:from-maroon-500 hover:to-maroon-400 transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-maroon-500 whitespace-nowrap shrink-0"
           >
-            Get Scope & Quote
+            Get Scope &amp; Quote
+          </button>
+        </div>
+
+        {/* Tablet Controls (nav hidden below xl, but still wider than phone) */}
+        <div className="hidden md:flex xl:hidden items-center gap-2">
+          <button
+            onClick={onToggleTheme}
+            className={`p-2 rounded-lg border ${
+              isLightMode ? 'bg-slate-100 border-slate-200 text-slate-700' : 'bg-zinc-900 border-zinc-800 text-zinc-300'
+            }`}
+            aria-label="Toggle theme"
+          >
+            {isLightMode ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4 text-amber-400" />}
           </button>
 
-          <a
-            href="#contact"
-            className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold border transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 ${
-              isLightMode
-                ? 'bg-slate-100 hover:bg-slate-200 text-slate-800 border-slate-200'
-                : 'bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border-zinc-800'
-            }`}
+          <button
+            onClick={onOpenAiAssistant}
+            className="p-2 rounded-lg bg-maroon-500/10 text-maroon-500 border border-maroon-500/20"
+            aria-label="Spesio AI"
           >
-            Contact
-          </a>
+            <Sparkles className="w-4 h-4" />
+          </button>
+
+          <button
+            onClick={onOpenEstimator}
+            className="flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-bold bg-gradient-to-r from-maroon-600 to-maroon-500 text-white shadow-md shadow-maroon-500/20 transition-all cursor-pointer whitespace-nowrap"
+          >
+            Get Quote
+          </button>
         </div>
 
         {/* Mobile Controls */}
@@ -167,7 +184,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={onOpenAiAssistant}
-            className="p-2 rounded-lg bg-orange-500/10 text-orange-500 border border-orange-500/20"
+            className="p-2 rounded-lg bg-maroon-500/10 text-maroon-500 border border-maroon-500/20"
             aria-label="Spesio AI"
           >
             <Sparkles className="w-5 h-5" />
@@ -192,7 +209,7 @@ export const Header: React.FC<HeaderProps> = ({
           exit={{ opacity: 0, height: 0 }}
           transition={{ duration: 0.25 }}
           className={`md:hidden border-b px-4 pt-3 pb-6 space-y-3 overflow-hidden ${
-            isLightMode ? 'bg-white border-slate-200' : 'bg-[#0D111A] border-orange-500/20'
+            isLightMode ? 'bg-white border-slate-200' : 'bg-[#0D111A] border-maroon-500/20'
           }`}
         >
           {NAV_LINKS.map((link) => (
@@ -202,8 +219,8 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => setMobileMenuOpen(false)}
               className={`block text-sm font-medium py-1 ${
                 activeSection === link.href
-                  ? 'text-orange-600'
-                  : isLightMode ? 'text-slate-700 hover:text-orange-600' : 'text-zinc-200 hover:text-orange-400'
+                  ? 'text-maroon-600'
+                  : isLightMode ? 'text-slate-700 hover:text-maroon-600' : 'text-zinc-200 hover:text-maroon-400'
               }`}
             >
               {link.name}
@@ -215,7 +232,7 @@ export const Header: React.FC<HeaderProps> = ({
                 setMobileMenuOpen(false);
                 onOpenEstimator();
               }}
-              className="w-full text-center py-2.5 rounded-lg text-xs font-bold bg-orange-500 text-white shadow-md shadow-orange-500/20"
+              className="w-full text-center py-2.5 rounded-lg text-xs font-bold bg-maroon-500 text-white shadow-md shadow-maroon-500/20"
             >
               Get Project Scope & Quote
             </button>
@@ -225,7 +242,7 @@ export const Header: React.FC<HeaderProps> = ({
                 isLightMode ? 'bg-slate-100 border-slate-200 text-slate-800' : 'bg-zinc-900 border-zinc-800 text-zinc-200'
               }`}
             >
-              <Phone className="w-4 h-4 text-orange-500" />
+              <Phone className="w-4 h-4 text-maroon-500" />
               Call {COMPANY_INFO.founder.formattedPhone}
             </a>
           </div>

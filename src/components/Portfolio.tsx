@@ -35,17 +35,17 @@ export const Portfolio: React.FC<PortfolioProps> = ({ isLightMode = true }) => {
               whileHover={{ y: -6 }}
               className={`group relative p-3.5 sm:p-7 rounded-xl sm:rounded-3xl border overflow-hidden transition-colors duration-300 ${
                 isLightMode
-                  ? 'bg-[#FAFAFB] border-slate-200 hover:border-orange-300 hover:shadow-xl hover:shadow-slate-200/60'
-                  : 'bg-zinc-900/50 border-zinc-800 hover:border-orange-500/40'
+                  ? 'bg-[#FAFAFB] border-slate-200 hover:border-maroon-300 hover:shadow-xl hover:shadow-slate-200/60'
+                  : 'bg-zinc-900/50 border-zinc-800 hover:border-maroon-500/40'
               }`}
             >
               {/* Hover glow */}
-              <div className="absolute -top-16 -right-16 w-48 h-48 bg-orange-500/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <div className="absolute -top-16 -right-16 w-48 h-48 bg-maroon-500/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
               <div className="relative z-10">
                 <div className="flex items-start justify-between mb-2 sm:mb-4 gap-2">
                   <div>
-                    <span className="text-[9px] sm:text-[10px] font-bold text-orange-600 uppercase tracking-widest">{project.category}</span>
+                    <span className="text-[9px] sm:text-[10px] font-bold text-maroon-600 uppercase tracking-widest">{project.category}</span>
                     <h3 className={`text-sm sm:text-2xl font-black mt-0.5 sm:mt-1 leading-tight ${isLightMode ? 'text-slate-900' : 'text-white'}`}>{project.name}</h3>
                   </div>
                   <span
@@ -67,7 +67,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ isLightMode = true }) => {
                   <h4 className={`hidden sm:flex text-[10px] font-bold uppercase tracking-wider items-center gap-1.5 ${
                     isLightMode ? 'text-slate-500' : 'text-zinc-500'
                   }`}>
-                    <Layers className="w-3.5 h-3.5 text-orange-500" />
+                    <Layers className="w-3.5 h-3.5 text-maroon-500" />
                     Stack
                   </h4>
                   <div className="flex flex-wrap gap-1 sm:gap-2">
@@ -92,7 +92,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ isLightMode = true }) => {
                     target="_blank"
                     rel="noreferrer"
                     className={`flex items-center gap-1.5 text-[10px] sm:text-xs font-bold mt-2.5 sm:mt-5 pt-2 sm:pt-4 border-t transition-colors ${
-                      isLightMode ? 'border-slate-200 text-orange-600 hover:text-orange-700' : 'border-zinc-800 text-orange-400 hover:text-orange-300'
+                      isLightMode ? 'border-slate-200 text-maroon-600 hover:text-maroon-700' : 'border-zinc-800 text-maroon-400 hover:text-maroon-300'
                     }`}
                   >
                     <span>View Live Site</span>
@@ -101,7 +101,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ isLightMode = true }) => {
                 ) : (
                   <div className={`flex items-center gap-1.5 text-[10px] sm:text-xs font-bold mt-2.5 sm:mt-5 pt-2 sm:pt-4 border-t ${
                     isLightMode ? 'border-slate-200 text-slate-400' : 'border-zinc-800 text-zinc-500'
-                  } group-hover:text-orange-600 transition-colors`}>
+                  } group-hover:text-maroon-600 transition-colors`}>
                     <span>Built by Spesio Technologies</span>
                     <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </div>

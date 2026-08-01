@@ -39,7 +39,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     id: 'founder',
     triggers: ['soaib', 'founder', 'who made this', 'who built this', 'who owns', 'about the founder', 'who is behind', 'developer'],
     answer:
-      'Soaib Akhtar is the Founder & Software Developer of Spesio Technologies, based in Gorakhpur, Uttar Pradesh. He is a full-stack engineer who has built products including CampusBite (a campus dining and queue platform) and Eifa Couture (a luxury e-commerce storefront), and personally leads every Spesio project.',
+      'Soaib Akhtar is the Founder & Software Developer of Spesio Technologies, based in Kushinagar, Uttar Pradesh. He is a full-stack engineer who has built products including CampusBite (a campus dining and queue platform) and Eifa Couture (a luxury e-commerce storefront), and personally leads every Spesio project.',
     followUps: ['What is CampusBite?', 'What is Eifa Couture?', 'How do I start?'],
   },
   {
@@ -123,7 +123,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     id: 'contact',
     triggers: ['contact number', 'phone number', 'call you', 'reach you', 'email address', 'contact info', 'contact details'],
     answer:
-      'You can reach Spesio Technologies directly: Phone/WhatsApp +91 89578 33269, Email spesiotechnologies@gmail.com. We are based in Gorakhpur, Uttar Pradesh, and typically reply within 2 hours during business hours (Mon–Sat, 9 AM–8 PM IST).',
+      'You can reach Spesio Technologies directly: Phone/WhatsApp +91 89578 33269, Email spesiotechnologies@gmail.com. We are based in Kushinagar, Uttar Pradesh, and typically reply within 2 hours during business hours (Mon–Sat, 9 AM–8 PM IST).',
     followUps: ['Can I schedule a consultation?', 'How do I start?'],
   },
   {

@@ -33,10 +33,10 @@ export const BackToTop: React.FC<BackToTopProps> = ({ isLightMode = true }) => {
           whileTap={{ scale: 0.92 }}
           onClick={scrollToTop}
           aria-label="Back to top"
-          className={`fixed bottom-24 right-5 sm:right-8 z-40 w-11 h-11 rounded-full flex items-center justify-center shadow-lg cursor-pointer border transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 ${
+          className={`fixed bottom-24 right-5 sm:right-8 z-40 w-11 h-11 rounded-full flex items-center justify-center shadow-lg cursor-pointer border transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-maroon-500 ${
             isLightMode
-              ? 'bg-white border-slate-200 text-orange-600 hover:bg-orange-50 shadow-slate-300/60'
-              : 'bg-zinc-900 border-orange-500/30 text-orange-400 hover:bg-zinc-800 shadow-black/40'
+              ? 'bg-white border-slate-200 text-maroon-600 hover:bg-maroon-50 shadow-slate-300/60'
+              : 'bg-zinc-900 border-maroon-500/30 text-maroon-400 hover:bg-zinc-800 shadow-black/40'
           }`}
         >
           <ArrowUp className="w-5 h-5" />

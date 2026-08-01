@@ -35,7 +35,7 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
               "{COMPANY_INFO.subTagline}" We engineer high-performance software, modern websites, native Android applications, and intelligent AI automation.
             </p>
 
-            <p className="text-xs text-orange-600 font-bold">
+            <p className="text-xs text-maroon-600 font-bold">
               Founded & Managed by {COMPANY_INFO.founder.name}
             </p>
 
@@ -94,14 +94,14 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
               isLightMode ? 'text-slate-900' : 'text-white'
             }`}>Quick Navigation</h4>
             <ul className="space-y-1.5 sm:space-y-2 text-xs">
-              <li><a href="#services" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>Services Domain</a></li>
-              <li><a href="#why-choose-us" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>Why Choose Us</a></li>
-              <li><a href="#process" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>Delivery Process</a></li>
-              <li><a href="#portfolio" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>Portfolio</a></li>
-              <li><a href="#card" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>Digital Business Card</a></li>
-              <li><a href="#estimator" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>Packages & Pricing</a></li>
-              <li><a href="#founder" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>About Soaib Akhtar</a></li>
-              <li><a href="#contact" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>Direct Contact</a></li>
+              <li><a href="#services" className={`transition-colors ${isLightMode ? 'hover:text-maroon-600 text-slate-600' : 'hover:text-maroon-400 text-zinc-400'}`}>Services Domain</a></li>
+              <li><a href="#why-choose-us" className={`transition-colors ${isLightMode ? 'hover:text-maroon-600 text-slate-600' : 'hover:text-maroon-400 text-zinc-400'}`}>Why Choose Us</a></li>
+              <li><a href="#process" className={`transition-colors ${isLightMode ? 'hover:text-maroon-600 text-slate-600' : 'hover:text-maroon-400 text-zinc-400'}`}>Delivery Process</a></li>
+              <li><a href="#portfolio" className={`transition-colors ${isLightMode ? 'hover:text-maroon-600 text-slate-600' : 'hover:text-maroon-400 text-zinc-400'}`}>Portfolio</a></li>
+              <li><a href="#card" className={`transition-colors ${isLightMode ? 'hover:text-maroon-600 text-slate-600' : 'hover:text-maroon-400 text-zinc-400'}`}>Digital Business Card</a></li>
+              <li><a href="#estimator" className={`transition-colors ${isLightMode ? 'hover:text-maroon-600 text-slate-600' : 'hover:text-maroon-400 text-zinc-400'}`}>Packages & Pricing</a></li>
+              <li><a href="#founder" className={`transition-colors ${isLightMode ? 'hover:text-maroon-600 text-slate-600' : 'hover:text-maroon-400 text-zinc-400'}`}>About Soaib Akhtar</a></li>
+              <li><a href="#contact" className={`transition-colors ${isLightMode ? 'hover:text-maroon-600 text-slate-600' : 'hover:text-maroon-400 text-zinc-400'}`}>Direct Contact</a></li>
             </ul>
           </div>
 
@@ -112,19 +112,19 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
             }`}>Contact & Location</h4>
             <div className="space-y-1.5 sm:space-y-2">
               <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-orange-600" />
+                <Phone className="w-3.5 h-3.5 text-maroon-600" />
                 <a href={`tel:${COMPANY_INFO.founder.phone}`} className={isLightMode ? 'hover:text-slate-900 text-slate-600' : 'hover:text-white text-zinc-400'}>{COMPANY_INFO.founder.phone}</a>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-orange-600" />
+                <Mail className="w-3.5 h-3.5 text-maroon-600" />
                 <a href={`mailto:${COMPANY_INFO.founder.email}`} className={`truncate ${isLightMode ? 'hover:text-slate-900 text-slate-600' : 'hover:text-white text-zinc-400'}`}>{COMPANY_INFO.founder.email}</a>
               </div>
               <div className="flex items-center gap-2">
-                <Globe className="w-3.5 h-3.5 text-orange-600" />
+                <Globe className="w-3.5 h-3.5 text-maroon-600" />
                 <a href={`https://${COMPANY_INFO.founder.website}`} target="_blank" rel="noreferrer" className={isLightMode ? 'hover:text-slate-900 text-slate-600' : 'hover:text-white text-zinc-400'}>{COMPANY_INFO.founder.website}</a>
               </div>
               <div className="flex items-start gap-2 pt-1">
-                <MapPin className="w-3.5 h-3.5 text-orange-600 shrink-0 mt-0.5" />
+                <MapPin className="w-3.5 h-3.5 text-maroon-600 shrink-0 mt-0.5" />
                 <span className={isLightMode ? 'text-slate-600' : 'text-zinc-400'}>{COMPANY_INFO.founder.location}</span>
               </div>
             </div>
@@ -141,7 +141,7 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
           </div>
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-1.5 text-xs text-orange-600 hover:text-orange-500 font-bold cursor-pointer"
+            className="flex items-center gap-1.5 text-xs text-maroon-600 hover:text-maroon-500 font-bold cursor-pointer"
           >
             Back to Top
             <ArrowUp className="w-3.5 h-3.5" />
