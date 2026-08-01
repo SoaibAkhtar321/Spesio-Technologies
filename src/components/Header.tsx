@@ -58,7 +58,7 @@ export const Header: React.FC<HeaderProps> = ({
         ? 'bg-white/90 border-slate-200/80 shadow-xs'
         : 'bg-[#0A0D14]/85 border-orange-500/15'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-20 flex items-center justify-between">
 
         {/* Brand Logo & Real ST Monogram */}
         <a href="#" className="flex items-center gap-2.5 group">
@@ -140,6 +140,17 @@ export const Header: React.FC<HeaderProps> = ({
           >
             Get Scope & Quote
           </button>
+
+          <a
+            href="#contact"
+            className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold border transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 ${
+              isLightMode
+                ? 'bg-slate-100 hover:bg-slate-200 text-slate-800 border-slate-200'
+                : 'bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border-zinc-800'
+            }`}
+          >
+            Contact
+          </a>
         </div>
 
         {/* Mobile Controls */}

@@ -46,9 +46,10 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: 'eifa-couture',
     name: 'Eifa Couture',
     category: 'Luxury E-Commerce',
-    status: 'In Development',
+    status: 'Production',
     description: 'Luxury e-commerce storefront engineered for a premium shopping experience with fast performance and clean checkout flows.',
     stack: ['Next.js', 'Supabase', 'Tailwind'],
+    liveUrl: 'https://eifa-couture-ds3d-theta.vercel.app/',
   },
 ];
 

@@ -15,6 +15,7 @@ export interface PortfolioItem {
   status: 'Production' | 'In Development';
   description: string;
   stack: string[];
+  liveUrl?: string;
 }
 
 export interface EstimateOptions {

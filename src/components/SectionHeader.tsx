@@ -16,7 +16,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({ eyebrow, title, de
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.4 }}
       transition={{ duration: 0.5 }}
-      className="text-center max-w-3xl mx-auto mb-16"
+      className="text-center max-w-3xl mx-auto mb-8 sm:mb-16"
     >
       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-600 font-bold text-xs tracking-wider uppercase mb-3">
         {eyebrow}

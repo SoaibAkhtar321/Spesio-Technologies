@@ -24,7 +24,7 @@ const fadeUp = {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, isLightMode }) => {
   return (
-    <section className={`relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-28 transition-colors duration-200 ${
+    <section className={`relative overflow-hidden pt-6 pb-10 sm:pt-12 sm:pb-20 md:pt-20 md:pb-28 transition-colors duration-200 ${
       isLightMode ? 'bg-[#FAFAFB]' : 'bg-[#0A0D14]'
     }`}>
       {/* Background Subtle Gradient Blobs & Grid */}
@@ -61,14 +61,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
       }`} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-12 items-center">
 
           {/* Left Column: Heading & Value Proposition */}
           <motion.div
             variants={containerStagger}
             initial="hidden"
             animate="show"
-            className="lg:col-span-7 space-y-6 text-left"
+            className="lg:col-span-7 space-y-3 sm:space-y-6 text-left"
           >
 
             {/* Pill Badge */}
@@ -84,7 +84,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
             </motion.div>
 
             {/* Main Headline */}
-            <motion.h1 variants={fadeUp} className={`text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] ${
+            <motion.h1 variants={fadeUp} className={`text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] sm:leading-[1.1] ${
               isLightMode ? 'text-slate-900' : 'text-white'
             }`}>
               Websites, Apps &amp; AI{' '}
@@ -94,14 +94,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
             </motion.h1>
 
             {/* Sub-Headline */}
-            <motion.p variants={fadeUp} className={`text-lg sm:text-xl font-medium max-w-2xl leading-relaxed ${
+            <motion.p variants={fadeUp} className={`text-sm sm:text-xl font-medium max-w-2xl leading-relaxed ${
               isLightMode ? 'text-slate-600' : 'text-zinc-300'
             }`}>
               We design and develop business websites, Android applications, admin panels, ERP systems, and e-commerce solutions that help businesses attract customers, streamline operations, and increase revenue.
             </motion.p>
 
             {/* Quick 4 Core Service Icons Bar */}
-            <motion.div variants={containerStagger} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 pt-2">
+            <motion.div variants={containerStagger} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3 pt-1 sm:pt-2">
               {[
                 { icon: Globe, label: 'WEBSITES' },
                 { icon: Smartphone, label: 'ANDROID APPS' },
@@ -113,27 +113,27 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
                   key={label}
                   variants={fadeUp}
                   whileHover={{ y: -3, scale: 1.03 }}
-                  className={`p-3 rounded-xl border flex items-center gap-2.5 shadow-2xs transition-all will-change-transform ${
+                  className={`p-2 sm:p-3 rounded-xl border flex items-center gap-2 sm:gap-2.5 shadow-2xs transition-all will-change-transform ${
                     isLightMode
                       ? 'bg-white border-slate-200/90 hover:border-orange-300'
                       : 'bg-zinc-900/80 border-zinc-800 hover:border-orange-500/40'
                   }`}
                 >
                   <motion.div whileHover={{ rotate: 12 }} className="shrink-0">
-                    <Icon className="w-5 h-5 text-orange-500" />
+                    <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500" />
                   </motion.div>
-                  <div className={`text-[11px] font-bold ${isLightMode ? 'text-slate-800' : 'text-zinc-200'}`}>{label}</div>
+                  <div className={`text-[10px] sm:text-[11px] font-bold ${isLightMode ? 'text-slate-800' : 'text-zinc-200'}`}>{label}</div>
                 </motion.div>
               ))}
             </motion.div>
 
             {/* Action Buttons */}
-            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5 pt-5">
+            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-5 pt-2 sm:pt-5">
               <motion.button
                 onClick={onOpenEstimator}
                 whileHover={{ y: -3, boxShadow: '0 16px 36px -6px rgba(249,115,22,0.55)' }}
                 whileTap={{ scale: 0.97, y: 0 }}
-                className="group relative inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl text-sm font-bold bg-gradient-to-r from-orange-600 to-orange-500 text-white shadow-lg shadow-orange-500/25 transition-shadow cursor-pointer overflow-hidden will-change-transform"
+                className="group relative inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-7 sm:py-4 rounded-xl text-sm font-bold bg-gradient-to-r from-orange-600 to-orange-500 text-white shadow-lg shadow-orange-500/25 transition-shadow cursor-pointer overflow-hidden will-change-transform"
               >
                 <span
                   aria-hidden="true"
@@ -147,7 +147,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
                 onClick={onOpenAiAssistant}
                 whileHover={{ y: -3 }}
                 whileTap={{ scale: 0.97, y: 0 }}
-                className={`group inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl text-sm font-semibold border transition-colors cursor-pointer will-change-transform ${
+                className={`group inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-7 sm:py-4 rounded-xl text-sm font-semibold border transition-colors cursor-pointer will-change-transform ${
                   isLightMode
                     ? 'bg-white hover:bg-orange-50/60 text-slate-800 border-slate-300 hover:border-orange-300 shadow-2xs'
                     : 'bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border-orange-500/30'
@@ -156,10 +156,24 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
                 <Sparkles className="w-4 h-4 text-orange-500 transition-transform duration-300 group-hover:rotate-12" />
                 Ask Spesio AI Assistant
               </motion.button>
+
+              <motion.a
+                href="#contact"
+                whileHover={{ y: -3 }}
+                whileTap={{ scale: 0.97, y: 0 }}
+                className={`group inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-7 sm:py-4 rounded-xl text-sm font-semibold border transition-colors cursor-pointer will-change-transform ${
+                  isLightMode
+                    ? 'bg-white hover:bg-orange-50/60 text-slate-800 border-slate-300 hover:border-orange-300 shadow-2xs'
+                    : 'bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border-orange-500/30'
+                }`}
+              >
+                <MapPin className="w-4 h-4 text-orange-500 transition-transform duration-300 group-hover:-translate-y-0.5" />
+                Contact Us
+              </motion.a>
             </motion.div>
 
             {/* Value Pillars List */}
-            <motion.div variants={fadeUp} className={`pt-4 flex flex-wrap items-center gap-6 text-xs font-medium ${
+            <motion.div variants={fadeUp} className={`pt-2 sm:pt-4 flex flex-wrap items-center gap-3 sm:gap-6 text-xs font-medium ${
               isLightMode ? 'text-slate-600' : 'text-zinc-400'
             }`}>
               {COMPANY_INFO.pillars.map((pillar) => (
@@ -171,7 +185,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
             </motion.div>
 
             {/* Trust Badges */}
-            <motion.div variants={fadeUp} className="pt-3 flex flex-wrap gap-2">
+            <motion.div variants={fadeUp} className="pt-1.5 sm:pt-3 flex flex-wrap gap-1.5 sm:gap-2">
               {[
                 '1 Year Free Maintenance',
                 'Native Android Development',
@@ -221,9 +235,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
               {/* Top accent bar */}
               <div className="h-1.5 w-full bg-gradient-to-r from-orange-600 via-orange-500 to-amber-400 bg-[length:200%_auto] animate-[gradient-shift_6s_ease_infinite]" />
 
-              <div className="p-6">
+              <div className="p-4 sm:p-6">
                 {/* Header inside right card */}
-                <div className={`flex items-center justify-between pb-4 border-b ${
+                <div className={`flex items-center justify-between pb-3 sm:pb-4 border-b ${
                   isLightMode ? 'border-slate-100' : 'border-zinc-800'
                 }`}>
                   <div className="flex items-center gap-3">

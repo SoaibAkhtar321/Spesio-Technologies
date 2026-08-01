@@ -13,18 +13,18 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
   };
 
   return (
-    <footer className={`transition-colors duration-200 border-t pt-16 pb-8 ${
+    <footer className={`transition-colors duration-200 border-t pt-8 pb-5 sm:pt-16 sm:pb-8 ${
       isLightMode
         ? 'bg-slate-100 text-slate-600 border-slate-200'
         : 'bg-black text-zinc-400 border-zinc-900'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b ${
+        <div className={`grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 pb-6 sm:pb-12 border-b ${
           isLightMode ? 'border-slate-200' : 'border-zinc-900'
         }`}>
           
           {/* Brand Info */}
-          <div className="md:col-span-5 space-y-4">
+          <div className="md:col-span-5 space-y-3 sm:space-y-4">
             <div className="flex items-center gap-3">
               <SpesioLogo isLightMode={isLightMode} variant="horizontal" size="md" />
             </div>
@@ -40,20 +40,20 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
             </p>
 
             {/* Social Media Links Row */}
-            <div className="pt-2">
-              <h5 className={`text-[11px] font-bold uppercase tracking-wider mb-2.5 ${
+            <div className="pt-1 sm:pt-2">
+              <h5 className={`text-[10px] sm:text-[11px] font-bold uppercase tracking-wider mb-1.5 sm:mb-2.5 ${
                 isLightMode ? 'text-slate-700' : 'text-zinc-300'
               }`}>
                 Social Channels
               </h5>
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-center gap-2">
                 {/* WhatsApp */}
                 <a
                   href={COMPANY_INFO.socials.whatsapp}
                   target="_blank"
                   rel="noreferrer"
                   title="Direct Message on WhatsApp"
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-medium transition-all hover:scale-105 cursor-pointer ${
+                  className={`flex items-center gap-1.5 sm:gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl border text-[11px] sm:text-xs font-medium transition-all hover:scale-105 cursor-pointer ${
                     isLightMode
                       ? 'bg-white border-slate-200 text-slate-700 hover:text-emerald-600 hover:border-emerald-300 shadow-2xs'
                       : 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-emerald-400 hover:border-emerald-700'
@@ -71,7 +71,7 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
                   target="_blank"
                   rel="noreferrer"
                   title="Follow Spesio Technologies on Instagram"
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-medium transition-all hover:scale-105 cursor-pointer ${
+                  className={`flex items-center gap-1.5 sm:gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl border text-[11px] sm:text-xs font-medium transition-all hover:scale-105 cursor-pointer ${
                     isLightMode
                       ? 'bg-white border-slate-200 text-slate-700 hover:text-pink-600 hover:border-pink-300 shadow-2xs'
                       : 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-pink-400 hover:border-pink-700'
@@ -89,11 +89,11 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
           </div>
 
           {/* Quick Links */}
-          <div className="md:col-span-3 space-y-3">
+          <div className="md:col-span-3 space-y-2 sm:space-y-3">
             <h4 className={`text-xs font-bold uppercase tracking-wider ${
               isLightMode ? 'text-slate-900' : 'text-white'
             }`}>Quick Navigation</h4>
-            <ul className="space-y-2 text-xs">
+            <ul className="space-y-1.5 sm:space-y-2 text-xs">
               <li><a href="#services" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>Services Domain</a></li>
               <li><a href="#why-choose-us" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>Why Choose Us</a></li>
               <li><a href="#process" className={`transition-colors ${isLightMode ? 'hover:text-orange-600 text-slate-600' : 'hover:text-orange-400 text-zinc-400'}`}>Delivery Process</a></li>
@@ -106,11 +106,11 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
           </div>
 
           {/* Contact Summary */}
-          <div className="md:col-span-4 space-y-3 text-xs">
+          <div className="md:col-span-4 space-y-2 sm:space-y-3 text-xs">
             <h4 className={`text-xs font-bold uppercase tracking-wider ${
               isLightMode ? 'text-slate-900' : 'text-white'
             }`}>Contact & Location</h4>
-            <div className="space-y-2">
+            <div className="space-y-1.5 sm:space-y-2">
               <div className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-orange-600" />
                 <a href={`tel:${COMPANY_INFO.founder.phone}`} className={isLightMode ? 'hover:text-slate-900 text-slate-600' : 'hover:text-white text-zinc-400'}>{COMPANY_INFO.founder.phone}</a>
@@ -133,7 +133,7 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
         </div>
 
         {/* Bottom Bar */}
-        <div className={`pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs ${
+        <div className={`pt-4 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4 text-[11px] sm:text-xs ${
           isLightMode ? 'text-slate-500' : 'text-zinc-500'
         }`}>
           <div>
