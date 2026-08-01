@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { SERVICES } from '../data/companyData';
 import { ServiceItem } from '../types';
 import { Code, Globe, Smartphone, Brain, Check, ArrowRight, Layers, Cpu, Sparkles } from 'lucide-react';
+import { ServiceVisual } from './ServiceVisual';
 
 interface ServicesSectionProps {
   onSelectServiceForEstimate: (serviceId: string) => void;
@@ -135,10 +136,10 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.3 }}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch relative z-10">
             
             {/* Left: Description & Key Features */}
-            <div className="lg:col-span-7 space-y-6">
+            <div className="lg:col-span-7 space-y-6 flex flex-col justify-between">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-orange-50 border border-orange-200 text-orange-600 text-xs font-bold uppercase">
                 {getIcon(activeService.iconName)}
                 <span>{activeService.title}</span>
@@ -212,31 +213,9 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
 
             </div>
 
-            {/* Right: Architecture Visual Card */}
-            <div className={`rounded-2xl p-6 border space-y-4 ${
-              isLightMode
-                ? 'bg-slate-900 text-white border-slate-800'
-                : 'bg-black/80 border-zinc-800'
-            }`}>
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-                <span className="text-xs font-bold text-orange-400 uppercase">Spesio Delivery Standard</span>
-                <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Production Ready</span>
-              </div>
-
-              <div className="space-y-3 text-xs">
-                <div className="p-3 rounded-xl bg-slate-800/80 border border-slate-700">
-                  <div className="font-bold text-white mb-1">1. Discovery & Architecture</div>
-                  <p className="text-slate-300 text-[11px]">In-depth requirement analysis and scalable database schema mapping.</p>
-                </div>
-                <div className="p-3 rounded-xl bg-slate-800/80 border border-slate-700">
-                  <div className="font-bold text-white mb-1">2. Agile Development & Testing</div>
-                  <p className="text-slate-300 text-[11px]">Rapid iterations with clean, type-safe code and security validations.</p>
-                </div>
-                <div className="p-3 rounded-xl bg-slate-800/80 border border-slate-700">
-                  <div className="font-bold text-white mb-1">3. Cloud Deployment & Support</div>
-                  <p className="text-slate-300 text-[11px]">CI/CD pipelines, SSL configuration, and ongoing performance monitoring.</p>
-                </div>
-              </div>
+            {/* Right: Live system preview — floating code window + data-flow diagram, unique per service */}
+            <div className="lg:col-span-5 min-h-[380px]">
+              <ServiceVisual service={activeService} isLightMode={isLightMode} />
             </div>
 
           </motion.div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { COMPANY_INFO } from '../data/companyData';
-import { ArrowRight, Code, Globe, Smartphone, Brain, CheckCircle2, Sparkles } from 'lucide-react';
+import { ArrowRight, Code, Globe, Smartphone, Brain, CheckCircle2, Sparkles, Phone, Mail, MapPin } from 'lucide-react';
 import { SpesioLogo } from './SpesioLogo';
 
 interface HeroProps {
@@ -172,71 +172,92 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
             className="lg:col-span-5 relative"
           >
-            <div className={`relative rounded-2xl p-6 border shadow-xl transition-colors ${
-              isLightMode
-                ? 'bg-white border-slate-200 shadow-slate-200/80'
-                : 'bg-gradient-to-b from-zinc-900 to-black border-orange-500/20 shadow-orange-950/40'
-            }`}>
+            {/* Ambient glow lifting the card off the page */}
+            <div
+              aria-hidden="true"
+              className="absolute -inset-4 bg-gradient-to-br from-orange-500/20 via-amber-400/10 to-transparent blur-2xl rounded-[2rem] pointer-events-none"
+            />
 
-              {/* Header inside right card */}
-              <div className={`flex items-center justify-between pb-4 border-b ${
-                isLightMode ? 'border-slate-100' : 'border-zinc-800'
-              }`}>
-                <div className="flex items-center gap-3">
-                  <SpesioLogo isLightMode={isLightMode} variant="mark" size="md" />
-                  <div>
-                    <h3 className={`font-bold text-base ${isLightMode ? 'text-slate-900' : 'text-white'}`}>{COMPANY_INFO.name}</h3>
-                    <p className={`text-xs ${isLightMode ? 'text-slate-500' : 'text-zinc-400'}`}>{COMPANY_INFO.founder.name} • {COMPANY_INFO.founder.title}</p>
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+              className={`relative rounded-2xl border shadow-xl transition-colors overflow-hidden ${
+                isLightMode
+                  ? 'bg-white border-slate-200 shadow-slate-200/80'
+                  : 'bg-gradient-to-b from-zinc-900 to-black border-orange-500/20 shadow-orange-950/40'
+              }`}
+            >
+              {/* Top accent bar */}
+              <div className="h-1.5 w-full bg-gradient-to-r from-orange-600 via-orange-500 to-amber-400 bg-[length:200%_auto] animate-[gradient-shift_6s_ease_infinite]" />
+
+              <div className="p-6">
+                {/* Header inside right card */}
+                <div className={`flex items-center justify-between pb-4 border-b ${
+                  isLightMode ? 'border-slate-100' : 'border-zinc-800'
+                }`}>
+                  <div className="flex items-center gap-3">
+                    <SpesioLogo isLightMode={isLightMode} variant="mark" size="md" />
+                    <div>
+                      <h3 className={`font-bold text-base ${isLightMode ? 'text-slate-900' : 'text-white'}`}>{COMPANY_INFO.name}</h3>
+                      <p className={`text-xs ${isLightMode ? 'text-slate-500' : 'text-zinc-400'}`}>{COMPANY_INFO.founder.name} • {COMPANY_INFO.founder.title}</p>
+                    </div>
                   </div>
+                  <span className="relative inline-flex items-center gap-1.5 text-[10px] font-bold px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 border border-emerald-500/20">
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
+                    </span>
+                    AVAILABLE NOW
+                  </span>
                 </div>
-                <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 border border-emerald-500/20">
-                  AVAILABLE NOW
-                </span>
-              </div>
 
-              {/* Founder Contact Spotlight */}
-              <div className="py-4 space-y-2.5 text-xs">
-                <div className={`flex items-center justify-between p-2.5 rounded-lg border ${
-                  isLightMode ? 'bg-slate-50 border-slate-200 text-slate-700' : 'bg-zinc-900/60 border-zinc-800 text-zinc-300'
-                }`}>
-                  <span className={isLightMode ? 'text-slate-500 font-medium' : 'text-zinc-500 font-medium'}>Phone:</span>
-                  <a href={`tel:${COMPANY_INFO.founder.phone}`} className="font-semibold text-orange-600 hover:underline">
-                    {COMPANY_INFO.founder.phone}
-                  </a>
+                {/* Founder Contact Spotlight */}
+                <div className="py-4 space-y-2.5 text-xs">
+                  {[
+                    { icon: Phone, label: 'Phone', value: COMPANY_INFO.founder.phone, href: `tel:${COMPANY_INFO.founder.phone}` },
+                    { icon: Mail, label: 'Email', value: COMPANY_INFO.founder.email, href: `mailto:${COMPANY_INFO.founder.email}` },
+                    { icon: MapPin, label: 'Location', value: COMPANY_INFO.founder.location, href: undefined },
+                  ].map(({ icon: Icon, label, value, href }) => {
+                    const row = (
+                      <div className={`flex items-center gap-2.5 p-2.5 rounded-lg border transition-colors ${
+                        isLightMode
+                          ? 'bg-slate-50 border-slate-200 text-slate-700 hover:border-orange-200 hover:bg-orange-50/40'
+                          : 'bg-zinc-900/60 border-zinc-800 text-zinc-300 hover:border-orange-500/30'
+                      }`}>
+                        <div className={`w-7 h-7 rounded-md flex items-center justify-center shrink-0 ${
+                          isLightMode ? 'bg-orange-100' : 'bg-orange-500/10'
+                        }`}>
+                          <Icon className="w-3.5 h-3.5 text-orange-600" />
+                        </div>
+                        <span className={isLightMode ? 'text-slate-500 font-medium' : 'text-zinc-500 font-medium'}>{label}:</span>
+                        <span className={`font-semibold truncate ml-auto ${isLightMode ? 'text-slate-900' : 'text-white'}`}>{value}</span>
+                      </div>
+                    );
+                    return href ? (
+                      <a key={label} href={href} className="block hover:no-underline">
+                        {row}
+                      </a>
+                    ) : (
+                      <div key={label}>{row}</div>
+                    );
+                  })}
                 </div>
-                <div className={`flex items-center justify-between p-2.5 rounded-lg border ${
-                  isLightMode ? 'bg-slate-50 border-slate-200 text-slate-700' : 'bg-zinc-900/60 border-zinc-800 text-zinc-300'
-                }`}>
-                  <span className={isLightMode ? 'text-slate-500 font-medium' : 'text-zinc-500 font-medium'}>Email:</span>
-                  <a href={`mailto:${COMPANY_INFO.founder.email}`} className={`font-semibold hover:underline truncate max-w-[200px] ${
-                    isLightMode ? 'text-slate-900' : 'text-white'
+
+                {/* Stats Bar */}
+                <div className="grid grid-cols-2 gap-2 pt-2">
+                  <motion.div whileHover={{ y: -2 }} className="bg-orange-50 border border-orange-200 p-3 rounded-xl text-center">
+                    <div className="text-xl font-extrabold text-orange-600">100%</div>
+                    <div className="text-[10px] text-slate-500 uppercase font-semibold">Client Focus</div>
+                  </motion.div>
+                  <motion.div whileHover={{ y: -2 }} className={`p-3 rounded-xl border text-center ${
+                    isLightMode ? 'bg-slate-50 border-slate-200' : 'bg-zinc-900 border-zinc-800'
                   }`}>
-                    {COMPANY_INFO.founder.email}
-                  </a>
-                </div>
-                <div className={`flex items-center justify-between p-2.5 rounded-lg border ${
-                  isLightMode ? 'bg-slate-50 border-slate-200 text-slate-700' : 'bg-zinc-900/60 border-zinc-800 text-zinc-300'
-                }`}>
-                  <span className={isLightMode ? 'text-slate-500 font-medium' : 'text-zinc-500 font-medium'}>Location:</span>
-                  <span className={`font-medium ${isLightMode ? 'text-slate-800' : 'text-zinc-300'}`}>{COMPANY_INFO.founder.location}</span>
+                    <div className={`text-xl font-extrabold ${isLightMode ? 'text-slate-900' : 'text-white'}`}>4 Core</div>
+                    <div className={`text-[10px] uppercase font-semibold ${isLightMode ? 'text-slate-500' : 'text-zinc-400'}`}>Tech Offerings</div>
+                  </motion.div>
                 </div>
               </div>
-
-              {/* Stats Bar */}
-              <div className="grid grid-cols-2 gap-2 pt-2">
-                <div className="bg-orange-50 border border-orange-200 p-3 rounded-xl text-center">
-                  <div className="text-xl font-extrabold text-orange-600">100%</div>
-                  <div className="text-[10px] text-slate-500 uppercase font-semibold">Client Focus</div>
-                </div>
-                <div className={`p-3 rounded-xl border text-center ${
-                  isLightMode ? 'bg-slate-50 border-slate-200' : 'bg-zinc-900 border-zinc-800'
-                }`}>
-                  <div className={`text-xl font-extrabold ${isLightMode ? 'text-slate-900' : 'text-white'}`}>4 Core</div>
-                  <div className={`text-[10px] uppercase font-semibold ${isLightMode ? 'text-slate-500' : 'text-zinc-400'}`}>Tech Offerings</div>
-                </div>
-              </div>
-
-            </div>
+            </motion.div>
           </motion.div>
 
         </div>

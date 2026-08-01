@@ -15,6 +15,26 @@ section[id] {
   100% { background-position: 0% 50%; }
 }
 
+/* One-shot diagonal shine that sweeps across the logo mark on hover. */
+@keyframes logo-shine {
+  0% { transform: translateX(-160%) skewX(-20deg); opacity: 0; }
+  15% { opacity: 0.55; }
+  100% { transform: translateX(160%) skewX(-20deg); opacity: 0; }
+}
+
+.spesio-mark-shine::after {
+  content: '';
+  position: absolute;
+  inset: -20% -60%;
+  background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.65) 50%, transparent 70%);
+  transform: translateX(-160%) skewX(-20deg);
+  pointer-events: none;
+}
+
+.spesio-mark-shine:hover::after {
+  animation: logo-shine 0.85s ease;
+}
+
 /* Respect the user's OS-level reduced-motion preference across the site. */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

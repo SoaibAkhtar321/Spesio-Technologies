@@ -92,9 +92,6 @@ export default function App() {
       {/* Hero Section */}
       <Hero isLightMode={isLightMode} onOpenAiAssistant={handleOpenAiAssistant} onOpenEstimator={handleOpenEstimator} />
 
-      {/* Digital Twin Business Card Section */}
-      <DigitalBusinessCard isLightMode={isLightMode} />
-
       {/* Services Showcase */}
       <ServicesSection isLightMode={isLightMode} onSelectServiceForEstimate={handleSelectServiceForEstimate} />
 
