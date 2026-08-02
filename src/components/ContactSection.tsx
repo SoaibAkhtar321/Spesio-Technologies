@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { COMPANY_INFO } from '../data/companyData';
 import { ContactFormState } from '../types';
-import { Phone, Mail, Globe, MapPin, Send, CheckCircle2, MessageCircle, Clock } from 'lucide-react';
+import { Phone, Mail, Globe, MapPin, Send, CheckCircle2, MessageCircle, Clock, AlertCircle } from 'lucide-react';
 
 interface ContactSectionProps {
   initialService?: string;
@@ -36,12 +36,21 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
         body: JSON.stringify(formState),
       });
 
-      const data = await response.json();
-      setStatus('success');
-      setFeedbackMsg(data.message || 'Thank you! Your message has been sent to Soaib Akhtar.');
+      const data = await response.json().catch(() => ({}));
+
+      if (response.ok && data.success) {
+        setStatus('success');
+        setFeedbackMsg(data.message || 'Thank you! Your message has been sent to Soaib Akhtar.');
+      } else {
+        setStatus('error');
+        setFeedbackMsg(
+          data.message ||
+            `Something went wrong sending your enquiry. Please try again, or reach us directly on WhatsApp at ${COMPANY_INFO.founder.phone}.`
+        );
+      }
     } catch (err) {
-      setStatus('success');
-      setFeedbackMsg(`Thank you! Message received. You can also connect directly on WhatsApp at ${COMPANY_INFO.founder.phone}`);
+      setStatus('error');
+      setFeedbackMsg(`Something went wrong sending your enquiry. Please try again, or reach us directly on WhatsApp at ${COMPANY_INFO.founder.phone}.`);
     }
   };
 
@@ -250,6 +259,21 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
             ) : (
               <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
                 <h3 className={`text-xl font-black ${isLightMode ? 'text-slate-900' : 'text-white'}`}>Project Inquiry Form</h3>
+
+                {status === 'error' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className={`flex items-start gap-3 p-3.5 rounded-xl border text-xs ${
+                      isLightMode
+                        ? 'bg-red-50 border-red-200 text-red-700'
+                        : 'bg-red-500/10 border-red-500/30 text-red-300'
+                    }`}
+                  >
+                    <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                    <span>{feedbackMsg}</span>
+                  </motion.div>
+                )}
 
                 <div className="grid grid-cols-2 gap-2.5 sm:gap-4">
                   <div>
