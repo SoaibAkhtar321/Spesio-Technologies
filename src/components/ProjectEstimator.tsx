@@ -79,6 +79,7 @@ const PackageCard: React.FC<{ pkg: PricingPackage; isLightMode: boolean }> = ({ 
 
     <div className="text-2xl sm:text-3xl mb-1.5 sm:mb-2">{pkg.emoji}</div>
     <h4 className={`text-base sm:text-lg font-black ${isLightMode ? 'text-slate-900' : 'text-white'}`}>{pkg.name}</h4>
+    <p className={`mt-0.5 text-[10px] sm:text-[11px] font-semibold italic ${isLightMode ? 'text-maroon-600' : 'text-maroon-400'}`}>{pkg.tagline}</p>
     <div className={`mt-1.5 sm:mt-2 flex items-baseline gap-1 ${isLightMode ? 'text-slate-900' : 'text-white'}`}>
       <span className="text-2xl sm:text-3xl font-black">{formatINR(pkg.price)}</span>
     </div>
@@ -347,6 +348,9 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                           <h4 className={`text-sm sm:text-base font-black ${bundle.highlight ? 'text-white' : isLightMode ? 'text-slate-900' : 'text-white'}`}>
                             {bundle.name}
                           </h4>
+                          <p className={`mt-0.5 text-[10px] sm:text-[11px] font-semibold italic ${bundle.highlight ? 'text-white/85' : isLightMode ? 'text-maroon-600' : 'text-maroon-400'}`}>
+                            {bundle.tagline}
+                          </p>
                           <ul className={`mt-2.5 sm:mt-3 space-y-1.5 text-[11px] sm:text-xs font-medium ${bundle.highlight ? 'text-white/90' : isLightMode ? 'text-slate-600' : 'text-zinc-300'}`}>
                             <li>{website?.name}</li>
                             <li>{android?.name}</li>
@@ -493,7 +497,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                   {step === 2 && (
                     <motion.div key="s2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.25 }}>
                       <h3 className={`text-base sm:text-lg font-black mb-1 ${isLightMode ? 'text-slate-900' : 'text-white'}`}>Step 2 — Choose your complexity tier</h3>
-                      <p className={`text-[11px] sm:text-xs mb-5 sm:mb-6 ${isLightMode ? 'text-slate-500' : 'text-zinc-400'}`}>Every tier includes 1 year of FREE maintenance.</p>
+                      <p className={`text-[11px] sm:text-xs mb-5 sm:mb-6 ${isLightMode ? 'text-slate-500' : 'text-zinc-400'}`}>Every tier includes 6 months of FREE maintenance.</p>
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
                         {TIER_ORDER.map((t) => {
                           const wp = WEBSITE_PACKAGES.find((p) => p.id === t)!;
@@ -638,7 +642,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                         <div className={`space-y-2 text-[11px] sm:text-xs font-medium ${isLightMode ? 'text-slate-700' : 'text-zinc-300'}`}>
                           <div className="flex items-center gap-2">
                             <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-                            <span>1 Year FREE Maintenance Included</span>
+                            <span>6 Months FREE Maintenance Included</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />

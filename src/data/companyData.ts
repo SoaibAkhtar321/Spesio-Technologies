@@ -17,7 +17,7 @@ export const COMPANY_INFO = {
   },
   socials: {
     whatsapp: 'https://wa.me/918957833269?text=Hello%20Spesio%20Technologies%2C%20I%20would%20like%20to%20inquire%20about%20your%20services.',
-    instagram: 'https://instagram.com/spesiotechnologies',
+    instagram: 'https://instagram.com/spesio_technologies',
   },
   pillars: [
     { title: 'Fast Delivery', desc: 'Cutting-edge tech stack tailored for high speed and durability.' },
@@ -56,15 +56,15 @@ export const PORTFOLIO: PortfolioItem[] = [
 export const FAQS = [
   {
     question: 'How much does a website cost?',
-    answer: 'Our fixed-price website packages start at ₹3,500 (Bronze) and go up to ₹17,500 (Diamond) for a full e-commerce platform with ERP integration. Every tier includes 1 year of free maintenance.',
+    answer: 'Our fixed-price website packages start at ₹4,200 (Bronze) and go up to ₹20,500 (Diamond) for a full e-commerce platform with ERP integration. Every tier includes 6 months of free maintenance and is engineered, not templated.',
   },
   {
     question: 'How much does an Android app cost?',
-    answer: 'Native Android app packages start at ₹7,500 for a Bronze information app, scaling up based on features like offline sync, push notifications, and backend integrations. See the Project Estimator for a tailored quote.',
+    answer: 'Native Android app packages start at ₹9,000 for a Bronze information app, scaling up based on features like offline sync, push notifications, and backend integrations. See the Project Estimator for a tailored quote.',
   },
   {
     question: 'Do you provide free maintenance?',
-    answer: 'Yes. Every website and app package from Spesio Technologies includes 1 year of free maintenance, covering bug fixes and minor updates after launch.',
+    answer: 'Yes. Every website and app package from Spesio Technologies includes 6 months of free maintenance, covering bug fixes and minor updates after launch.',
   },
   {
     question: 'Do you develop ERP software?',
@@ -173,7 +173,8 @@ export const WEBSITE_PACKAGES: PricingPackage[] = [
     id: 'bronze',
     emoji: '🥉',
     name: 'Bronze Website',
-    price: 3500,
+    tagline: 'Engineered foundation, not a template',
+    price: 4200,
     features: [
       'Business landing page',
       'Up to 8 pages',
@@ -181,7 +182,7 @@ export const WEBSITE_PACKAGES: PricingPackage[] = [
       'Google Maps integration',
       'Mobile responsive design',
       'Basic SEO setup',
-      '1 year FREE maintenance',
+      '6 months FREE maintenance',
     ],
     cta: 'Get Bronze Website',
   },
@@ -189,7 +190,8 @@ export const WEBSITE_PACKAGES: PricingPackage[] = [
     id: 'silver',
     emoji: '🥈',
     name: 'Silver Website',
-    price: 6500,
+    tagline: 'Built to convert, priced to scale',
+    price: 7500,
     features: [
       'Everything in Bronze, PLUS',
       'Product / service listing',
@@ -199,7 +201,7 @@ export const WEBSITE_PACKAGES: PricingPackage[] = [
       'Email integration',
       'Up to 12 pages',
       'Enhanced animations',
-      '1 year FREE maintenance',
+      '6 months FREE maintenance',
     ],
     cta: 'Get Silver Website',
   },
@@ -207,7 +209,8 @@ export const WEBSITE_PACKAGES: PricingPackage[] = [
     id: 'gold',
     emoji: '🥇',
     name: 'Gold Website',
-    price: 9000,
+    tagline: 'Full command center for your business',
+    price: 10500,
     features: [
       'Everything in Silver, PLUS',
       'Admin panel access',
@@ -215,7 +218,7 @@ export const WEBSITE_PACKAGES: PricingPackage[] = [
       'Manage services',
       'Manage enquiries',
       'Advanced dashboard',
-      '1 year FREE maintenance',
+      '6 months FREE maintenance',
     ],
     cta: 'Get Gold Website',
     highlight: true,
@@ -224,7 +227,8 @@ export const WEBSITE_PACKAGES: PricingPackage[] = [
     id: 'diamond',
     emoji: '💎',
     name: 'Diamond Website',
-    price: 17500,
+    tagline: 'Enterprise-grade platform, flagship polish',
+    price: 20500,
     features: [
       'Everything in Gold, PLUS',
       'Full eCommerce platform',
@@ -234,7 +238,7 @@ export const WEBSITE_PACKAGES: PricingPackage[] = [
       'Order management',
       'Inventory management',
       'Restaurant / school / clothing / grocery ready',
-      '1 year FREE maintenance',
+      '6 months FREE maintenance',
     ],
     cta: 'Get Diamond Website',
   },
@@ -245,7 +249,8 @@ export const ANDROID_PACKAGES: PricingPackage[] = [
     id: 'bronze',
     emoji: '🥉',
     name: 'Bronze Android App',
-    price: 7500,
+    tagline: 'A native app that earns its price tag',
+    price: 9000,
     features: [
       'Business information screens',
       'Contact screen',
@@ -255,7 +260,7 @@ export const ANDROID_PACKAGES: PricingPackage[] = [
       'Social media links',
       'Push notifications',
       '8–10 screens',
-      '1 year FREE maintenance',
+      '6 months FREE maintenance',
     ],
     cta: 'Get Bronze Android App',
   },
@@ -263,7 +268,8 @@ export const ANDROID_PACKAGES: PricingPackage[] = [
     id: 'silver',
     emoji: '🥈',
     name: 'Silver Android App',
-    price: 12500,
+    tagline: 'Real accounts, real orders, real growth',
+    price: 14500,
     features: [
       'Everything in Bronze, PLUS',
       'Login & authentication',
@@ -274,7 +280,7 @@ export const ANDROID_PACKAGES: PricingPackage[] = [
       'WhatsApp ordering',
       'Social integration',
       'Up to 15 screens',
-      '1 year FREE maintenance',
+      '6 months FREE maintenance',
     ],
     cta: 'Get Silver Android App',
   },
@@ -282,7 +288,8 @@ export const ANDROID_PACKAGES: PricingPackage[] = [
     id: 'gold',
     emoji: '🥇',
     name: 'Gold Android App',
-    price: 18500,
+    tagline: 'Operations HQ, right in your pocket',
+    price: 21500,
     features: [
       'Everything in Silver, PLUS',
       'Web admin panel',
@@ -292,7 +299,7 @@ export const ANDROID_PACKAGES: PricingPackage[] = [
       'User management',
       'Order management',
       'Dashboard',
-      '1 year FREE maintenance',
+      '6 months FREE maintenance',
     ],
     cta: 'Get Gold Android App',
     highlight: true,
@@ -301,7 +308,8 @@ export const ANDROID_PACKAGES: PricingPackage[] = [
     id: 'diamond',
     emoji: '💎',
     name: 'Diamond Android App',
-    price: 30000,
+    tagline: 'The complete business, fully mobile',
+    price: 35000,
     features: [
       'Everything in Gold, PLUS',
       'Payment gateway',
@@ -310,17 +318,17 @@ export const ANDROID_PACKAGES: PricingPackage[] = [
       'Inventory management',
       'Analytics & reports',
       'Complete business solution',
-      '1 year FREE maintenance',
+      '6 months FREE maintenance',
     ],
     cta: 'Get Diamond Android App',
   },
 ];
 
 export const BUNDLES: BundlePackage[] = [
-  { id: 'starter', name: 'Starter Bundle', websiteTier: 'bronze', androidTier: 'bronze', price: 10000 },
-  { id: 'business', name: 'Business Bundle', websiteTier: 'silver', androidTier: 'silver', price: 17500 },
-  { id: 'professional', name: 'Professional Bundle', websiteTier: 'gold', androidTier: 'gold', price: 25000 },
-  { id: 'enterprise', name: 'Enterprise Bundle', websiteTier: 'diamond', androidTier: 'diamond', price: 45000, highlight: true },
+  { id: 'starter', name: 'Starter Bundle', tagline: 'Two platforms, one smart price', websiteTier: 'bronze', androidTier: 'bronze', price: 12000 },
+  { id: 'business', name: 'Business Bundle', tagline: 'The serious-growth combo', websiteTier: 'silver', androidTier: 'silver', price: 20500 },
+  { id: 'professional', name: 'Professional Bundle', tagline: 'Full-stack presence, fully managed', websiteTier: 'gold', androidTier: 'gold', price: 29000 },
+  { id: 'enterprise', name: 'Enterprise Bundle', tagline: 'Everything, at flagship scale', websiteTier: 'diamond', androidTier: 'diamond', price: 52000, highlight: true },
 ];
 
 export const WEBSITE_MAINTENANCE: MaintenancePlan[] = [

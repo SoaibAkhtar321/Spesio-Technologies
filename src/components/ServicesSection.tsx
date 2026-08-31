@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'motion/react';
 import { SERVICES } from '../data/companyData';
 import { ServiceItem } from '../types';
 import { Code, Globe, Smartphone, Brain, Check, ArrowRight, Layers, Cpu, Sparkles } from 'lucide-react';
-import { ServiceVisual } from './ServiceVisual';
 
 interface ServicesSectionProps {
   onSelectServiceForEstimate: (serviceId: string) => void;
@@ -139,7 +138,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-8 items-stretch relative z-10">
             
             {/* Left: Description & Key Features */}
-            <div className="lg:col-span-7 space-y-3 sm:space-y-6 flex flex-col justify-between">
+            <div className="lg:col-span-12 space-y-3 sm:space-y-6 flex flex-col justify-between">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-maroon-50 border border-maroon-200 text-maroon-600 text-xs font-bold uppercase">
                 {getIcon(activeService.iconName)}
                 <span>{activeService.title}</span>
@@ -211,11 +210,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                 </button>
               </div>
 
-            </div>
-
-            {/* Right: Live system preview — floating code window + data-flow diagram, unique per service */}
-            <div className="lg:col-span-5 min-h-[380px]">
-              <ServiceVisual service={activeService} isLightMode={isLightMode} />
             </div>
 
           </motion.div>

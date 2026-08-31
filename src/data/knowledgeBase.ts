@@ -53,14 +53,14 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     id: 'website-cost',
     triggers: ['website cost', 'web cost', 'cost of website', 'price of website', 'how much for a website', 'pricing web'],
     answer:
-      'We use fixed website packages, not arbitrary quotes: Bronze ₹3,500, Silver ₹6,500, Gold ₹9,000, and Diamond ₹17,500 — each includes 1 year FREE maintenance. Check "View Packages" above for full feature breakdowns, or use "Find My Package" for a guided recommendation.',
+      'We use fixed website packages, not arbitrary quotes: Bronze ₹4,200, Silver ₹7,500, Gold ₹10,500, and Diamond ₹20,500 — each includes 6 months FREE maintenance and engineering that\'s built to last, not templated. Check "View Packages" above for full feature breakdowns, or use "Find My Package" for a guided recommendation.',
     followUps: ['How much does an Android app cost?', 'How do payments work?'],
   },
   {
     id: 'app-cost',
     triggers: ['app cost', 'cost of app', 'price of app', 'how much for an app', 'mobile app price', 'pricing app', 'android app cost'],
     answer:
-      'We use fixed Android app packages, not arbitrary quotes: Bronze ₹7,500, Silver ₹12,500, Gold ₹18,500, and Diamond ₹30,000 — each includes 1 year FREE maintenance. We also offer discounted Website + App bundles. Check "View Packages" above, or use "Find My Package" for a guided recommendation.',
+      'We use fixed Android app packages, not arbitrary quotes: Bronze ₹9,000, Silver ₹14,500, Gold ₹21,500, and Diamond ₹35,000 — each includes 6 months FREE maintenance. We also offer discounted Website + App bundles. Check "View Packages" above, or use "Find My Package" for a guided recommendation.',
     followUps: ['How much does a website cost?', 'How do payments work?'],
   },
   {
@@ -137,7 +137,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     id: 'packages',
     triggers: ['package', 'packages', 'bundle', 'bundles', 'pricing plan', 'plans', 'what packages'],
     answer:
-      'We offer four fixed tiers — Bronze, Silver, Gold, and Diamond — for both Website and Android App packages, plus discounted Website + App bundles (Starter, Business, Professional, Enterprise). Every package includes 1 year of FREE maintenance. See "View Packages" above for full details, or use "Find My Package" for a guided recommendation.',
+      'We offer four fixed tiers — Bronze, Silver, Gold, and Diamond — for both Website and Android App packages, plus discounted Website + App bundles (Starter, Business, Professional, Enterprise). Every package includes 6 months of FREE maintenance. See "View Packages" above for full details, or use "Find My Package" for a guided recommendation.',
     followUps: ['How much does a website cost?', 'How much does an Android app cost?'],
   },
   {

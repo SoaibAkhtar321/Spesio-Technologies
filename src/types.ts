@@ -32,6 +32,7 @@ export interface PricingPackage {
   id: PackageTierId;
   emoji: string;
   name: string;
+  tagline: string;
   price: number;
   features: string[];
   cta: string;
@@ -41,6 +42,7 @@ export interface PricingPackage {
 export interface BundlePackage {
   id: string;
   name: string;
+  tagline: string;
   websiteTier: PackageTierId;
   androidTier: PackageTierId;
   price: number;
