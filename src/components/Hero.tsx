@@ -187,7 +187,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
             {/* Trust Badges */}
             <motion.div variants={fadeUp} className="pt-1.5 sm:pt-3 flex flex-wrap gap-1.5 sm:gap-2">
               {[
-                '1 Year Free Maintenance',
+                '6 Months Free Maintenance',
                 'Native Android Development',
                 'Business Websites',
                 'Fast Delivery',

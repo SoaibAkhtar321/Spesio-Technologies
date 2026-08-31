@@ -8,16 +8,16 @@ export const COMPANY_INFO = {
   founder: {
     name: 'Soaib Akhtar',
     title: 'Founder & Software Developer',
-    location: 'Kushinagar, Uttar Pradesh, India - 274401',
+    location: 'Greater Noida, Uttar Pradesh, India - 274401',
     phone: '+91 8957833269',
     formattedPhone: '+91 89578 33269',
     email: 'spesiotechnologies@gmail.com',
-    website: 'www.spesiotech.com',
     bio: 'Visionary software engineer and entrepreneur dedicated to engineering high-performance digital products, scalable web apps, mobile solutions, and custom AI integrations that transform businesses.',
   },
   socials: {
     whatsapp: 'https://wa.me/918957833269?text=Hello%20Spesio%20Technologies%2C%20I%20would%20like%20to%20inquire%20about%20your%20services.',
     instagram: 'https://instagram.com/spesio_technologies',
+    youtube: 'https://youtube.com/@spesiotechnologies?si=truP2VZPeo5bwT_T',
   },
   pillars: [
     { title: 'Fast Delivery', desc: 'Cutting-edge tech stack tailored for high speed and durability.' },
@@ -237,7 +237,7 @@ export const WEBSITE_PACKAGES: PricingPackage[] = [
       'Analytics dashboard',
       'Order management',
       'Inventory management',
-      'Restaurant / school / clothing / grocery ready',
+      'Restaurant / school / clothing / grocery / startup ready',
       '6 months FREE maintenance',
     ],
     cta: 'Get Diamond Website',
@@ -314,7 +314,7 @@ export const ANDROID_PACKAGES: PricingPackage[] = [
       'Everything in Gold, PLUS',
       'Payment gateway',
       'ERP integration',
-      'Restaurant / grocery / school ready',
+      'Restaurant / grocery / school / startup ready',
       'Inventory management',
       'Analytics & reports',
       'Complete business solution',
@@ -332,10 +332,10 @@ export const BUNDLES: BundlePackage[] = [
 ];
 
 export const WEBSITE_MAINTENANCE: MaintenancePlan[] = [
-  { tier: 'bronze', priceLabel: '₹700/year' },
-  { tier: 'silver', priceLabel: '₹1,200/year' },
-  { tier: 'gold', priceLabel: '₹1,700/year' },
-  { tier: 'diamond', priceLabel: '₹2,200/year' },
+  { tier: 'bronze', priceLabel: '₹1,050/year' },
+  { tier: 'silver', priceLabel: '₹1,800/year' },
+  { tier: 'gold', priceLabel: '₹2,550/year' },
+  { tier: 'diamond', priceLabel: '₹3,300/year' },
 ];
 
-export const ANDROID_MAINTENANCE_LABEL = '₹2,500 – ₹4,000/year';
+export const ANDROID_MAINTENANCE_LABEL = '₹3,750 – ₹6,000/year';

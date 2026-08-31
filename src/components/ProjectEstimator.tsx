@@ -397,7 +397,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                     isLightMode ? 'text-slate-900' : 'text-white'
                   }`}
                 >
-                  <span className="text-xs sm:text-sm font-bold">Optional Maintenance Renewal (After First Year)</span>
+                  <span className="text-xs sm:text-sm font-bold">Optional Maintenance Renewal (After 6 Months)</span>
                   <ChevronDown className={`w-4 h-4 text-maroon-500 transition-transform duration-300 shrink-0 ml-2 ${maintenanceOpen ? 'rotate-180' : ''}`} />
                 </button>
                 <AnimatePresence initial={false}>

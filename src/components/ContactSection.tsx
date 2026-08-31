@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { COMPANY_INFO } from '../data/companyData';
 import { ContactFormState } from '../types';
-import { Phone, Mail, Globe, MapPin, Send, CheckCircle2, MessageCircle, Clock, AlertCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Send, CheckCircle2, MessageCircle, Clock, AlertCircle } from 'lucide-react';
 
 interface ContactSectionProps {
   initialService?: string;
@@ -143,30 +143,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       isLightMode ? 'text-slate-900' : 'text-white'
                     }`}>
                       {COMPANY_INFO.founder.email}
-                    </div>
-                  </div>
-                </a>
-
-                {/* Website */}
-                <a
-                  href={`https://${COMPANY_INFO.founder.website}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={`flex items-center gap-3 sm:gap-4 p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl border transition-colors group ${
-                    isLightMode
-                      ? 'bg-white border-slate-200 hover:border-maroon-500/50 shadow-2xs'
-                      : 'bg-zinc-950 border-zinc-800 hover:border-maroon-500/50'
-                  }`}
-                >
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-maroon-500/10 border border-maroon-500/30 flex items-center justify-center shrink-0 group-hover:bg-maroon-600 group-hover:text-white transition-colors">
-                    <Globe className="w-4 h-4 sm:w-5 sm:h-5 text-maroon-600 group-hover:text-white" />
-                  </div>
-                  <div>
-                    <div className={`text-[10px] uppercase font-semibold ${isLightMode ? 'text-slate-500' : 'text-zinc-500'}`}>Website</div>
-                    <div className={`text-sm sm:text-base font-bold group-hover:text-maroon-600 transition-colors ${
-                      isLightMode ? 'text-slate-900' : 'text-white'
-                    }`}>
-                      {COMPANY_INFO.founder.website}
                     </div>
                   </div>
                 </a>
