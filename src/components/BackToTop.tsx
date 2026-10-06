@@ -35,7 +35,7 @@ export const BackToTop: React.FC<BackToTopProps> = ({ isLightMode = true }) => {
           aria-label="Back to top"
           className={`fixed bottom-24 right-5 sm:right-8 z-40 w-11 h-11 rounded-full flex items-center justify-center cursor-pointer border transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
             isLightMode
-              ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20 text-brand-600 hover:bg-[#171B2E]/10'
+              ? 'bg-[#FDFCFA]/60 border-[#131313]/20 text-brand-600 hover:bg-[#131313]/10'
               : 'bg-zinc-900 border-brand-500/30 text-brand-400 hover:bg-zinc-800'
           }`}
         >

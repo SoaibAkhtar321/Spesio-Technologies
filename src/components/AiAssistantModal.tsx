@@ -99,13 +99,13 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             onClick={(e) => e.stopPropagation()}
             className={`w-full max-w-xl border rounded-sm flex flex-col h-[600px] max-h-[90vh] overflow-hidden ${
-              isLightMode ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20' : 'bg-[#171B2E] border-brand-500/30'
+              isLightMode ? 'bg-[#FDFCFA]/60 border-[#131313]/20' : 'bg-[#151515] border-brand-500/30'
             }`}
           >
             {/* Modal Header */}
             <div
               className={`p-4 sm:p-5 border-b flex items-center justify-between ${
-                isLightMode ? 'bg-[#FFF3DC] border-[#171B2E]/20' : 'bg-zinc-900 border-zinc-800'
+                isLightMode ? 'bg-[#F7F5F0] border-[#131313]/20' : 'bg-zinc-900 border-zinc-800'
               }`}
             >
               <div className="flex items-center gap-3">
@@ -113,7 +113,7 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
                 <div>
                   <div className={`font-bold text-base flex items-center gap-2 ${isLightMode ? 'text-slate-900' : 'text-white'}`}>
                     Spesio AI Assistant
-                    <span className="text-[10px] px-2 py-0.5 rounded-sm bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 font-bold">
+                    <span className="text-[12px] px-2 py-0.5 rounded-sm bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 font-bold">
                       Online
                     </span>
                   </div>
@@ -132,7 +132,7 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
             </div>
 
             {/* Messages Body */}
-            <div ref={scrollRef} className={`flex-1 p-4 sm:p-6 overflow-y-auto space-y-4 ${isLightMode ? 'bg-[#FFF3DC]' : 'bg-[#12162A]'}`}>
+            <div ref={scrollRef} className={`flex-1 p-4 sm:p-6 overflow-y-auto space-y-4 ${isLightMode ? 'bg-[#F7F5F0]' : 'bg-[#151515]'}`}>
               {messages.map((msg, index) => (
                 <motion.div
                   key={index}
@@ -146,7 +146,7 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
                         msg.sender === 'user'
                           ? 'bg-brand-600 text-white'
                           : isLightMode
-                          ? 'bg-[#FFFDF8]/60 text-brand-600 border border-[#171B2E]/20'
+                          ? 'bg-[#FDFCFA]/60 text-brand-600 border border-[#131313]/20'
                           : 'bg-zinc-800 text-brand-400 border border-brand-500/30'
                       }`}
                     >
@@ -157,7 +157,7 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
                         msg.sender === 'user'
                           ? 'bg-brand-600 text-white font-medium rounded-tr-none'
                           : isLightMode
-                          ? 'bg-[#FFFDF8]/60 text-slate-800 border border-[#171B2E]/20 rounded-tl-none'
+                          ? 'bg-[#FDFCFA]/60 text-slate-800 border border-[#131313]/20 rounded-tl-none'
                           : 'bg-zinc-900 text-zinc-200 border border-zinc-800 rounded-tl-none'
                       }`}
                     >
@@ -172,9 +172,9 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
                         <button
                           key={prompt}
                           onClick={() => handleFollowUp(prompt)}
-                          className={`px-3 py-1.5 rounded-sm text-[11px] font-medium transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
+                          className={`px-3 py-1.5 rounded-sm text-[13px] font-medium transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
                             isLightMode
-                              ? 'bg-[#171B2E]/10 hover:bg-[#171B2E]/20 border border-brand-200 text-brand-700'
+                              ? 'bg-[#151515]/10 hover:bg-[#151515]/20 border border-brand-200 text-brand-700'
                               : 'bg-brand-500/10 hover:bg-brand-500/20 border border-brand-500/30 text-brand-300'
                           }`}
                         >
@@ -190,14 +190,14 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-3">
                   <div
                     className={`w-8 h-8 rounded-sm flex items-center justify-center ${
-                      isLightMode ? 'bg-[#FFFDF8]/60 text-brand-600 border border-[#171B2E]/20' : 'bg-zinc-800 border border-brand-500/30 text-brand-400'
+                      isLightMode ? 'bg-[#FDFCFA]/60 text-brand-600 border border-[#131313]/20' : 'bg-zinc-800 border border-brand-500/30 text-brand-400'
                     }`}
                   >
                     <Bot className="w-4 h-4" />
                   </div>
                   <div
                     className={`px-4 py-3 rounded-sm flex items-center gap-1 ${
-                      isLightMode ? 'bg-[#FFFDF8]/60 border border-[#171B2E]/20' : 'bg-zinc-900 border border-zinc-800'
+                      isLightMode ? 'bg-[#FDFCFA]/60 border border-[#131313]/20' : 'bg-zinc-900 border border-zinc-800'
                     }`}
                   >
                     {[0, 1, 2].map((i) => (
@@ -214,10 +214,10 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
             </div>
 
             {/* WhatsApp Fallback Bar */}
-            <div className={`px-4 sm:px-6 py-2 border-t ${isLightMode ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20' : 'bg-zinc-950 border-zinc-900'}`}>
+            <div className={`px-4 sm:px-6 py-2 border-t ${isLightMode ? 'bg-[#FDFCFA]/60 border-[#131313]/20' : 'bg-zinc-950 border-zinc-900'}`}>
               <button
                 onClick={handleWhatsAppFallback}
-                className={`w-full flex items-center justify-center gap-1.5 text-[11px] font-semibold py-1.5 rounded-sm transition-colors cursor-pointer ${
+                className={`w-full flex items-center justify-center gap-1.5 text-[13px] font-semibold py-1.5 rounded-sm transition-colors cursor-pointer ${
                   isLightMode ? 'text-emerald-700 hover:bg-emerald-50' : 'text-emerald-400 hover:bg-emerald-500/10'
                 }`}
               >
@@ -229,7 +229,7 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
             {/* Input Bar */}
             <form
               onSubmit={handleSend}
-              className={`p-3 sm:p-4 border-t flex items-center gap-2 ${isLightMode ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20' : 'bg-zinc-900 border-zinc-800'}`}
+              className={`p-3 sm:p-4 border-t flex items-center gap-2 ${isLightMode ? 'bg-[#FDFCFA]/60 border-[#131313]/20' : 'bg-zinc-900 border-zinc-800'}`}
             >
               <input
                 type="text"
@@ -238,7 +238,7 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
                 placeholder="Ask anything about Spesio Technologies..."
                 aria-label="Message Spesio AI Assistant"
                 className={`flex-1 rounded-sm px-4 py-2.5 text-xs sm:text-sm border focus:outline-none focus:border-brand-500 ${
-                  isLightMode ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20 text-slate-900 placeholder-slate-400' : 'bg-black border-zinc-800 text-white placeholder-zinc-500'
+                  isLightMode ? 'bg-[#FDFCFA]/60 border-[#131313]/20 text-slate-900 placeholder-slate-400' : 'bg-black border-zinc-800 text-white placeholder-zinc-500'
                 }`}
               />
               <button

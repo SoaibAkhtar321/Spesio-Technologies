@@ -34,7 +34,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
 
   return (
     <section id="services" className={`py-10 sm:py-20 transition-colors duration-200 relative border-t ${
-      isLightMode ? 'bg-[#D3F0E6] border-[#171B2E]/20' : 'bg-[#171B2E] border-zinc-900'
+      isLightMode ? 'bg-[#EEEAE2] border-[#131313]/20' : 'bg-[#151515] border-zinc-900'
     }`}>
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-10">
         
@@ -80,10 +80,10 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                 className={`p-3 sm:p-6 rounded-sm sm:rounded-sm border transition-colors duration-300 cursor-pointer flex flex-col justify-between ${
                   isSelected
                     ? isLightMode
-                      ? 'bg-[#FFFDF8]/60 border-brand-500 ring-2 ring-brand-500/20'
+                      ? 'bg-[#FDFCFA]/60 border-brand-500 ring-2 ring-brand-500/20'
                       : 'bg-zinc-900 border-brand-500'
                     : isLightMode
-                      ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20 hover:border-slate-300'
+                      ? 'bg-[#FDFCFA]/60 border-[#131313]/20 hover:border-slate-300'
                       : 'bg-zinc-900/40 border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900/80'
                 }`}
               >
@@ -95,7 +95,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                       isSelected
                         ? 'bg-brand-500/10 border border-brand-500/30'
                         : isLightMode
-                          ? 'bg-[#171B2E]/10 border border-[#171B2E]/20'
+                          ? 'bg-[#151515]/10 border border-[#131313]/20'
                           : 'bg-zinc-800 border border-zinc-700'
                     }`}
                   >
@@ -104,11 +104,11 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                   <h3 className={`text-xs sm:text-lg font-bold mb-1 sm:mb-1.5 leading-snug ${isLightMode ? 'text-slate-900' : 'text-white'}`}>
                     {service.title}
                   </h3>
-                  <p className="text-[10px] sm:text-xs text-brand-600 font-semibold mb-1.5 sm:mb-3">{service.shortDesc}</p>
+                  <p className="text-[12px] sm:text-xs text-brand-600 font-semibold mb-1.5 sm:mb-3">{service.shortDesc}</p>
                 </div>
 
                 <div className={`hidden sm:flex items-center text-xs font-bold mt-4 pt-3 border-t ${
-                  isLightMode ? 'border-[#171B2E]/20' : 'border-zinc-800/60'
+                  isLightMode ? 'border-[#131313]/20' : 'border-zinc-800/60'
                 }`}>
                   <span className={isSelected ? 'text-brand-600' : isLightMode ? 'text-slate-500' : 'text-zinc-400'}>
                     {isSelected ? 'Viewing Details' : 'Explore Capabilities'}
@@ -123,7 +123,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
         {/* Active Service Detailed Drawer Showcase */}
         <div className={`rounded-sm sm:rounded-sm p-4 sm:p-10 border relative overflow-hidden transition-colors ${
           isLightMode
-            ? 'bg-[#FFFDF8]/60 border-brand-200'
+            ? 'bg-[#FDFCFA]/60 border-brand-200'
             : 'bg-zinc-900/90 border-brand-500/30'
         }`}>
           <AnimatePresence mode="wait">
@@ -137,7 +137,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             
             {/* Left: Description & Key Features */}
             <div className="lg:col-span-12 space-y-3 sm:space-y-6 flex flex-col justify-between">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-[#171B2E]/10 border border-brand-200 text-brand-600 text-xs font-bold uppercase">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-[#151515]/10 border border-brand-200 text-brand-600 text-xs font-bold uppercase">
                 {getIcon(activeService.iconName)}
                 <span>{activeService.title}</span>
               </div>
@@ -166,7 +166,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                   {activeService.features.map((feat, idx) => (
                     <div key={idx} className={`flex items-start gap-2.5 p-2 sm:p-2.5 rounded-sm border text-xs font-medium ${
                       isLightMode
-                        ? 'bg-[#FFF3DC] border-[#171B2E]/20 text-slate-800'
+                        ? 'bg-[#F7F5F0] border-[#131313]/20 text-slate-800'
                         : 'bg-zinc-950 border-zinc-800 text-zinc-200'
                     }`}>
                       <Check className="w-4 h-4 text-brand-500 shrink-0 mt-0.5" />
@@ -188,7 +188,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                   {activeService.technologies.map((tech) => (
                     <span key={tech} className={`px-3 py-1 rounded-sm text-xs font-semibold border ${
                       isLightMode
-                        ? 'bg-[#171B2E]/10 text-brand-700 border-brand-200'
+                        ? 'bg-[#151515]/10 text-brand-700 border-brand-200'
                         : 'bg-zinc-800 text-brand-300 border-zinc-700'
                     }`}>
                       {tech}

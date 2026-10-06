@@ -15,12 +15,12 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
   return (
     <footer className={`transition-colors duration-200 border-t pt-8 pb-5 sm:pt-16 sm:pb-8 ${
       isLightMode
-        ? 'bg-[#171B2E]/10 text-slate-600 border-[#171B2E]/20'
-        : 'bg-[#171B2E] text-zinc-400 border-zinc-800'
+        ? 'bg-[#060606]/10 text-slate-600 border-[#131313]/20'
+        : 'bg-[#060606] text-zinc-400 border-zinc-800'
     }`}>
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-10">
         <div className={`grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 pb-6 sm:pb-12 border-b ${
-          isLightMode ? 'border-[#171B2E]/20' : 'border-zinc-900'
+          isLightMode ? 'border-[#131313]/20' : 'border-zinc-900'
         }`}>
           
           {/* Brand Info */}
@@ -41,7 +41,7 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
 
             {/* Social Media Links Row */}
             <div className="pt-1 sm:pt-2">
-              <h5 className={`text-[10px] sm:text-[11px] font-bold font-mono uppercase tracking-wider mb-1.5 sm:mb-2.5 ${
+              <h5 className={`text-[12px] sm:text-[13px] font-bold font-mono uppercase tracking-wider mb-1.5 sm:mb-2.5 ${
                 isLightMode ? 'text-slate-700' : 'text-zinc-300'
               }`}>
                 Social Channels
@@ -53,9 +53,9 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
                   target="_blank"
                   rel="noreferrer"
                   title="Direct Message on WhatsApp"
-                  className={`flex items-center gap-1.5 sm:gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-sm sm:rounded-sm border text-[11px] sm:text-xs font-medium transition-all hover:scale-105 cursor-pointer ${
+                  className={`flex items-center gap-1.5 sm:gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-sm sm:rounded-sm border text-[13px] sm:text-xs font-medium transition-all hover:scale-105 cursor-pointer ${
                     isLightMode
-                      ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20 text-slate-700 hover:text-emerald-600 hover:border-emerald-300'
+                      ? 'bg-[#FDFCFA]/60 border-[#131313]/20 text-slate-700 hover:text-emerald-600 hover:border-emerald-300'
                       : 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-emerald-400 hover:border-emerald-700'
                   }`}
                 >
@@ -71,9 +71,9 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
                   target="_blank"
                   rel="noreferrer"
                   title="Follow Spesio Technologies on Instagram"
-                  className={`flex items-center gap-1.5 sm:gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-sm sm:rounded-sm border text-[11px] sm:text-xs font-medium transition-all hover:scale-105 cursor-pointer ${
+                  className={`flex items-center gap-1.5 sm:gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-sm sm:rounded-sm border text-[13px] sm:text-xs font-medium transition-all hover:scale-105 cursor-pointer ${
                     isLightMode
-                      ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20 text-slate-700 hover:text-pink-600 hover:border-pink-300'
+                      ? 'bg-[#FDFCFA]/60 border-[#131313]/20 text-slate-700 hover:text-pink-600 hover:border-pink-300'
                       : 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-pink-400 hover:border-pink-700'
                   }`}
                 >
@@ -91,9 +91,9 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
                   target="_blank"
                   rel="noreferrer"
                   title="Subscribe to Spesio Technologies on YouTube"
-                  className={`flex items-center gap-1.5 sm:gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-sm sm:rounded-sm border text-[11px] sm:text-xs font-medium transition-all hover:scale-105 cursor-pointer ${
+                  className={`flex items-center gap-1.5 sm:gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-sm sm:rounded-sm border text-[13px] sm:text-xs font-medium transition-all hover:scale-105 cursor-pointer ${
                     isLightMode
-                      ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20 text-slate-700 hover:text-red-600 hover:border-red-300'
+                      ? 'bg-[#FDFCFA]/60 border-[#131313]/20 text-slate-700 hover:text-red-600 hover:border-red-300'
                       : 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-red-400 hover:border-red-700'
                   }`}
                 >
@@ -147,7 +147,7 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
         </div>
 
         {/* Bottom Bar */}
-        <div className={`pt-4 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4 text-[11px] sm:text-xs ${
+        <div className={`pt-4 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4 text-[13px] sm:text-xs ${
           isLightMode ? 'text-slate-500' : 'text-zinc-500'
         }`}>
           <div>

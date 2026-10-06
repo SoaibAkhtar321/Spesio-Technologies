@@ -26,13 +26,25 @@ interface SectionSkeletonProps {
 
 /** Lightweight pulse placeholder shown while a lazy section's chunk is loading. */
 const SectionSkeleton: React.FC<SectionSkeletonProps> = ({ isLightMode }) => (
-  <div className={`py-20 ${isLightMode ? 'bg-[#FFF3DC]' : 'bg-[#171B2E]'}`} aria-hidden="true">
+  <div className={`py-20 ${isLightMode ? 'bg-[#F7F5F0]' : 'bg-[#0A0A0A]'}`} aria-hidden="true">
     <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-10 animate-pulse space-y-4">
-      <div className={`h-4 w-40 mx-auto rounded-full ${isLightMode ? 'bg-[#171B2E]/20' : 'bg-zinc-800'}`} />
-      <div className={`h-8 w-72 mx-auto rounded-sm ${isLightMode ? 'bg-[#171B2E]/20' : 'bg-zinc-800'}`} />
-      <div className={`h-40 rounded-sm mt-8 ${isLightMode ? 'bg-[#171B2E]/10' : 'bg-zinc-900'}`} />
+      <div className={`h-4 w-40 mx-auto rounded-full ${isLightMode ? 'bg-[#0A0A0A]/20' : 'bg-zinc-800'}`} />
+      <div className={`h-8 w-72 mx-auto rounded-sm ${isLightMode ? 'bg-[#0A0A0A]/20' : 'bg-zinc-800'}`} />
+      <div className={`h-40 rounded-sm mt-8 ${isLightMode ? 'bg-[#0A0A0A]/10' : 'bg-zinc-900'}`} />
     </div>
   </div>
+);
+
+/** Fade-and-rise as each section scrolls into view, for a smooth flow from one section to the next. */
+const Reveal: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 32 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.05 }}
+    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+  >
+    {children}
+  </motion.div>
 );
 
 export default function App() {
@@ -40,27 +52,16 @@ export default function App() {
   // device/browser setting (prefers-color-scheme) and keep following it if that setting changes.
   const [isLightMode, setIsLightMode] = useState<boolean>(() => {
     try {
-      const saved = localStorage.getItem('spesio-theme');
+      const saved = localStorage.getItem('spesio-theme-v2');
       if (saved === 'light' || saved === 'dark') return saved === 'light';
     } catch { /* storage unavailable */ }
-    return !window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return false; // dark (black + olive) is the default look
   });
-
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    const onChange = (e: MediaQueryListEvent) => {
-      let hasSaved = false;
-      try { hasSaved = !!localStorage.getItem('spesio-theme'); } catch { /* ignore */ }
-      if (!hasSaved) setIsLightMode(!e.matches);
-    };
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
-  }, []);
 
   useEffect(() => {
     document.documentElement.dataset.theme = isLightMode ? 'light' : 'dark';
     document.documentElement.style.colorScheme = isLightMode ? 'light' : 'dark';
-    document.documentElement.style.backgroundColor = isLightMode ? '#FFF3DC' : '#171B2E';
+    document.documentElement.style.backgroundColor = isLightMode ? '#F7F5F0' : '#0A0A0A';
   }, [isLightMode]);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [selectedServiceForEstimate, setSelectedServiceForEstimate] = useState<string>('software');
@@ -71,7 +72,7 @@ export default function App() {
   const handleToggleTheme = useCallback(() => {
     setIsLightMode((prev) => {
       const next = !prev;
-      try { localStorage.setItem('spesio-theme', next ? 'light' : 'dark'); } catch { /* ignore */ }
+      try { localStorage.setItem('spesio-theme-v2', next ? 'light' : 'dark'); } catch { /* ignore */ }
       return next;
     });
   }, []);
@@ -107,7 +108,7 @@ export default function App() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
       className={`min-h-screen font-sans antialiased transition-colors duration-200 selection:bg-brand-500 selection:text-white ${
-        isLightMode ? 'bg-[#FFF3DC] text-slate-900' : 'bg-[#171B2E] text-zinc-100'
+        isLightMode ? 'bg-[#F7F5F0] text-slate-900' : 'bg-[#0A0A0A] text-zinc-100'
       }`}
     >
       {/* Skip link for keyboard/screen-reader users */}
@@ -134,34 +135,34 @@ export default function App() {
         <Hero isLightMode={isLightMode} onOpenAiAssistant={handleOpenAiAssistant} onOpenEstimator={handleOpenEstimator} />
 
         {/* Services Showcase */}
-        <ServicesSection isLightMode={isLightMode} onSelectServiceForEstimate={handleSelectServiceForEstimate} />
+        <Reveal><ServicesSection isLightMode={isLightMode} onSelectServiceForEstimate={handleSelectServiceForEstimate} /></Reveal>
         <Suspense fallback={<SectionSkeleton isLightMode={isLightMode} />}>
           {/* Why Choose Spesio */}
-          <WhyChooseUs isLightMode={isLightMode} />
+          <Reveal><WhyChooseUs isLightMode={isLightMode} /></Reveal>
 
-          <SectionDivider isLightMode={isLightMode} />
+          <Reveal><SectionDivider isLightMode={isLightMode} /></Reveal>
 
           {/* Interactive Scope & Cost Calculator */}
-          <ProjectEstimator
+          <Reveal><ProjectEstimator
             isLightMode={isLightMode}
             preselectedServiceId={selectedServiceForEstimate}
             onSendInquiry={handleSendInquiryFromEstimator}
-          />
+          /></Reveal>
 
           {/* Delivery Process Timeline */}
-          <ProcessTimeline isLightMode={isLightMode} />
+          <Reveal><ProcessTimeline isLightMode={isLightMode} /></Reveal>
 
           {/* Selected Work / Portfolio */}
-          <Portfolio isLightMode={isLightMode} />
+          <Reveal><Portfolio isLightMode={isLightMode} /></Reveal>
 
           {/* Founder Spotlight: Soaib Akhtar */}
-          <FounderSection isLightMode={isLightMode} />
+          <Reveal><FounderSection isLightMode={isLightMode} /></Reveal>
 
           {/* Direct Contact & Inquiry Form */}
-          <ContactSection isLightMode={isLightMode} initialService={contactInitialService} />
+          <Reveal><ContactSection isLightMode={isLightMode} initialService={contactInitialService} /></Reveal>
 
           {/* Frequently Asked Questions */}
-          <FAQSection isLightMode={isLightMode} />
+          <Reveal><FAQSection isLightMode={isLightMode} /></Reveal>
         </Suspense>
       </main>
 

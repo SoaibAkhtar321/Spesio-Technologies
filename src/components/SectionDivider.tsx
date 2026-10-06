@@ -8,8 +8,8 @@ interface SectionDividerProps {
 export const SectionDivider: React.FC<SectionDividerProps> = ({ isLightMode = true }) => (
   <div
     aria-hidden="true"
-    className={`border-t font-mono text-[10px] uppercase tracking-wider ${
-      isLightMode ? 'bg-[#D6E6FF] text-slate-600 border-[#171B2E]' : 'bg-[#12162A] text-zinc-500 border-zinc-700'
+    className={`border-t font-mono text-[12px] uppercase tracking-wider ${
+      isLightMode ? 'bg-[#F7F5F0] text-slate-600 border-[#131313]' : 'bg-[#0A0A0A] text-zinc-500 border-zinc-700'
     }`}
   >
     <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-10 py-3 flex justify-between">

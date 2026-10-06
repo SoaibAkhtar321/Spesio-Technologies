@@ -83,7 +83,7 @@ export const SpesioLogo: React.FC<SpesioLogoProps> = ({
           }`} style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
             SPESIO
           </div>
-          <div className="text-[10px] sm:text-xs font-bold text-brand-600 tracking-[0.45em] mt-0.5">
+          <div className="text-[12px] sm:text-xs font-bold text-brand-600 tracking-[0.45em] mt-0.5">
             TECHNOLOGIES
           </div>
         </div>
@@ -110,7 +110,7 @@ export const SpesioLogo: React.FC<SpesioLogoProps> = ({
         }`}>
           SPESIO
         </span>
-        <span className="text-[9px] sm:text-[10px] font-bold text-brand-600 tracking-[0.42em] mt-1 uppercase">
+        <span className="text-[13px] sm:text-[12px] font-bold text-brand-600 tracking-[0.42em] mt-1 uppercase">
           TECHNOLOGIES
         </span>
       </div>

@@ -55,25 +55,25 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className={`sticky top-0 z-40 transition-colors duration-200 border-b ${
       isLightMode
-        ? 'bg-[#FFF3DC] border-[#171B2E]/20'
-        : 'bg-[#171B2E] border-brand-500/15'
+        ? 'bg-[#F7F5F0] border-[#131313]/20'
+        : 'bg-[#0A0A0A] border-brand-500/15'
     }`}>
-      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-10 h-14 sm:h-20 flex items-center justify-between">
+      <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 h-14 sm:h-20 flex items-center justify-between gap-6 xl:gap-10">
 
         {/* Brand Logo & Real ST Monogram */}
-        <a href="#" className="flex items-center gap-2.5 group">
+        <a href="#" className="flex items-center gap-2.5 group shrink-0">
           <SpesioLogo isLightMode={isLightMode} variant="horizontal" size="md" />
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-6 lg:gap-7">
+        <nav className="hidden lg:flex flex-1 items-center justify-center gap-5 lg:gap-6 xl:gap-8">
           {NAV_LINKS.map((link) => {
             const isActive = activeSection === link.href;
             return (
               <a
                 key={link.name}
                 href={link.href}
-                className={`relative text-sm font-medium transition-colors py-1 ${
+                className={`relative text-sm font-medium whitespace-nowrap transition-colors py-1 ${
                   isActive
                     ? 'text-brand-600'
                     : isLightMode
@@ -95,26 +95,26 @@ export const Header: React.FC<HeaderProps> = ({
         </nav>
 
         {/* Action Buttons */}
-        <div className="hidden xl:flex items-center gap-2.5">
+        <div className="hidden xl:flex items-center gap-2.5 shrink-0">
           {/* Theme Switcher Button */}
           <button
             onClick={onToggleTheme}
             className={`p-2 rounded-sm border transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 shrink-0 ${
               isLightMode
-                ? 'bg-[#171B2E]/10 hover:bg-slate-200 text-slate-700 border-[#171B2E]/20'
+                ? 'bg-[#0A0A0A]/10 hover:bg-slate-200 text-slate-700 border-[#131313]/20'
                 : 'bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border-zinc-800'
             }`}
             title={isLightMode ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
             aria-label="Toggle theme"
           >
-            {isLightMode ? <Moon className="w-4 h-4 text-slate-700" /> : <Sun className="w-4 h-4 text-amber-400" />}
+            {isLightMode ? <Moon className="w-4 h-4 text-slate-700" /> : <Sun className="w-4 h-4 text-zinc-300" />}
           </button>
 
           <button
             onClick={onOpenAiAssistant}
             className={`flex items-center gap-2 px-3.5 py-2 rounded-sm text-xs font-semibold border transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 whitespace-nowrap shrink-0 ${
               isLightMode
-                ? 'bg-[#171B2E]/10 hover:bg-[#171B2E]/20/80 text-brand-600 border-brand-200'
+                ? 'bg-[#0A0A0A]/10 hover:bg-[#0A0A0A]/20/80 text-brand-600 border-brand-200'
                 : 'bg-zinc-900 hover:bg-brand-500/10 text-brand-400 border-brand-500/30'
             }`}
           >
@@ -124,9 +124,9 @@ export const Header: React.FC<HeaderProps> = ({
 
           <a
             href={`tel:${COMPANY_INFO.founder.phone}`}
-            className={`flex items-center gap-2 px-3.5 py-2 rounded-sm text-xs font-semibold transition-all whitespace-nowrap shrink-0 ${
+            className={`hidden min-[1700px]:flex items-center gap-2 px-3.5 py-2 rounded-sm text-xs font-semibold transition-all whitespace-nowrap shrink-0 ${
               isLightMode
-                ? 'text-slate-700 hover:text-slate-900 hover:bg-[#171B2E]/10'
+                ? 'text-slate-700 hover:text-slate-900 hover:bg-[#0A0A0A]/10'
                 : 'text-zinc-300 hover:text-white hover:bg-zinc-800'
             }`}
           >
@@ -143,15 +143,15 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* Tablet Controls (nav hidden below xl, but still wider than phone) */}
-        <div className="hidden md:flex xl:hidden items-center gap-2">
+        <div className="hidden lg:flex xl:hidden items-center gap-2">
           <button
             onClick={onToggleTheme}
             className={`p-2 rounded-sm border ${
-              isLightMode ? 'bg-[#171B2E]/10 border-[#171B2E]/20 text-slate-700' : 'bg-zinc-900 border-zinc-800 text-zinc-300'
+              isLightMode ? 'bg-[#0A0A0A]/10 border-[#131313]/20 text-slate-700' : 'bg-zinc-900 border-zinc-800 text-zinc-300'
             }`}
             aria-label="Toggle theme"
           >
-            {isLightMode ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4 text-amber-400" />}
+            {isLightMode ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4 text-zinc-300" />}
           </button>
 
           <button
@@ -171,15 +171,15 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* Mobile Controls */}
-        <div className="flex md:hidden items-center gap-2">
+        <div className="flex lg:hidden items-center gap-2">
           <button
             onClick={onToggleTheme}
             className={`p-2 rounded-sm border ${
-              isLightMode ? 'bg-[#171B2E]/10 border-[#171B2E]/20 text-slate-700' : 'bg-zinc-900 border-zinc-800 text-zinc-300'
+              isLightMode ? 'bg-[#0A0A0A]/10 border-[#131313]/20 text-slate-700' : 'bg-zinc-900 border-zinc-800 text-zinc-300'
             }`}
             aria-label="Toggle theme"
           >
-            {isLightMode ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4 text-amber-400" />}
+            {isLightMode ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4 text-zinc-300" />}
           </button>
 
           <button
@@ -208,8 +208,8 @@ export const Header: React.FC<HeaderProps> = ({
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
           transition={{ duration: 0.25 }}
-          className={`md:hidden border-b px-4 pt-3 pb-6 space-y-3 overflow-hidden ${
-            isLightMode ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20' : 'bg-[#171B2E] border-brand-500/20'
+          className={`lg:hidden border-b px-4 pt-3 pb-6 space-y-3 overflow-hidden ${
+            isLightMode ? 'bg-[#FDFCFA]/60 border-[#131313]/20' : 'bg-[#0A0A0A] border-brand-500/20'
           }`}
         >
           {NAV_LINKS.map((link) => (
@@ -226,7 +226,7 @@ export const Header: React.FC<HeaderProps> = ({
               {link.name}
             </a>
           ))}
-          <div className={`pt-3 border-t space-y-2 ${isLightMode ? 'border-[#171B2E]/20' : 'border-zinc-800'}`}>
+          <div className={`pt-3 border-t space-y-2 ${isLightMode ? 'border-[#131313]/20' : 'border-zinc-800'}`}>
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
@@ -239,7 +239,7 @@ export const Header: React.FC<HeaderProps> = ({
             <a
               href={`tel:${COMPANY_INFO.founder.phone}`}
               className={`flex items-center justify-center gap-2 w-full py-2.5 rounded-sm text-xs font-semibold border ${
-                isLightMode ? 'bg-[#171B2E]/10 border-[#171B2E]/20 text-slate-800' : 'bg-zinc-900 border-zinc-800 text-zinc-200'
+                isLightMode ? 'bg-[#0A0A0A]/10 border-[#131313]/20 text-slate-800' : 'bg-zinc-900 border-zinc-800 text-zinc-200'
               }`}
             >
               <Phone className="w-4 h-4 text-brand-500" />

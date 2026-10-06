@@ -13,7 +13,7 @@ export const ProcessTimeline: React.FC<ProcessTimelineProps> = ({ isLightMode = 
   // This section is a deliberately dark "engineering" chapter, distinct from the
   // light Services chapter above it — see SectionDivider, which fills with the
   // same colors so the curve lines up exactly.
-  const sectionBg = isLightMode ? '#171B2E' : '#000000';
+  const sectionBg = isLightMode ? '#131313' : '#000000';
 
   return (
     <section
@@ -80,7 +80,7 @@ export const ProcessTimeline: React.FC<ProcessTimelineProps> = ({ isLightMode = 
                     transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                     className="relative z-10 shrink-0 w-9 h-9 sm:w-14 sm:h-14 rounded-sm sm:rounded-sm flex items-center justify-center border-2 bg-black border-brand-500"
                   >
-                    <span className="absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1.5 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-brand-500 text-black text-[8px] sm:text-[10px] font-bold flex items-center justify-center">
+                    <span className="absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1.5 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-brand-500 text-black text-[8px] sm:text-[12px] font-bold flex items-center justify-center">
                       {idx + 1}
                     </span>
                     <Icon className="w-4 h-4 sm:w-6 sm:h-6 text-brand-500" />
@@ -99,9 +99,9 @@ export const ProcessTimeline: React.FC<ProcessTimelineProps> = ({ isLightMode = 
                     transition={{ duration: 0.35 }}
                     className="flex-1 p-3 sm:p-6 rounded-sm sm:rounded-sm border"
                   >
-                    <span className="text-[9px] sm:text-[10px] font-bold text-brand-500 tracking-wider">STEP {idx + 1}</span>
+                    <span className="text-[13px] sm:text-[12px] font-bold text-brand-500 tracking-wider">STEP {idx + 1}</span>
                     <h3 className="text-sm sm:text-lg font-bold mb-1 sm:mb-1.5 mt-0.5 sm:mt-1 text-white">{step.title}</h3>
-                    <p className="text-[11px] sm:text-sm leading-snug sm:leading-relaxed text-zinc-400">{step.desc}</p>
+                    <p className="text-[13px] sm:text-sm leading-snug sm:leading-relaxed text-zinc-400">{step.desc}</p>
                   </motion.div>
                 </motion.div>
               );

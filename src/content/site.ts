@@ -7,7 +7,7 @@ export const SITE = {
   shortName: 'Spesio',
   url: 'https://spesio-technologies.vercel.app',
   locale: 'en_IN',
-  themeColor: '#2646D8',
+  themeColor: '#0A0A0A',
   email: 'spesiotechnologies@gmail.com',
   phone: '+91 8957833269',
   phoneHref: 'tel:+918957833269',
