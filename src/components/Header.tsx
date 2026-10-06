@@ -55,7 +55,7 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className={`sticky top-0 z-40 backdrop-blur-md transition-colors duration-200 border-b ${
       isLightMode
-        ? 'bg-white/90 border-slate-200/80 shadow-xs'
+        ? 'bg-[#F1EDE3]/90 border-[#D9D3C3]/80 shadow-xs'
         : 'bg-[#151514]/85 border-brand-500/15'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-20 flex items-center justify-between">
@@ -101,7 +101,7 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={onToggleTheme}
             className={`p-2 rounded-lg border transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 shrink-0 ${
               isLightMode
-                ? 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200'
+                ? 'bg-[#E8E3D6] hover:bg-slate-200 text-slate-700 border-[#D9D3C3]'
                 : 'bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border-zinc-800'
             }`}
             title={isLightMode ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
@@ -114,7 +114,7 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={onOpenAiAssistant}
             className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold border transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 whitespace-nowrap shrink-0 ${
               isLightMode
-                ? 'bg-brand-50 hover:bg-brand-100/80 text-brand-600 border-brand-200'
+                ? 'bg-[#E8E3D6] hover:bg-[#D9D3C3]/80 text-brand-600 border-brand-200'
                 : 'bg-zinc-900 hover:bg-brand-500/10 text-brand-400 border-brand-500/30'
             }`}
           >
@@ -126,7 +126,7 @@ export const Header: React.FC<HeaderProps> = ({
             href={`tel:${COMPANY_INFO.founder.phone}`}
             className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all whitespace-nowrap shrink-0 ${
               isLightMode
-                ? 'text-slate-700 hover:text-slate-900 hover:bg-slate-100'
+                ? 'text-slate-700 hover:text-slate-900 hover:bg-[#E8E3D6]'
                 : 'text-zinc-300 hover:text-white hover:bg-zinc-800'
             }`}
           >
@@ -147,7 +147,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             onClick={onToggleTheme}
             className={`p-2 rounded-lg border ${
-              isLightMode ? 'bg-slate-100 border-slate-200 text-slate-700' : 'bg-zinc-900 border-zinc-800 text-zinc-300'
+              isLightMode ? 'bg-[#E8E3D6] border-[#D9D3C3] text-slate-700' : 'bg-zinc-900 border-zinc-800 text-zinc-300'
             }`}
             aria-label="Toggle theme"
           >
@@ -175,7 +175,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             onClick={onToggleTheme}
             className={`p-2 rounded-lg border ${
-              isLightMode ? 'bg-slate-100 border-slate-200 text-slate-700' : 'bg-zinc-900 border-zinc-800 text-zinc-300'
+              isLightMode ? 'bg-[#E8E3D6] border-[#D9D3C3] text-slate-700' : 'bg-zinc-900 border-zinc-800 text-zinc-300'
             }`}
             aria-label="Toggle theme"
           >
@@ -209,7 +209,7 @@ export const Header: React.FC<HeaderProps> = ({
           exit={{ opacity: 0, height: 0 }}
           transition={{ duration: 0.25 }}
           className={`md:hidden border-b px-4 pt-3 pb-6 space-y-3 overflow-hidden ${
-            isLightMode ? 'bg-white border-slate-200' : 'bg-[#0D111A] border-brand-500/20'
+            isLightMode ? 'bg-[#EFE9DA] border-[#D9D3C3]' : 'bg-[#0D111A] border-brand-500/20'
           }`}
         >
           {NAV_LINKS.map((link) => (
@@ -226,7 +226,7 @@ export const Header: React.FC<HeaderProps> = ({
               {link.name}
             </a>
           ))}
-          <div className={`pt-3 border-t space-y-2 ${isLightMode ? 'border-slate-200' : 'border-zinc-800'}`}>
+          <div className={`pt-3 border-t space-y-2 ${isLightMode ? 'border-[#D9D3C3]' : 'border-zinc-800'}`}>
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
@@ -239,7 +239,7 @@ export const Header: React.FC<HeaderProps> = ({
             <a
               href={`tel:${COMPANY_INFO.founder.phone}`}
               className={`flex items-center justify-center gap-2 w-full py-2.5 rounded-lg text-xs font-semibold border ${
-                isLightMode ? 'bg-slate-100 border-slate-200 text-slate-800' : 'bg-zinc-900 border-zinc-800 text-zinc-200'
+                isLightMode ? 'bg-[#E8E3D6] border-[#D9D3C3] text-slate-800' : 'bg-zinc-900 border-zinc-800 text-zinc-200'
               }`}
             >
               <Phone className="w-4 h-4 text-brand-500" />

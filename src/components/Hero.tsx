@@ -25,7 +25,7 @@ const fadeUp = {
 export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, isLightMode }) => {
   return (
     <section className={`relative overflow-hidden pt-6 pb-10 sm:pt-12 sm:pb-20 md:pt-20 md:pb-28 transition-colors duration-200 ${
-      isLightMode ? 'bg-[#F6F2E9]' : 'bg-[#151514]'
+      isLightMode ? 'bg-[#F1EDE3]' : 'bg-[#151514]'
     }`}>
       {/* Background grid */}
       {/* Subtle floating particles */}
@@ -42,7 +42,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
       </div>
       <div className={`absolute inset-0 [background-size:24px_24px] pointer-events-none ${
         isLightMode
-          ? 'bg-[radial-gradient(#d6cfbf_1px,transparent_1px)] opacity-40'
+          ? 'bg-[radial-gradient(#D9D3C3_1px,transparent_1px)] opacity-40'
           : 'bg-[radial-gradient(#2a2926_1px,transparent_1px)] opacity-20'
       }`} />
 
@@ -60,7 +60,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
             {/* Pill Badge */}
             <motion.div variants={fadeUp} className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold shadow-xs border ${
               isLightMode
-                ? 'bg-white border-brand-200 text-brand-600'
+                ? 'bg-[#EFE9DA] border-brand-200 text-brand-600'
                 : 'bg-zinc-900/90 border-brand-500/30 text-brand-400'
             }`}>
               <span className="flex h-2 w-2 rounded-full bg-brand-500 animate-ping" />
@@ -101,7 +101,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
                   whileHover={{ y: -3, scale: 1.03 }}
                   className={`p-2 sm:p-3 rounded-xl border flex items-center gap-2 sm:gap-2.5 shadow-2xs transition-all will-change-transform ${
                     isLightMode
-                      ? 'bg-white border-slate-200/90 hover:border-brand-300'
+                      ? 'bg-[#EFE9DA] border-[#D9D3C3]/90 hover:border-brand-300'
                       : 'bg-zinc-900/80 border-zinc-800 hover:border-brand-500/40'
                   }`}
                 >
@@ -131,7 +131,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
                 whileTap={{ scale: 0.97, y: 0 }}
                 className={`group inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-7 sm:py-4 rounded-xl text-sm font-semibold border transition-colors cursor-pointer will-change-transform ${
                   isLightMode
-                    ? 'bg-white hover:bg-brand-50/60 text-slate-800 border-slate-300 hover:border-brand-300 shadow-2xs'
+                    ? 'bg-[#EFE9DA] hover:bg-[#E8E3D6] text-slate-800 border-[#D9D3C3] hover:border-brand-300 shadow-2xs'
                     : 'bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border-brand-500/30'
                 }`}
               >
@@ -145,7 +145,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
                 whileTap={{ scale: 0.97, y: 0 }}
                 className={`group inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-7 sm:py-4 rounded-xl text-sm font-semibold border transition-colors cursor-pointer will-change-transform ${
                   isLightMode
-                    ? 'bg-white hover:bg-brand-50/60 text-slate-800 border-slate-300 hover:border-brand-300 shadow-2xs'
+                    ? 'bg-[#EFE9DA] hover:bg-[#E8E3D6] text-slate-800 border-[#D9D3C3] hover:border-brand-300 shadow-2xs'
                     : 'bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border-brand-500/30'
                 }`}
               >
@@ -170,7 +170,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
               transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
               className={`relative rounded-2xl border shadow-xl transition-colors overflow-hidden ${
                 isLightMode
-                  ? 'bg-white border-slate-200 shadow-slate-200/80'
+                  ? 'bg-[#EFE9DA] border-[#D9D3C3] shadow-slate-200/80'
                   : 'bg-zinc-900 border-zinc-800'
               }`}
             >
@@ -180,7 +180,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
               <div className="p-4 sm:p-6">
                 {/* Header inside right card */}
                 <div className={`flex items-center justify-between pb-3 sm:pb-4 border-b ${
-                  isLightMode ? 'border-slate-100' : 'border-zinc-800'
+                  isLightMode ? 'border-[#D9D3C3]' : 'border-zinc-800'
                 }`}>
                   <div className="flex items-center gap-3">
                     <SpesioLogo isLightMode={isLightMode} variant="mark" size="md" />
@@ -201,12 +201,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
 
                 {/* Stats Bar */}
                 <div className="grid grid-cols-2 gap-2 pt-2">
-                  <motion.div whileHover={{ y: -2 }} className="bg-brand-50 border border-brand-200 p-3 rounded-xl text-center">
+                  <motion.div whileHover={{ y: -2 }} className="bg-[#E8E3D6] border border-brand-200 p-3 rounded-xl text-center">
                     <div className="text-xl font-extrabold text-brand-600">100%</div>
                     <div className="text-[10px] text-slate-500 uppercase font-semibold">Client Focus</div>
                   </motion.div>
                   <motion.div whileHover={{ y: -2 }} className={`p-3 rounded-xl border text-center ${
-                    isLightMode ? 'bg-slate-50 border-slate-200' : 'bg-zinc-900 border-zinc-800'
+                    isLightMode ? 'bg-[#F1EDE3] border-[#D9D3C3]' : 'bg-zinc-900 border-zinc-800'
                   }`}>
                     <div className={`text-xl font-extrabold ${isLightMode ? 'text-slate-900' : 'text-white'}`}>4 Core</div>
                     <div className={`text-[10px] uppercase font-semibold ${isLightMode ? 'text-slate-500' : 'text-zinc-400'}`}>Tech Offerings</div>

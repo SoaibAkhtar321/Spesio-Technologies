@@ -62,7 +62,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 
   return (
     <section id="contact" className={`py-10 sm:py-20 transition-colors duration-200 border-t relative ${
-      isLightMode ? 'bg-white border-slate-200' : 'bg-[#111110] border-zinc-900'
+      isLightMode ? 'bg-[#E8E3D6] border-[#D9D3C3]' : 'bg-[#111110] border-zinc-900'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -88,7 +88,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           {/* Left Column: Direct Contact Details Card */}
           <div className={`lg:col-span-5 p-4 sm:p-8 rounded-2xl sm:rounded-3xl border shadow-2xl flex flex-col justify-between space-y-4 sm:space-y-8 transition-colors ${
             isLightMode
-              ? 'bg-[#F6F2E9] border-slate-200 shadow-slate-200/80'
+              ? 'bg-[#EFE9DA] border-[#D9D3C3] shadow-slate-200/80'
               : 'bg-gradient-to-b from-zinc-900 to-black border-brand-500/30'
           }`}>
             
@@ -108,7 +108,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   href={`tel:${COMPANY_INFO.founder.phone}`}
                   className={`flex items-center gap-3 sm:gap-4 p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl border transition-colors group ${
                     isLightMode
-                      ? 'bg-white border-slate-200 hover:border-brand-500/50 shadow-2xs'
+                      ? 'bg-[#EFE9DA] border-[#D9D3C3] hover:border-brand-500/50 shadow-2xs'
                       : 'bg-zinc-950 border-zinc-800 hover:border-brand-500/50'
                   }`}
                 >
@@ -130,7 +130,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   href={`mailto:${COMPANY_INFO.founder.email}`}
                   className={`flex items-center gap-3 sm:gap-4 p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl border transition-colors group ${
                     isLightMode
-                      ? 'bg-white border-slate-200 hover:border-brand-500/50 shadow-2xs'
+                      ? 'bg-[#EFE9DA] border-[#D9D3C3] hover:border-brand-500/50 shadow-2xs'
                       : 'bg-zinc-950 border-zinc-800 hover:border-brand-500/50'
                   }`}
                 >
@@ -149,7 +149,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 
                 {/* Location */}
                 <div className={`flex items-start gap-3 sm:gap-4 p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl border ${
-                  isLightMode ? 'bg-white border-slate-200 shadow-2xs' : 'bg-zinc-950 border-zinc-800'
+                  isLightMode ? 'bg-[#EFE9DA] border-[#D9D3C3] shadow-2xs' : 'bg-zinc-950 border-zinc-800'
                 }`}>
                   <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center shrink-0 mt-0.5">
                     <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-brand-600" />
@@ -166,7 +166,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 
                 {/* Working Hours & Response Time */}
                 <div className={`flex items-start gap-3 sm:gap-4 p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl border ${
-                  isLightMode ? 'bg-white border-slate-200 shadow-2xs' : 'bg-zinc-950 border-zinc-800'
+                  isLightMode ? 'bg-[#EFE9DA] border-[#D9D3C3] shadow-2xs' : 'bg-zinc-950 border-zinc-800'
                 }`}>
                   <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center shrink-0 mt-0.5">
                     <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-brand-600" />
@@ -201,7 +201,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           {/* Right Column: Inquiry Form */}
           <div className={`lg:col-span-7 p-4 sm:p-8 rounded-2xl sm:rounded-3xl border space-y-4 sm:space-y-6 ${
             isLightMode
-              ? 'bg-[#F6F2E9] border-slate-200 shadow-sm'
+              ? 'bg-[#EFE9DA] border-[#D9D3C3] shadow-sm'
               : 'bg-zinc-900/80 border-zinc-800'
           }`}>
             
@@ -211,7 +211,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
                 className={`p-8 text-center space-y-4 rounded-2xl border ${
-                isLightMode ? 'bg-white border-slate-200' : 'bg-zinc-950 border-brand-500/30'
+                isLightMode ? 'bg-[#EFE9DA] border-[#D9D3C3]' : 'bg-zinc-950 border-brand-500/30'
               }`}>
                 <motion.div
                   initial={{ scale: 0 }}
@@ -264,7 +264,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       placeholder="e.g. John Doe"
                       className={`w-full rounded-xl px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs border focus:outline-none focus:border-brand-500 ${
                         isLightMode
-                          ? 'bg-white border-slate-300 text-slate-900 placeholder-slate-400'
+                          ? 'bg-[#EFE9DA] border-[#D9D3C3] text-slate-900 placeholder-slate-400'
                           : 'bg-black border-zinc-800 text-white placeholder-zinc-500'
                       }`}
                     />
@@ -282,7 +282,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       placeholder="e.g. john@company.com"
                       className={`w-full rounded-xl px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs border focus:outline-none focus:border-brand-500 ${
                         isLightMode
-                          ? 'bg-white border-slate-300 text-slate-900 placeholder-slate-400'
+                          ? 'bg-[#EFE9DA] border-[#D9D3C3] text-slate-900 placeholder-slate-400'
                           : 'bg-black border-zinc-800 text-white placeholder-zinc-500'
                       }`}
                     />
@@ -301,7 +301,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       placeholder="+91 00000 00000"
                       className={`w-full rounded-xl px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs border focus:outline-none focus:border-brand-500 ${
                         isLightMode
-                          ? 'bg-white border-slate-300 text-slate-900 placeholder-slate-400'
+                          ? 'bg-[#EFE9DA] border-[#D9D3C3] text-slate-900 placeholder-slate-400'
                           : 'bg-black border-zinc-800 text-white placeholder-zinc-500'
                       }`}
                     />
@@ -316,7 +316,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       onChange={(e) => setFormState({ ...formState, service: e.target.value })}
                       className={`w-full rounded-xl px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs border focus:outline-none focus:border-brand-500 ${
                         isLightMode
-                          ? 'bg-white border-slate-300 text-slate-900'
+                          ? 'bg-[#EFE9DA] border-[#D9D3C3] text-slate-900'
                           : 'bg-black border-zinc-800 text-white'
                       }`}
                     >
@@ -339,7 +339,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     placeholder="Briefly describe your vision, features, and goal..."
                     className={`w-full rounded-xl p-3.5 sm:p-4 text-xs border focus:outline-none focus:border-brand-500 ${
                       isLightMode
-                        ? 'bg-white border-slate-300 text-slate-900 placeholder-slate-400'
+                        ? 'bg-[#EFE9DA] border-[#D9D3C3] text-slate-900 placeholder-slate-400'
                         : 'bg-black border-zinc-800 text-white placeholder-zinc-500'
                     }`}
                   />

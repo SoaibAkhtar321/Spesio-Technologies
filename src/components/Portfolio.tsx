@@ -11,7 +11,7 @@ interface PortfolioProps {
 export const Portfolio: React.FC<PortfolioProps> = ({ isLightMode = true }) => {
   return (
     <section id="portfolio" className={`py-10 sm:py-20 transition-colors duration-200 relative border-t ${
-      isLightMode ? 'bg-white border-slate-200' : 'bg-[#111110] border-zinc-900'
+      isLightMode ? 'bg-[#F1EDE3] border-[#D9D3C3]' : 'bg-[#111110] border-zinc-900'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
@@ -35,7 +35,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ isLightMode = true }) => {
               whileHover={{ y: -6 }}
               className={`group relative p-3.5 sm:p-7 rounded-xl sm:rounded-3xl border overflow-hidden transition-colors duration-300 ${
                 isLightMode
-                  ? 'bg-[#F6F2E9] border-slate-200 hover:border-brand-300 hover:shadow-xl hover:shadow-slate-200/60'
+                  ? 'bg-[#EFE9DA] border-[#D9D3C3] hover:border-brand-300 hover:shadow-xl hover:shadow-slate-200/60'
                   : 'bg-zinc-900/50 border-zinc-800 hover:border-brand-500/40'
               }`}
             >
@@ -76,7 +76,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ isLightMode = true }) => {
                         key={tech}
                         className={`px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-md sm:rounded-lg text-[9px] sm:text-[11px] font-semibold border ${
                           isLightMode
-                            ? 'bg-white text-slate-700 border-slate-200'
+                            ? 'bg-[#EFE9DA] text-slate-700 border-[#D9D3C3]'
                             : 'bg-zinc-950 text-zinc-300 border-zinc-800'
                         }`}
                       >
@@ -92,7 +92,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ isLightMode = true }) => {
                     target="_blank"
                     rel="noreferrer"
                     className={`flex items-center gap-1.5 text-[10px] sm:text-xs font-bold mt-2.5 sm:mt-5 pt-2 sm:pt-4 border-t transition-colors ${
-                      isLightMode ? 'border-slate-200 text-brand-600 hover:text-brand-700' : 'border-zinc-800 text-brand-400 hover:text-brand-300'
+                      isLightMode ? 'border-[#D9D3C3] text-brand-600 hover:text-brand-700' : 'border-zinc-800 text-brand-400 hover:text-brand-300'
                     }`}
                   >
                     <span>View Live Site</span>
@@ -100,7 +100,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ isLightMode = true }) => {
                   </a>
                 ) : (
                   <div className={`flex items-center gap-1.5 text-[10px] sm:text-xs font-bold mt-2.5 sm:mt-5 pt-2 sm:pt-4 border-t ${
-                    isLightMode ? 'border-slate-200 text-slate-400' : 'border-zinc-800 text-zinc-500'
+                    isLightMode ? 'border-[#D9D3C3] text-slate-400' : 'border-zinc-800 text-zinc-500'
                   } group-hover:text-brand-600 transition-colors`}>
                     <span>Built by Spesio Technologies</span>
                     <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

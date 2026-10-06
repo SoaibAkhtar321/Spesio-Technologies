@@ -19,7 +19,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ isLightMode = true }) =>
 
   return (
     <section id="faq" className={`py-10 sm:py-20 transition-colors duration-200 relative border-t ${
-      isLightMode ? 'bg-white border-slate-200' : 'bg-[#111110] border-zinc-900'
+      isLightMode ? 'bg-[#F1EDE3] border-[#D9D3C3]' : 'bg-[#111110] border-zinc-900'
     }`}>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
@@ -37,7 +37,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ isLightMode = true }) =>
                 key={faq.question}
                 className={`rounded-xl sm:rounded-2xl border overflow-hidden transition-colors duration-300 ${
                   isLightMode
-                    ? 'bg-[#F6F2E9] border-slate-200'
+                    ? 'bg-[#EFE9DA] border-[#D9D3C3]'
                     : 'bg-zinc-900/40 border-zinc-800'
                 }`}
               >

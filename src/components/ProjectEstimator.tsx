@@ -69,10 +69,10 @@ const PackageCard: React.FC<{ pkg: PricingPackage; isLightMode: boolean }> = ({ 
     className={`relative flex flex-col rounded-2xl sm:rounded-3xl border p-4 sm:p-6 transition-all duration-300 will-change-transform w-[78vw] xs:w-[72vw] shrink-0 snap-start sm:w-full sm:shrink ${
       pkg.highlight
         ? isLightMode
-          ? 'bg-white border-brand-400 shadow-xl shadow-brand-500/15 ring-2 ring-brand-400/30'
+          ? 'bg-[#EFE9DA] border-brand-400 shadow-xl shadow-brand-500/15 ring-2 ring-brand-400/30'
           : 'bg-gradient-to-b from-zinc-900 to-black border-brand-500 shadow-xl shadow-brand-500/20'
         : isLightMode
-          ? 'bg-white border-slate-200 hover:border-brand-300 hover:shadow-lg hover:shadow-brand-500/10'
+          ? 'bg-[#EFE9DA] border-[#D9D3C3] hover:border-brand-300 hover:shadow-lg hover:shadow-brand-500/10'
           : 'bg-zinc-900/60 border-zinc-800 hover:border-brand-500/40'
     }`}
   >
@@ -197,7 +197,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
 
   return (
     <section id="estimator" className={`py-12 sm:py-20 transition-colors duration-200 border-t relative overflow-hidden ${
-      isLightMode ? 'bg-white border-slate-200' : 'bg-[#111110] border-zinc-900'
+      isLightMode ? 'bg-[#E8E3D6] border-[#D9D3C3]' : 'bg-[#111110] border-zinc-900'
     }`}>
       {/* Floating subtle background gradients */}
       <motion.div
@@ -230,7 +230,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
         {/* Animated Segmented Mode Toggle */}
         <div className="flex justify-center mb-10 sm:mb-12">
           <div className={`relative inline-flex p-1.5 rounded-2xl border ${
-            isLightMode ? 'bg-slate-100 border-slate-200' : 'bg-zinc-900 border-zinc-800'
+            isLightMode ? 'bg-[#E8E3D6] border-[#D9D3C3]' : 'bg-zinc-900 border-zinc-800'
           }`}>
             <motion.div
               layout
@@ -315,7 +315,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                 <div
                   className={`rounded-2xl sm:rounded-3xl p-4 sm:p-8 border overflow-hidden relative mx-4 sm:mx-0 ${
                     isLightMode
-                      ? 'bg-gradient-to-br from-brand-50 via-white to-brand-50 border-brand-200'
+                      ? 'bg-gradient-to-br from-[#F1EDE3] via-[#EFE9DA] to-[#F1EDE3] border-brand-200'
                       : 'bg-gradient-to-br from-brand-950/40 via-zinc-900 to-zinc-950 border-brand-500/30'
                   }`}
                 >
@@ -332,12 +332,12 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                             bundle.highlight
                               ? 'bg-gradient-to-b from-brand-600 to-brand-500 border-brand-400 text-white shadow-xl shadow-brand-500/30'
                               : isLightMode
-                                ? 'bg-white border-brand-200 hover:border-brand-400'
+                                ? 'bg-[#EFE9DA] border-brand-200 hover:border-brand-400'
                                 : 'bg-zinc-900/70 border-zinc-800 hover:border-brand-500/40'
                           }`}
                         >
                           {bundle.highlight && (
-                            <span className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-full bg-white text-brand-600 text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider shadow-md whitespace-nowrap">
+                            <span className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-full bg-[#EFE9DA] text-brand-600 text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider shadow-md whitespace-nowrap">
                               ⭐ Best Value
                             </span>
                           )}
@@ -356,7 +356,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                             onClick={() => openWhatsApp(buildBundleWhatsAppText(bundle.name))}
                             className={`mt-4 sm:mt-5 w-full py-2 sm:py-2.5 rounded-xl text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
                               bundle.highlight
-                                ? 'bg-white text-brand-600 hover:bg-brand-50'
+                                ? 'bg-[#EFE9DA] text-brand-600 hover:bg-[#E8E3D6]'
                                 : isLightMode
                                   ? 'bg-slate-900 text-white hover:bg-brand-600'
                                   : 'bg-zinc-800 text-white hover:bg-brand-600'
@@ -385,7 +385,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
               className="max-w-3xl mx-auto"
             >
               <div className={`rounded-2xl sm:rounded-3xl border p-4 sm:p-10 ${
-                isLightMode ? 'bg-[#F6F2E9] border-slate-200 shadow-sm' : 'bg-zinc-900/80 border-zinc-800'
+                isLightMode ? 'bg-[#EFE9DA] border-[#D9D3C3] shadow-sm' : 'bg-zinc-900/80 border-zinc-800'
               }`}>
 
                 {/* Step Progress */}
@@ -394,7 +394,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                     <div
                       key={n}
                       className={`h-1.5 rounded-full transition-all duration-300 ${
-                        n <= step ? 'w-8 sm:w-10 bg-brand-500' : `w-5 sm:w-6 ${isLightMode ? 'bg-slate-200' : 'bg-zinc-800'}`
+                        n <= step ? 'w-8 sm:w-10 bg-brand-500' : `w-5 sm:w-6 ${isLightMode ? 'bg-[#D9D3C3]' : 'bg-zinc-800'}`
                       }`}
                     />
                   ))}
@@ -418,10 +418,10 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                             className={`p-3 sm:p-5 rounded-xl sm:rounded-2xl border text-center transition-all cursor-pointer ${
                               need === id
                                 ? isLightMode
-                                  ? 'bg-brand-50 border-brand-500 ring-1 ring-brand-500/30'
+                                  ? 'bg-[#E8E3D6] border-brand-500 ring-1 ring-brand-500/30'
                                   : 'bg-brand-500/10 border-brand-500'
                                 : isLightMode
-                                  ? 'bg-white border-slate-200 hover:border-brand-300'
+                                  ? 'bg-[#EFE9DA] border-[#D9D3C3] hover:border-brand-300'
                                   : 'bg-zinc-950 border-zinc-800 hover:border-brand-500/40'
                             }`}
                           >
@@ -451,7 +451,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                                 tier === t
                                   ? 'bg-brand-600 border-brand-600 text-white shadow-lg shadow-brand-500/20'
                                   : isLightMode
-                                    ? 'bg-white border-slate-200 text-slate-700 hover:border-brand-300'
+                                    ? 'bg-[#EFE9DA] border-[#D9D3C3] text-slate-700 hover:border-brand-300'
                                     : 'bg-zinc-950 border-zinc-800 text-zinc-300 hover:border-brand-500/40'
                               }`}
                             >
@@ -475,10 +475,10 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
 
                       <div className={`rounded-2xl sm:rounded-3xl p-4 sm:p-8 border shadow-2xl space-y-5 sm:space-y-6 ${
                         isLightMode
-                          ? 'bg-white border-slate-200 shadow-slate-200/80'
+                          ? 'bg-[#EFE9DA] border-[#D9D3C3] shadow-slate-200/80'
                           : 'bg-gradient-to-b from-zinc-900 to-black border-brand-500/30'
                       }`}>
-                        <div className={`flex items-center justify-between pb-3 sm:pb-4 border-b ${isLightMode ? 'border-slate-100' : 'border-zinc-800'}`}>
+                        <div className={`flex items-center justify-between pb-3 sm:pb-4 border-b ${isLightMode ? 'border-[#D9D3C3]' : 'border-zinc-800'}`}>
                           <span className="text-[10px] sm:text-xs font-extrabold tracking-widest uppercase text-brand-600">Recommendation Summary</span>
                           <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-brand-500" />
                         </div>
@@ -514,7 +514,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                           </div>
                         )}
 
-                        <div className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl border space-y-1 ${isLightMode ? 'bg-slate-50 border-slate-200' : 'bg-zinc-950 border-zinc-800'}`}>
+                        <div className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl border space-y-1 ${isLightMode ? 'bg-[#F1EDE3] border-[#D9D3C3]' : 'bg-zinc-950 border-zinc-800'}`}>
                           <div className={`flex items-center gap-2 text-[11px] sm:text-xs font-bold ${isLightMode ? 'text-slate-700' : 'text-zinc-300'}`}>
                             <Clock className="w-4 h-4 text-brand-500" />
                             <span>Estimated Timeline</span>

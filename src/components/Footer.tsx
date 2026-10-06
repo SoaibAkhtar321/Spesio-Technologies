@@ -15,12 +15,12 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
   return (
     <footer className={`transition-colors duration-200 border-t pt-8 pb-5 sm:pt-16 sm:pb-8 ${
       isLightMode
-        ? 'bg-slate-100 text-slate-600 border-slate-200'
+        ? 'bg-[#E8E3D6] text-slate-600 border-[#D9D3C3]'
         : 'bg-black text-zinc-400 border-zinc-900'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 pb-6 sm:pb-12 border-b ${
-          isLightMode ? 'border-slate-200' : 'border-zinc-900'
+          isLightMode ? 'border-[#D9D3C3]' : 'border-zinc-900'
         }`}>
           
           {/* Brand Info */}
@@ -55,7 +55,7 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
                   title="Direct Message on WhatsApp"
                   className={`flex items-center gap-1.5 sm:gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl border text-[11px] sm:text-xs font-medium transition-all hover:scale-105 cursor-pointer ${
                     isLightMode
-                      ? 'bg-white border-slate-200 text-slate-700 hover:text-emerald-600 hover:border-emerald-300 shadow-2xs'
+                      ? 'bg-[#EFE9DA] border-[#D9D3C3] text-slate-700 hover:text-emerald-600 hover:border-emerald-300 shadow-2xs'
                       : 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-emerald-400 hover:border-emerald-700'
                   }`}
                 >
@@ -73,7 +73,7 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
                   title="Follow Spesio Technologies on Instagram"
                   className={`flex items-center gap-1.5 sm:gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl border text-[11px] sm:text-xs font-medium transition-all hover:scale-105 cursor-pointer ${
                     isLightMode
-                      ? 'bg-white border-slate-200 text-slate-700 hover:text-pink-600 hover:border-pink-300 shadow-2xs'
+                      ? 'bg-[#EFE9DA] border-[#D9D3C3] text-slate-700 hover:text-pink-600 hover:border-pink-300 shadow-2xs'
                       : 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-pink-400 hover:border-pink-700'
                   }`}
                 >
@@ -93,7 +93,7 @@ export const Footer: React.FC<FooterProps> = ({ isLightMode = true }) => {
                   title="Subscribe to Spesio Technologies on YouTube"
                   className={`flex items-center gap-1.5 sm:gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl border text-[11px] sm:text-xs font-medium transition-all hover:scale-105 cursor-pointer ${
                     isLightMode
-                      ? 'bg-white border-slate-200 text-slate-700 hover:text-red-600 hover:border-red-300 shadow-2xs'
+                      ? 'bg-[#EFE9DA] border-[#D9D3C3] text-slate-700 hover:text-red-600 hover:border-red-300 shadow-2xs'
                       : 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-red-400 hover:border-red-700'
                   }`}
                 >

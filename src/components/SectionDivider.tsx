@@ -11,7 +11,7 @@ interface SectionDividerProps {
  * of an abrupt hard edge or an invisible one.
  */
 export const SectionDivider: React.FC<SectionDividerProps> = ({ isLightMode = true }) => {
-  const prevBg = isLightMode ? '#FDFBF6' : '#111110';
+  const prevBg = isLightMode ? '#F1EDE3' : '#111110';
   const nextBg = isLightMode ? '#1A1A19' : '#000000';
 
   return (

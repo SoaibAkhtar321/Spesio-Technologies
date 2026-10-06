@@ -14,7 +14,7 @@ export const ProcessTimeline: React.FC<ProcessTimelineProps> = ({ isLightMode = 
   // light Services chapter above it — see SectionDivider, which fills with the
   // same colors so the curve lines up exactly.
   const sectionBg = isLightMode ? '#1A1A19' : '#000000';
-  const nextBg = isLightMode ? '#FDFBF6' : '#111110';
+  const nextBg = isLightMode ? '#F1EDE3' : '#111110';
 
   return (
     <section

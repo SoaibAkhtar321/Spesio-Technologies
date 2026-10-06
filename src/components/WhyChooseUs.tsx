@@ -19,7 +19,7 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ isLightMode = true }) 
 
   return (
     <section id="why-choose-us" className={`py-10 sm:py-20 transition-colors duration-200 relative border-t ${
-      isLightMode ? 'bg-white border-slate-200' : 'bg-[#111110] border-zinc-900'
+      isLightMode ? 'bg-[#F1EDE3] border-[#D9D3C3]' : 'bg-[#111110] border-zinc-900'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
@@ -45,7 +45,7 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ isLightMode = true }) 
                 whileHover={{ y: -4 }}
                 className={`p-3.5 sm:p-6 rounded-xl sm:rounded-2xl border transition-colors duration-300 ${
                   isLightMode
-                    ? 'bg-[#F6F2E9] border-slate-200 hover:border-brand-300 hover:shadow-md'
+                    ? 'bg-[#EFE9DA] border-[#D9D3C3] hover:border-brand-300 hover:shadow-md'
                     : 'bg-zinc-900/40 border-zinc-800 hover:border-brand-500/40'
                 }`}
               >
