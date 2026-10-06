@@ -9,32 +9,30 @@ interface FounderSectionProps {
 export const FounderSection: React.FC<FounderSectionProps> = ({ isLightMode = true }) => {
   return (
     <section id="founder" className={`py-10 sm:py-20 transition-colors duration-200 relative border-t ${
-      isLightMode ? 'bg-[#F1EDE3] border-[#D9D3C3]' : 'bg-[#151514] border-zinc-900'
+      isLightMode ? 'bg-[#D3F0E6] border-[#171B2E]/20' : 'bg-[#171B2E] border-zinc-900'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-10">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-12 items-center">
           
           {/* Left: Founder Avatar & Official Badge */}
           <div className="lg:col-span-5 relative">
-            <div className={`relative rounded-2xl sm:rounded-3xl p-4 sm:p-8 border shadow-2xl overflow-hidden transition-colors ${
+            <div className={`relative rounded-sm sm:rounded-sm p-4 sm:p-8 border overflow-hidden transition-colors ${
               isLightMode
-                ? 'bg-[#EFE9DA] border-[#D9D3C3] shadow-slate-200/80'
-                : 'bg-gradient-to-b from-zinc-900 to-black border-brand-500/30'
+                ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20'
+                : 'bg-zinc-900 border-brand-500/30'
             }`}>
-              <div className="absolute top-0 right-0 w-40 h-40 bg-brand-500/10 rounded-full blur-2xl pointer-events-none" />
-
               {/* Founder Avatar Placeholder Card */}
-              <div className={`relative aspect-square rounded-xl sm:rounded-2xl border flex flex-col items-center justify-center p-3 sm:p-6 text-center shadow-xs ${
+              <div className={`relative aspect-square rounded-sm sm:rounded-sm border flex flex-col items-center justify-center p-3 sm:p-6 text-center ${
                 isLightMode
-                  ? 'bg-[#F1EDE3] border-[#D9D3C3]'
-                  : 'bg-gradient-to-br from-zinc-800 to-zinc-950 border-brand-500/20'
+                  ? 'bg-[#FFF3DC] border-[#171B2E]/20'
+                  : 'bg-zinc-900 border-brand-500/20'
               }`}>
-                <div className="w-14 h-14 sm:w-24 sm:h-24 rounded-xl sm:rounded-2xl bg-brand-500/10 border-2 border-brand-500 flex items-center justify-center mb-2 sm:mb-4 shadow-lg shadow-brand-500/20">
-                  <span className="font-black text-lg sm:text-3xl text-brand-500">SA</span>
+                <div className="w-14 h-14 sm:w-24 sm:h-24 rounded-sm sm:rounded-sm bg-brand-500/10 border-2 border-brand-500 flex items-center justify-center mb-2 sm:mb-4">
+                  <span className="font-bold text-lg sm:text-3xl text-brand-500">SA</span>
                 </div>
-                <h3 className={`text-base sm:text-2xl font-black ${isLightMode ? 'text-slate-900' : 'text-white'}`}>{COMPANY_INFO.founder.name}</h3>
-                <p className="text-[10px] sm:text-xs font-bold text-brand-600 tracking-wider uppercase mt-0.5 sm:mt-1">
+                <h3 className={`text-base sm:text-2xl font-bold ${isLightMode ? 'text-slate-900' : 'text-white'}`}>{COMPANY_INFO.founder.name}</h3>
+                <p className="text-[10px] sm:text-xs font-bold text-brand-600 tracking-wider font-mono uppercase mt-0.5 sm:mt-1">
                   {COMPANY_INFO.founder.title}
                 </p>
                 <div className={`flex items-center gap-1.5 mt-1.5 sm:mt-3 text-[10px] sm:text-xs font-medium ${
@@ -49,16 +47,16 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ isLightMode = tr
               <div className="grid grid-cols-2 gap-1.5 sm:gap-2 mt-2.5 sm:mt-4 text-[11px] sm:text-xs font-bold">
                 <a
                   href={`tel:${COMPANY_INFO.founder.phone}`}
-                  className="p-2 sm:p-3 rounded-lg sm:rounded-xl bg-brand-600 hover:bg-brand-500 text-white flex items-center justify-center gap-1.5 sm:gap-2 transition-colors shadow-xs"
+                  className="btn-primary p-2 sm:p-3 rounded-sm sm:rounded-sm flex items-center justify-center gap-1.5 sm:gap-2 transition-colors"
                 >
                   <Phone className="w-3.5 h-3.5" />
                   Call Founder
                 </a>
                 <a
                   href={`mailto:${COMPANY_INFO.founder.email}`}
-                  className={`p-2 sm:p-3 rounded-lg sm:rounded-xl border flex items-center justify-center gap-1.5 sm:gap-2 transition-colors ${
+                  className={`p-2 sm:p-3 rounded-sm sm:rounded-sm border flex items-center justify-center gap-1.5 sm:gap-2 transition-colors ${
                     isLightMode
-                      ? 'bg-[#E8E3D6] hover:bg-slate-200 text-slate-800 border-[#D9D3C3]'
+                      ? 'bg-[#171B2E]/10 hover:bg-slate-200 text-slate-800 border-[#171B2E]/20'
                       : 'bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border-zinc-700'
                   }`}
                 >
@@ -72,11 +70,11 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ isLightMode = tr
 
           {/* Right: Vision & Engineering Excellence */}
           <div className="lg:col-span-7 space-y-3 sm:space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-600 text-xs font-bold tracking-wider uppercase">
-              Leadership & Engineering
+            <div className="inline-flex items-center gap-2 text-brand-600 text-xs font-bold tracking-wider font-mono uppercase">
+              06 / Leadership & engineering
             </div>
 
-            <h2 className={`text-2xl sm:text-4xl font-black tracking-tight ${
+            <h2 className={`text-2xl sm:text-4xl font-bold tracking-tight ${
               isLightMode ? 'text-slate-900' : 'text-white'
             }`}>
               Meet {COMPANY_INFO.founder.name}
@@ -89,10 +87,10 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ isLightMode = tr
             </p>
 
             <div className="space-y-2.5 sm:space-y-4 pt-1 sm:pt-2">
-              <div className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl border flex items-start gap-2.5 sm:gap-3 ${
-                isLightMode ? 'bg-[#EFE9DA] border-[#D9D3C3] shadow-2xs' : 'bg-zinc-900/80 border-zinc-800'
+              <div className={`p-3 sm:p-4 rounded-sm sm:rounded-sm border flex items-start gap-2.5 sm:gap-3 ${
+                isLightMode ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20' : 'bg-zinc-900/80 border-zinc-800'
               }`}>
-                <div className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-brand-500/10 border border-brand-500/30 text-brand-600 shrink-0">
+                <div className="p-1.5 sm:p-2 rounded-sm sm:rounded-sm bg-brand-500/10 border border-brand-500/30 text-brand-600 shrink-0">
                   <Terminal className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div>
@@ -103,10 +101,10 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ isLightMode = tr
                 </div>
               </div>
 
-              <div className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl border flex items-start gap-2.5 sm:gap-3 ${
-                isLightMode ? 'bg-[#EFE9DA] border-[#D9D3C3] shadow-2xs' : 'bg-zinc-900/80 border-zinc-800'
+              <div className={`p-3 sm:p-4 rounded-sm sm:rounded-sm border flex items-start gap-2.5 sm:gap-3 ${
+                isLightMode ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20' : 'bg-zinc-900/80 border-zinc-800'
               }`}>
-                <div className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-brand-500/10 border border-brand-500/30 text-brand-600 shrink-0">
+                <div className="p-1.5 sm:p-2 rounded-sm sm:rounded-sm bg-brand-500/10 border border-brand-500/30 text-brand-600 shrink-0">
                   <Award className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div>

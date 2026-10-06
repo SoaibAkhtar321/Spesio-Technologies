@@ -26,11 +26,11 @@ interface SectionSkeletonProps {
 
 /** Lightweight pulse placeholder shown while a lazy section's chunk is loading. */
 const SectionSkeleton: React.FC<SectionSkeletonProps> = ({ isLightMode }) => (
-  <div className={`py-20 ${isLightMode ? 'bg-[#F1EDE3]' : 'bg-[#151514]'}`} aria-hidden="true">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 animate-pulse space-y-4">
-      <div className={`h-4 w-40 mx-auto rounded-full ${isLightMode ? 'bg-[#D9D3C3]' : 'bg-zinc-800'}`} />
-      <div className={`h-8 w-72 mx-auto rounded-lg ${isLightMode ? 'bg-[#D9D3C3]' : 'bg-zinc-800'}`} />
-      <div className={`h-40 rounded-2xl mt-8 ${isLightMode ? 'bg-[#E8E3D6]' : 'bg-zinc-900'}`} />
+  <div className={`py-20 ${isLightMode ? 'bg-[#FFF3DC]' : 'bg-[#171B2E]'}`} aria-hidden="true">
+    <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-10 animate-pulse space-y-4">
+      <div className={`h-4 w-40 mx-auto rounded-full ${isLightMode ? 'bg-[#171B2E]/20' : 'bg-zinc-800'}`} />
+      <div className={`h-8 w-72 mx-auto rounded-sm ${isLightMode ? 'bg-[#171B2E]/20' : 'bg-zinc-800'}`} />
+      <div className={`h-40 rounded-sm mt-8 ${isLightMode ? 'bg-[#171B2E]/10' : 'bg-zinc-900'}`} />
     </div>
   </div>
 );
@@ -58,8 +58,9 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    document.documentElement.dataset.theme = isLightMode ? 'light' : 'dark';
     document.documentElement.style.colorScheme = isLightMode ? 'light' : 'dark';
-    document.documentElement.style.backgroundColor = isLightMode ? '#F1EDE3' : '#151514';
+    document.documentElement.style.backgroundColor = isLightMode ? '#FFF3DC' : '#171B2E';
   }, [isLightMode]);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [selectedServiceForEstimate, setSelectedServiceForEstimate] = useState<string>('software');
@@ -106,13 +107,13 @@ export default function App() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
       className={`min-h-screen font-sans antialiased transition-colors duration-200 selection:bg-brand-500 selection:text-white ${
-        isLightMode ? 'bg-[#F1EDE3] text-slate-900' : 'bg-[#151514] text-zinc-100'
+        isLightMode ? 'bg-[#FFF3DC] text-slate-900' : 'bg-[#171B2E] text-zinc-100'
       }`}
     >
       {/* Skip link for keyboard/screen-reader users */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-brand-600 focus:text-white focus:text-sm focus:font-semibold"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:rounded-sm focus:bg-brand-600 focus:text-white focus:text-sm focus:font-semibold"
       >
         Skip to main content
       </a>
@@ -166,7 +167,7 @@ export default function App() {
 
       <Suspense fallback={null}>
         {/* Footer */}
-        <Footer isLightMode={isLightMode} />
+        <Footer isLightMode={false} />
       </Suspense>
 
       {/* AI Assistant Chat Modal */}

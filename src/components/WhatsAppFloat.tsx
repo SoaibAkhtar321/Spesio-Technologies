@@ -8,7 +8,7 @@ export const WhatsAppFloat: React.FC = () => {
       target="_blank"
       rel="noreferrer"
       aria-label="Chat on WhatsApp with Spesio Technologies"
-      className="fixed bottom-6 right-6 z-40 group flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-3.5 py-3 rounded-full shadow-lg hover:shadow-emerald-500/35 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+      className="fixed bottom-6 right-6 z-40 group flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-3.5 py-3 rounded-sm transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
     >
       {/* WhatsApp Icon */}
       <div className="relative flex items-center justify-center">

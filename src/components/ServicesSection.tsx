@@ -34,9 +34,9 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
 
   return (
     <section id="services" className={`py-10 sm:py-20 transition-colors duration-200 relative border-t ${
-      isLightMode ? 'bg-[#E8E3D6] border-[#D9D3C3]' : 'bg-[#151514] border-zinc-900'
+      isLightMode ? 'bg-[#D3F0E6] border-[#171B2E]/20' : 'bg-[#171B2E] border-zinc-900'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-10">
         
         {/* Section Header */}
         <motion.div
@@ -44,12 +44,12 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-8 sm:mb-16"
+          className="text-left max-w-5xl mb-8 sm:mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-600 font-bold text-xs tracking-wider uppercase mb-3">
-            What We Build
+          <div className="inline-flex items-center gap-2 text-brand-600 font-bold text-xs tracking-wider font-mono uppercase mb-3">
+            01 / What we build
           </div>
-          <h2 className={`text-3xl sm:text-4xl font-black tracking-tight ${
+          <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight ${
             isLightMode ? 'text-slate-900' : 'text-white'
           }`}>
             Our Core Technology Capabilities
@@ -77,13 +77,13 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                 variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } } }}
                 whileHover={{ y: -4 }}
                 onClick={() => setActiveServiceId(service.id)}
-                className={`p-3 sm:p-6 rounded-xl sm:rounded-2xl border transition-colors duration-300 cursor-pointer flex flex-col justify-between ${
+                className={`p-3 sm:p-6 rounded-sm sm:rounded-sm border transition-colors duration-300 cursor-pointer flex flex-col justify-between ${
                   isSelected
                     ? isLightMode
-                      ? 'bg-[#EFE9DA] border-brand-500 shadow-xl shadow-brand-500/10 ring-2 ring-brand-500/20'
-                      : 'bg-gradient-to-b from-zinc-900 to-black border-brand-500 shadow-xl shadow-brand-500/10'
+                      ? 'bg-[#FFFDF8]/60 border-brand-500 ring-2 ring-brand-500/20'
+                      : 'bg-zinc-900 border-brand-500'
                     : isLightMode
-                      ? 'bg-[#EFE9DA] border-[#D9D3C3] hover:border-slate-300 hover:shadow-md'
+                      ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20 hover:border-slate-300'
                       : 'bg-zinc-900/40 border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900/80'
                 }`}
               >
@@ -91,11 +91,11 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                   <motion.div
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: 'spring', stiffness: 300, damping: 15 }}
-                    className={`w-9 h-9 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl flex items-center justify-center mb-2 sm:mb-4 ${
+                    className={`w-9 h-9 sm:w-12 sm:h-12 rounded-sm sm:rounded-sm flex items-center justify-center mb-2 sm:mb-4 ${
                       isSelected
                         ? 'bg-brand-500/10 border border-brand-500/30'
                         : isLightMode
-                          ? 'bg-[#E8E3D6] border border-[#D9D3C3]'
+                          ? 'bg-[#171B2E]/10 border border-[#171B2E]/20'
                           : 'bg-zinc-800 border border-zinc-700'
                     }`}
                   >
@@ -108,7 +108,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                 </div>
 
                 <div className={`hidden sm:flex items-center text-xs font-bold mt-4 pt-3 border-t ${
-                  isLightMode ? 'border-[#D9D3C3]' : 'border-zinc-800/60'
+                  isLightMode ? 'border-[#171B2E]/20' : 'border-zinc-800/60'
                 }`}>
                   <span className={isSelected ? 'text-brand-600' : isLightMode ? 'text-slate-500' : 'text-zinc-400'}>
                     {isSelected ? 'Viewing Details' : 'Explore Capabilities'}
@@ -121,13 +121,11 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
         </motion.div>
 
         {/* Active Service Detailed Drawer Showcase */}
-        <div className={`rounded-2xl sm:rounded-3xl p-4 sm:p-10 border shadow-2xl relative overflow-hidden transition-colors ${
+        <div className={`rounded-sm sm:rounded-sm p-4 sm:p-10 border relative overflow-hidden transition-colors ${
           isLightMode
-            ? 'bg-[#EFE9DA] border-brand-200 shadow-slate-200/80'
-            : 'bg-zinc-900/90 border-brand-500/30 shadow-2xl'
+            ? 'bg-[#FFFDF8]/60 border-brand-200'
+            : 'bg-zinc-900/90 border-brand-500/30'
         }`}>
-          <div className="absolute top-0 right-0 w-80 h-80 bg-brand-500/10 rounded-full blur-3xl pointer-events-none" />
-
           <AnimatePresence mode="wait">
           <motion.div
             key={activeService.id}
@@ -139,12 +137,12 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             
             {/* Left: Description & Key Features */}
             <div className="lg:col-span-12 space-y-3 sm:space-y-6 flex flex-col justify-between">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#E8E3D6] border border-brand-200 text-brand-600 text-xs font-bold uppercase">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-[#171B2E]/10 border border-brand-200 text-brand-600 text-xs font-bold uppercase">
                 {getIcon(activeService.iconName)}
                 <span>{activeService.title}</span>
               </div>
 
-              <h3 className={`text-lg sm:text-3xl font-black ${
+              <h3 className={`text-lg sm:text-3xl font-bold ${
                 isLightMode ? 'text-slate-900' : 'text-white'
               }`}>
                 {activeService.shortDesc}
@@ -158,7 +156,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
 
               {/* Feature Checklist */}
               <div className="space-y-2 sm:space-y-3 pt-1 sm:pt-2">
-                <h4 className={`text-xs font-bold uppercase tracking-wider flex items-center gap-2 ${
+                <h4 className={`text-xs font-bold font-mono uppercase tracking-wider flex items-center gap-2 ${
                   isLightMode ? 'text-slate-500' : 'text-zinc-400'
                 }`}>
                   <Layers className="w-4 h-4 text-brand-500" />
@@ -166,9 +164,9 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                   {activeService.features.map((feat, idx) => (
-                    <div key={idx} className={`flex items-start gap-2.5 p-2 sm:p-2.5 rounded-lg border text-xs font-medium ${
+                    <div key={idx} className={`flex items-start gap-2.5 p-2 sm:p-2.5 rounded-sm border text-xs font-medium ${
                       isLightMode
-                        ? 'bg-[#F1EDE3] border-[#D9D3C3] text-slate-800'
+                        ? 'bg-[#FFF3DC] border-[#171B2E]/20 text-slate-800'
                         : 'bg-zinc-950 border-zinc-800 text-zinc-200'
                     }`}>
                       <Check className="w-4 h-4 text-brand-500 shrink-0 mt-0.5" />
@@ -180,7 +178,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
 
               {/* Technology Stack Pills */}
               <div className="space-y-2 pt-2">
-                <h4 className={`text-xs font-bold uppercase tracking-wider flex items-center gap-2 ${
+                <h4 className={`text-xs font-bold font-mono uppercase tracking-wider flex items-center gap-2 ${
                   isLightMode ? 'text-slate-500' : 'text-zinc-400'
                 }`}>
                   <Cpu className="w-4 h-4 text-brand-500" />
@@ -188,9 +186,9 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {activeService.technologies.map((tech) => (
-                    <span key={tech} className={`px-3 py-1 rounded-lg text-xs font-semibold border ${
+                    <span key={tech} className={`px-3 py-1 rounded-sm text-xs font-semibold border ${
                       isLightMode
-                        ? 'bg-[#E8E3D6] text-brand-700 border-brand-200'
+                        ? 'bg-[#171B2E]/10 text-brand-700 border-brand-200'
                         : 'bg-zinc-800 text-brand-300 border-zinc-700'
                     }`}>
                       {tech}
@@ -203,7 +201,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
               <div className="pt-4">
                 <button
                   onClick={() => onSelectServiceForEstimate(activeService.id)}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-bold bg-brand-600 hover:bg-brand-500 text-white shadow-lg shadow-brand-500/20 transition-all cursor-pointer"
+                  className="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-sm text-xs font-bold transition-all cursor-pointer"
                 >
                   <Sparkles className="w-4 h-4" />
                   Calculate Scope for {activeService.title}

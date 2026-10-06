@@ -1,83 +1,71 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand: deep cobalt */
-  --color-brand-50: #eef4ff;
-  --color-brand-100: #dce7ff;
-  --color-brand-200: #b9cfff;
-  --color-brand-300: #8caef5;
-  --color-brand-400: #5a86e6;
-  --color-brand-500: #2a5fd0;
-  --color-brand-600: #0047ab;
-  --color-brand-700: #003a8c;
-  --color-brand-800: #002f70;
-  --color-brand-900: #002255;
-  --color-brand-950: #00152f;
+  /* Type: Manrope headings, Inter body, IBM Plex Mono metadata */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Manrope', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Warm ivory surfaces and graphite text (light mode) */
-  --color-white: #fdfbf6;
-  --color-slate-50: #f6f2e9;
-  --color-slate-100: #eee9dd;
-  --color-slate-200: #e1dbcc;
-  --color-slate-300: #ccc5b3;
-  --color-slate-400: #9a9486;
-  --color-slate-500: #6e6a60;
-  --color-slate-600: #55524a;
-  --color-slate-700: #3f3d37;
-  --color-slate-800: #2a2926;
-  --color-slate-900: #1b1b19;
-  --color-slate-950: #0f0f0e;
+  /* Accent: vivid blue, with coral / teal used on project plates */
+  --color-brand-50: #ebf0ff;
+  --color-brand-100: #d6e0ff;
+  --color-brand-200: #b3c4ff;
+  --color-brand-300: #8aa3ff;
+  --color-brand-400: #6585ff;
+  --color-brand-500: #3d5ff0;
+  --color-brand-600: #2646d8;
+  --color-brand-700: #1e38b0;
+  --color-brand-800: #182d8c;
+  --color-brand-900: #122068;
+  --color-brand-950: #0c1547;
 
-  /* Graphite (dark mode) */
-  --color-zinc-50: #f4f4f2;
-  --color-zinc-100: #e8e8e5;
-  --color-zinc-200: #d2d2ce;
-  --color-zinc-300: #b3b3ae;
-  --color-zinc-400: #8e8e89;
-  --color-zinc-500: #6b6b67;
-  --color-zinc-600: #4c4c49;
-  --color-zinc-700: #353533;
-  --color-zinc-800: #262625;
-  --color-zinc-900: #1a1a19;
-  --color-zinc-950: #111110;
+  /* Text on light = ink (#1B1D19) / secondary (#50544B); `white` is the dark-section text colour */
+  --color-white: #f3ecd9;
+  --color-slate-50: #fff6e8;
+  --color-slate-100: #ffebd0;
+  --color-slate-200: #f6d9b4;
+  --color-slate-300: #e3c79b;
+  --color-slate-400: #8a8fa6;
+  --color-slate-500: #666c85;
+  --color-slate-600: #4a5068;
+  --color-slate-700: #363c54;
+  --color-slate-800: #262b40;
+  --color-slate-900: #171b2e;
+  --color-slate-950: #0f1220;
+
+  /* Dark mode neutrals, tinted to match the olive system */
+  --color-zinc-50: #f2f3f8;
+  --color-zinc-100: #e6e8f0;
+  --color-zinc-200: #d1d5e4;
+  --color-zinc-300: #b4bad0;
+  --color-zinc-400: #939ab8;
+  --color-zinc-500: #6c7499;
+  --color-zinc-600: #4b5378;
+  --color-zinc-700: #333a5c;
+  --color-zinc-800: #232944;
+  --color-zinc-900: #171b2e;
+  --color-zinc-950: #0f1220;
 }
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  html { scroll-behavior: smooth; }
+  @media (min-width: 1024px) { html { font-size: 15px; } }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+  h1, h2 { line-height: 1.05; }
 }
 
 /* Offset anchor scroll targets so the sticky header doesn't cover the section heading. */
-section[id] {
-  scroll-margin-top: 5rem;
-}
+section[id] { scroll-margin-top: 5rem; }
 
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+/* Primary button: ink on moss hover (light); moss in dark mode. */
+.btn-primary { background: #171b2e; color: #f3ecd9; transition: background-color 0.2s; }
+.btn-primary:hover { background: #2646d8; }
+html[data-theme='dark'] .btn-primary { background: #3d5ff0; }
+html[data-theme='dark'] .btn-primary:hover { background: #6585ff; }
 
-/* One-shot diagonal shine that sweeps across the logo mark on hover. */
-@keyframes logo-shine {
-  0% { transform: translateX(-160%) skewX(-20deg); opacity: 0; }
-  15% { opacity: 0.55; }
-  100% { transform: translateX(160%) skewX(-20deg); opacity: 0; }
-}
+/* Thin editorial rule + mono metadata helpers */
+.rule { border-top: 1px solid currentColor; opacity: 0.25; }
 
-.spesio-mark-shine::after {
-  content: '';
-  position: absolute;
-  inset: -20% -60%;
-  background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.65) 50%, transparent 70%);
-  transform: translateX(-160%) skewX(-20deg);
-  pointer-events: none;
-}
-
-.spesio-mark-shine:hover::after {
-  animation: logo-shine 0.85s ease;
-}
-
-/* Respect the user's OS-level reduced-motion preference across the site. */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -87,12 +75,12 @@ section[id] {
   }
 }
 
-/* Consistent, visible focus ring for keyboard navigation across interactive elements. */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline: 2px solid #800020;
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid #2646d8;
   outline-offset: 2px;
 }
+
+/* Keep accent text legible on dark surfaces */
+html[data-theme='dark'] .text-brand-600 { color: var(--color-brand-400); }
+html[data-theme='dark'] .text-brand-700 { color: var(--color-brand-300); }
+html[data-theme='dark'] .text-brand-500 { color: var(--color-brand-400); }

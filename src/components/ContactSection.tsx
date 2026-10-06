@@ -62,16 +62,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 
   return (
     <section id="contact" className={`py-10 sm:py-20 transition-colors duration-200 border-t relative ${
-      isLightMode ? 'bg-[#E8E3D6] border-[#D9D3C3]' : 'bg-[#111110] border-zinc-900'
+      isLightMode ? 'bg-[#D6E6FF] border-[#171B2E]/20' : 'bg-[#12162A] border-zinc-900'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-600 text-xs font-bold tracking-wider uppercase mb-3">
-            Get In Touch
+        <div className="text-left max-w-5xl mb-8 sm:mb-16">
+          <div className="inline-flex items-center gap-2 text-brand-600 text-xs font-bold tracking-wider font-mono uppercase mb-3">
+            07 / Get in touch
           </div>
-          <h2 className={`text-3xl sm:text-4xl font-black tracking-tight ${
+          <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight ${
             isLightMode ? 'text-slate-900' : 'text-white'
           }`}>
             Start Your Project With Spesio Technologies
@@ -86,16 +86,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-12">
           
           {/* Left Column: Direct Contact Details Card */}
-          <div className={`lg:col-span-5 p-4 sm:p-8 rounded-2xl sm:rounded-3xl border shadow-2xl flex flex-col justify-between space-y-4 sm:space-y-8 transition-colors ${
+          <div className={`lg:col-span-5 p-4 sm:p-8 rounded-sm sm:rounded-sm border flex flex-col justify-between space-y-4 sm:space-y-8 transition-colors ${
             isLightMode
-              ? 'bg-[#EFE9DA] border-[#D9D3C3] shadow-slate-200/80'
-              : 'bg-gradient-to-b from-zinc-900 to-black border-brand-500/30'
+              ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20'
+              : 'bg-zinc-900 border-brand-500/30'
           }`}>
             
             <div className="space-y-3 sm:space-y-6">
               <div>
-                <span className="text-xs font-bold text-brand-600 uppercase tracking-widest">Spesio Technologies</span>
-                <h3 className={`text-lg sm:text-2xl font-black mt-1 ${isLightMode ? 'text-slate-900' : 'text-white'}`}>Contact Information</h3>
+                <span className="text-xs font-bold text-brand-600 font-mono uppercase tracking-widest">Spesio Technologies</span>
+                <h3 className={`text-lg sm:text-2xl font-bold mt-1 ${isLightMode ? 'text-slate-900' : 'text-white'}`}>Contact Information</h3>
                 <p className={`text-xs mt-2 ${isLightMode ? 'text-slate-600' : 'text-zinc-400'}`}>
                   Official contact details from our company business card.
                 </p>
@@ -106,13 +106,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 {/* Phone */}
                 <a
                   href={`tel:${COMPANY_INFO.founder.phone}`}
-                  className={`flex items-center gap-3 sm:gap-4 p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl border transition-colors group ${
+                  className={`flex items-center gap-3 sm:gap-4 p-2.5 sm:p-3.5 rounded-sm sm:rounded-sm border transition-colors group ${
                     isLightMode
-                      ? 'bg-[#EFE9DA] border-[#D9D3C3] hover:border-brand-500/50 shadow-2xs'
+                      ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20 hover:border-brand-500/50'
                       : 'bg-zinc-950 border-zinc-800 hover:border-brand-500/50'
                   }`}
                 >
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center shrink-0 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-sm sm:rounded-sm bg-brand-500/10 border border-brand-500/30 flex items-center justify-center shrink-0 group-hover:bg-brand-600 group-hover:text-white transition-colors">
                     <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-brand-600 group-hover:text-white" />
                   </div>
                   <div>
@@ -128,13 +128,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 {/* Email */}
                 <a
                   href={`mailto:${COMPANY_INFO.founder.email}`}
-                  className={`flex items-center gap-3 sm:gap-4 p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl border transition-colors group ${
+                  className={`flex items-center gap-3 sm:gap-4 p-2.5 sm:p-3.5 rounded-sm sm:rounded-sm border transition-colors group ${
                     isLightMode
-                      ? 'bg-[#EFE9DA] border-[#D9D3C3] hover:border-brand-500/50 shadow-2xs'
+                      ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20 hover:border-brand-500/50'
                       : 'bg-zinc-950 border-zinc-800 hover:border-brand-500/50'
                   }`}
                 >
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center shrink-0 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-sm sm:rounded-sm bg-brand-500/10 border border-brand-500/30 flex items-center justify-center shrink-0 group-hover:bg-brand-600 group-hover:text-white transition-colors">
                     <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-brand-600 group-hover:text-white" />
                   </div>
                   <div>
@@ -148,10 +148,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 </a>
 
                 {/* Location */}
-                <div className={`flex items-start gap-3 sm:gap-4 p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl border ${
-                  isLightMode ? 'bg-[#EFE9DA] border-[#D9D3C3] shadow-2xs' : 'bg-zinc-950 border-zinc-800'
+                <div className={`flex items-start gap-3 sm:gap-4 p-2.5 sm:p-3.5 rounded-sm sm:rounded-sm border ${
+                  isLightMode ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20' : 'bg-zinc-950 border-zinc-800'
                 }`}>
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-sm sm:rounded-sm bg-brand-500/10 border border-brand-500/30 flex items-center justify-center shrink-0 mt-0.5">
                     <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-brand-600" />
                   </div>
                   <div>
@@ -165,10 +165,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 </div>
 
                 {/* Working Hours & Response Time */}
-                <div className={`flex items-start gap-3 sm:gap-4 p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl border ${
-                  isLightMode ? 'bg-[#EFE9DA] border-[#D9D3C3] shadow-2xs' : 'bg-zinc-950 border-zinc-800'
+                <div className={`flex items-start gap-3 sm:gap-4 p-2.5 sm:p-3.5 rounded-sm sm:rounded-sm border ${
+                  isLightMode ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20' : 'bg-zinc-950 border-zinc-800'
                 }`}>
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-sm sm:rounded-sm bg-brand-500/10 border border-brand-500/30 flex items-center justify-center shrink-0 mt-0.5">
                     <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-brand-600" />
                   </div>
                   <div>
@@ -189,7 +189,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
             <div className="pt-1 sm:pt-2">
               <button
                 onClick={handleWhatsAppDirect}
-                className="w-full py-2.5 sm:py-3.5 px-4 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20 cursor-pointer transition-all"
+                className="w-full py-2.5 sm:py-3.5 px-4 rounded-sm text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center gap-2 cursor-pointer transition-all"
               >
                 <MessageCircle className="w-4 h-4" />
                 Quick Connect on WhatsApp
@@ -199,9 +199,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           </div>
 
           {/* Right Column: Inquiry Form */}
-          <div className={`lg:col-span-7 p-4 sm:p-8 rounded-2xl sm:rounded-3xl border space-y-4 sm:space-y-6 ${
+          <div className={`lg:col-span-7 p-4 sm:p-8 rounded-sm sm:rounded-sm border space-y-4 sm:space-y-6 ${
             isLightMode
-              ? 'bg-[#EFE9DA] border-[#D9D3C3] shadow-sm'
+              ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20'
               : 'bg-zinc-900/80 border-zinc-800'
           }`}>
             
@@ -210,8 +210,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
-                className={`p-8 text-center space-y-4 rounded-2xl border ${
-                isLightMode ? 'bg-[#EFE9DA] border-[#D9D3C3]' : 'bg-zinc-950 border-brand-500/30'
+                className={`p-8 text-center space-y-4 rounded-sm border ${
+                isLightMode ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20' : 'bg-zinc-950 border-brand-500/30'
               }`}>
                 <motion.div
                   initial={{ scale: 0 }}
@@ -221,26 +221,26 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 >
                   <CheckCircle2 className="w-8 h-8" />
                 </motion.div>
-                <h3 className={`text-2xl font-black ${isLightMode ? 'text-slate-900' : 'text-white'}`}>Inquiry Received!</h3>
+                <h3 className={`text-2xl font-bold ${isLightMode ? 'text-slate-900' : 'text-white'}`}>Inquiry Received!</h3>
                 <p className={`text-sm max-w-md mx-auto ${isLightMode ? 'text-slate-600' : 'text-zinc-300'}`}>
                   {feedbackMsg}
                 </p>
                 <button
                   onClick={() => setStatus('idle')}
-                  className="px-6 py-2.5 rounded-xl bg-brand-600 text-white text-xs font-bold hover:bg-brand-500 transition-colors cursor-pointer"
+                  className="btn-primary px-6 py-2.5 rounded-sm text-xs font-bold transition-colors cursor-pointer"
                 >
                   Send Another Inquiry
                 </button>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
-                <h3 className={`text-xl font-black ${isLightMode ? 'text-slate-900' : 'text-white'}`}>Project Inquiry Form</h3>
+                <h3 className={`text-xl font-bold ${isLightMode ? 'text-slate-900' : 'text-white'}`}>Project Inquiry Form</h3>
 
                 {status === 'error' && (
                   <motion.div
                     initial={{ opacity: 0, y: -8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className={`flex items-start gap-3 p-3.5 rounded-xl border text-xs ${
+                    className={`flex items-start gap-3 p-3.5 rounded-sm border text-xs ${
                       isLightMode
                         ? 'bg-red-50 border-red-200 text-red-700'
                         : 'bg-red-500/10 border-red-500/30 text-red-300'
@@ -262,9 +262,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       value={formState.name}
                       onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                       placeholder="e.g. John Doe"
-                      className={`w-full rounded-xl px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs border focus:outline-none focus:border-brand-500 ${
+                      className={`w-full rounded-sm px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs border focus:outline-none focus:border-brand-500 ${
                         isLightMode
-                          ? 'bg-[#EFE9DA] border-[#D9D3C3] text-slate-900 placeholder-slate-400'
+                          ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20 text-slate-900 placeholder-slate-400'
                           : 'bg-black border-zinc-800 text-white placeholder-zinc-500'
                       }`}
                     />
@@ -280,9 +280,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       value={formState.email}
                       onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                       placeholder="e.g. john@company.com"
-                      className={`w-full rounded-xl px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs border focus:outline-none focus:border-brand-500 ${
+                      className={`w-full rounded-sm px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs border focus:outline-none focus:border-brand-500 ${
                         isLightMode
-                          ? 'bg-[#EFE9DA] border-[#D9D3C3] text-slate-900 placeholder-slate-400'
+                          ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20 text-slate-900 placeholder-slate-400'
                           : 'bg-black border-zinc-800 text-white placeholder-zinc-500'
                       }`}
                     />
@@ -299,9 +299,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       value={formState.phone}
                       onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
                       placeholder="+91 00000 00000"
-                      className={`w-full rounded-xl px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs border focus:outline-none focus:border-brand-500 ${
+                      className={`w-full rounded-sm px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs border focus:outline-none focus:border-brand-500 ${
                         isLightMode
-                          ? 'bg-[#EFE9DA] border-[#D9D3C3] text-slate-900 placeholder-slate-400'
+                          ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20 text-slate-900 placeholder-slate-400'
                           : 'bg-black border-zinc-800 text-white placeholder-zinc-500'
                       }`}
                     />
@@ -314,9 +314,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     <select
                       value={formState.service}
                       onChange={(e) => setFormState({ ...formState, service: e.target.value })}
-                      className={`w-full rounded-xl px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs border focus:outline-none focus:border-brand-500 ${
+                      className={`w-full rounded-sm px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs border focus:outline-none focus:border-brand-500 ${
                         isLightMode
-                          ? 'bg-[#EFE9DA] border-[#D9D3C3] text-slate-900'
+                          ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20 text-slate-900'
                           : 'bg-black border-zinc-800 text-white'
                       }`}
                     >
@@ -337,9 +337,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     value={formState.message}
                     onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                     placeholder="Briefly describe your vision, features, and goal..."
-                    className={`w-full rounded-xl p-3.5 sm:p-4 text-xs border focus:outline-none focus:border-brand-500 ${
+                    className={`w-full rounded-sm p-3.5 sm:p-4 text-xs border focus:outline-none focus:border-brand-500 ${
                       isLightMode
-                        ? 'bg-[#EFE9DA] border-[#D9D3C3] text-slate-900 placeholder-slate-400'
+                        ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20 text-slate-900 placeholder-slate-400'
                         : 'bg-black border-zinc-800 text-white placeholder-zinc-500'
                     }`}
                   />
@@ -350,7 +350,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   disabled={status === 'submitting'}
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.97 }}
-                  className="w-full py-3.5 px-6 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-brand-500/20 transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                  className="btn-primary w-full py-3.5 px-6 rounded-sm font-bold text-xs font-mono uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                 >
                   <Send className="w-4 h-4" />
                   {status === 'submitting' ? 'Submitting...' : 'Submit Inquiry To Spesio Technologies'}

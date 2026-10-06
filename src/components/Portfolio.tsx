@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { PORTFOLIO } from '../data/companyData';
-import { ArrowUpRight, Layers } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import { PROJECTS } from '../content/site';
 import { SectionHeader } from './SectionHeader';
 
 interface PortfolioProps {
@@ -9,107 +9,82 @@ interface PortfolioProps {
 }
 
 export const Portfolio: React.FC<PortfolioProps> = ({ isLightMode = true }) => {
+  const PLATE = ['#2646D8', '#E8553D', '#0F8B7A']; // one colour per project
+  const [lead, ...rest] = PROJECTS; // Property Planet is first in site.ts and leads Selected Work
+  const ink = isLightMode ? 'text-slate-900' : 'text-white';
+  const muted = isLightMode ? 'text-slate-600' : 'text-zinc-400';
+  const rule = isLightMode ? 'border-[#171B2E]' : 'border-zinc-700';
+  const meta = (p: typeof lead) => [p.category, ...p.stack].join(' · ');
+
+  const LiveLink: React.FC<{ url?: string; label?: string }> = ({ url, label }) =>
+    url ? (
+      <a href={url} target="_blank" rel="noreferrer" className="btn-primary inline-flex items-center gap-2 px-5 py-3 text-xs font-semibold">
+        {label ?? 'Visit live site'} <ArrowUpRight className="w-4 h-4" />
+      </a>
+    ) : (
+      <span className={`font-mono text-[11px] uppercase tracking-wider ${muted}`}>Built by Spesio Technologies</span>
+    );
+
   return (
-    <section id="portfolio" className={`py-10 sm:py-20 transition-colors duration-200 relative border-t ${
-      isLightMode ? 'bg-[#F1EDE3] border-[#D9D3C3]' : 'bg-[#111110] border-zinc-900'
+    <section id="portfolio" className={`py-12 sm:py-24 relative border-t ${
+      isLightMode ? 'bg-[#FFF0B8] border-[#171B2E]/20' : 'bg-[#12162A] border-zinc-900'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-10">
         <SectionHeader
           isLightMode={isLightMode}
-          eyebrow="Our Work"
+          eyebrow="04 / Selected work"
           title="Selected Projects"
           description="A look at real products built and maintained by Spesio Technologies."
         />
 
-        <motion.div
-          initial="hidden"
-          whileInView="show"
+        {/* Featured: Property Planet */}
+        <motion.article
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
-          className="grid grid-cols-2 gap-3 sm:gap-6"
+          transition={{ duration: 0.45 }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 mb-14 sm:mb-24"
         >
-          {PORTFOLIO.map((project) => (
-            <motion.div
-              key={project.id}
-              variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } } }}
-              whileHover={{ y: -6 }}
-              className={`group relative p-3.5 sm:p-7 rounded-xl sm:rounded-3xl border overflow-hidden transition-colors duration-300 ${
-                isLightMode
-                  ? 'bg-[#EFE9DA] border-[#D9D3C3] hover:border-brand-300 hover:shadow-xl hover:shadow-slate-200/60'
-                  : 'bg-zinc-900/50 border-zinc-800 hover:border-brand-500/40'
-              }`}
+          <div className="lg:col-span-5 flex flex-col justify-between gap-6">
+            <div>
+              <div className="font-mono text-[11px] sm:text-xs uppercase tracking-wider text-brand-600">{lead.number} / Featured</div>
+              <h3 className={`mt-3 text-3xl sm:text-5xl font-bold tracking-tight ${ink}`}>{lead.name}</h3>
+              <p className={`mt-4 text-base sm:text-lg ${ink}`}>{lead.summary}</p>
+              <p className={`mt-3 text-sm leading-relaxed ${muted}`}>{lead.overview}</p>
+            </div>
+            <div><LiveLink url={lead.liveUrl} label="Visit propertyplanet.vercel.app" /></div>
+          </div>
+
+          <div style={{ backgroundColor: PLATE[0] }} className="lg:col-span-7 p-5 sm:p-8 flex flex-col justify-between min-h-[18rem] text-[#FFF6E5]">
+            <div className="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-400 leading-relaxed">{meta(lead)}</div>
+            <div className="font-bold text-[5rem] sm:text-[8rem] leading-none tracking-tighter opacity-20 select-none" aria-hidden="true">{lead.number}</div>
+            <ul className="text-sm">
+              {lead.capabilities.map((c) => (
+                <li key={c} className="py-2 border-t border-zinc-700">{c}</li>
+              ))}
+            </ul>
+          </div>
+        </motion.article>
+
+        {/* Remaining projects */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
+          {rest.map((p, i) => (
+            <motion.article
+              key={p.slug}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.45 }}
+              className={`flex flex-col gap-4 ${rule}`}
             >
-              {/* Hover glow */}
-              <div className="absolute -top-16 -right-16 w-48 h-48 bg-brand-500/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-              <div className="relative z-10">
-                <div className="flex items-start justify-between mb-2 sm:mb-4 gap-2">
-                  <div>
-                    <span className="text-[9px] sm:text-[10px] font-bold text-brand-600 uppercase tracking-widest">{project.category}</span>
-                    <h3 className={`text-sm sm:text-2xl font-black mt-0.5 sm:mt-1 leading-tight ${isLightMode ? 'text-slate-900' : 'text-white'}`}>{project.name}</h3>
-                  </div>
-                  <span
-                    className={`shrink-0 text-[8px] sm:text-[10px] font-bold px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-full border ${
-                      project.status === 'Production'
-                        ? 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20'
-                        : 'bg-amber-500/10 text-amber-600 border-amber-500/20'
-                    }`}
-                  >
-                    {project.status}
-                  </span>
-                </div>
-
-                <p className={`text-[11px] sm:text-sm leading-snug sm:leading-relaxed mb-2.5 sm:mb-5 line-clamp-3 sm:line-clamp-none ${isLightMode ? 'text-slate-600' : 'text-zinc-400'}`}>
-                  {project.description}
-                </p>
-
-                <div className="space-y-1.5 sm:space-y-2">
-                  <h4 className={`hidden sm:flex text-[10px] font-bold uppercase tracking-wider items-center gap-1.5 ${
-                    isLightMode ? 'text-slate-500' : 'text-zinc-500'
-                  }`}>
-                    <Layers className="w-3.5 h-3.5 text-brand-500" />
-                    Stack
-                  </h4>
-                  <div className="flex flex-wrap gap-1 sm:gap-2">
-                    {project.stack.map((tech) => (
-                      <span
-                        key={tech}
-                        className={`px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-md sm:rounded-lg text-[9px] sm:text-[11px] font-semibold border ${
-                          isLightMode
-                            ? 'bg-[#EFE9DA] text-slate-700 border-[#D9D3C3]'
-                            : 'bg-zinc-950 text-zinc-300 border-zinc-800'
-                        }`}
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {project.liveUrl ? (
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={`flex items-center gap-1.5 text-[10px] sm:text-xs font-bold mt-2.5 sm:mt-5 pt-2 sm:pt-4 border-t transition-colors ${
-                      isLightMode ? 'border-[#D9D3C3] text-brand-600 hover:text-brand-700' : 'border-zinc-800 text-brand-400 hover:text-brand-300'
-                    }`}
-                  >
-                    <span>View Live Site</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </a>
-                ) : (
-                  <div className={`flex items-center gap-1.5 text-[10px] sm:text-xs font-bold mt-2.5 sm:mt-5 pt-2 sm:pt-4 border-t ${
-                    isLightMode ? 'border-[#D9D3C3] text-slate-400' : 'border-zinc-800 text-zinc-500'
-                  } group-hover:text-brand-600 transition-colors`}>
-                    <span>Built by Spesio Technologies</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </div>
-                )}
-              </div>
-            </motion.div>
+              <div style={{ backgroundColor: PLATE[i + 1] }} className="h-32 sm:h-40 p-4 flex items-end justify-between text-[#FFF6E5]"><span className="font-mono text-[10px] sm:text-xs uppercase tracking-wider">{p.category}</span><span className="font-bold text-6xl sm:text-7xl leading-none opacity-30" aria-hidden="true">{p.number}</span></div>
+              <h3 className={`text-2xl sm:text-3xl font-bold tracking-tight ${ink}`}>{p.name}</h3>
+              <p className={`text-sm sm:text-base ${ink}`}>{p.summary}</p>
+              <p className={`font-mono text-[10px] sm:text-[11px] uppercase tracking-wider leading-relaxed ${muted}`}>{meta(p)}</p>
+              <div className="mt-auto pt-2"><LiveLink url={p.liveUrl} /></div>
+            </motion.article>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

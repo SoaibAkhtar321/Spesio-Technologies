@@ -7,7 +7,7 @@ export const SITE = {
   shortName: 'Spesio',
   url: 'https://spesio-technologies.vercel.app',
   locale: 'en_IN',
-  themeColor: '#800020',
+  themeColor: '#2646D8',
   email: 'spesiotechnologies@gmail.com',
   phone: '+91 8957833269',
   phoneHref: 'tel:+918957833269',
@@ -51,6 +51,7 @@ export const PROJECTS: Project[] = [
       'Lead handling with admin oversight of enquiries',
     ],
     stack: ['Next.js', 'Supabase', 'Google Maps'],
+    liveUrl: 'https://propertyplanet.vercel.app/',
   },
   {
     slug: 'campusbite',

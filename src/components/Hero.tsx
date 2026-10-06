@@ -25,28 +25,9 @@ const fadeUp = {
 export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, isLightMode }) => {
   return (
     <section className={`relative overflow-hidden pt-6 pb-10 sm:pt-12 sm:pb-20 md:pt-20 md:pb-28 transition-colors duration-200 ${
-      isLightMode ? 'bg-[#F1EDE3]' : 'bg-[#151514]'
+      isLightMode ? 'bg-[#FFE9C7]' : 'bg-[#171B2E]'
     }`}>
-      {/* Background grid */}
-      {/* Subtle floating particles */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        {[...Array(8)].map((_, i) => (
-          <motion.span
-            key={i}
-            className={`absolute w-1 h-1 rounded-full ${isLightMode ? 'bg-brand-400/50' : 'bg-brand-400/30'}`}
-            style={{ left: `${8 + i * 12}%`, top: `${15 + (i % 4) * 20}%` }}
-            animate={{ y: [0, -20, 0], opacity: [0.2, 0.8, 0.2] }}
-            transition={{ duration: 6 + i, repeat: Infinity, ease: 'easeInOut', delay: i * 0.4 }}
-          />
-        ))}
-      </div>
-      <div className={`absolute inset-0 [background-size:24px_24px] pointer-events-none ${
-        isLightMode
-          ? 'bg-[radial-gradient(#D9D3C3_1px,transparent_1px)] opacity-40'
-          : 'bg-[radial-gradient(#2a2926_1px,transparent_1px)] opacity-20'
-      }`} />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-12 items-center">
 
           {/* Left Column: Heading & Value Proposition */}
@@ -58,19 +39,19 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
           >
 
             {/* Pill Badge */}
-            <motion.div variants={fadeUp} className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold shadow-xs border ${
+            <motion.div variants={fadeUp} className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-sm text-xs font-semibold border ${
               isLightMode
-                ? 'bg-[#EFE9DA] border-brand-200 text-brand-600'
+                ? 'bg-[#FFFDF8]/60 border-brand-200 text-brand-600'
                 : 'bg-zinc-900/90 border-brand-500/30 text-brand-400'
             }`}>
-              <span className="flex h-2 w-2 rounded-full bg-brand-500 animate-ping" />
+              <span className="flex h-2 w-2 rounded-full bg-brand-500" />
               <span className="font-bold">SPESIO TECHNOLOGIES</span>
               <span className={isLightMode ? 'text-slate-300' : 'text-zinc-600'}>|</span>
               <span className={isLightMode ? 'text-slate-600' : 'text-zinc-300'}>Official Agency Showcase</span>
             </motion.div>
 
             {/* Main Headline */}
-            <motion.h1 variants={fadeUp} className={`text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] sm:leading-[1.1] ${
+            <motion.h1 variants={fadeUp} className={`text-3xl sm:text-5xl lg:text-5xl font-bold tracking-tight leading-[1.15] sm:leading-[1.1] ${
               isLightMode ? 'text-slate-900' : 'text-white'
             }`}>
               Websites, Apps &amp; AI{' '}
@@ -99,9 +80,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
                   key={label}
                   variants={fadeUp}
                   whileHover={{ y: -3, scale: 1.03 }}
-                  className={`p-2 sm:p-3 rounded-xl border flex items-center gap-2 sm:gap-2.5 shadow-2xs transition-all will-change-transform ${
+                  className={`p-2 sm:p-3 rounded-sm border flex items-center gap-2 sm:gap-2.5 transition-all will-change-transform ${
                     isLightMode
-                      ? 'bg-[#EFE9DA] border-[#D9D3C3]/90 hover:border-brand-300'
+                      ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20 hover:border-brand-300'
                       : 'bg-zinc-900/80 border-zinc-800 hover:border-brand-500/40'
                   }`}
                 >
@@ -117,9 +98,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
             <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-5 pt-2 sm:pt-5">
               <motion.button
                 onClick={onOpenEstimator}
-                whileHover={{ y: -3, boxShadow: '0 16px 36px -6px rgba(0,71,171,0.55)' }}
+                whileHover={{ y: -3 }}
                 whileTap={{ scale: 0.97, y: 0 }}
-                className="group relative inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-7 sm:py-4 rounded-xl text-sm font-bold bg-brand-600 hover:bg-brand-700 text-white shadow-lg shadow-brand-500/25 transition-shadow cursor-pointer overflow-hidden will-change-transform"
+                className="btn-primary group relative inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-7 sm:py-4 rounded-sm text-sm font-bold hover:bg-brand-700 transition-shadow cursor-pointer overflow-hidden will-change-transform"
               >
                 <span className="relative">Calculate Project Scope</span>
                 <ArrowRight className="relative w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -129,9 +110,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
                 onClick={onOpenAiAssistant}
                 whileHover={{ y: -3 }}
                 whileTap={{ scale: 0.97, y: 0 }}
-                className={`group inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-7 sm:py-4 rounded-xl text-sm font-semibold border transition-colors cursor-pointer will-change-transform ${
+                className={`group inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-7 sm:py-4 rounded-sm text-sm font-semibold border transition-colors cursor-pointer will-change-transform ${
                   isLightMode
-                    ? 'bg-[#EFE9DA] hover:bg-[#E8E3D6] text-slate-800 border-[#D9D3C3] hover:border-brand-300 shadow-2xs'
+                    ? 'bg-transparent hover:bg-[#171B2E]/10 text-[#171B2E] border-[#171B2E]'
                     : 'bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border-brand-500/30'
                 }`}
               >
@@ -143,9 +124,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
                 href="#contact"
                 whileHover={{ y: -3 }}
                 whileTap={{ scale: 0.97, y: 0 }}
-                className={`group inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-7 sm:py-4 rounded-xl text-sm font-semibold border transition-colors cursor-pointer will-change-transform ${
+                className={`group inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-7 sm:py-4 rounded-sm text-sm font-semibold border transition-colors cursor-pointer will-change-transform ${
                   isLightMode
-                    ? 'bg-[#EFE9DA] hover:bg-[#E8E3D6] text-slate-800 border-[#D9D3C3] hover:border-brand-300 shadow-2xs'
+                    ? 'bg-transparent hover:bg-[#171B2E]/10 text-[#171B2E] border-[#171B2E]'
                     : 'bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border-brand-500/30'
                 }`}
               >
@@ -168,9 +149,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-              className={`relative rounded-2xl border shadow-xl transition-colors overflow-hidden ${
+              className={`relative rounded-sm border transition-colors overflow-hidden ${
                 isLightMode
-                  ? 'bg-[#EFE9DA] border-[#D9D3C3] shadow-slate-200/80'
+                  ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20'
                   : 'bg-zinc-900 border-zinc-800'
               }`}
             >
@@ -180,7 +161,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
               <div className="p-4 sm:p-6">
                 {/* Header inside right card */}
                 <div className={`flex items-center justify-between pb-3 sm:pb-4 border-b ${
-                  isLightMode ? 'border-[#D9D3C3]' : 'border-zinc-800'
+                  isLightMode ? 'border-[#171B2E]/20' : 'border-zinc-800'
                 }`}>
                   <div className="flex items-center gap-3">
                     <SpesioLogo isLightMode={isLightMode} variant="mark" size="md" />
@@ -189,9 +170,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
                       <p className={`text-xs ${isLightMode ? 'text-slate-500' : 'text-zinc-400'}`}>{COMPANY_INFO.founder.name} • {COMPANY_INFO.founder.title}</p>
                     </div>
                   </div>
-                  <span className="relative inline-flex items-center gap-1.5 text-[10px] font-bold px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 border border-emerald-500/20">
+                  <span className="relative inline-flex items-center gap-1.5 text-[10px] font-bold px-2.5 py-1 rounded-sm bg-emerald-500/10 text-emerald-600 border border-emerald-500/20">
                     <span className="relative flex h-1.5 w-1.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
                       <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
                     </span>
                     AVAILABLE NOW
@@ -201,14 +181,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant, onOpenEstimator, 
 
                 {/* Stats Bar */}
                 <div className="grid grid-cols-2 gap-2 pt-2">
-                  <motion.div whileHover={{ y: -2 }} className="bg-[#E8E3D6] border border-brand-200 p-3 rounded-xl text-center">
-                    <div className="text-xl font-extrabold text-brand-600">100%</div>
+                  <motion.div whileHover={{ y: -2 }} className="bg-[#171B2E]/10 border border-brand-200 p-3 rounded-sm text-center">
+                    <div className="text-xl font-semibold text-brand-600">100%</div>
                     <div className="text-[10px] text-slate-500 uppercase font-semibold">Client Focus</div>
                   </motion.div>
-                  <motion.div whileHover={{ y: -2 }} className={`p-3 rounded-xl border text-center ${
-                    isLightMode ? 'bg-[#F1EDE3] border-[#D9D3C3]' : 'bg-zinc-900 border-zinc-800'
+                  <motion.div whileHover={{ y: -2 }} className={`p-3 rounded-sm border text-center ${
+                    isLightMode ? 'bg-[#FFF3DC] border-[#171B2E]/20' : 'bg-zinc-900 border-zinc-800'
                   }`}>
-                    <div className={`text-xl font-extrabold ${isLightMode ? 'text-slate-900' : 'text-white'}`}>4 Core</div>
+                    <div className={`text-xl font-semibold ${isLightMode ? 'text-slate-900' : 'text-white'}`}>4 Core</div>
                     <div className={`text-[10px] uppercase font-semibold ${isLightMode ? 'text-slate-500' : 'text-zinc-400'}`}>Tech Offerings</div>
                   </motion.div>
                 </div>

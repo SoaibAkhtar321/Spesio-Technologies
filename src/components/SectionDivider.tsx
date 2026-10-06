@@ -4,30 +4,17 @@ interface SectionDividerProps {
   isLightMode?: boolean;
 }
 
-/**
- * Chapter break between "what we build" (Services / Why Choose Us) and
- * "how we build it" (Process). A curved separator plus a background-color
- * change gives the two halves a clear, deliberate visual boundary instead
- * of an abrupt hard edge or an invisible one.
- */
-export const SectionDivider: React.FC<SectionDividerProps> = ({ isLightMode = true }) => {
-  const prevBg = isLightMode ? '#F1EDE3' : '#111110';
-  const nextBg = isLightMode ? '#1A1A19' : '#000000';
-
-  return (
-    <div aria-hidden="true" className="relative" style={{ backgroundColor: prevBg }}>
-      <svg
-        viewBox="0 0 1440 90"
-        preserveAspectRatio="none"
-        className="block w-full h-[56px] sm:h-[80px]"
-      >
-        <path d="M0,0 C360,90 1080,0 1440,70 L1440,90 L0,90 Z" fill={nextBg} />
-      </svg>
-      {/* Maroon seam marking the exact fold */}
-      <div
-        className="absolute left-1/2 top-0 -translate-x-1/2 w-24 sm:w-40 h-px"
-        style={{ backgroundImage: 'linear-gradient(to right, transparent, rgba(0,71,171,0.6), transparent)' }}
-      />
+/** Hard, intentional hand-off from the light chapters to the dark Process chapter: a mono caption on a thin rule. */
+export const SectionDivider: React.FC<SectionDividerProps> = ({ isLightMode = true }) => (
+  <div
+    aria-hidden="true"
+    className={`border-t font-mono text-[10px] uppercase tracking-wider ${
+      isLightMode ? 'bg-[#D6E6FF] text-slate-600 border-[#171B2E]' : 'bg-[#12162A] text-zinc-500 border-zinc-700'
+    }`}
+  >
+    <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-10 py-3 flex justify-between">
+      <span>End of capabilities</span>
+      <span>Next: how we build ↓</span>
     </div>
-  );
-};
+  </div>
+);

@@ -77,13 +77,13 @@ export const SpesioLogo: React.FC<SpesioLogoProps> = ({
     return (
       <div className={`flex flex-col items-center text-center ${className}`}>
         <Emblem heightClass={size === 'custom' ? 'h-16' : markSizeClasses[size]} animateIn={animateIn} />
-        <div className="mt-3 tracking-widest uppercase">
-          <div className={`text-xl sm:text-2xl font-black tracking-[0.28em] ${
+        <div className="mt-3 tracking-widest font-mono uppercase">
+          <div className={`text-xl sm:text-2xl font-bold tracking-[0.28em] ${
             isLightMode ? 'text-slate-900' : 'text-white'
           }`} style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
             SPESIO
           </div>
-          <div className="text-[10px] sm:text-xs font-black text-brand-600 tracking-[0.45em] mt-0.5">
+          <div className="text-[10px] sm:text-xs font-bold text-brand-600 tracking-[0.45em] mt-0.5">
             TECHNOLOGIES
           </div>
         </div>
@@ -105,12 +105,12 @@ export const SpesioLogo: React.FC<SpesioLogoProps> = ({
     <div className={`inline-flex items-center gap-3 ${heightClasses[size]} ${className}`}>
       <Emblem heightClass="h-full" animateIn={animateIn} />
       <div className="flex flex-col justify-center leading-none">
-        <span className={`font-black tracking-[0.24em] text-base sm:text-lg ${
+        <span className={`font-bold tracking-[0.24em] text-base sm:text-lg ${
           isLightMode ? 'text-slate-900' : 'text-white'
         }`}>
           SPESIO
         </span>
-        <span className="text-[9px] sm:text-[10px] font-black text-brand-600 tracking-[0.42em] mt-1 uppercase">
+        <span className="text-[9px] sm:text-[10px] font-bold text-brand-600 tracking-[0.42em] mt-1 uppercase">
           TECHNOLOGIES
         </span>
       </div>

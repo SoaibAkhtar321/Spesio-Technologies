@@ -53,12 +53,12 @@ export const Header: React.FC<HeaderProps> = ({
   }, []);
 
   return (
-    <header className={`sticky top-0 z-40 backdrop-blur-md transition-colors duration-200 border-b ${
+    <header className={`sticky top-0 z-40 transition-colors duration-200 border-b ${
       isLightMode
-        ? 'bg-[#F1EDE3]/90 border-[#D9D3C3]/80 shadow-xs'
-        : 'bg-[#151514]/85 border-brand-500/15'
+        ? 'bg-[#FFF3DC] border-[#171B2E]/20'
+        : 'bg-[#171B2E] border-brand-500/15'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-20 flex items-center justify-between">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-10 h-14 sm:h-20 flex items-center justify-between">
 
         {/* Brand Logo & Real ST Monogram */}
         <a href="#" className="flex items-center gap-2.5 group">
@@ -99,9 +99,9 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Theme Switcher Button */}
           <button
             onClick={onToggleTheme}
-            className={`p-2 rounded-lg border transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 shrink-0 ${
+            className={`p-2 rounded-sm border transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 shrink-0 ${
               isLightMode
-                ? 'bg-[#E8E3D6] hover:bg-slate-200 text-slate-700 border-[#D9D3C3]'
+                ? 'bg-[#171B2E]/10 hover:bg-slate-200 text-slate-700 border-[#171B2E]/20'
                 : 'bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border-zinc-800'
             }`}
             title={isLightMode ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
@@ -112,21 +112,21 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={onOpenAiAssistant}
-            className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold border transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 whitespace-nowrap shrink-0 ${
+            className={`flex items-center gap-2 px-3.5 py-2 rounded-sm text-xs font-semibold border transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 whitespace-nowrap shrink-0 ${
               isLightMode
-                ? 'bg-[#E8E3D6] hover:bg-[#D9D3C3]/80 text-brand-600 border-brand-200'
+                ? 'bg-[#171B2E]/10 hover:bg-[#171B2E]/20/80 text-brand-600 border-brand-200'
                 : 'bg-zinc-900 hover:bg-brand-500/10 text-brand-400 border-brand-500/30'
             }`}
           >
-            <Sparkles className="w-3.5 h-3.5 text-brand-500 animate-pulse shrink-0" />
+            <Sparkles className="w-3.5 h-3.5 text-brand-500 shrink-0" />
             Spesio AI
           </button>
 
           <a
             href={`tel:${COMPANY_INFO.founder.phone}`}
-            className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all whitespace-nowrap shrink-0 ${
+            className={`flex items-center gap-2 px-3.5 py-2 rounded-sm text-xs font-semibold transition-all whitespace-nowrap shrink-0 ${
               isLightMode
-                ? 'text-slate-700 hover:text-slate-900 hover:bg-[#E8E3D6]'
+                ? 'text-slate-700 hover:text-slate-900 hover:bg-[#171B2E]/10'
                 : 'text-zinc-300 hover:text-white hover:bg-zinc-800'
             }`}
           >
@@ -136,7 +136,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={onOpenEstimator}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold bg-gradient-to-r from-brand-600 to-brand-500 text-white shadow-md shadow-brand-500/20 hover:from-brand-500 hover:to-brand-400 transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 whitespace-nowrap shrink-0"
+            className="btn-primary flex items-center gap-2 px-4 py-2 rounded-sm text-xs font-bold transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 whitespace-nowrap shrink-0"
           >
             Get Scope &amp; Quote
           </button>
@@ -146,8 +146,8 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="hidden md:flex xl:hidden items-center gap-2">
           <button
             onClick={onToggleTheme}
-            className={`p-2 rounded-lg border ${
-              isLightMode ? 'bg-[#E8E3D6] border-[#D9D3C3] text-slate-700' : 'bg-zinc-900 border-zinc-800 text-zinc-300'
+            className={`p-2 rounded-sm border ${
+              isLightMode ? 'bg-[#171B2E]/10 border-[#171B2E]/20 text-slate-700' : 'bg-zinc-900 border-zinc-800 text-zinc-300'
             }`}
             aria-label="Toggle theme"
           >
@@ -156,7 +156,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={onOpenAiAssistant}
-            className="p-2 rounded-lg bg-brand-500/10 text-brand-500 border border-brand-500/20"
+            className="p-2 rounded-sm bg-brand-500/10 text-brand-500 border border-brand-500/20"
             aria-label="Spesio AI"
           >
             <Sparkles className="w-4 h-4" />
@@ -164,7 +164,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={onOpenEstimator}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-bold bg-gradient-to-r from-brand-600 to-brand-500 text-white shadow-md shadow-brand-500/20 transition-all cursor-pointer whitespace-nowrap"
+            className="btn-primary flex items-center gap-2 px-3.5 py-2 rounded-sm text-xs font-bold transition-all cursor-pointer whitespace-nowrap"
           >
             Get Quote
           </button>
@@ -174,8 +174,8 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex md:hidden items-center gap-2">
           <button
             onClick={onToggleTheme}
-            className={`p-2 rounded-lg border ${
-              isLightMode ? 'bg-[#E8E3D6] border-[#D9D3C3] text-slate-700' : 'bg-zinc-900 border-zinc-800 text-zinc-300'
+            className={`p-2 rounded-sm border ${
+              isLightMode ? 'bg-[#171B2E]/10 border-[#171B2E]/20 text-slate-700' : 'bg-zinc-900 border-zinc-800 text-zinc-300'
             }`}
             aria-label="Toggle theme"
           >
@@ -184,7 +184,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={onOpenAiAssistant}
-            className="p-2 rounded-lg bg-brand-500/10 text-brand-500 border border-brand-500/20"
+            className="p-2 rounded-sm bg-brand-500/10 text-brand-500 border border-brand-500/20"
             aria-label="Spesio AI"
           >
             <Sparkles className="w-5 h-5" />
@@ -209,7 +209,7 @@ export const Header: React.FC<HeaderProps> = ({
           exit={{ opacity: 0, height: 0 }}
           transition={{ duration: 0.25 }}
           className={`md:hidden border-b px-4 pt-3 pb-6 space-y-3 overflow-hidden ${
-            isLightMode ? 'bg-[#EFE9DA] border-[#D9D3C3]' : 'bg-[#0D111A] border-brand-500/20'
+            isLightMode ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20' : 'bg-[#171B2E] border-brand-500/20'
           }`}
         >
           {NAV_LINKS.map((link) => (
@@ -226,20 +226,20 @@ export const Header: React.FC<HeaderProps> = ({
               {link.name}
             </a>
           ))}
-          <div className={`pt-3 border-t space-y-2 ${isLightMode ? 'border-[#D9D3C3]' : 'border-zinc-800'}`}>
+          <div className={`pt-3 border-t space-y-2 ${isLightMode ? 'border-[#171B2E]/20' : 'border-zinc-800'}`}>
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenEstimator();
               }}
-              className="w-full text-center py-2.5 rounded-lg text-xs font-bold bg-brand-500 text-white shadow-md shadow-brand-500/20"
+              className="btn-primary w-full text-center py-2.5 rounded-sm text-xs font-bold "
             >
               Get Project Scope & Quote
             </button>
             <a
               href={`tel:${COMPANY_INFO.founder.phone}`}
-              className={`flex items-center justify-center gap-2 w-full py-2.5 rounded-lg text-xs font-semibold border ${
-                isLightMode ? 'bg-[#E8E3D6] border-[#D9D3C3] text-slate-800' : 'bg-zinc-900 border-zinc-800 text-zinc-200'
+              className={`flex items-center justify-center gap-2 w-full py-2.5 rounded-sm text-xs font-semibold border ${
+                isLightMode ? 'bg-[#171B2E]/10 border-[#171B2E]/20 text-slate-800' : 'bg-zinc-900 border-zinc-800 text-zinc-200'
               }`}
             >
               <Phone className="w-4 h-4 text-brand-500" />

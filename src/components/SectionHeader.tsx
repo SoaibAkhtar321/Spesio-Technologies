@@ -8,25 +8,25 @@ interface SectionHeaderProps {
   isLightMode?: boolean;
 }
 
-/** Shared header block (eyebrow pill + title + description) used across homepage sections, with a scroll-triggered fade-in. */
+/** Editorial section header: thin rule, mono index label on the left, large heading on the right. */
 export const SectionHeader: React.FC<SectionHeaderProps> = ({ eyebrow, title, description, isLightMode = true }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.4 }}
-      transition={{ duration: 0.5 }}
-      className="text-center max-w-3xl mx-auto mb-8 sm:mb-16"
+      transition={{ duration: 0.4 }}
+      className={`grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-10 pt-4 mb-8 sm:mb-14 border-t ${
+        isLightMode ? 'border-[#171B2E]' : 'border-zinc-700'
+      }`}
     >
-      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-600 font-bold text-xs tracking-wider uppercase mb-3">
-        {eyebrow}
+      <div className="lg:col-span-4 font-mono text-[11px] sm:text-xs uppercase tracking-wider text-brand-600">{eyebrow}</div>
+      <div className="lg:col-span-8">
+        <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight ${isLightMode ? 'text-slate-900' : 'text-white'}`}>{title}</h2>
+        {description && (
+          <p className={`mt-3 text-base max-w-xl ${isLightMode ? 'text-slate-600' : 'text-zinc-400'}`}>{description}</p>
+        )}
       </div>
-      <h2 className={`text-3xl sm:text-4xl font-black tracking-tight ${isLightMode ? 'text-slate-900' : 'text-white'}`}>
-        {title}
-      </h2>
-      {description && (
-        <p className={`mt-3 text-base font-medium ${isLightMode ? 'text-slate-600' : 'text-zinc-400'}`}>{description}</p>
-      )}
     </motion.div>
   );
 };

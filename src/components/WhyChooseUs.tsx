@@ -19,12 +19,12 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ isLightMode = true }) 
 
   return (
     <section id="why-choose-us" className={`py-10 sm:py-20 transition-colors duration-200 relative border-t ${
-      isLightMode ? 'bg-[#F1EDE3] border-[#D9D3C3]' : 'bg-[#111110] border-zinc-900'
+      isLightMode ? 'bg-[#D6E6FF] border-[#171B2E]/20' : 'bg-[#12162A] border-zinc-900'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-10">
         <SectionHeader
           isLightMode={isLightMode}
-          eyebrow="Why Spesio"
+          eyebrow="02 / Why Spesio"
           title="Why Businesses Choose Spesio Technologies"
           description="A founder-led studio built around precision engineering, honest communication, and long-term reliability."
         />
@@ -43,13 +43,13 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ isLightMode = true }) 
                 key={reason.title}
                 variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } } }}
                 whileHover={{ y: -4 }}
-                className={`p-3.5 sm:p-6 rounded-xl sm:rounded-2xl border transition-colors duration-300 ${
+                className={`p-3.5 sm:p-6 rounded-sm sm:rounded-sm border transition-colors duration-300 ${
                   isLightMode
-                    ? 'bg-[#EFE9DA] border-[#D9D3C3] hover:border-brand-300 hover:shadow-md'
+                    ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20 hover:border-brand-300'
                     : 'bg-zinc-900/40 border-zinc-800 hover:border-brand-500/40'
                 }`}
               >
-                <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center mb-2.5 sm:mb-4">
+                <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-sm sm:rounded-sm bg-brand-500/10 border border-brand-500/30 flex items-center justify-center mb-2.5 sm:mb-4">
                   <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-brand-500" />
                 </div>
                 <h3 className={`text-xs sm:text-base font-bold mb-1 sm:mb-1.5 leading-snug ${isLightMode ? 'text-slate-900' : 'text-white'}`}>{reason.title}</h3>

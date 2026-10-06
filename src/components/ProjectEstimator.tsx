@@ -66,24 +66,24 @@ const PackageCard: React.FC<{ pkg: PricingPackage; isLightMode: boolean }> = ({ 
   <motion.div
     variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } } }}
     whileHover={{ y: -6 }}
-    className={`relative flex flex-col rounded-2xl sm:rounded-3xl border p-4 sm:p-6 transition-all duration-300 will-change-transform w-[78vw] xs:w-[72vw] shrink-0 snap-start sm:w-full sm:shrink ${
+    className={`relative flex flex-col rounded-sm sm:rounded-sm border p-4 sm:p-6 transition-all duration-300 will-change-transform w-[78vw] xs:w-[72vw] shrink-0 snap-start sm:w-full sm:shrink ${
       pkg.highlight
         ? isLightMode
-          ? 'bg-[#EFE9DA] border-brand-400 shadow-xl shadow-brand-500/15 ring-2 ring-brand-400/30'
-          : 'bg-gradient-to-b from-zinc-900 to-black border-brand-500 shadow-xl shadow-brand-500/20'
+          ? 'bg-[#FFFDF8]/60 border-brand-400 ring-2 ring-brand-400/30'
+          : 'bg-zinc-900 border-brand-500'
         : isLightMode
-          ? 'bg-[#EFE9DA] border-[#D9D3C3] hover:border-brand-300 hover:shadow-lg hover:shadow-brand-500/10'
+          ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20 hover:border-brand-300'
           : 'bg-zinc-900/60 border-zinc-800 hover:border-brand-500/40'
     }`}
   >
     {pkg.highlight && (
-      <span className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-full bg-gradient-to-r from-brand-600 to-brand-500 text-white text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider shadow-md whitespace-nowrap">
+      <span className="btn-primary absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-sm text-[9px] sm:text-[10px] font-semibold font-mono uppercase tracking-wider whitespace-nowrap">
         <Star className="w-3 h-3 fill-current" /> Most Popular
       </span>
     )}
 
     <div className="text-2xl sm:text-3xl mb-1.5 sm:mb-2">{pkg.emoji}</div>
-    <h4 className={`text-base sm:text-lg font-black ${isLightMode ? 'text-slate-900' : 'text-white'}`}>{pkg.name}</h4>
+    <h4 className={`text-base sm:text-lg font-bold ${isLightMode ? 'text-slate-900' : 'text-white'}`}>{pkg.name}</h4>
     <p className={`mt-0.5 text-[10px] sm:text-[11px] font-semibold italic ${isLightMode ? 'text-brand-600' : 'text-brand-400'}`}>{pkg.tagline}</p>
 
     <ul className="mt-4 sm:mt-5 space-y-2 sm:space-y-2.5 flex-1">
@@ -105,9 +105,9 @@ const PackageCard: React.FC<{ pkg: PricingPackage; isLightMode: boolean }> = ({ 
     <button
       type="button"
       onClick={() => openWhatsApp(buildPackageWhatsAppText(pkg.name))}
-      className={`mt-5 sm:mt-6 w-full py-2.5 sm:py-3 rounded-xl text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
+      className={`mt-5 sm:mt-6 w-full py-2.5 sm:py-3 rounded-sm text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
         pkg.highlight
-          ? 'bg-gradient-to-r from-brand-600 to-brand-500 text-white shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40'
+          ? 'bg-brand-600 text-white'
           : isLightMode
             ? 'bg-slate-900 text-white hover:bg-brand-600'
             : 'bg-zinc-800 text-white hover:bg-brand-600'
@@ -197,25 +197,17 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
 
   return (
     <section id="estimator" className={`py-12 sm:py-20 transition-colors duration-200 border-t relative overflow-hidden ${
-      isLightMode ? 'bg-[#E8E3D6] border-[#D9D3C3]' : 'bg-[#111110] border-zinc-900'
+      isLightMode ? 'bg-[#FFD8CF] border-[#171B2E]/20' : 'bg-[#12162A] border-zinc-900'
     }`}>
       {/* Floating subtle background gradients */}
-      <motion.div
-        animate={{ x: [0, 20, 0], y: [0, -14, 0] }}
-        transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
-        className={`absolute top-10 right-10 w-56 h-56 sm:w-80 sm:h-80 rounded-full blur-3xl pointer-events-none ${
-          isLightMode ? 'bg-brand-500/10' : 'bg-brand-600/10'
-        }`}
-      />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
 
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-          <div className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-600 text-[10px] sm:text-xs font-bold tracking-wider uppercase mb-3">
-            Website &amp; Android Packages
+        <div className="text-left max-w-5xl mb-8 sm:mb-10">
+          <div className="inline-flex items-center gap-2 text-brand-600 text-[10px] sm:text-xs font-bold tracking-wider font-mono uppercase mb-3">
+            05 / Website &amp; Android packages
           </div>
-          <h2 className={`text-2xl sm:text-4xl font-black tracking-tight ${
+          <h2 className={`text-2xl sm:text-4xl font-bold tracking-tight ${
             isLightMode ? 'text-slate-900' : 'text-white'
           }`}>
             Simple Packages. Clear Scope. No Surprises.
@@ -229,13 +221,13 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
 
         {/* Animated Segmented Mode Toggle */}
         <div className="flex justify-center mb-10 sm:mb-12">
-          <div className={`relative inline-flex p-1.5 rounded-2xl border ${
-            isLightMode ? 'bg-[#E8E3D6] border-[#D9D3C3]' : 'bg-zinc-900 border-zinc-800'
+          <div className={`relative inline-flex p-1.5 rounded-sm border ${
+            isLightMode ? 'bg-[#171B2E]/10 border-[#171B2E]/20' : 'bg-zinc-900 border-zinc-800'
           }`}>
             <motion.div
               layout
               transition={{ type: 'spring', stiffness: 400, damping: 32 }}
-              className="absolute top-1.5 bottom-1.5 rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 shadow-lg shadow-brand-500/25"
+              className="absolute top-1.5 bottom-1.5 rounded-sm bg-brand-600"
               style={{
                 left: mode === 'view' ? '6px' : '50%',
                 right: mode === 'view' ? '50%' : '6px',
@@ -244,7 +236,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
             <button
               type="button"
               onClick={() => handleModeChange('view')}
-              className={`relative z-10 flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-[11px] sm:text-sm font-bold transition-colors cursor-pointer ${
+              className={`relative z-10 flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-sm text-[11px] sm:text-sm font-bold transition-colors cursor-pointer ${
                 mode === 'view' ? 'text-white' : isLightMode ? 'text-slate-600' : 'text-zinc-400'
               }`}
             >
@@ -254,7 +246,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
             <button
               type="button"
               onClick={() => handleModeChange('wizard')}
-              className={`relative z-10 flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-[11px] sm:text-sm font-bold transition-colors cursor-pointer ${
+              className={`relative z-10 flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-sm text-[11px] sm:text-sm font-bold transition-colors cursor-pointer ${
                 mode === 'wizard' ? 'text-white' : isLightMode ? 'text-slate-600' : 'text-zinc-400'
               }`}
             >
@@ -278,7 +270,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
               <div>
                 <div className="flex items-center gap-2 mb-4 sm:mb-6 px-4 sm:px-0">
                   <Globe className="w-4 h-4 sm:w-5 sm:h-5 text-brand-500" />
-                  <h3 className={`text-lg sm:text-2xl font-black ${isLightMode ? 'text-slate-900' : 'text-white'}`}>Website Packages</h3>
+                  <h3 className={`text-lg sm:text-2xl font-bold ${isLightMode ? 'text-slate-900' : 'text-white'}`}>Website Packages</h3>
                 </div>
                 <CardCarousel>
                   {WEBSITE_PACKAGES.map((pkg) => (
@@ -294,7 +286,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
               <div>
                 <div className="flex items-center gap-2 mb-4 sm:mb-6 px-4 sm:px-0">
                   <Smartphone className="w-4 h-4 sm:w-5 sm:h-5 text-brand-500" />
-                  <h3 className={`text-lg sm:text-2xl font-black ${isLightMode ? 'text-slate-900' : 'text-white'}`}>Android App Packages</h3>
+                  <h3 className={`text-lg sm:text-2xl font-bold ${isLightMode ? 'text-slate-900' : 'text-white'}`}>Android App Packages</h3>
                 </div>
                 <CardCarousel>
                   {ANDROID_PACKAGES.map((pkg) => (
@@ -310,13 +302,13 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
               <div>
                 <div className="flex items-center gap-2 mb-4 sm:mb-6 px-4 sm:px-0">
                   <Layers className="w-4 h-4 sm:w-5 sm:h-5 text-brand-500" />
-                  <h3 className={`text-lg sm:text-2xl font-black ${isLightMode ? 'text-slate-900' : 'text-white'}`}>Website + App Bundles</h3>
+                  <h3 className={`text-lg sm:text-2xl font-bold ${isLightMode ? 'text-slate-900' : 'text-white'}`}>Website + App Bundles</h3>
                 </div>
                 <div
-                  className={`rounded-2xl sm:rounded-3xl p-4 sm:p-8 border overflow-hidden relative mx-4 sm:mx-0 ${
+                  className={`rounded-sm sm:rounded-sm p-4 sm:p-8 border overflow-hidden relative mx-4 sm:mx-0 ${
                     isLightMode
-                      ? 'bg-gradient-to-br from-[#F1EDE3] via-[#EFE9DA] to-[#F1EDE3] border-brand-200'
-                      : 'bg-gradient-to-br from-brand-950/40 via-zinc-900 to-zinc-950 border-brand-500/30'
+                      ? 'bg-[#FFFDF8]/60 border-brand-200'
+                      : 'bg-zinc-900 border-brand-500/30'
                   }`}
                 >
                   <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 pb-2 -mx-4 px-4 scrollbar-hide sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-5 sm:overflow-visible sm:mx-0 sm:px-0 sm:pb-0">
@@ -328,20 +320,20 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                           key={bundle.id}
                           variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } } }}
                           whileHover={{ y: -6 }}
-                          className={`relative flex flex-col rounded-xl sm:rounded-2xl border p-4 sm:p-5 transition-all will-change-transform w-[70vw] shrink-0 snap-start sm:w-full sm:shrink ${
+                          className={`relative flex flex-col rounded-sm sm:rounded-sm border p-4 sm:p-5 transition-all will-change-transform w-[70vw] shrink-0 snap-start sm:w-full sm:shrink ${
                             bundle.highlight
-                              ? 'bg-gradient-to-b from-brand-600 to-brand-500 border-brand-400 text-white shadow-xl shadow-brand-500/30'
+                              ? 'bg-brand-600 border-brand-400 text-white'
                               : isLightMode
-                                ? 'bg-[#EFE9DA] border-brand-200 hover:border-brand-400'
+                                ? 'bg-[#FFFDF8]/60 border-brand-200 hover:border-brand-400'
                                 : 'bg-zinc-900/70 border-zinc-800 hover:border-brand-500/40'
                           }`}
                         >
                           {bundle.highlight && (
-                            <span className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-full bg-[#EFE9DA] text-brand-600 text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider shadow-md whitespace-nowrap">
+                            <span className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-sm bg-[#FFFDF8]/60 text-brand-600 text-[9px] sm:text-[10px] font-semibold font-mono uppercase tracking-wider whitespace-nowrap">
                               ⭐ Best Value
                             </span>
                           )}
-                          <h4 className={`text-sm sm:text-base font-black ${bundle.highlight ? 'text-white' : isLightMode ? 'text-slate-900' : 'text-white'}`}>
+                          <h4 className={`text-sm sm:text-base font-bold ${bundle.highlight ? 'text-white' : isLightMode ? 'text-slate-900' : 'text-white'}`}>
                             {bundle.name}
                           </h4>
                           <p className={`mt-0.5 text-[10px] sm:text-[11px] font-semibold italic ${bundle.highlight ? 'text-white/85' : isLightMode ? 'text-brand-600' : 'text-brand-400'}`}>
@@ -354,9 +346,9 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                           <button
                             type="button"
                             onClick={() => openWhatsApp(buildBundleWhatsAppText(bundle.name))}
-                            className={`mt-4 sm:mt-5 w-full py-2 sm:py-2.5 rounded-xl text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
+                            className={`mt-4 sm:mt-5 w-full py-2 sm:py-2.5 rounded-sm text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
                               bundle.highlight
-                                ? 'bg-[#EFE9DA] text-brand-600 hover:bg-[#E8E3D6]'
+                                ? 'bg-[#FFFDF8]/60 text-brand-600 hover:bg-[#171B2E]/10'
                                 : isLightMode
                                   ? 'bg-slate-900 text-white hover:bg-brand-600'
                                   : 'bg-zinc-800 text-white hover:bg-brand-600'
@@ -384,8 +376,8 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
               transition={{ duration: 0.3 }}
               className="max-w-3xl mx-auto"
             >
-              <div className={`rounded-2xl sm:rounded-3xl border p-4 sm:p-10 ${
-                isLightMode ? 'bg-[#EFE9DA] border-[#D9D3C3] shadow-sm' : 'bg-zinc-900/80 border-zinc-800'
+              <div className={`rounded-sm sm:rounded-sm border p-4 sm:p-10 ${
+                isLightMode ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20' : 'bg-zinc-900/80 border-zinc-800'
               }`}>
 
                 {/* Step Progress */}
@@ -394,7 +386,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                     <div
                       key={n}
                       className={`h-1.5 rounded-full transition-all duration-300 ${
-                        n <= step ? 'w-8 sm:w-10 bg-brand-500' : `w-5 sm:w-6 ${isLightMode ? 'bg-[#D9D3C3]' : 'bg-zinc-800'}`
+                        n <= step ? 'w-8 sm:w-10 bg-brand-500' : `w-5 sm:w-6 ${isLightMode ? 'bg-[#171B2E]/20' : 'bg-zinc-800'}`
                       }`}
                     />
                   ))}
@@ -403,7 +395,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                 <AnimatePresence mode="wait">
                   {step === 1 && (
                     <motion.div key="s1" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.25 }}>
-                      <h3 className={`text-base sm:text-lg font-black mb-1 ${isLightMode ? 'text-slate-900' : 'text-white'}`}>Step 1 — What do you need?</h3>
+                      <h3 className={`text-base sm:text-lg font-bold mb-1 ${isLightMode ? 'text-slate-900' : 'text-white'}`}>Step 1 — What do you need?</h3>
                       <p className={`text-[11px] sm:text-xs mb-5 sm:mb-6 ${isLightMode ? 'text-slate-500' : 'text-zinc-400'}`}>Choose the type of project you want to build.</p>
                       <div className="grid grid-cols-3 gap-2 sm:gap-3">
                         {[
@@ -415,13 +407,13 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                             key={id}
                             type="button"
                             onClick={() => { setNeed(id as NeedType); goToStep(2); }}
-                            className={`p-3 sm:p-5 rounded-xl sm:rounded-2xl border text-center transition-all cursor-pointer ${
+                            className={`p-3 sm:p-5 rounded-sm sm:rounded-sm border text-center transition-all cursor-pointer ${
                               need === id
                                 ? isLightMode
-                                  ? 'bg-[#E8E3D6] border-brand-500 ring-1 ring-brand-500/30'
+                                  ? 'bg-[#171B2E]/10 border-brand-500 ring-1 ring-brand-500/30'
                                   : 'bg-brand-500/10 border-brand-500'
                                 : isLightMode
-                                  ? 'bg-[#EFE9DA] border-[#D9D3C3] hover:border-brand-300'
+                                  ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20 hover:border-brand-300'
                                   : 'bg-zinc-950 border-zinc-800 hover:border-brand-500/40'
                             }`}
                           >
@@ -435,7 +427,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
 
                   {step === 2 && (
                     <motion.div key="s2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.25 }}>
-                      <h3 className={`text-base sm:text-lg font-black mb-1 ${isLightMode ? 'text-slate-900' : 'text-white'}`}>Step 2 — Choose your complexity tier</h3>
+                      <h3 className={`text-base sm:text-lg font-bold mb-1 ${isLightMode ? 'text-slate-900' : 'text-white'}`}>Step 2 — Choose your complexity tier</h3>
                       <p className={`text-[11px] sm:text-xs mb-5 sm:mb-6 ${isLightMode ? 'text-slate-500' : 'text-zinc-400'}`}>Every tier includes 6 months of FREE maintenance.</p>
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
                         {TIER_ORDER.map((t) => {
@@ -447,11 +439,11 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                               key={t}
                               type="button"
                               onClick={() => { setTier(t); goToStep(4); }}
-                              className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl border text-center capitalize transition-all cursor-pointer ${
+                              className={`p-3 sm:p-4 rounded-sm sm:rounded-sm border text-center capitalize transition-all cursor-pointer ${
                                 tier === t
-                                  ? 'bg-brand-600 border-brand-600 text-white shadow-lg shadow-brand-500/20'
+                                  ? 'bg-brand-600 border-brand-600 text-white'
                                   : isLightMode
-                                    ? 'bg-[#EFE9DA] border-[#D9D3C3] text-slate-700 hover:border-brand-300'
+                                    ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20 text-slate-700 hover:border-brand-300'
                                     : 'bg-zinc-950 border-zinc-800 text-zinc-300 hover:border-brand-500/40'
                               }`}
                             >
@@ -470,22 +462,22 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
 
                   {step === 4 && recommendation && (recommendation.kind === 'package' ? recommendation.pkg : recommendation.bundle) && (
                     <motion.div key="s4" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.25 }}>
-                      <h3 className={`text-base sm:text-lg font-black mb-1 ${isLightMode ? 'text-slate-900' : 'text-white'}`}>Step 4 — Your Recommended Package</h3>
+                      <h3 className={`text-base sm:text-lg font-bold mb-1 ${isLightMode ? 'text-slate-900' : 'text-white'}`}>Step 4 — Your Recommended Package</h3>
                       <p className={`text-[11px] sm:text-xs mb-5 sm:mb-6 ${isLightMode ? 'text-slate-500' : 'text-zinc-400'}`}>Based on your answers, here is what we suggest.</p>
 
-                      <div className={`rounded-2xl sm:rounded-3xl p-4 sm:p-8 border shadow-2xl space-y-5 sm:space-y-6 ${
+                      <div className={`rounded-sm sm:rounded-sm p-4 sm:p-8 border space-y-5 sm:space-y-6 ${
                         isLightMode
-                          ? 'bg-[#EFE9DA] border-[#D9D3C3] shadow-slate-200/80'
-                          : 'bg-gradient-to-b from-zinc-900 to-black border-brand-500/30'
+                          ? 'bg-[#FFFDF8]/60 border-[#171B2E]/20'
+                          : 'bg-zinc-900 border-brand-500/30'
                       }`}>
-                        <div className={`flex items-center justify-between pb-3 sm:pb-4 border-b ${isLightMode ? 'border-[#D9D3C3]' : 'border-zinc-800'}`}>
-                          <span className="text-[10px] sm:text-xs font-extrabold tracking-widest uppercase text-brand-600">Recommendation Summary</span>
+                        <div className={`flex items-center justify-between pb-3 sm:pb-4 border-b ${isLightMode ? 'border-[#171B2E]/20' : 'border-zinc-800'}`}>
+                          <span className="text-[10px] sm:text-xs font-semibold tracking-widest font-mono uppercase text-brand-600">Recommendation Summary</span>
                           <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-brand-500" />
                         </div>
 
                         <div>
-                          <div className={`text-[11px] sm:text-xs font-medium uppercase tracking-wider ${isLightMode ? 'text-slate-500' : 'text-zinc-400'}`}>Package</div>
-                          <div className={`text-xl sm:text-2xl font-black mt-1 ${isLightMode ? 'text-slate-900' : 'text-white'}`}>
+                          <div className={`text-[11px] sm:text-xs font-medium font-mono uppercase tracking-wider ${isLightMode ? 'text-slate-500' : 'text-zinc-400'}`}>Package</div>
+                          <div className={`text-xl sm:text-2xl font-bold mt-1 ${isLightMode ? 'text-slate-900' : 'text-white'}`}>
                             {recommendation.kind === 'package' ? recommendation.pkg!.name : recommendation.bundle!.name}
                           </div>
                         </div>
@@ -514,7 +506,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                           </div>
                         )}
 
-                        <div className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl border space-y-1 ${isLightMode ? 'bg-[#F1EDE3] border-[#D9D3C3]' : 'bg-zinc-950 border-zinc-800'}`}>
+                        <div className={`p-3 sm:p-4 rounded-sm sm:rounded-sm border space-y-1 ${isLightMode ? 'bg-[#FFF3DC] border-[#171B2E]/20' : 'bg-zinc-950 border-zinc-800'}`}>
                           <div className={`flex items-center gap-2 text-[11px] sm:text-xs font-bold ${isLightMode ? 'text-slate-700' : 'text-zinc-300'}`}>
                             <Clock className="w-4 h-4 text-brand-500" />
                             <span>Estimated Timeline</span>
@@ -543,14 +535,14 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({
                         <div className="space-y-2 sm:space-y-2.5 pt-2">
                           <button
                             onClick={handleWizardWhatsApp}
-                            className="w-full flex items-center justify-center gap-2 py-3 sm:py-3.5 px-4 rounded-xl text-[11px] sm:text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-600/20 transition-all cursor-pointer"
+                            className="w-full flex items-center justify-center gap-2 py-3 sm:py-3.5 px-4 rounded-sm text-[11px] sm:text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white transition-all cursor-pointer"
                           >
                             <MessageCircle className="w-4 h-4" />
                             Chat on WhatsApp
                           </button>
                           <button
                             onClick={handleWizardProposal}
-                            className="w-full flex items-center justify-center gap-2 py-3 sm:py-3.5 px-4 rounded-xl text-[11px] sm:text-xs font-bold bg-brand-600 hover:bg-brand-500 text-white shadow-lg shadow-brand-500/20 transition-all cursor-pointer"
+                            className="btn-primary w-full flex items-center justify-center gap-2 py-3 sm:py-3.5 px-4 rounded-sm text-[11px] sm:text-xs font-bold transition-all cursor-pointer"
                           >
                             <Mail className="w-4 h-4" />
                             Request Proposal
