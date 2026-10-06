@@ -1,17 +1,45 @@
 @import "tailwindcss";
 
 @theme {
-  --color-maroon-50: #fbeef0;
-  --color-maroon-100: #f6d9dd;
-  --color-maroon-200: #edb3ba;
-  --color-maroon-300: #de8290;
-  --color-maroon-400: #c94f61;
-  --color-maroon-500: #a52a3d;
-  --color-maroon-600: #800020;
-  --color-maroon-700: #64001a;
-  --color-maroon-800: #4d0014;
-  --color-maroon-900: #38000e;
-  --color-maroon-950: #200008;
+  /* Brand: deep cobalt */
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dce7ff;
+  --color-brand-200: #b9cfff;
+  --color-brand-300: #8caef5;
+  --color-brand-400: #5a86e6;
+  --color-brand-500: #2a5fd0;
+  --color-brand-600: #0047ab;
+  --color-brand-700: #003a8c;
+  --color-brand-800: #002f70;
+  --color-brand-900: #002255;
+  --color-brand-950: #00152f;
+
+  /* Warm ivory surfaces and graphite text (light mode) */
+  --color-white: #fdfbf6;
+  --color-slate-50: #f6f2e9;
+  --color-slate-100: #eee9dd;
+  --color-slate-200: #e1dbcc;
+  --color-slate-300: #ccc5b3;
+  --color-slate-400: #9a9486;
+  --color-slate-500: #6e6a60;
+  --color-slate-600: #55524a;
+  --color-slate-700: #3f3d37;
+  --color-slate-800: #2a2926;
+  --color-slate-900: #1b1b19;
+  --color-slate-950: #0f0f0e;
+
+  /* Graphite (dark mode) */
+  --color-zinc-50: #f4f4f2;
+  --color-zinc-100: #e8e8e5;
+  --color-zinc-200: #d2d2ce;
+  --color-zinc-300: #b3b3ae;
+  --color-zinc-400: #8e8e89;
+  --color-zinc-500: #6b6b67;
+  --color-zinc-600: #4c4c49;
+  --color-zinc-700: #353533;
+  --color-zinc-800: #262625;
+  --color-zinc-900: #1a1a19;
+  --color-zinc-950: #111110;
 }
 
 html {

@@ -11,8 +11,8 @@ interface SectionDividerProps {
  * of an abrupt hard edge or an invisible one.
  */
 export const SectionDivider: React.FC<SectionDividerProps> = ({ isLightMode = true }) => {
-  const prevBg = isLightMode ? '#FFFFFF' : '#080A10';
-  const nextBg = isLightMode ? '#0B0D12' : '#000000';
+  const prevBg = isLightMode ? '#FDFBF6' : '#111110';
+  const nextBg = isLightMode ? '#1A1A19' : '#000000';
 
   return (
     <div aria-hidden="true" className="relative" style={{ backgroundColor: prevBg }}>
@@ -26,7 +26,7 @@ export const SectionDivider: React.FC<SectionDividerProps> = ({ isLightMode = tr
       {/* Maroon seam marking the exact fold */}
       <div
         className="absolute left-1/2 top-0 -translate-x-1/2 w-24 sm:w-40 h-px"
-        style={{ backgroundImage: 'linear-gradient(to right, transparent, rgba(128,0,32,0.6), transparent)' }}
+        style={{ backgroundImage: 'linear-gradient(to right, transparent, rgba(0,71,171,0.6), transparent)' }}
       />
     </div>
   );

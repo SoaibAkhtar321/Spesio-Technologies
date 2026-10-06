@@ -33,7 +33,6 @@ export interface PricingPackage {
   emoji: string;
   name: string;
   tagline: string;
-  price: number;
   features: string[];
   cta: string;
   highlight?: boolean;
@@ -45,14 +44,9 @@ export interface BundlePackage {
   tagline: string;
   websiteTier: PackageTierId;
   androidTier: PackageTierId;
-  price: number;
   highlight?: boolean;
 }
 
-export interface MaintenancePlan {
-  tier: PackageTierId;
-  priceLabel: string;
-}
 
 export interface ContactFormState {
   name: string;

@@ -1,4 +1,4 @@
-import { ServiceItem, PortfolioItem, PricingPackage, BundlePackage, MaintenancePlan } from '../types';
+import { ServiceItem, PortfolioItem, PricingPackage, BundlePackage } from '../types';
 
 export const COMPANY_INFO = {
   name: 'Spesio Technologies',
@@ -55,14 +55,6 @@ export const PORTFOLIO: PortfolioItem[] = [
 
 export const FAQS = [
   {
-    question: 'How much does a website cost?',
-    answer: 'Our fixed-price website packages start at ₹4,200 (Bronze) and go up to ₹20,500 (Diamond) for a full e-commerce platform with ERP integration. Every tier includes 6 months of free maintenance and is engineered, not templated.',
-  },
-  {
-    question: 'How much does an Android app cost?',
-    answer: 'Native Android app packages start at ₹9,000 for a Bronze information app, scaling up based on features like offline sync, push notifications, and backend integrations. See the Project Estimator for a tailored quote.',
-  },
-  {
     question: 'Do you provide free maintenance?',
     answer: 'Yes. Every website and app package from Spesio Technologies includes 6 months of free maintenance, covering bug fixes and minor updates after launch.',
   },
@@ -77,10 +69,6 @@ export const FAQS = [
   {
     question: 'Do you provide payment gateway integration?',
     answer: 'Yes. Diamond-tier websites and custom e-commerce builds include full payment gateway integration alongside order and inventory management.',
-  },
-  {
-    question: 'Do you develop Android apps only?',
-    answer: 'No. Alongside native Android apps, we build business websites, custom software, ERP systems, and AI integrations — Android is one of four core service areas.',
   },
   {
     question: 'Can I upgrade later?',
@@ -162,19 +150,13 @@ export const SERVICES: ServiceItem[] = [
   }
 ];
 
-/**
- * Fixed, professional package pricing (all figures in INR).
- * These are the ONLY prices used anywhere on the site — the AI Assistant,
- * pricing cards, and the "Find My Package" wizard all read from this list
- * rather than calculating arbitrary numbers.
- */
+/** Website and Android app packages (scope and features only). */
 export const WEBSITE_PACKAGES: PricingPackage[] = [
   {
     id: 'bronze',
     emoji: '🥉',
     name: 'Bronze Website',
     tagline: 'Engineered foundation, not a template',
-    price: 4200,
     features: [
       'Business landing page',
       'Up to 8 pages',
@@ -190,8 +172,7 @@ export const WEBSITE_PACKAGES: PricingPackage[] = [
     id: 'silver',
     emoji: '🥈',
     name: 'Silver Website',
-    tagline: 'Built to convert, priced to scale',
-    price: 7500,
+    tagline: 'Built to convert, built to scale',
     features: [
       'Everything in Bronze, PLUS',
       'Product / service listing',
@@ -210,7 +191,6 @@ export const WEBSITE_PACKAGES: PricingPackage[] = [
     emoji: '🥇',
     name: 'Gold Website',
     tagline: 'Full command center for your business',
-    price: 10500,
     features: [
       'Everything in Silver, PLUS',
       'Admin panel access',
@@ -228,7 +208,6 @@ export const WEBSITE_PACKAGES: PricingPackage[] = [
     emoji: '💎',
     name: 'Diamond Website',
     tagline: 'Enterprise-grade platform, flagship polish',
-    price: 20500,
     features: [
       'Everything in Gold, PLUS',
       'Full eCommerce platform',
@@ -249,8 +228,7 @@ export const ANDROID_PACKAGES: PricingPackage[] = [
     id: 'bronze',
     emoji: '🥉',
     name: 'Bronze Android App',
-    tagline: 'A native app that earns its price tag',
-    price: 9000,
+    tagline: 'A native app built to earn its place',
     features: [
       'Business information screens',
       'Contact screen',
@@ -269,7 +247,6 @@ export const ANDROID_PACKAGES: PricingPackage[] = [
     emoji: '🥈',
     name: 'Silver Android App',
     tagline: 'Real accounts, real orders, real growth',
-    price: 14500,
     features: [
       'Everything in Bronze, PLUS',
       'Login & authentication',
@@ -289,7 +266,6 @@ export const ANDROID_PACKAGES: PricingPackage[] = [
     emoji: '🥇',
     name: 'Gold Android App',
     tagline: 'Operations HQ, right in your pocket',
-    price: 21500,
     features: [
       'Everything in Silver, PLUS',
       'Web admin panel',
@@ -309,7 +285,6 @@ export const ANDROID_PACKAGES: PricingPackage[] = [
     emoji: '💎',
     name: 'Diamond Android App',
     tagline: 'The complete business, fully mobile',
-    price: 35000,
     features: [
       'Everything in Gold, PLUS',
       'Payment gateway',
@@ -325,17 +300,8 @@ export const ANDROID_PACKAGES: PricingPackage[] = [
 ];
 
 export const BUNDLES: BundlePackage[] = [
-  { id: 'starter', name: 'Starter Bundle', tagline: 'Two platforms, one smart price', websiteTier: 'bronze', androidTier: 'bronze', price: 12000 },
-  { id: 'business', name: 'Business Bundle', tagline: 'The serious-growth combo', websiteTier: 'silver', androidTier: 'silver', price: 20500 },
-  { id: 'professional', name: 'Professional Bundle', tagline: 'Full-stack presence, fully managed', websiteTier: 'gold', androidTier: 'gold', price: 29000 },
-  { id: 'enterprise', name: 'Enterprise Bundle', tagline: 'Everything, at flagship scale', websiteTier: 'diamond', androidTier: 'diamond', price: 52000, highlight: true },
+  { id: 'starter', name: 'Starter Bundle', tagline: 'Two platforms, one smart bundle', websiteTier: 'bronze', androidTier: 'bronze' },
+  { id: 'business', name: 'Business Bundle', tagline: 'The serious-growth combo', websiteTier: 'silver', androidTier: 'silver' },
+  { id: 'professional', name: 'Professional Bundle', tagline: 'Full-stack presence, fully managed', websiteTier: 'gold', androidTier: 'gold' },
+  { id: 'enterprise', name: 'Enterprise Bundle', tagline: 'Everything, at flagship scale', websiteTier: 'diamond', androidTier: 'diamond', highlight: true },
 ];
-
-export const WEBSITE_MAINTENANCE: MaintenancePlan[] = [
-  { tier: 'bronze', priceLabel: '₹1,050/year' },
-  { tier: 'silver', priceLabel: '₹1,800/year' },
-  { tier: 'gold', priceLabel: '₹2,550/year' },
-  { tier: 'diamond', priceLabel: '₹3,300/year' },
-];
-
-export const ANDROID_MAINTENANCE_LABEL = '₹3,750 – ₹6,000/year';

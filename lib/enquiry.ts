@@ -49,13 +49,13 @@ function escapeHtml(value: unknown): string {
 function buildEnquiryEmailHtml(enquiry: EnquiryRecord): string {
   const row = (label: string, value: string) => `
     <tr>
-      <td style="padding:8px 12px;font-weight:bold;color:#7a1f2b;white-space:nowrap;vertical-align:top;">${label}</td>
+      <td style="padding:8px 12px;font-weight:bold;color:#0047ab;white-space:nowrap;vertical-align:top;">${label}</td>
       <td style="padding:8px 12px;color:#1a1a1a;">${value || '-'}</td>
     </tr>`;
 
   return `
   <div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;">
-    <h2 style="color:#7a1f2b;border-bottom:2px solid #7a1f2b;padding-bottom:8px;">New Project Enquiry — Spesio Technologies</h2>
+    <h2 style="color:#0047ab;border-bottom:2px solid #0047ab;padding-bottom:8px;">New Project Enquiry — Spesio Technologies</h2>
     <table style="width:100%;border-collapse:collapse;">
       ${row('Name', escapeHtml(enquiry.name))}
       ${row('Phone', escapeHtml(enquiry.phone))}

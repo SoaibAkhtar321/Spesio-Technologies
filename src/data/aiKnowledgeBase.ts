@@ -82,13 +82,13 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     id: 'pricing',
     keywords: ['price', 'pricing', 'cost', 'budget', 'how much', 'charge', 'quote', 'package', 'packages'],
     answer:
-      "We use fixed, transparent packages (Bronze, Silver, Gold, Diamond) for both Website and Android App projects, plus discounted bundles, all in Indian Rupees (₹). See \"View Packages\" above for the full price list, or use \"Find My Package\" for a guided recommendation.",
+      "Every project is scoped to your requirements, so there is no fixed price list. Tell us what you need through the Contact section or WhatsApp and Soaib Akhtar will reply with a proposal. You can also browse the package features above or use \"Find My Package\" for a guided recommendation.",
   },
   {
     id: 'greeting',
     keywords: ['hello', 'hi', 'hey', 'good morning', 'good evening'],
     answer:
-      "Hello! I'm Spesio AI. I can tell you about our Services, Founder, Technologies, Pricing, Timelines, Process, or how to Contact us. What would you like to know?",
+      "Hello! I'm Spesio AI. I can tell you about our Services, Founder, Technologies, Packages, Timelines, Process, or how to Contact us. What would you like to know?",
   },
 ];
 

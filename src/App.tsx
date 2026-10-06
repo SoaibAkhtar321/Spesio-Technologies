@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useCallback, useState } from 'react';
+import React, { Suspense, lazy, useCallback, useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
@@ -26,7 +26,7 @@ interface SectionSkeletonProps {
 
 /** Lightweight pulse placeholder shown while a lazy section's chunk is loading. */
 const SectionSkeleton: React.FC<SectionSkeletonProps> = ({ isLightMode }) => (
-  <div className={`py-20 ${isLightMode ? 'bg-white' : 'bg-[#0A0D14]'}`} aria-hidden="true">
+  <div className={`py-20 ${isLightMode ? 'bg-white' : 'bg-[#151514]'}`} aria-hidden="true">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 animate-pulse space-y-4">
       <div className={`h-4 w-40 mx-auto rounded-full ${isLightMode ? 'bg-slate-200' : 'bg-zinc-800'}`} />
       <div className={`h-8 w-72 mx-auto rounded-lg ${isLightMode ? 'bg-slate-200' : 'bg-zinc-800'}`} />
@@ -36,14 +36,44 @@ const SectionSkeleton: React.FC<SectionSkeletonProps> = ({ isLightMode }) => (
 );
 
 export default function App() {
-  const [isLightMode, setIsLightMode] = useState(true);
+  // Theme: use the saved choice if the visitor has toggled it before; otherwise follow the
+  // device/browser setting (prefers-color-scheme) and keep following it if that setting changes.
+  const [isLightMode, setIsLightMode] = useState<boolean>(() => {
+    try {
+      const saved = localStorage.getItem('spesio-theme');
+      if (saved === 'light' || saved === 'dark') return saved === 'light';
+    } catch { /* storage unavailable */ }
+    return !window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const onChange = (e: MediaQueryListEvent) => {
+      let hasSaved = false;
+      try { hasSaved = !!localStorage.getItem('spesio-theme'); } catch { /* ignore */ }
+      if (!hasSaved) setIsLightMode(!e.matches);
+    };
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.style.colorScheme = isLightMode ? 'light' : 'dark';
+    document.documentElement.style.backgroundColor = isLightMode ? '#FDFBF6' : '#151514';
+  }, [isLightMode]);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [selectedServiceForEstimate, setSelectedServiceForEstimate] = useState<string>('software');
   const [contactInitialService, setContactInitialService] = useState<string>('Custom Software Development');
 
   const handleOpenAiAssistant = useCallback(() => setIsAiModalOpen(true), []);
   const handleCloseAiAssistant = useCallback(() => setIsAiModalOpen(false), []);
-  const handleToggleTheme = useCallback(() => setIsLightMode((prev) => !prev), []);
+  const handleToggleTheme = useCallback(() => {
+    setIsLightMode((prev) => {
+      const next = !prev;
+      try { localStorage.setItem('spesio-theme', next ? 'light' : 'dark'); } catch { /* ignore */ }
+      return next;
+    });
+  }, []);
 
   const handleOpenEstimator = useCallback(() => {
     const estimatorElem = document.getElementById('estimator');
@@ -75,14 +105,14 @@ export default function App() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
-      className={`min-h-screen font-sans antialiased transition-colors duration-200 selection:bg-maroon-500 selection:text-white ${
-        isLightMode ? 'bg-white text-slate-900' : 'bg-[#0A0D14] text-zinc-100'
+      className={`min-h-screen font-sans antialiased transition-colors duration-200 selection:bg-brand-500 selection:text-white ${
+        isLightMode ? 'bg-white text-slate-900' : 'bg-[#151514] text-zinc-100'
       }`}
     >
       {/* Skip link for keyboard/screen-reader users */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-maroon-600 focus:text-white focus:text-sm focus:font-semibold"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-brand-600 focus:text-white focus:text-sm focus:font-semibold"
       >
         Skip to main content
       </a>

@@ -53,14 +53,14 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     id: 'website-cost',
     triggers: ['website cost', 'web cost', 'cost of website', 'price of website', 'how much for a website', 'pricing web'],
     answer:
-      'We use fixed website packages, not arbitrary quotes: Bronze ₹4,200, Silver ₹7,500, Gold ₹10,500, and Diamond ₹20,500 — each includes 6 months FREE maintenance and engineering that\'s built to last, not templated. Check "View Packages" above for full feature breakdowns, or use "Find My Package" for a guided recommendation.',
+      "Every project is scoped to your requirements, so there is no fixed price list. Tell us what you need through the Contact section or WhatsApp and Soaib Akhtar will reply with a proposal. You can also browse the package features above or use \"Find My Package\" for a guided recommendation.",
     followUps: ['How much does an Android app cost?', 'How do payments work?'],
   },
   {
     id: 'app-cost',
     triggers: ['app cost', 'cost of app', 'price of app', 'how much for an app', 'mobile app price', 'pricing app', 'android app cost'],
     answer:
-      'We use fixed Android app packages, not arbitrary quotes: Bronze ₹9,000, Silver ₹14,500, Gold ₹21,500, and Diamond ₹35,000 — each includes 6 months FREE maintenance. We also offer discounted Website + App bundles. Check "View Packages" above, or use "Find My Package" for a guided recommendation.',
+      "Every project is scoped to your requirements, so there is no fixed price list. Tell us what you need through the Contact section or WhatsApp and Soaib Akhtar will reply with a proposal. You can also browse the package features above or use \"Find My Package\" for a guided recommendation.",
     followUps: ['How much does a website cost?', 'How do payments work?'],
   },
   {
@@ -130,14 +130,14 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     id: 'greeting',
     triggers: ['hi', 'hello', 'hey', 'good morning', 'good evening', 'yo'],
     answer:
-      'Hey there! I am Spesio AI. Ask me about our services, pricing, timelines, tech stack, or the team — I am happy to help.',
+      'Hey there! I am Spesio AI. Ask me about our services, packages, timelines, tech stack, or the team — I am happy to help.',
     followUps: ['What services do you provide?', 'How much does a website cost?'],
   },
   {
     id: 'packages',
-    triggers: ['package', 'packages', 'bundle', 'bundles', 'pricing plan', 'plans', 'what packages'],
+    triggers: ['package', 'packages', 'bundle', 'bundles', 'plans', 'what packages'],
     answer:
-      'We offer four fixed tiers — Bronze, Silver, Gold, and Diamond — for both Website and Android App packages, plus discounted Website + App bundles (Starter, Business, Professional, Enterprise). Every package includes 6 months of FREE maintenance. See "View Packages" above for full details, or use "Find My Package" for a guided recommendation.',
+      'We offer four fixed tiers — Bronze, Silver, Gold, and Diamond — for both Website and Android App packages, plus Website + App bundles (Starter, Business, Professional, Enterprise). Every package includes 6 months of FREE maintenance. See "View Packages" above for full details, or use "Find My Package" for a guided recommendation.',
     followUps: ['How much does a website cost?', 'How much does an Android app cost?'],
   },
   {

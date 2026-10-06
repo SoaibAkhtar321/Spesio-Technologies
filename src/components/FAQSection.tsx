@@ -19,7 +19,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ isLightMode = true }) =>
 
   return (
     <section id="faq" className={`py-10 sm:py-20 transition-colors duration-200 relative border-t ${
-      isLightMode ? 'bg-white border-slate-200' : 'bg-[#080A10] border-zinc-900'
+      isLightMode ? 'bg-white border-slate-200' : 'bg-[#111110] border-zinc-900'
     }`}>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
@@ -37,7 +37,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ isLightMode = true }) =>
                 key={faq.question}
                 className={`rounded-xl sm:rounded-2xl border overflow-hidden transition-colors duration-300 ${
                   isLightMode
-                    ? 'bg-[#FAFAFB] border-slate-200'
+                    ? 'bg-[#F6F2E9] border-slate-200'
                     : 'bg-zinc-900/40 border-zinc-800'
                 }`}
               >
@@ -56,7 +56,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ isLightMode = true }) =>
                     transition={{ duration: 0.25 }}
                     className="shrink-0"
                   >
-                    <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-maroon-500" />
+                    <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-brand-500" />
                   </motion.span>
                 </button>
                 <AnimatePresence initial={false}>

@@ -19,7 +19,7 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ isLightMode = true }) 
 
   return (
     <section id="why-choose-us" className={`py-10 sm:py-20 transition-colors duration-200 relative border-t ${
-      isLightMode ? 'bg-white border-slate-200' : 'bg-[#080A10] border-zinc-900'
+      isLightMode ? 'bg-white border-slate-200' : 'bg-[#111110] border-zinc-900'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
@@ -45,12 +45,12 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ isLightMode = true }) 
                 whileHover={{ y: -4 }}
                 className={`p-3.5 sm:p-6 rounded-xl sm:rounded-2xl border transition-colors duration-300 ${
                   isLightMode
-                    ? 'bg-[#FAFAFB] border-slate-200 hover:border-maroon-300 hover:shadow-md'
-                    : 'bg-zinc-900/40 border-zinc-800 hover:border-maroon-500/40'
+                    ? 'bg-[#F6F2E9] border-slate-200 hover:border-brand-300 hover:shadow-md'
+                    : 'bg-zinc-900/40 border-zinc-800 hover:border-brand-500/40'
                 }`}
               >
-                <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl bg-maroon-500/10 border border-maroon-500/30 flex items-center justify-center mb-2.5 sm:mb-4">
-                  <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-maroon-500" />
+                <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center mb-2.5 sm:mb-4">
+                  <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-brand-500" />
                 </div>
                 <h3 className={`text-xs sm:text-base font-bold mb-1 sm:mb-1.5 leading-snug ${isLightMode ? 'text-slate-900' : 'text-white'}`}>{reason.title}</h3>
                 <p className={`text-[10px] sm:text-xs leading-snug sm:leading-relaxed ${isLightMode ? 'text-slate-600' : 'text-zinc-400'}`}>{reason.desc}</p>
