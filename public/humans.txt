@@ -1,0 +1,9 @@
+/* TEAM */
+Founder & engineer: Soaib Akhtar
+Studio: Spesio Technologies
+Location: Greater Noida, India
+Contact: spesiotechnologies [at] gmail.com
+
+/* SITE */
+Stack: React, TypeScript, Vite, three.js, Lenis
+Rendering: static prerender + hydration on Vercel

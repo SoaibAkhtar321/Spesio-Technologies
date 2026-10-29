@@ -1,0 +1,13 @@
+{
+  "name": "Spesio Technologies",
+  "short_name": "Spesio",
+  "description": "Founder-led studio building websites, web apps, Android apps and AI integrations.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B0B0C",
+  "theme_color": "#0B0B0C",
+  "icons": [
+    { "src": "/brand/spesio-mark-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/brand/spesio-mark-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
