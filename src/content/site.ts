@@ -9,7 +9,7 @@ export const SITE = {
   url: 'https://spesio-technologies.vercel.app',
   locale: 'en_IN',
   lang: 'en-IN',
-  themeColor: '#0D0F0E',
+  themeColor: '#F4EFE6',
   email: 'spesiotechnologies@gmail.com',
   phone: '+91 89578 33269',
   phoneE164: '+918957833269',
@@ -175,7 +175,7 @@ export const PROJECTS: Project[] = [
     stack: ['Next.js', 'Supabase', 'Google Maps'],
     liveUrl: 'https://propertyplanet.vercel.app/',
     service: 'website-development',
-    hue: ['#5F8A6E', '#121614'],
+    hue: ['#87A96B', '#2E2219'],
     motif: 'map',
   },
   {
@@ -197,7 +197,7 @@ export const PROJECTS: Project[] = [
     ],
     stack: ['Kotlin', 'Jetpack Compose', 'Firebase', 'Cloud Functions'],
     service: 'android-app-development',
-    hue: ['#C9452D', '#161211'],
+    hue: ['#D5851F', '#2A1F17'],
     motif: 'queue',
   },
   {
@@ -222,7 +222,7 @@ export const PROJECTS: Project[] = [
     stack: ['Next.js', 'TypeScript', 'Supabase', 'Razorpay'],
     liveUrl: 'https://eifa-couture-ds3d-theta.vercel.app/',
     service: 'website-development',
-    hue: ['#B89A6A', '#15130F'],
+    hue: ['#E2C29A', '#3A2A1E'],
     motif: 'thread',
   },
 ];

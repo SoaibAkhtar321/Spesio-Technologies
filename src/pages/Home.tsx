@@ -1,63 +1,45 @@
-import { useEffect, useRef, useState, type CSSProperties, type FormEvent } from 'react';
+import { useEffect, useState, type CSSProperties, type FormEvent } from 'react';
 import { Link, scrollToTarget } from '../router';
 import { HERO, BUILD_LIST, SERVICES, PROJECTS, PROCESS, PRINCIPLES, STACK, PACKAGES, FAQS, CONTACT, SITE, STUDIO } from '../content/site';
 import { Btn, Arrow, SectionHead } from '../components/ui';
+import { BrowserFrame, HeroComposite, ServiceArt } from '../components/Mockups';
 import { CoverArt } from '../components/CoverArt';
 
 /* ------------------------------------------------------------------ Hero */
 
 function Hero() {
-  const visual = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = visual.current;
-    if (!el || !window.matchMedia('(min-width: 960px)').matches) return;
-    let handle: { destroy: () => void } | undefined;
-    let cancelled = false;
-    const start = () =>
-      import('../visual/globe').then(({ createHeroScene }) => {
-        if (cancelled) return;
-        try {
-          handle = createHeroScene(el);
-        } catch {
-          /* WebGL unavailable: the static rings remain */
-        }
-      });
-    const t = window.setTimeout(start, 200);
-    return () => {
-      cancelled = true;
-      window.clearTimeout(t);
-      handle?.destroy();
-    };
-  }, []);
-
   return (
     <section className="hero" aria-labelledby="hero-title">
-      <div className="wrap">
-        <div className="hero__grid">
-          <div className="hero__text">
-            <span className="label status">{HERO.eyebrow}</span>
-            <h1 id="hero-title" className="h1">
-              {HERO.headline}
-            </h1>
-            <p className="lead">{HERO.sub}</p>
-            <div className="hero__ctas">
-              <Btn href="/#contact">{HERO.primaryCta}</Btn>
-              <Btn href="/#work" variant="outline">
-                {HERO.secondaryCta}
-              </Btn>
-            </div>
-          </div>
-          <div className="hero__visual" ref={visual} aria-hidden="true">
-            <div className="hero__ring" />
+      <div className="wrap hero__grid">
+        <div className="hero__text">
+          <span className="label status">{HERO.eyebrow}</span>
+          <h1 id="hero-title" className="h1">
+            {HERO.headline.replace(/businesses\.$/, '')}
+            <em>businesses.</em>
+          </h1>
+          <p className="lead">{HERO.sub}</p>
+          <div className="hero__ctas">
+            <Btn href="/#contact">{HERO.primaryCta}</Btn>
+            <Btn href="/#work" variant="outline">
+              {HERO.secondaryCta}
+            </Btn>
           </div>
         </div>
-        <div className="build-list" aria-label="What we build">
+        <div className="hero__visual" data-rv="">
+          <HeroComposite />
+        </div>
+      </div>
+      <div className="wrap">
+        <div className="proof">
+          <span className="label">Recent projects</span>
           <ul>
-            {BUILD_LIST.map((b) => (
-              <li key={b}>{b}</li>
+            {PROJECTS.map((p) => (
+              <li key={p.slug}>
+                <Link href={`/work/${p.slug}`}>{p.name}</Link>
+              </li>
             ))}
           </ul>
+          <span className="label proof__right">{BUILD_LIST.slice(0, 4).join(' · ')}</span>
         </div>
       </div>
     </section>
@@ -69,31 +51,38 @@ function Hero() {
 function Services() {
   return (
     <section className="section" id="services" aria-labelledby="services-title">
-      <div className="wrap">
-        <SectionHead
-          id="services-title"
-          label="Services"
-          title="What we build for you"
-          intro="Four services, one team. Most projects combine a website or app with an admin panel your staff can use every day."
-        />
-        <div className="svc-grid">
+      <div className="wrap split">
+        <div className="split__aside">
+          <div className="sticky">
+            <span className="label label--accent">01 · Services</span>
+            <h2 className="h2" id="services-title">
+              Everything you need to <em>get online</em> and grow.
+            </h2>
+            <p className="lead">Four services under one roof. Most projects pair a customer facing website or app with an admin panel your team uses every day.</p>
+            <Link className="tlink" href="/#contact">
+              Discuss your project <Arrow />
+            </Link>
+          </div>
+        </div>
+        <div className="svc-list">
           {SERVICES.map((s) => (
-            <article className="svc" key={s.slug}>
-              <div className="svc__top">
+            <article className="svc" key={s.slug} data-rv="">
+              <ServiceArt kind={s.slug} />
+              <div className="svc__body">
                 <span className="label">{s.number}</span>
+                <h3 className="h3">
+                  <Link href={`/services/${s.slug}`}>{s.title}</Link>
+                </h3>
+                <p className="muted">{s.line}</p>
+                <ul className="ticks">
+                  {s.capabilities.map((c) => (
+                    <li key={c}>{c}</li>
+                  ))}
+                </ul>
+                <Link className="tlink" href={`/services/${s.slug}`} aria-label={`More about ${s.title.toLowerCase()}`}>
+                  Learn more <Arrow />
+                </Link>
               </div>
-              <h3 className="h3">
-                <Link href={`/services/${s.slug}`}>{s.title}</Link>
-              </h3>
-              <p className="muted">{s.line}</p>
-              <ul>
-                {s.capabilities.map((c) => (
-                  <li key={c}>{c}</li>
-                ))}
-              </ul>
-              <Link className="tlink" href={`/services/${s.slug}`} aria-label={`More about ${s.title.toLowerCase()}`}>
-                Learn more <Arrow />
-              </Link>
             </article>
           ))}
         </div>
@@ -104,31 +93,43 @@ function Services() {
 
 /* ------------------------------------------------------------------ Work */
 
+export function WorkCard({ p, large = false }: { p: (typeof PROJECTS)[number]; large?: boolean }) {
+  const url = p.liveUrl ? p.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '') : `${p.name} for Android`;
+  return (
+    <Link href={`/work/${p.slug}`} className={`card${large ? ' card--large' : ''}`}>
+      <BrowserFrame url={url}>
+        <div className="card__media">
+          <CoverArt project={p} />
+          {p.liveUrl && <span className="badge">Live</span>}
+        </div>
+      </BrowserFrame>
+      <div className="card__meta">
+        <h3 className="card__title">{p.name}</h3>
+        <span className="label">{p.type}</span>
+      </div>
+      <p>{p.summary}</p>
+    </Link>
+  );
+}
+
 function Work() {
   return (
-    <section className="section" id="work" aria-labelledby="work-title">
+    <section className="section section--tint" id="work" aria-labelledby="work-title">
       <div className="wrap">
-        <SectionHead
-          id="work-title"
-          label="Selected work"
-          title="Websites and apps we have launched"
-          intro="Real products in use today, from a property marketplace to a fashion store and a campus food ordering app."
-        />
+        <div className="sec-row">
+          <div className="sec-head">
+            <span className="label label--accent">02 · Selected work</span>
+            <h2 className="h2" id="work-title">
+              Products that are <em>live</em> and in use.
+            </h2>
+          </div>
+          <p className="lead">A property marketplace, a fashion store with online payments, and a campus food ordering app. Each one designed, built and launched by us.</p>
+        </div>
         <div className="work-grid">
           {PROJECTS.map((p, i) => (
-            <Link key={p.slug} href={`/work/${p.slug}`} className="card" data-rv="" style={{ '--d': `${i * 60}ms` } as CSSProperties}>
-              <div className="card__media">
-                <CoverArt project={p} />
-                {p.liveUrl && <span className="badge">Live</span>}
-              </div>
-              <div className="card__meta">
-                <h3 className="card__title">{p.name}</h3>
-                <span className="label">
-                  {p.type}, {p.category.toLowerCase()}
-                </span>
-              </div>
-              <p>{p.summary}</p>
-            </Link>
+            <div key={p.slug} data-rv="" style={{ '--d': `${i * 60}ms` } as CSSProperties}>
+              <WorkCard p={p} large={i === 0} />
+            </div>
           ))}
         </div>
       </div>
@@ -142,18 +143,25 @@ function Process() {
   return (
     <section className="section" id="process" aria-labelledby="process-title">
       <div className="wrap">
-        <SectionHead id="process-title" label="Process" title="How a project runs" intro="Three stages, a written scope before we start, and a working link to review every week." />
-        <div className="steps">
+        <div className="sec-row">
+          <div className="sec-head">
+            <span className="label label--accent">03 · Process</span>
+            <h2 className="h2" id="process-title">
+              A clear process, <em>start to launch.</em>
+            </h2>
+          </div>
+          <p className="lead">A written scope before we start, a working link to review every week, and support after launch.</p>
+        </div>
+        <ol className="timeline">
           {PROCESS.map((s) => (
-            <div className="step" key={s.number}>
-              <span className="step__n">
-                {s.number} · {s.duration}
-              </span>
+            <li className="tstep" key={s.number} data-rv="">
+              <span className="tstep__dot">{s.number}</span>
+              <span className="label">{s.duration}</span>
               <h3 className="h3">{s.title}</h3>
               <p className="muted">{s.line}</p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );
@@ -164,32 +172,35 @@ function Process() {
 function Studio() {
   return (
     <section className="section studio" id="studio" aria-labelledby="studio-title">
-      <div className="wrap studio__grid">
-        <div>
-          <span className="label">About the studio</span>
-          <h2 className="h2" id="studio-title" style={{ marginTop: 14 }}>
-            {STUDIO.heading}
-          </h2>
-          <div className="prose muted" style={{ marginTop: 20 }}>
+      <div className="wrap">
+        <span className="label">04 · About the studio</span>
+        <h2 className="statement" id="studio-title">
+          You work <em>directly</em> with the engineer who builds your product. No account managers, no hand offs.
+        </h2>
+        <div className="studio__grid">
+          <div className="prose muted">
             {STUDIO.body.map((p) => (
               <p key={p}>{p}</p>
             ))}
+            <div className="stack" aria-label="Technologies we use">
+              {STACK.map((t) => (
+                <span className="chip-static" key={t}>
+                  {t}
+                </span>
+              ))}
+            </div>
           </div>
-          <div className="stack" aria-label="Technologies we use">
-            {STACK.map((t) => (
-              <span className="chip-static" key={t}>
-                {t}
-              </span>
+          <div className="principles">
+            {PRINCIPLES.map((p, i) => (
+              <div className="principle" key={p.title}>
+                <span className="principle__n">0{i + 1}</span>
+                <div>
+                  <h3>{p.title}</h3>
+                  <p className="muted">{p.line}</p>
+                </div>
+              </div>
             ))}
           </div>
-        </div>
-        <div className="principles">
-          {PRINCIPLES.map((p) => (
-            <div className="principle" key={p.title}>
-              <h3>{p.title}</h3>
-              <p className="muted">{p.line}</p>
-            </div>
-          ))}
         </div>
       </div>
     </section>
@@ -205,7 +216,7 @@ function Packages() {
       <div className="wrap">
         <SectionHead
           id="packages-title"
-          label="Packages"
+          label="05 · Packages"
           title="Packages for websites and Android apps"
           intro="Start with what you need today and upgrade later. Every package includes six months of free maintenance."
         />
@@ -258,7 +269,7 @@ function FAQ() {
     <section className="section" id="faq" aria-labelledby="faq-title">
       <div className="wrap faq">
         <div className="sec-head" style={{ marginBottom: 0 }}>
-          <span className="label label--accent">FAQ</span>
+          <span className="label label--accent">06 · FAQ</span>
           <h2 id="faq-title" className="h2">
             Frequently asked questions
           </h2>
@@ -345,7 +356,7 @@ export function Contact() {
     <section className="section" id="contact" aria-labelledby="contact-title">
       <div className="wrap contact__grid">
         <div>
-          <span className="label label--accent">Contact</span>
+          <span className="label label--accent">07 · Contact</span>
           <h2 id="contact-title" className="h2" style={{ marginTop: 14 }}>
             Tell us about your project
           </h2>
@@ -447,6 +458,24 @@ export function Contact() {
   );
 }
 
+function CtaBand() {
+  return (
+    <section className="cta-band" aria-label="Start a project">
+      <div className="wrap cta-band__in">
+        <p className="statement">
+          Have a project in mind? <em>Let us build it properly.</em>
+        </p>
+        <div className="hero__ctas">
+          <Btn href="/#contact">Start a project</Btn>
+          <Btn href={SITE.whatsappHref} external variant="outline">
+            WhatsApp us
+          </Btn>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   return (
     <>
@@ -457,6 +486,7 @@ export default function Home() {
       <Studio />
       <Packages />
       <FAQ />
+      <CtaBand />
       <Contact />
     </>
   );

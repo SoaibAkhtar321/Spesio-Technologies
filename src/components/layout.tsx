@@ -109,6 +109,9 @@ export function Footer() {
             </ul>
           </div>
         </div>
+        <p className="ftr__mark" aria-hidden="true">
+          Spesio Technologies
+        </p>
         <div className="ftr__base">
           <span suppressHydrationWarning>
             © {new Date().getFullYear()} {SITE.name}. {SITE.location}.
