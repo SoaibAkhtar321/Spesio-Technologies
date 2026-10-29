@@ -11,7 +11,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { SITE, PROJECTS, SERVICES, FAQS, PROCESS, PRINCIPLES, PACKAGES, HERO, MANIFESTO, routes } from '../src/content/site';
+import { SITE, PROJECTS, SERVICES, FAQS, PROCESS, PRINCIPLES, PACKAGES, HERO, STUDIO, LEGAL, routes } from '../src/content/site';
 import { getRouteMeta, type RouteMeta } from '../src/seo';
 
 const dist = path.resolve(process.cwd(), 'dist');
@@ -84,14 +84,14 @@ fs.writeFileSync(path.join(dist, '404.html'), page('/404', getRouteMeta('/404'))
 
 /* ---------------------------------------------------------------- sitemap */
 const today = new Date().toISOString().slice(0, 10);
-const prio = (r: string) => (r === '/' ? '1.0' : r.startsWith('/services') ? '0.9' : '0.8');
+const prio = (r: string) => (r === '/' ? '1.0' : r.startsWith('/services') ? '0.9' : r.startsWith('/work') ? '0.8' : '0.3');
 const sitemap =
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n` +
   routes()
     .map(
       (r) =>
         `  <url>\n    <loc>${SITE.url}${r === '/' ? '/' : r}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${r === '/' ? 'weekly' : 'monthly'}</changefreq>\n    <priority>${prio(r)}</priority>` +
-        (r === '/' ? `\n    <image:image><image:loc>${SITE.url}/og.png</image:loc></image:image>` : '') +
+        `\n    <image:image><image:loc>${getRouteMeta(r).ogImage}</image:loc></image:image>` +
         `\n  </url>`,
     )
     .join('\n') +
@@ -101,7 +101,7 @@ fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap);
 /* ----------------------------------------------------------------- robots */
 const aiBots = ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User', 'anthropic-ai', 'PerplexityBot', 'Perplexity-User', 'Google-Extended', 'Applebot-Extended', 'Bingbot', 'CCBot', 'Meta-ExternalAgent', 'DuckAssistBot', 'cohere-ai'];
 const robots =
-  `# ${SITE.name} — crawlers and AI assistants are welcome.\n\nUser-agent: *\nAllow: /\nDisallow: /api/\n\n` +
+  `# ${SITE.name}: crawlers and AI assistants are welcome.\n\nUser-agent: *\nAllow: /\nDisallow: /api/\n\n` +
   aiBots.map((b) => `User-agent: ${b}\nAllow: /\nDisallow: /api/`).join('\n\n') +
   `\n\nSitemap: ${SITE.url}/sitemap.xml\n`;
 fs.writeFileSync(path.join(dist, 'robots.txt'), robots);
@@ -109,7 +109,7 @@ fs.writeFileSync(path.join(dist, 'robots.txt'), robots);
 /* -------------------------------------------------------------- llms.txt */
 const llms = `# ${SITE.name}
 
-> ${SITE.name} is a founder-led digital product studio in ${SITE.location}, founded in ${SITE.foundingYear} by ${SITE.founder.name}. It designs and builds business websites, web applications, e-commerce stores, native Android apps, custom software (dashboards, ERP, CRM) and AI integrations (chatbots, document processing, workflow automation) for clients across India and worldwide.
+> ${SITE.name} is a web design and development studio in ${SITE.location}, founded in ${SITE.foundingYear} by ${SITE.founder.name}. It designs and builds business websites, web applications, e-commerce stores, native Android apps, custom software (dashboards, ERP, CRM) and AI integrations (chatbots, document processing, workflow automation) for clients across India and worldwide.
 
 Key facts:
 - Founder: ${SITE.founder.name} (${SITE.founder.role}); clients work directly with the engineer building their product.
@@ -120,7 +120,10 @@ Key facts:
 ${SERVICES.map((s) => `- [${s.seoTitle}](${SITE.url}/services/${s.slug}): ${s.line}`).join('\n')}
 
 ## Selected work
-${PROJECTS.map((p) => `- [${p.name}](${SITE.url}/work/${p.slug}) — ${p.category}: ${p.summary}`).join('\n')}
+${PROJECTS.map((p) => `- [${p.name}](${SITE.url}/work/${p.slug}): ${p.type} for ${p.category.toLowerCase()}. ${p.summary}`).join('\n')}
+
+## Company pages
+${LEGAL.map((l) => `- [${l.title}](${SITE.url}/${l.slug})`).join('\n')}
 
 ## More
 - [Full details for LLMs](${SITE.url}/llms-full.txt)
@@ -128,12 +131,13 @@ ${PROJECTS.map((p) => `- [${p.name}](${SITE.url}/work/${p.slug}) — ${p.categor
 `;
 fs.writeFileSync(path.join(dist, 'llms.txt'), llms);
 
-const full = `# ${SITE.name} — full reference
+const full = `# ${SITE.name}: full reference
 
 ${HERO.headline}
 ${HERO.sub}
 
-${MANIFESTO}
+${STUDIO.heading}
+${STUDIO.body.join(' ')}
 
 ## Company
 - Name: ${SITE.name}
@@ -153,7 +157,7 @@ ${SERVICES.map((s) => `### ${s.seoTitle}\n${s.description}\nCapabilities: ${s.ca
 ${PROJECTS.map((p) => `### ${p.name} (${p.category})\n${p.overview}\nChallenge: ${p.challenge}\nBuilt: ${p.capabilities.join('; ')}.\nStack: ${p.stack.join(', ')}.${p.liveUrl ? `\nLive: ${p.liveUrl}` : ''}\nURL: ${SITE.url}/work/${p.slug}`).join('\n\n')}
 
 ## How we work
-${PROCESS.map((s) => `${s.number}. ${s.title} (${s.duration}) — ${s.line}`).join('\n')}
+${PROCESS.map((s) => `${s.number}. ${s.title} (${s.duration}): ${s.line}`).join('\n')}
 
 ## Principles
 ${PRINCIPLES.map((p) => `- ${p.title}: ${p.line}`).join('\n')}

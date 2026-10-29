@@ -11,12 +11,13 @@ import {
   type MouseEvent,
   type ReactNode,
 } from 'react';
-import { getProject, getService } from './content/site';
+import { getLegal, getProject, getService } from './content/site';
 
 export type Route =
   | { name: 'home' }
   | { name: 'case-study'; slug: string }
   | { name: 'service'; slug: string }
+  | { name: 'legal'; slug: string }
   | { name: 'not-found' };
 
 export function matchRoute(rawPath: string): Route {
@@ -26,6 +27,7 @@ export function matchRoute(rawPath: string): Route {
   if (w && getProject(w[1])) return { name: 'case-study', slug: w[1] };
   const s = path.match(/^\/services\/([^/]+)$/);
   if (s && getService(s[1])) return { name: 'service', slug: s[1] };
+  if (getLegal(path.slice(1))) return { name: 'legal', slug: path.slice(1) };
   return { name: 'not-found' };
 }
 
@@ -47,12 +49,11 @@ export const useRoute = (): Route => matchRoute(useRouter().path);
 
 /** Scrolls to an element, using Lenis when it is running. */
 export function scrollToTarget(target: string | HTMLElement | number, immediate = false) {
-  const lenis = typeof window !== 'undefined' ? (window as any).__lenis : null;
   const el = typeof target === 'string' ? document.getElementById(target) : target;
   if (el == null) return;
-  if (lenis) lenis.scrollTo(el, { offset: typeof el === 'number' ? 0 : -72, immediate, duration: 1.4 });
-  else if (typeof el === 'number') window.scrollTo(0, el);
-  else el.scrollIntoView({ behavior: immediate ? 'auto' : 'smooth' });
+  const behavior: ScrollBehavior = immediate ? 'auto' : 'smooth';
+  if (typeof el === 'number') window.scrollTo({ top: el, behavior });
+  else window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 72, behavior });
 }
 
 export function Router({ children, initialPath = '/' }: { children: ReactNode; initialPath?: string }) {

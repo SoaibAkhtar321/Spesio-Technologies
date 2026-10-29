@@ -1,18 +1,18 @@
 import type { Project } from '../content/site';
 
 /**
- * Generated cover art for each project — no stock screenshots.
- * Each motif hints at the product: a map grid, a pickup queue, embroidered thread.
+ * Drawn cover art for each project, no stock or AI imagery.
+ * Each motif hints at the product: a map grid, a pickup queue, embroidery.
  */
-export function CoverArt({ project, label = true }: { project: Project; label?: boolean }) {
+export function CoverArt({ project }: { project: Project }) {
   const [accent, deep] = project.hue;
   const id = project.slug;
   return (
     <div className="art" style={{ background: deep }}>
-      <svg viewBox="0 0 800 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <svg viewBox="0 0 800 620" preserveAspectRatio="xMidYMid slice" role="img" aria-label={`Illustration for ${project.name}, ${project.type.toLowerCase()} for ${project.category.toLowerCase()}`}>
         <defs>
           <radialGradient id={`g-${id}`} cx="70%" cy="30%" r="75%">
-            <stop offset="0" stopColor={accent} stopOpacity="0.55" />
+            <stop offset="0" stopColor={accent} stopOpacity="0.35" />
             <stop offset="0.6" stopColor={accent} stopOpacity="0.05" />
             <stop offset="1" stopColor={deep} stopOpacity="0" />
           </radialGradient>
@@ -22,7 +22,6 @@ export function CoverArt({ project, label = true }: { project: Project; label?: 
         {project.motif === 'queue' && <QueueMotif accent={accent} />}
         {project.motif === 'thread' && <ThreadMotif accent={accent} />}
       </svg>
-      {label && <span className="art__label">{project.name.split(' ')[0]}</span>}
     </div>
   );
 }
@@ -46,9 +45,7 @@ function MapMotif({ accent }: { accent: string }) {
       ))}
       {[[530, 210], [645, 305], [495, 315], [595, 425]].map(([x, y], i) => (
         <g key={i} transform={`translate(${x} ${y})`}>
-          <circle r="22" fill={accent} fillOpacity="0.18">
-            <animate attributeName="r" values="10;28;10" dur={`${2.4 + i * 0.4}s`} repeatCount="indefinite" />
-          </circle>
+          <circle r="16" fill={accent} fillOpacity="0.2" />
           <circle r="6" fill={accent} />
         </g>
       ))}
@@ -71,9 +68,7 @@ function QueueMotif({ accent }: { accent: string }) {
         </g>
       ))}
       {Array.from({ length: 9 }).map((_, i) => (
-        <circle key={i} cx={120 + i * 34} cy={340} r="9" fill={accent} fillOpacity={1 - i * 0.1}>
-          <animate attributeName="cx" values={`${80 + i * 34};${120 + i * 34}`} dur="1.6s" repeatCount="indefinite" />
-        </circle>
+        <circle key={i} cx={120 + i * 34} cy={340} r="9" fill={accent} fillOpacity={1 - i * 0.1} />
       ))}
       <path d="M80 340 H 420" stroke={accent} strokeOpacity="0.25" strokeDasharray="2 8" />
     </g>
@@ -100,7 +95,6 @@ function ThreadMotif({ accent }: { accent: string }) {
       ))}
       <circle r="16" fill={accent} />
       <g>
-        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="60s" repeatCount="indefinite" />
         {petals.map((_, i) => (
           <circle key={i} cx={Math.cos((i * Math.PI) / 6) * 175} cy={Math.sin((i * Math.PI) / 6) * 175} r="4" fill={accent} />
         ))}

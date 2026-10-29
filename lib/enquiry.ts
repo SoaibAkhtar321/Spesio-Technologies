@@ -23,7 +23,7 @@ export interface EnquiryResult {
 }
 
 // On Vercel, only /tmp is writable, and it isn't guaranteed to persist between
-// invocations — it's a best-effort safety net there, not durable storage.
+// invocations; it's a best-effort safety net there, not durable storage.
 // Locally (and on traditional Node hosts), we use a real project-relative folder.
 function getFallbackPath(): { dir: string; file: string } {
   const dir = process.env.VERCEL ? '/tmp' : path.join(process.cwd(), 'data');
@@ -55,7 +55,7 @@ function buildEnquiryEmailHtml(enquiry: EnquiryRecord): string {
 
   return `
   <div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;">
-    <h2 style="color:#0047ab;border-bottom:2px solid #0047ab;padding-bottom:8px;">New Project Enquiry — Spesio Technologies</h2>
+    <h2 style="color:#0047ab;border-bottom:2px solid #0047ab;padding-bottom:8px;">New project enquiry: Spesio Technologies</h2>
     <table style="width:100%;border-collapse:collapse;">
       ${row('Name', escapeHtml(enquiry.name))}
       ${row('Phone', escapeHtml(enquiry.phone))}
@@ -138,7 +138,7 @@ export async function processEnquiry(
         from: CONTACT_FROM_EMAIL,
         to: CONTACT_TO_EMAIL,
         replyTo: email,
-        subject: `New Project Enquiry from ${name} — Spesio Technologies`,
+        subject: `New Project Enquiry from ${name} | Spesio Technologies`,
         html: buildEnquiryEmailHtml(enquiry),
       });
 
@@ -152,19 +152,19 @@ export async function processEnquiry(
       console.error('[contact] Email failed to send:', emailErr);
     }
   } else {
-    console.warn('[contact] RESEND_API_KEY not configured — skipping email send.');
+    console.warn('[contact] RESEND_API_KEY not configured, skipping email send.');
   }
 
   if (!emailSent) {
     try {
       await saveFallbackEnquiry({ ...enquiry, emailDeliveryFailed: true });
     } catch {
-      // Both email AND fallback storage failed — the only case we tell the client something went wrong.
+      // Both email AND fallback storage failed: the only case we tell the client something went wrong.
       return {
         status: 500,
         body: {
           success: false,
-          message: 'We could not process your enquiry right now. Please contact us directly on WhatsApp or call +91 8957833269.',
+          message: 'We could not process your enquiry right now. Please contact us directly on WhatsApp or call +91 89578 33269.',
         },
       };
     }
@@ -174,7 +174,7 @@ export async function processEnquiry(
     status: 200,
     body: {
       success: true,
-      message: `Inquiry successfully submitted! Soaib Akhtar from Spesio Technologies will respond to ${email} or ${phone} within 24 hours.`,
+      message: `Thank you. Your message has been sent and we will reply to ${email} within one working day.`,
     },
   };
 }

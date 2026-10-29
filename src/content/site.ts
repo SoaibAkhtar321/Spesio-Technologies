@@ -1,14 +1,15 @@
 // Single source of truth for all site copy and facts.
 // Used by the UI, by src/seo.ts, by the SSR prerender and by the generated llms.txt.
-// Keep this file free of DOM/React imports.
+// Keep this file free of DOM/React imports. Style rule: no em dashes in copy.
 
 export const SITE = {
   name: 'Spesio Technologies',
   shortName: 'Spesio',
+  // Change this one line when the custom domain is connected in Vercel.
   url: 'https://spesio-technologies.vercel.app',
   locale: 'en_IN',
   lang: 'en-IN',
-  themeColor: '#0B0B0C',
+  themeColor: '#0D0F0E',
   email: 'spesiotechnologies@gmail.com',
   phone: '+91 89578 33269',
   phoneE164: '+918957833269',
@@ -17,47 +18,34 @@ export const SITE = {
     'https://wa.me/918957833269?text=Hi%20Spesio%20Technologies%2C%20I%27d%20like%20to%20discuss%20a%20project.',
   city: 'Greater Noida',
   region: 'Uttar Pradesh',
+  regionCode: 'IN-UP',
   country: 'IN',
-  location: 'Greater Noida, India',
+  location: 'Greater Noida, Uttar Pradesh, India',
   timezone: 'Asia/Kolkata',
   foundingYear: '2023',
-  hours: 'Mon–Sat, 09:00–20:00 IST',
+  hours: 'Monday to Saturday, 9 am to 8 pm IST',
   socials: {
     instagram: 'https://instagram.com/spesio_technologies',
     youtube: 'https://youtube.com/@spesiotechnologies',
   },
   founder: {
     name: 'Soaib Akhtar',
-    role: 'Founder & Software Engineer',
-    quote:
-      'I started Spesio so that the person you brief is the person who builds. No hand-offs, no account managers, no lost context. Just a product that works, and code you own.',
+    role: 'Founder and Software Engineer',
   },
+  legalUpdated: '29 October 2026',
 } as const;
 
 /* ---------------------------------------------------------------- Hero */
 
 export const HERO = {
-  eyebrow: 'Digital product studio — est. 2023',
-  lines: ['We turn ambitious', 'ideas into', 'digital products.'],
-  headline: 'We turn ambitious ideas into digital products.',
-  sub: 'A founder-led studio designing and engineering websites, web applications, Android apps and AI integrations for businesses that want to be taken seriously online.',
+  eyebrow: 'Web design and development studio in Greater Noida',
+  headline: 'We design and build websites, web apps and Android apps for growing businesses.',
+  sub: 'From a fast business website to a full online store, booking system or mobile app. Designed, coded and launched by one accountable team, with six months of free maintenance.',
   primaryCta: 'Start a project',
-  secondaryCta: 'See selected work',
+  secondaryCta: 'See our work',
 };
 
-export const MANIFESTO =
-  'Most studios sell you a website. We build the system behind your business: the storefront your customers see, the dashboard your team runs on, and the automation that quietly saves hours every week. Engineered properly, shipped quickly, and yours to own.';
-
-export const TICKER = [
-  'Web applications',
-  'Business websites',
-  'Native Android',
-  'AI assistants',
-  'E-commerce',
-  'Dashboards',
-  'Workflow automation',
-  'Admin panels',
-];
+export const BUILD_LIST = ['Business websites', 'Online stores', 'Web applications', 'Android apps', 'Admin dashboards', 'AI chatbots'];
 
 /* ------------------------------------------------------------ Services */
 
@@ -75,35 +63,35 @@ export interface Service {
 
 export const SERVICES: Service[] = [
   {
-    slug: 'web-development',
+    slug: 'website-development',
     number: '01',
-    title: 'Web Experiences',
-    seoTitle: 'Website & Web Application Development',
-    line: 'Fast, search-friendly websites and web apps that turn visitors into enquiries.',
+    title: 'Website development',
+    seoTitle: 'Website Development',
+    line: 'Business websites and online stores that load fast, rank on Google and bring in enquiries.',
     description:
-      'High-performance business websites, e-commerce storefronts and full web applications built with React and Next.js. Every build is mobile-first, accessible, optimised for Core Web Vitals and set up for search from day one.',
-    capabilities: ['Business websites', 'Web applications', 'E-commerce & payments', 'SEO & performance'],
-    stack: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Vercel'],
+      'We design and build business websites, landing pages and e-commerce stores with React and Next.js. Every site is mobile first, accessible, tuned for Core Web Vitals and set up for Google from day one, with a sitemap, structured data and clean page titles.',
+    capabilities: ['Business websites', 'E-commerce stores', 'Landing pages', 'SEO setup'],
+    stack: ['React', 'Next.js', 'TypeScript', 'Supabase', 'Razorpay', 'Vercel'],
     deliverables: [
-      'Responsive, mobile-first design',
-      'Technical SEO, sitemap and structured data',
-      'Payment gateway integration (Razorpay)',
-      'Admin panel for products, services and enquiries',
+      'Custom design for desktop and mobile',
+      'Technical SEO: sitemap, structured data, page titles',
+      'Payment gateway integration with Razorpay',
+      'Admin panel to manage products, services and enquiries',
     ],
   },
   {
-    slug: 'custom-software',
+    slug: 'web-app-development',
     number: '02',
-    title: 'Digital Products',
-    seoTitle: 'Custom Software, ERP & Dashboard Development',
-    line: 'Custom software shaped around how your business actually runs.',
+    title: 'Web app development',
+    seoTitle: 'Web Application and Custom Software Development',
+    line: 'Dashboards, portals, ERP and booking systems built around how your business runs.',
     description:
-      'Internal tools, dashboards, ERP and CRM systems, SaaS platforms and APIs. We map your workflow first, then design the data model and build software that removes manual work instead of adding it.',
-    capabilities: ['Custom software', 'ERP & CRM', 'Dashboards', 'APIs & integrations'],
-    stack: ['Node.js', 'Python', 'TypeScript', 'PostgreSQL', 'Docker', 'REST / GraphQL'],
+      'Internal tools, customer portals, dashboards, ERP and CRM systems, and the APIs behind them. We map your workflow first, design the database, then build software that removes manual work instead of adding it.',
+    capabilities: ['Custom web apps', 'ERP and CRM', 'Dashboards', 'APIs and integrations'],
+    stack: ['Node.js', 'Python', 'TypeScript', 'PostgreSQL', 'Docker'],
     deliverables: [
-      'Workflow and data-model design',
-      'Role-based admin dashboards',
+      'Workflow and database design',
+      'Role based admin dashboards',
       'Secure, documented APIs',
       'Deployment, backups and monitoring',
     ],
@@ -111,16 +99,16 @@ export const SERVICES: Service[] = [
   {
     slug: 'android-app-development',
     number: '03',
-    title: 'Mobile Applications',
-    seoTitle: 'Native Android App Development',
-    line: 'Native Android apps that feel fast in the hand and stay reliable at scale.',
+    title: 'Android app development',
+    seoTitle: 'Android App Development',
+    line: 'Native Android apps with login, ordering, payments and push notifications.',
     description:
-      'Native Android apps written in Kotlin with Jetpack Compose, backed by Firebase or your own cloud. Login, ordering, payments, push notifications, offline sync and Play Store publishing, from first release to ongoing updates.',
-    capabilities: ['Native Android', 'Backend & cloud', 'Push notifications', 'Play Store publishing'],
-    stack: ['Kotlin', 'Jetpack Compose', 'Firebase', 'Cloud Functions', 'SQLite'],
+      'Native Android apps written in Kotlin with Jetpack Compose, backed by Firebase or your own server. Login, catalogues, ordering, payments, push notifications and Play Store publishing, from first release to ongoing updates.',
+    capabilities: ['Native Android', 'Firebase backend', 'Push notifications', 'Play Store release'],
+    stack: ['Kotlin', 'Jetpack Compose', 'Firebase', 'Cloud Functions'],
     deliverables: [
-      'Native Kotlin + Compose codebase',
-      'Server-side business logic',
+      'Native Kotlin and Jetpack Compose code',
+      'Server side business logic',
       'Push notifications and analytics',
       'Play Store listing and release',
     ],
@@ -128,18 +116,18 @@ export const SERVICES: Service[] = [
   {
     slug: 'ai-integration',
     number: '04',
-    title: 'AI & Automation',
-    seoTitle: 'AI Integration, Chatbots & Workflow Automation',
-    line: 'Practical AI placed exactly where it saves time or wins customers.',
+    title: 'AI integration',
+    seoTitle: 'AI Chatbot and Automation Development',
+    line: 'Chatbots and automations added to your website or app where they save real time.',
     description:
-      'Customer-support assistants, document and data processing, guided flows and workflow automation built on modern LLM APIs and integrated into the apps you already use. No hype, just measurable hours saved.',
-    capabilities: ['AI chatbots & assistants', 'Document processing', 'Workflow automation', 'LLM API integration'],
-    stack: ['OpenAI', 'Gemini', 'Claude', 'LangChain', 'Python', 'Vector databases'],
+      'Customer support chatbots trained on your own content, automatic document and data processing, and workflow automation, built on the OpenAI, Gemini and Claude APIs and connected to the tools you already use.',
+    capabilities: ['AI chatbots', 'Document processing', 'Workflow automation', 'LLM API integration'],
+    stack: ['OpenAI', 'Gemini', 'Claude', 'LangChain', 'Python'],
     deliverables: [
-      'Assistant trained on your business content',
+      'Chatbot trained on your business content',
       'Automated document and data pipelines',
-      'Integration with existing tools',
-      'Guardrails, logging and cost controls',
+      'Integration with your existing tools',
+      'Usage limits, logging and cost controls',
     ],
   },
 ];
@@ -153,15 +141,15 @@ export interface Project {
   number: string;
   name: string;
   category: string;
+  type: string;
   summary: string;
   overview: string;
   challenge: string;
   capabilities: string[];
   stack: string[];
   liveUrl?: string;
-  /** Colours for the generated cover art: [accent, deep]. */
+  service: string;
   hue: [string, string];
-  /** Motif for the generated cover art. */
   motif: 'map' | 'queue' | 'thread';
 }
 
@@ -170,65 +158,71 @@ export const PROJECTS: Project[] = [
     slug: 'property-planet',
     number: '01',
     name: 'Property Planet',
-    category: 'Real Estate · Web Platform',
-    summary: 'A marketplace for plots and land, with map browsing and an admin-controlled listing flow.',
+    category: 'Real estate',
+    type: 'Website and web app',
+    summary: 'A marketplace for plots and land, with map browsing and an admin approved listing flow.',
     overview:
-      'A property marketplace where sellers and agents list plots and land, and buyers browse on a map and send enquiries. Every listing is reviewed by an admin before it goes public, and seller contact details are never handed out automatically.',
+      'A property marketplace where sellers and agents list plots and land, and buyers browse on a map and send enquiries. Every listing is reviewed by an admin before it goes public, and seller phone numbers are never shown automatically.',
     challenge:
-      'Land listings attract spam and duplicates, and sellers worry about their numbers being scraped. The platform needed to stay open for self-service while keeping quality and privacy under admin control.',
+      'Land listings attract spam and duplicates, and sellers worry about their numbers being scraped. The platform had to stay open for self service while keeping quality and privacy under admin control.',
     capabilities: [
-      'Map-based property browsing',
+      'Map based property browsing',
       'Admin approval before a listing goes public',
-      'Self-service seller registration',
+      'Self service seller registration',
       'One dashboard for buying and selling activity',
-      'Lead handling with admin oversight',
+      'Enquiry handling with admin oversight',
     ],
     stack: ['Next.js', 'Supabase', 'Google Maps'],
     liveUrl: 'https://propertyplanet.vercel.app/',
-    hue: ['#FF6B1A', '#24120A'],
+    service: 'website-development',
+    hue: ['#5F8A6E', '#121614'],
     motif: 'map',
   },
   {
     slug: 'campusbite',
     number: '02',
     name: 'CampusBite',
-    category: 'Food Tech · Android App',
-    summary: 'A native Android app for ordering food on campus and managing pickup queues.',
+    category: 'Food ordering',
+    type: 'Android app',
+    summary: 'A native Android app for ordering food on campus and managing pickup time slots.',
     overview:
-      'A native Android app that lets students order food on campus and helps outlets manage queues and time slots. Order creation runs on the server, so prices and slot capacity cannot be altered from the client.',
+      'A native Android app that lets students order food on campus and helps outlets manage queues and pickup slots. Orders are created on the server, so prices and slot capacity cannot be changed from the phone.',
     challenge:
-      'Lunch-hour rushes overwhelmed campus outlets. The app had to spread demand across pickup slots and stay tamper-proof with many student devices ordering at once.',
+      'Lunch hour rushes overwhelmed campus outlets. The app had to spread demand across pickup slots and stay tamper proof with many students ordering at the same time.',
     capabilities: [
-      'Server-side order creation with transactional Cloud Functions',
-      'Time-slot capacity management',
+      'Server side order creation with Cloud Functions',
+      'Pickup slot capacity management',
       'Push notifications for order updates',
       'Admin and staff dashboards',
     ],
     stack: ['Kotlin', 'Jetpack Compose', 'Firebase', 'Cloud Functions'],
-    hue: ['#D8FF5A', '#141611'],
+    service: 'android-app-development',
+    hue: ['#C9452D', '#161211'],
     motif: 'queue',
   },
   {
     slug: 'eifa-couture',
     number: '03',
     name: 'Eifa Couture',
-    category: 'E-commerce · Luxury Fashion',
-    summary: 'A luxury Chikankari storefront with online payments and a full admin back office.',
+    category: 'Fashion e-commerce',
+    type: 'Online store',
+    summary: 'An online store for a Chikankari fashion label, with Razorpay payments and a full admin back office.',
     overview:
-      'An e-commerce storefront for a luxury Chikankari fashion label, with online payments, order history and an admin back office for inventory, refunds and finance reporting.',
+      'An e-commerce store for a Chikankari fashion label, with online payments, order history and an admin back office for inventory, refunds and finance reports.',
     challenge:
-      'A handcrafted label needed a store that felt as considered as the garments, while giving a small team real tools for stock, refunds and finance without a separate system.',
+      'A handcrafted label needed a store that felt as considered as the garments, while giving a small team real tools for stock, refunds and finance without a second system.',
     capabilities: [
       'Razorpay payment integration',
-      'Order confirmation and account order history',
+      'Order confirmation and order history',
       'Refund management',
-      'Finance reporting with CSV export',
+      'Finance reports with CSV export',
       'Inventory, category and banner management',
       'Sign in with Google',
     ],
-    stack: ['Next.js', 'TypeScript', 'Supabase', 'Tailwind CSS', 'Razorpay'],
+    stack: ['Next.js', 'TypeScript', 'Supabase', 'Razorpay'],
     liveUrl: 'https://eifa-couture-ds3d-theta.vercel.app/',
-    hue: ['#E9C9A4', '#1E1410'],
+    service: 'website-development',
+    hue: ['#B89A6A', '#15130F'],
     motif: 'thread',
   },
 ];
@@ -237,38 +231,43 @@ export const getProject = (slug: string) => PROJECTS.find((p) => p.slug === slug
 
 /* ------------------------------------------------------------- Studio */
 
+export const STUDIO = {
+  heading: 'You work directly with the engineer who builds your product.',
+  body: [
+    `Spesio Technologies was started in 2023 by Soaib Akhtar, a software engineer, so that clients could brief the person writing the code. There are no account managers and no hand offs between teams.`,
+    'We take on a small number of projects at a time, agree the scope in writing before work starts, and share a working build every week so you can see progress and give feedback.',
+  ],
+};
+
 export const PRINCIPLES = [
-  { title: 'Direct line to the builder', line: 'You talk to the engineer writing your code. Decisions take minutes, not meetings.' },
-  { title: 'You own everything', line: 'Code, data, domain and accounts sit in your name. No lock-in, ever.' },
-  { title: 'Built to last', line: 'Typed code, real databases and clean architecture the next developer will thank you for.' },
-  { title: 'Support after launch', line: 'Six months of free maintenance on every package. We stay on after launch day.' },
+  { title: 'Written scope and quote', line: 'You know what is being built, what it costs and when it ships before we start.' },
+  { title: 'You own everything', line: 'Code, database, domain and hosting accounts are set up in your name.' },
+  { title: 'Weekly working builds', line: 'Click through real progress every week instead of waiting for a big reveal.' },
+  { title: 'Six months of maintenance', line: 'Bug fixes and small updates are included for six months after launch.' },
 ];
 
 export const PROCESS = [
   {
     number: '01',
-    title: 'Discover',
+    title: 'Discovery call and scope',
     duration: 'Week 1',
-    line: 'We agree on what to build, who it is for and what “done” looks like. You get a written scope and a clear quote.',
+    line: 'We talk through your business and goals, then send a written scope, timeline and quote.',
   },
   {
     number: '02',
-    title: 'Design & build',
-    duration: 'Weeks 2–6',
-    line: 'Iterative development with working builds you can click through every week. Your feedback goes straight into the next build.',
+    title: 'Design and development',
+    duration: 'Weeks 2 to 6',
+    line: 'We design the pages, build them, and share a working link every week for your feedback.',
   },
   {
     number: '03',
-    title: 'Launch & grow',
-    duration: 'Ongoing',
-    line: 'We ship to production, set up analytics and search, then stay on for fixes, updates and the next feature.',
+    title: 'Launch and support',
+    duration: 'After launch',
+    line: 'We connect your domain, submit the site to Google, and handle fixes and updates for six months.',
   },
 ];
 
-export const STACK = [
-  'React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'Kotlin', 'Jetpack Compose', 'Firebase',
-  'Supabase', 'PostgreSQL', 'Tailwind CSS', 'Docker', 'Vercel', 'Razorpay', 'OpenAI', 'Gemini', 'LangChain',
-];
+export const STACK = ['React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'Kotlin', 'Jetpack Compose', 'Firebase', 'Supabase', 'PostgreSQL', 'Razorpay', 'Vercel'];
 
 /* ----------------------------------------------------------- Packages */
 
@@ -277,21 +276,20 @@ export interface Tier {
   name: string;
   tagline: string;
   features: string[];
-  highlight?: boolean;
 }
 
 export const PACKAGES: Record<'website' | 'android', Tier[]> = {
   website: [
-    { id: 'bronze', name: 'Bronze', tagline: 'A sharp first impression', features: ['Up to 8 pages', 'Contact & Google Maps', 'Mobile responsive', 'Basic SEO setup'] },
-    { id: 'silver', name: 'Silver', tagline: 'Built to convert', features: ['Up to 12 pages', 'Product / service listing', 'WhatsApp, Instagram & email', 'Enhanced animations'] },
-    { id: 'gold', name: 'Gold', tagline: 'Your business command centre', features: ['Admin panel', 'Manage products & services', 'Enquiry management', 'Advanced dashboard'], highlight: true },
-    { id: 'diamond', name: 'Diamond', tagline: 'Full commerce platform', features: ['Full e-commerce', 'Payment gateway', 'Orders & inventory', 'ERP & analytics'] },
+    { id: 'bronze', name: 'Bronze', tagline: 'A professional online presence', features: ['Up to 8 pages', 'Contact form and Google Maps', 'Mobile responsive', 'Basic SEO setup'] },
+    { id: 'silver', name: 'Silver', tagline: 'Built to bring in enquiries', features: ['Up to 12 pages', 'Product or service listing', 'WhatsApp, Instagram and email', 'Subtle animations'] },
+    { id: 'gold', name: 'Gold', tagline: 'Manage your business online', features: ['Admin panel', 'Manage products and services', 'Enquiry management', 'Dashboard'] },
+    { id: 'diamond', name: 'Diamond', tagline: 'A complete online store', features: ['Full e-commerce', 'Payment gateway', 'Orders and inventory', 'Analytics and ERP'] },
   ],
   android: [
-    { id: 'bronze', name: 'Bronze', tagline: 'Your business, in their pocket', features: ['8–10 screens', 'Services, about & contact', 'WhatsApp & social links', 'Push notifications'] },
-    { id: 'silver', name: 'Silver', tagline: 'Real accounts, real orders', features: ['Up to 15 screens', 'Login & Firebase', 'Catalogue & search', 'WhatsApp ordering'] },
-    { id: 'gold', name: 'Gold', tagline: 'Operations HQ on mobile', features: ['Web admin panel', 'Orders & users', 'Notification panel', 'Analytics dashboard'], highlight: true },
-    { id: 'diamond', name: 'Diamond', tagline: 'The complete mobile business', features: ['Payment gateway', 'Inventory management', 'ERP integration', 'Reports & analytics'] },
+    { id: 'bronze', name: 'Bronze', tagline: 'Your business in an app', features: ['8 to 10 screens', 'Services, about and contact', 'WhatsApp and social links', 'Push notifications'] },
+    { id: 'silver', name: 'Silver', tagline: 'Accounts and orders', features: ['Up to 15 screens', 'Login with Firebase', 'Catalogue and search', 'WhatsApp ordering'] },
+    { id: 'gold', name: 'Gold', tagline: 'Run operations from the app', features: ['Web admin panel', 'Orders and users', 'Notification panel', 'Analytics'] },
+    { id: 'diamond', name: 'Diamond', tagline: 'A complete mobile business', features: ['Payment gateway', 'Inventory management', 'ERP integration', 'Reports'] },
   ],
 };
 
@@ -301,65 +299,177 @@ export const FAQS = [
   {
     question: 'What does Spesio Technologies build?',
     answer:
-      'Spesio Technologies is a founder-led digital product studio in Greater Noida, India. We design and build business websites, web applications, e-commerce stores, native Android apps, custom software such as dashboards and ERP systems, and AI integrations including chatbots and workflow automation.',
+      'Spesio Technologies is a web design and development studio in Greater Noida, India. We build business websites, online stores, web applications, native Android apps, custom dashboards and ERP systems, and AI chatbots and automations.',
   },
   {
-    question: 'How long does a website or app take?',
+    question: 'How long does it take to build a website?',
     answer:
-      'Most business websites launch in two to four weeks. Web applications and Android apps usually take four to ten weeks depending on scope. You receive a written scope and timeline after the discovery call, and working builds to review every week.',
+      'Most business websites launch in two to four weeks. Online stores, web applications and Android apps usually take four to ten weeks depending on scope. You receive a written timeline after the discovery call.',
   },
   {
-    question: 'Do you provide free maintenance?',
+    question: 'Do you provide maintenance after launch?',
     answer:
-      'Yes. Every website and app package includes six months of free maintenance after launch, covering bug fixes and minor updates.',
+      'Yes. Every website and app package includes six months of free maintenance after launch, covering bug fixes and small updates.',
   },
   {
-    question: 'Do I own the code and data?',
+    question: 'Will I own the website and the code?',
     answer:
-      'Yes. The source code, database, domain and hosting accounts are set up in your name. There is no lock-in, and you can take the project to any developer at any time.',
+      'Yes. The source code, database, domain and hosting accounts are set up in your name. You can move the project to any developer at any time.',
   },
   {
-    question: 'Can you add AI to my existing website or app?',
+    question: 'Can you add an AI chatbot to my existing website?',
     answer:
-      'Yes. We integrate large language models from providers such as OpenAI, Google Gemini and Anthropic Claude into existing products, for example a support assistant trained on your content, automated document processing, or smart search.',
+      'Yes. We can add a support chatbot trained on your own content, or automate tasks such as document processing, using the OpenAI, Google Gemini or Anthropic Claude APIs.',
   },
   {
     question: 'Do you work with clients outside Greater Noida?',
     answer:
-      'Yes. We work with businesses across India and internationally. Everything runs remotely over calls, WhatsApp and shared builds, and we are happy to meet in person around Delhi NCR.',
+      'Yes. We work with businesses across India and abroad over calls, WhatsApp and shared links, and can meet in person in Delhi NCR.',
   },
   {
-    question: 'Do you integrate payment gateways?',
+    question: 'Do you set up payment gateways?',
     answer:
-      'Yes. E-commerce and Diamond-tier builds include payment gateway integration such as Razorpay, along with order, refund and inventory management.',
+      'Yes. Online stores and Diamond packages include payment gateway integration such as Razorpay, along with order, refund and inventory management.',
   },
 ];
 
 /* ------------------------------------------------------------- Contact */
 
 export const CONTACT = {
-  headline: "Have an idea? Let's build it.",
-  services: ['Website', 'Web application', 'Android app', 'AI integration', 'Custom software', 'Not sure yet'],
-  budgets: ['Under ₹25k', '₹25k – ₹75k', '₹75k – ₹2L', '₹2L +', 'Not sure yet'],
+  services: ['Website', 'Online store', 'Web app', 'Android app', 'AI integration', 'Not sure yet'],
+  budgets: ['Under ₹25,000', '₹25,000 to ₹75,000', '₹75,000 to ₹2,00,000', 'Above ₹2,00,000', 'Not sure yet'],
 };
 
 export const NAV = [
-  { label: 'Work', href: '/#work' },
   { label: 'Services', href: '/#services' },
+  { label: 'Work', href: '/#work' },
   { label: 'Process', href: '/#process' },
-  { label: 'Studio', href: '/#studio' },
+  { label: 'Packages', href: '/#packages' },
   { label: 'FAQ', href: '/#faq' },
 ];
 
 export const HOME_META = {
-  title: 'Spesio Technologies — Web, App & AI Development Studio in Greater Noida',
+  title: 'Website and App Development Company in Greater Noida | Spesio Technologies',
   description:
-    'Founder-led studio building fast websites, web apps, native Android apps and AI integrations for growing businesses. Based in Greater Noida, serving India and worldwide.',
+    'Spesio Technologies designs and builds websites, online stores, web apps and Android apps for growing businesses. Based in Greater Noida, working across India.',
 };
+
+/* --------------------------------------------------------------- Legal */
+
+export interface LegalPage {
+  slug: 'privacy-policy' | 'terms-and-conditions';
+  title: string;
+  description: string;
+  sections: { heading: string; body: string[] }[];
+}
+
+export const LEGAL: LegalPage[] = [
+  {
+    slug: 'privacy-policy',
+    title: 'Privacy Policy',
+    description: 'How Spesio Technologies collects, uses and protects the information you share through this website.',
+    sections: [
+      {
+        heading: 'Who we are',
+        body: [
+          `This website is operated by Spesio Technologies, ${'Greater Noida, Uttar Pradesh, India'}. You can contact us at spesiotechnologies@gmail.com or +91 89578 33269.`,
+        ],
+      },
+      {
+        heading: 'Information we collect',
+        body: [
+          'When you submit the contact form we collect your name, email address, phone number, the service and budget you select, and your message. We also record the date and time of the submission, your IP address and your browser type to help prevent spam.',
+          'When you contact us by email or WhatsApp, we receive the details you choose to share in that conversation.',
+          'This website does not use advertising or tracking cookies.',
+        ],
+      },
+      {
+        heading: 'How we use it',
+        body: [
+          'We use your information only to reply to your enquiry, prepare a proposal, and deliver and support any project you hire us for. We do not sell, rent or share your information for marketing.',
+        ],
+      },
+      {
+        heading: 'Service providers',
+        body: [
+          'The website is hosted on Vercel. Contact form submissions are delivered to our inbox using Resend. These providers process data on our behalf and only as needed to provide their service.',
+        ],
+      },
+      {
+        heading: 'How long we keep it',
+        body: [
+          'We keep enquiry details for as long as needed to respond and, if you become a client, for the length of our working relationship and any period required by law. You can ask us to delete your details at any time.',
+        ],
+      },
+      {
+        heading: 'Your rights',
+        body: [
+          'You can ask to see, correct or delete the personal information we hold about you by emailing spesiotechnologies@gmail.com. We will respond within 30 days.',
+        ],
+      },
+      {
+        heading: 'Changes to this policy',
+        body: ['If we change this policy we will update the date at the top of this page.'],
+      },
+    ],
+  },
+  {
+    slug: 'terms-and-conditions',
+    title: 'Terms and Conditions',
+    description: 'The terms that apply when you use the Spesio Technologies website or hire us for a project.',
+    sections: [
+      {
+        heading: 'About these terms',
+        body: [
+          'These terms apply to your use of this website. Each client project is also covered by a written proposal or agreement, which sets out the scope, price, timeline and payment schedule. If that agreement differs from these terms, the agreement applies.',
+        ],
+      },
+      {
+        heading: 'Website content',
+        body: [
+          'The text, design and code of this website belong to Spesio Technologies unless stated otherwise. Project names and logos shown in our work section belong to their respective owners.',
+          'Package descriptions on this website are a general guide. Final scope and pricing are confirmed in writing for each project.',
+        ],
+      },
+      {
+        heading: 'Projects and payments',
+        body: [
+          'Work begins after the proposal is accepted and any agreed advance payment is received. Remaining payments are due at the milestones set out in the proposal.',
+          'Changes requested outside the agreed scope may affect the price and timeline. We will confirm any such change with you in writing before doing the work.',
+        ],
+      },
+      {
+        heading: 'Ownership',
+        body: [
+          'Once a project is paid in full, the source code, design files and content created for you belong to you. Third party software, fonts and services used in the project remain subject to their own licences.',
+        ],
+      },
+      {
+        heading: 'Maintenance',
+        body: [
+          'Packages include six months of free maintenance after launch, covering bug fixes and small content or design updates. New features and major changes are quoted separately.',
+        ],
+      },
+      {
+        heading: 'Liability',
+        body: [
+          'We take care to build reliable software, but we cannot guarantee that a website or app will be free from all errors or available without interruption. Our total liability for any project is limited to the amount paid for that project.',
+        ],
+      },
+      {
+        heading: 'Governing law',
+        body: ['These terms are governed by the laws of India, and any disputes are subject to the courts of Gautam Buddh Nagar, Uttar Pradesh.'],
+      },
+    ],
+  },
+];
+
+export const getLegal = (slug: string) => LEGAL.find((l) => l.slug === slug);
 
 /** All indexable routes. Used by the prerender script and the sitemap. */
 export const routes = (): string[] => [
   '/',
   ...SERVICES.map((s) => `/services/${s.slug}`),
   ...PROJECTS.map((p) => `/work/${p.slug}`),
+  ...LEGAL.map((l) => `/${l.slug}`),
 ];

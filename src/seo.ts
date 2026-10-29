@@ -1,4 +1,4 @@
-import { SITE, HOME_META, FAQS, SERVICES, PROJECTS, getProject, getService } from './content/site';
+import { SITE, HOME_META, FAQS, SERVICES, PROJECTS, getProject, getService, getLegal } from './content/site';
 
 export interface RouteMeta {
   path: string;
@@ -12,13 +12,14 @@ export interface RouteMeta {
 }
 
 const U = SITE.url;
-const OG_IMAGE = `${U}/og.png`;
+const OG_IMAGE = `${U}/og/home.png`;
+const og = (name: string) => `${U}/og/${name}.png`;
 const ORG_ID = `${U}/#organization`;
 const SITE_ID = `${U}/#website`;
 const FOUNDER_ID = `${U}/#founder`;
 
 const organization = {
-  '@type': ['Organization', 'ProfessionalService'],
+  '@type': ['Organization', 'LocalBusiness', 'ProfessionalService'],
   '@id': ORG_ID,
   name: SITE.name,
   alternateName: SITE.shortName,
@@ -26,7 +27,7 @@ const organization = {
   logo: { '@type': 'ImageObject', url: `${U}/brand/spesio-mark.png`, width: 512, height: 512 },
   image: OG_IMAGE,
   description: HOME_META.description,
-  slogan: 'We turn ambitious ideas into digital products.',
+  slogan: 'Websites, web apps and Android apps for growing businesses.',
   foundingDate: SITE.foundingYear,
   founder: { '@id': FOUNDER_ID },
   email: SITE.email,
@@ -38,6 +39,7 @@ const organization = {
     addressRegion: SITE.region,
     addressCountry: SITE.country,
   },
+  hasMap: 'https://www.google.com/maps/search/?api=1&query=Greater+Noida%2C+Uttar+Pradesh',
   areaServed: [
     { '@type': 'City', name: 'Greater Noida' },
     { '@type': 'City', name: 'Noida' },
@@ -59,7 +61,7 @@ const organization = {
     availableLanguage: ['English', 'Hindi'],
   },
   knowsAbout: [
-    'Web development', 'Web application development', 'Android app development', 'Kotlin', 'Next.js',
+    'Website development', 'Web design', 'Web application development', 'Android app development', 'Kotlin', 'Next.js',
     'React', 'E-commerce development', 'AI integration', 'Chatbot development', 'Workflow automation',
     'ERP development', 'Technical SEO',
   ],
@@ -154,13 +156,13 @@ export function getRouteMeta(rawPath: string): RouteMeta {
   const pm = path.match(/^\/work\/([^/]+)$/);
   const project = pm ? getProject(pm[1]) : undefined;
   if (project) {
-    const title = `${project.name} — ${project.category} Case Study | ${SITE.name}`;
+    const title = `${project.name}: ${project.type} for ${project.category.toLowerCase()} | ${SITE.name}`;
     return {
       path,
       title,
       description: `${project.summary} Built by ${SITE.name} with ${project.stack.join(', ')}.`,
       canonical,
-      ogImage: OG_IMAGE,
+      ogImage: og(`work-${project.slug}`),
       ogType: 'article',
       noindex: false,
       jsonLd: graph(
@@ -186,13 +188,13 @@ export function getRouteMeta(rawPath: string): RouteMeta {
   const sm = path.match(/^\/services\/([^/]+)$/);
   const service = sm ? getService(sm[1]) : undefined;
   if (service) {
-    const title = `${service.seoTitle} in Greater Noida & India | ${SITE.name}`;
+    const title = `${service.seoTitle} in Greater Noida | ${SITE.name}`;
     return {
       path,
       title,
-      description: `${service.line} ${service.description.split('. ')[0]}.`,
+      description: `${service.line} Based in Greater Noida, working across India.`,
       canonical,
-      ogImage: OG_IMAGE,
+      ogImage: og(`service-${service.slug}`),
       ogType: 'website',
       noindex: false,
       jsonLd: graph(
@@ -217,6 +219,25 @@ export function getRouteMeta(rawPath: string): RouteMeta {
           },
         },
         crumbs([['Home', `${U}/`], ['Services', `${U}/#services`], [service.seoTitle, canonical]]),
+      ),
+    };
+  }
+
+  const legal = getLegal(path.slice(1));
+  if (legal) {
+    return {
+      path,
+      title: `${legal.title} | ${SITE.name}`,
+      description: legal.description,
+      canonical,
+      ogImage: OG_IMAGE,
+      ogType: 'website',
+      noindex: false,
+      jsonLd: graph(
+        organization,
+        website,
+        { '@type': 'WebPage', '@id': `${canonical}#webpage`, url: canonical, name: legal.title, description: legal.description, isPartOf: { '@id': SITE_ID }, inLanguage: SITE.lang },
+        crumbs([['Home', `${U}/`], [legal.title, canonical]]),
       ),
     };
   }

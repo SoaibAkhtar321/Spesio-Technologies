@@ -5,5 +5,5 @@ Location: Greater Noida, India
 Contact: spesiotechnologies [at] gmail.com
 
 /* SITE */
-Stack: React, TypeScript, Vite, three.js, Lenis
+Stack: React, TypeScript, Vite, WebGL
 Rendering: static prerender + hydration on Vercel

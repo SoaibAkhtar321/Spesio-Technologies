@@ -1,20 +1,35 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Spesio Technologies website
 
-# Run and deploy your AI Studio app
+Marketing site for Spesio Technologies, a web design and development studio in Greater Noida.
 
-This contains everything you need to run your app locally.
+## Stack
 
-View your app in AI Studio: https://ai.studio/apps/8005a59f-0adc-41ee-ae2b-22fa9628866a
+React 19 + TypeScript, built with Vite. Every route is server-rendered to static HTML at build time
+(`scripts/prerender.ts`) and hydrated in the browser. The contact form posts to a Vercel function
+(`api/contact.ts`) that emails enquiries through Resend.
 
-## Run Locally
+## Commands
 
-**Prerequisites:**  Node.js
+```bash
+npm install
+npm run dev          # local dev server with the contact API on http://localhost:3000
+npm run build:site   # static build + prerender into dist/
+npm run preview      # serve dist/ on http://localhost:4173
+npm run lint         # type check
+```
 
+## Editing content
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+All copy, services, projects, packages, FAQs and legal text live in `src/content/site.ts`.
+Page titles, descriptions, canonical URLs and structured data are generated from it in `src/seo.ts`.
+The build also generates `sitemap.xml`, `robots.txt`, `llms.txt` and `llms-full.txt`.
+
+## Custom domain
+
+1. Add the domain in Vercel: Project, Settings, Domains.
+2. Change `SITE.url` in `src/content/site.ts` and the URLs in `index.html` to the new domain.
+3. Rebuild, deploy, and submit `https://yourdomain/sitemap.xml` in Google Search Console.
+
+## Environment variables
+
+See `.env.example`.
