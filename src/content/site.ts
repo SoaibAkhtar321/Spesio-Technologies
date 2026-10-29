@@ -148,6 +148,8 @@ export interface Project {
   capabilities: string[];
   stack: string[];
   liveUrl?: string;
+  /** Screenshot of the live site, captured with `npm run screenshots`. */
+  screenshot?: string;
   service: string;
   hue: [string, string];
   motif: 'map' | 'queue' | 'thread';
@@ -174,6 +176,7 @@ export const PROJECTS: Project[] = [
     ],
     stack: ['Next.js', 'Supabase', 'Google Maps'],
     liveUrl: 'https://propertyplanet.vercel.app/',
+    screenshot: '/work/property-planet.jpg',
     service: 'website-development',
     hue: ['#87A96B', '#2E2219'],
     motif: 'map',
@@ -220,7 +223,8 @@ export const PROJECTS: Project[] = [
       'Sign in with Google',
     ],
     stack: ['Next.js', 'TypeScript', 'Supabase', 'Razorpay'],
-    liveUrl: 'https://eifa-couture-ds3d-theta.vercel.app/',
+    liveUrl: 'https://eifa-couture-ds3d-git-main-campus-bite-s-projects.vercel.app/',
+    screenshot: '/work/eifa-couture.jpg',
     service: 'website-development',
     hue: ['#E2C29A', '#3A2A1E'],
     motif: 'thread',

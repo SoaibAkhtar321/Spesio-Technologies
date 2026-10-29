@@ -73,6 +73,11 @@ function page(route: string, meta: RouteMeta): string {
   return html;
 }
 
+for (const p of PROJECTS) {
+  if (p.screenshot && !fs.existsSync(path.join('public', p.screenshot)))
+    console.warn(`[prerender] WARNING: ${p.screenshot} is missing. Run \`npm run screenshots\` to capture it.`);
+}
+
 for (const route of routes()) {
   const out = route === '/' ? templatePath : path.join(dist, route, 'index.html');
   fs.mkdirSync(path.dirname(out), { recursive: true });

@@ -193,6 +193,14 @@ export function HeroArch() {
 }
 
 /** Detailed mini screens of each real project for the work section. */
+export function LiveShot({ src, url, alt }: { src: string; url: string; alt: string }) {
+  return (
+    <BrowserFrame url={url} className="pscreen">
+      <img className="liveshot" src={src} alt={alt} width={1440} height={900} loading="lazy" decoding="async" />
+    </BrowserFrame>
+  );
+}
+
 export function ProjectScreen({ slug }: { slug: string }) {
   if (slug === 'property-planet')
     return (

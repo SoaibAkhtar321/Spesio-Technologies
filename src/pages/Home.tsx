@@ -2,7 +2,7 @@ import { useEffect, useState, type CSSProperties, type FormEvent } from 'react';
 import { Link, scrollToTarget } from '../router';
 import { HERO, BUILD_LIST, SERVICES, PROJECTS, PROCESS, PRINCIPLES, STACK, PACKAGES, FAQS, CONTACT, SITE, STUDIO } from '../content/site';
 import { Btn, Arrow, ArrowUpRight, SectionHead } from '../components/ui';
-import { BrowserFrame, HeroComposite, ProjectScreen, ServiceArt } from '../components/Mockups';
+import { BrowserFrame, HeroComposite, LiveShot, ProjectScreen, ServiceArt } from '../components/Mockups';
 import { CoverArt } from '../components/CoverArt';
 
 /* ------------------------------------------------------------------ Hero */
@@ -127,7 +127,11 @@ function Work() {
           {PROJECTS.map((p, i) => (
             <article key={p.slug} className={`project project--${p.slug}${i % 2 ? ' is-flip' : ''}`} data-rv="">
               <Link href={`/work/${p.slug}`} className="project__stage" aria-label={`${p.name} case study`}>
-                <ProjectScreen slug={p.slug} />
+                {p.screenshot && p.liveUrl ? (
+                  <LiveShot src={p.screenshot} url={p.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')} alt={`Screenshot of the ${p.name} website`} />
+                ) : (
+                  <ProjectScreen slug={p.slug} />
+                )}
               </Link>
               <div className="project__text">
                 <span className="label">

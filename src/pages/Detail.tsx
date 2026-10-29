@@ -3,6 +3,7 @@ import { Link } from '../router';
 import { PROJECTS, SERVICES, SITE, getLegal, getProject, getService } from '../content/site';
 import { Arrow, Breadcrumbs, Btn } from '../components/ui';
 import { CoverArt } from '../components/CoverArt';
+import { LiveShot } from '../components/Mockups';
 import { Contact } from './Home';
 
 export function CaseStudy({ slug }: { slug: string }) {
@@ -32,9 +33,15 @@ export function CaseStudy({ slug }: { slug: string }) {
       </header>
 
       <div className="wrap">
-        <div className="cs-media" data-rv="">
-          <CoverArt project={p} />
-        </div>
+        {p.screenshot && p.liveUrl ? (
+          <div className="cs-shot" data-rv="">
+            <LiveShot src={p.screenshot} url={p.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')} alt={`Screenshot of the ${p.name} website`} />
+          </div>
+        ) : (
+          <div className="cs-media" data-rv="">
+            <CoverArt project={p} />
+          </div>
+        )}
 
         <div className="detail">
           <aside className="facts">
