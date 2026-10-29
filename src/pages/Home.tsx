@@ -1,8 +1,8 @@
 import { useEffect, useState, type CSSProperties, type FormEvent } from 'react';
 import { Link, scrollToTarget } from '../router';
 import { HERO, BUILD_LIST, SERVICES, PROJECTS, PROCESS, PRINCIPLES, STACK, PACKAGES, FAQS, CONTACT, SITE, STUDIO } from '../content/site';
-import { Btn, Arrow, SectionHead } from '../components/ui';
-import { BrowserFrame, HeroComposite, ServiceArt } from '../components/Mockups';
+import { Btn, Arrow, ArrowUpRight, SectionHead } from '../components/ui';
+import { BrowserFrame, HeroArch, HeroComposite, ProjectScreen, ServiceArt } from '../components/Mockups';
 import { CoverArt } from '../components/CoverArt';
 
 /* ------------------------------------------------------------------ Hero */
@@ -10,6 +10,7 @@ import { CoverArt } from '../components/CoverArt';
 function Hero() {
   return (
     <section className="hero" aria-labelledby="hero-title">
+      <div className="hero__bg" aria-hidden="true" />
       <div className="wrap hero__grid">
         <div className="hero__text">
           <span className="label status">{HERO.eyebrow}</span>
@@ -26,6 +27,7 @@ function Hero() {
           </div>
         </div>
         <div className="hero__visual" data-rv="">
+          <HeroArch />
           <HeroComposite />
         </div>
       </div>
@@ -114,7 +116,7 @@ export function WorkCard({ p, large = false }: { p: (typeof PROJECTS)[number]; l
 
 function Work() {
   return (
-    <section className="section section--tint" id="work" aria-labelledby="work-title">
+    <section className="section work" id="work" aria-labelledby="work-title">
       <div className="wrap">
         <div className="sec-row">
           <div className="sec-head">
@@ -125,11 +127,42 @@ function Work() {
           </div>
           <p className="lead">A property marketplace, a fashion store with online payments, and a campus food ordering app. Each one designed, built and launched by us.</p>
         </div>
-        <div className="work-grid">
+        <div className="projects">
           {PROJECTS.map((p, i) => (
-            <div key={p.slug} data-rv="" style={{ '--d': `${i * 60}ms` } as CSSProperties}>
-              <WorkCard p={p} large={i === 0} />
-            </div>
+            <article key={p.slug} className={`project project--${p.slug}${i % 2 ? ' is-flip' : ''}`} data-rv="">
+              <Link href={`/work/${p.slug}`} className="project__stage" aria-label={`${p.name} case study`}>
+                <ProjectScreen slug={p.slug} />
+              </Link>
+              <div className="project__text">
+                <span className="label">
+                  {p.number} · {p.type}
+                </span>
+                <h3 className="project__name">
+                  <Link href={`/work/${p.slug}`}>{p.name}</Link>
+                </h3>
+                <p className="muted">{p.overview}</p>
+                <ul className="ticks">
+                  {p.capabilities.slice(0, 3).map((c) => (
+                    <li key={c}>{c}</li>
+                  ))}
+                </ul>
+                <div className="project__stack">
+                  {p.stack.map((t) => (
+                    <span key={t}>{t}</span>
+                  ))}
+                </div>
+                <div className="project__links">
+                  <Link className="tlink" href={`/work/${p.slug}`}>
+                    Read the case study <Arrow />
+                  </Link>
+                  {p.liveUrl && (
+                    <a className="tlink" href={p.liveUrl} target="_blank" rel="noopener noreferrer">
+                      Visit live site <ArrowUpRight />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </article>
           ))}
         </div>
       </div>

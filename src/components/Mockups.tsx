@@ -147,3 +147,156 @@ export function ServiceArt({ kind }: { kind: string }) {
     </div>
   );
 }
+
+/** Arched window with a drawn landscape, placed behind the hero composite. */
+export function HeroArch() {
+  return (
+    <svg className="hero-arch" viewBox="0 0 400 520" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#f3d9ad" />
+          <stop offset="0.55" stopColor="#e9b46e" />
+          <stop offset="1" stopColor="#d5851f" />
+        </linearGradient>
+        <clipPath id="archclip">
+          <path d="M0 520V200C0 90 90 0 200 0s200 90 200 200v320z" />
+        </clipPath>
+      </defs>
+      <g clipPath="url(#archclip)">
+        <rect width="400" height="520" fill="url(#sky)" />
+        <circle cx="250" cy="250" r="54" fill="#fbe7c4" opacity="0.9" />
+        <path d="M0 330 C80 280 150 300 220 270 S340 250 400 280 V520 H0z" fill="#a7bb8e" />
+        <path d="M0 380 C90 340 170 370 250 340 S360 330 400 350 V520 H0z" fill="#87a96b" />
+        <path d="M0 430 C110 400 200 430 290 410 S370 400 400 410 V520 H0z" fill="#5f7d4a" />
+        <path d="M0 470 C120 455 240 480 400 460 V520 H0z" fill="#4f6b3c" />
+      </g>
+      <path d="M1 520V200C1 90.6 90.6 1 200 1s199 89.6 199 199v320" fill="none" stroke="rgba(58,42,30,0.18)" strokeWidth="2" />
+    </svg>
+  );
+}
+
+/** Detailed mini screens of each real project for the work section. */
+export function ProjectScreen({ slug }: { slug: string }) {
+  if (slug === 'property-planet')
+    return (
+      <BrowserFrame url="propertyplanet.vercel.app" className="pscreen">
+        <div className="pp">
+          <div className="pp__nav">
+            <b>Property Planet</b>
+            <span>Buy</span>
+            <span>Sell</span>
+            <span>Agents</span>
+            <em>List a plot</em>
+          </div>
+          <div className="pp__body">
+            <aside className="pp__filters">
+              <p>Filters</p>
+              {['Residential', 'Farm land', 'Commercial'].map((f, i) => (
+                <label key={f}>
+                  <i className={i === 0 ? 'on' : ''} />
+                  {f}
+                </label>
+              ))}
+              <p>Area</p>
+              <span className="pp__range">
+                <i />
+              </span>
+            </aside>
+            <div className="pp__map">
+              {[
+                [20, 28],
+                [44, 52],
+                [66, 30],
+                [78, 68],
+                [32, 74],
+              ].map(([x, y], i) => (
+                <i key={i} className={i === 2 ? 'hot' : ''} style={{ left: `${x}%`, top: `${y}%` }} />
+              ))}
+              <div className="pp__pop">
+                <b>Residential plot</b>
+                <small>Approved listing · Enquire</small>
+              </div>
+            </div>
+          </div>
+          <div className="pp__list">
+            {['Residential plot', 'Farm land', 'Corner plot', 'Commercial plot'].map((t, i) => (
+              <div key={t}>
+                <span className={`pp__thumb t${i}`} />
+                <b>{t}</b>
+                <small>Greater Noida</small>
+              </div>
+            ))}
+          </div>
+        </div>
+      </BrowserFrame>
+    );
+  if (slug === 'eifa-couture')
+    return (
+      <BrowserFrame url="eifa-couture-ds3d-theta.vercel.app" className="pscreen">
+        <div className="ec">
+          <div className="ec__nav">
+            <span>New in</span>
+            <span>Kurtas</span>
+            <b>EIFA COUTURE</b>
+            <span>Sarees</span>
+            <span>Cart (2)</span>
+          </div>
+          <div className="ec__hero">
+            <div>
+              <small>Hand embroidered in Lucknow</small>
+              <p>The Chikankari edit</p>
+              <em>Shop the collection</em>
+            </div>
+            <span className="ec__motif" />
+          </div>
+          <div className="ec__grid">
+            {[0, 1, 2, 3].map((i) => (
+              <div key={i}>
+                <span className={`ec__tile t${i}`} />
+                <i />
+                <i className="short" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </BrowserFrame>
+    );
+  return (
+    <div className="cb pscreen" aria-hidden="true">
+      <div className="phone cb__phone">
+        <div className="phone__notch" />
+        <p className="phone__title">Menu</p>
+        {['Masala dosa', 'Veg thali', 'Cold coffee'].map((t, i) => (
+          <div key={t} className="cb__item">
+            <span className={`cb__img t${i}`} />
+            <span>{t}</span>
+            <em>+</em>
+          </div>
+        ))}
+        <div className="phone__cta">View cart</div>
+      </div>
+      <div className="phone cb__phone is-mid">
+        <div className="phone__notch" />
+        <p className="phone__title">Pickup slots</p>
+        {['12:00', '12:15', '12:30', '12:45'].map((t, i) => (
+          <div key={t} className={`phone__slot${i === 1 ? ' is-active' : ''}`}>
+            <span>{t}</span>
+            <i style={{ width: `${[70, 100, 45, 20][i]}%` }} />
+          </div>
+        ))}
+        <div className="phone__cta">Place order</div>
+      </div>
+      <div className="phone cb__phone">
+        <div className="phone__notch" />
+        <p className="phone__title">Order status</p>
+        {['Order placed', 'Being prepared', 'Ready for pickup'].map((t, i) => (
+          <div key={t} className={`cb__step${i < 2 ? ' done' : ''}`}>
+            <i />
+            <span>{t}</span>
+          </div>
+        ))}
+        <div className="cb__note">Pickup at 12:15</div>
+      </div>
+    </div>
+  );
+}
