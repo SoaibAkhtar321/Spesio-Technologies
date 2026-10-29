@@ -677,3 +677,54 @@ a.channel:hover b { color: var(--walnut-2); }
 .liveshot { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; background: var(--surface); }
 .cs-shot { max-width: 1100px; margin: 0 auto; }
 .cs-shot .pscreen { max-width: none; }
+
+/* ==========================================================================
+   Hero v4: solid walnut, no gradients
+   ========================================================================== */
+.hero { background: var(--walnut); color: var(--on-dark); padding-bottom: 0; }
+.hero__bg { display: none; }
+.hero .label { color: rgba(241, 235, 224, 0.6); }
+.hero .status::before { background: var(--sage); }
+.hero .h1 { color: var(--on-dark); }
+.hero .h1 em { color: var(--amber); }
+.hero .lead { color: rgba(241, 235, 224, 0.74); }
+.hero .btn--outline { color: var(--on-dark); border-color: rgba(241, 235, 224, 0.3); }
+.hero .btn--outline:hover { background: rgba(241, 235, 224, 0.08); border-color: rgba(241, 235, 224, 0.55); }
+.hero .proof { border-top-color: rgba(241, 235, 224, 0.14); margin-top: clamp(48px, 6vw, 80px); }
+.hero .proof li { color: var(--on-dark); opacity: 0.9; }
+/* Solid sage "stage" behind the illustration */
+.hero__visual { padding: clamp(18px, 2.4vw, 32px); background: var(--sage); border-radius: 16px; }
+.composite { padding-top: 64px; padding-bottom: 96px; }
+.composite__dash { top: 0; right: 0; }
+.composite__toast { right: 6%; bottom: 28px; }
+.composite__phone { left: 0; bottom: 0; }
+.browser, .dash, .toast { box-shadow: 0 14px 30px -14px rgba(31, 22, 16, 0.45); }
+.phone { box-shadow: 0 18px 34px -16px rgba(31, 22, 16, 0.6); }
+/* Remove gradients inside the illustration */
+.gsite__logo { background: var(--sage-ink); }
+.gsite__img { background: #e9b46e; }
+.gapp__img.c0 { background: #d5851f; }
+.gapp__img.c1 { background: #87a96b; }
+.gapp__img.c2 { background: #8a6a52; }
+@media (max-width: 600px) { .hero__visual { padding: 14px; } .composite { padding-top: 70px; padding-bottom: 140px; } }
+
+/* Header sits on the walnut hero on the home page */
+.hdr { background: rgba(244, 239, 230, 0.94); }
+
+/* ==========================================================================
+   Services: flat, no gradients
+   ========================================================================== */
+#services { background: var(--bg); }
+.sart { background: var(--surface); }
+.sart__img { background: var(--sage); }
+.svc { background: #fbf8f2; }
+.composite { color: var(--text); }
+.composite .phone { color: var(--on-dark); }
+@media (min-width: 601px) { .composite__browser { margin-left: 16%; width: 84%; } }
+@media (min-width: 601px) {
+  .composite { padding-top: 70px; padding-bottom: 70px; }
+  .composite__browser { margin-left: 0; width: 82%; }
+  .composite__phone { left: auto; right: 0; bottom: 0; width: clamp(120px, 11vw, 148px); }
+  .composite__dash { top: 0; right: auto; left: 46%; }
+  .composite__toast { right: auto; left: 4%; bottom: 14px; }
+}
