@@ -196,7 +196,7 @@ export function HeroArch() {
 export function LiveShot({ src, url, alt }: { src: string; url: string; alt: string }) {
   return (
     <BrowserFrame url={url} className="pscreen">
-      <img className="liveshot" src={src} alt={alt} width={1440} height={900} loading="lazy" decoding="async" />
+      <img className="liveshot" src={src} alt={alt} width={1440} height={810} loading="lazy" decoding="async" />
     </BrowserFrame>
   );
 }
