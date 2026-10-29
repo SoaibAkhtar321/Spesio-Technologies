@@ -2,7 +2,7 @@ import { useEffect, useState, type CSSProperties, type FormEvent } from 'react';
 import { Link, scrollToTarget } from '../router';
 import { HERO, BUILD_LIST, SERVICES, PROJECTS, PROCESS, PRINCIPLES, STACK, PACKAGES, FAQS, CONTACT, SITE, STUDIO } from '../content/site';
 import { Btn, Arrow, ArrowUpRight, SectionHead } from '../components/ui';
-import { BrowserFrame, HeroArch, HeroComposite, ProjectScreen, ServiceArt } from '../components/Mockups';
+import { BrowserFrame, HeroComposite, ProjectScreen, ServiceArt } from '../components/Mockups';
 import { CoverArt } from '../components/CoverArt';
 
 /* ------------------------------------------------------------------ Hero */
@@ -27,21 +27,17 @@ function Hero() {
           </div>
         </div>
         <div className="hero__visual" data-rv="">
-          <HeroArch />
           <HeroComposite />
         </div>
       </div>
       <div className="wrap">
         <div className="proof">
-          <span className="label">Recent projects</span>
+          <span className="label">What we build</span>
           <ul>
-            {PROJECTS.map((p) => (
-              <li key={p.slug}>
-                <Link href={`/work/${p.slug}`}>{p.name}</Link>
-              </li>
+            {BUILD_LIST.map((b) => (
+              <li key={b}>{b}</li>
             ))}
           </ul>
-          <span className="label proof__right">{BUILD_LIST.slice(0, 4).join(' · ')}</span>
         </div>
       </div>
     </section>

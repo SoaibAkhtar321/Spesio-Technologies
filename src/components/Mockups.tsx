@@ -22,44 +22,45 @@ export function BrowserFrame({ url, children, className = '' }: { url: string; c
   );
 }
 
-/** Hero composite: a property website, a food-ordering app and an enquiry notification. */
+/** Hero composite: a general business website, a mobile app and an admin dashboard working together. */
 export function HeroComposite() {
   return (
-    <div className="composite" role="img" aria-label="Illustration of a property website in a browser, an Android food ordering app on a phone, and a new enquiry notification">
-      <BrowserFrame url="propertyplanet.vercel.app" className="composite__browser">
-        <div className="mini-site">
-          <div className="mini-site__nav">
-            <b>Property Planet</b>
-            <span />
-            <span />
-            <span />
-            <em>List a plot</em>
+    <div className="composite" role="img" aria-label="Illustration of a business website, a mobile app and an admin dashboard built by Spesio Technologies">
+      <BrowserFrame url="yourbusiness.com" className="composite__browser">
+        <div className="gsite">
+          <div className="gsite__nav">
+            <span className="gsite__logo" />
+            <span>Home</span>
+            <span>Services</span>
+            <span>About</span>
+            <em>Contact</em>
           </div>
-          <div className="mini-site__hero">
+          <div className="gsite__hero">
             <div>
-              <p className="mini-site__h">Find land and plots near you</p>
-              <div className="mini-site__search">
-                <span>Greater Noida</span>
-                <em>Search</em>
+              <p className="gsite__h">
+                Your business,
+                <br />
+                <i>beautifully</i> online.
+              </p>
+              <span className="gsite__p" />
+              <span className="gsite__p short" />
+              <div className="gsite__btns">
+                <em>Get a quote</em>
+                <span>Our work</span>
               </div>
             </div>
-            <div className="mini-map">
-              {[
-                [22, 30],
-                [58, 22],
-                [70, 60],
-                [36, 66],
-              ].map(([x, y], i) => (
-                <i key={i} style={{ left: `${x}%`, top: `${y}%` }} />
-              ))}
+            <div className="gsite__img">
+              <span className="sun" />
+              <span className="hill h1" />
+              <span className="hill h2" />
             </div>
           </div>
-          <div className="mini-site__cards">
-            {['Residential plot', 'Farm land', 'Commercial plot'].map((t) => (
+          <div className="gsite__cards">
+            {['Fast', 'Secure', 'Mobile ready'].map((t, i) => (
               <div key={t}>
-                <span className="mini-site__thumb" />
+                <span className={`gsite__icon c${i}`} />
                 <b>{t}</b>
-                <span className="mini-site__line" />
+                <span className="gsite__p" />
               </div>
             ))}
           </div>
@@ -68,14 +69,30 @@ export function HeroComposite() {
 
       <div className="phone composite__phone" aria-hidden="true">
         <div className="phone__notch" />
-        <p className="phone__title">Pickup slots</p>
-        {['12:00', '12:15', '12:30', '12:45'].map((t, i) => (
-          <div key={t} className={`phone__slot${i === 1 ? ' is-active' : ''}`}>
-            <span>{t}</span>
-            <i style={{ width: `${[70, 100, 45, 20][i]}%` }} />
+        <p className="phone__title">Orders</p>
+        {[0, 1, 2].map((i) => (
+          <div key={i} className="gapp__row">
+            <span className={`gapp__img c${i}`} />
+            <span className="gapp__lines">
+              <i />
+              <i className="short" />
+            </span>
+            <em className={i === 0 ? 'new' : ''}>{i === 0 ? 'New' : 'Done'}</em>
           </div>
         ))}
-        <div className="phone__cta">Place order</div>
+        <div className="phone__cta">Track order</div>
+      </div>
+
+      <div className="dash composite__dash" aria-hidden="true">
+        <div className="dash__head">
+          <b>Dashboard</b>
+          <small>This week</small>
+        </div>
+        <div className="dash__bars">
+          {[38, 52, 46, 70, 62, 84, 76].map((h, i) => (
+            <i key={i} style={{ height: `${h}%` }} />
+          ))}
+        </div>
       </div>
 
       <div className="toast composite__toast" aria-hidden="true">
@@ -86,7 +103,7 @@ export function HeroComposite() {
         </span>
         <span>
           <b>New enquiry</b>
-          <small>From your website contact form</small>
+          <small>From your website</small>
         </span>
       </div>
     </div>
