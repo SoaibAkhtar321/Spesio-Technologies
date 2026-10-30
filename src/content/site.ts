@@ -200,7 +200,7 @@ export const PROJECTS: Project[] = [
     ],
     stack: ['Kotlin', 'Jetpack Compose', 'Firebase', 'Cloud Functions'],
     service: 'android-app-development',
-    hue: ['#D5851F', '#2A1F17'],
+    hue: ['#87A96B', '#2A1F17'],
     motif: 'queue',
   },
   {
