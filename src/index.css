@@ -973,3 +973,130 @@ a.channel:hover b { color: var(--walnut-2); }
 /* Readable accent on sage (cream on sage is too low contrast for text) */
 .hero .h1 em, .studio .statement em { color: var(--walnut-2); }
 .principle__n { color: var(--walnut-2); }
+
+/* ==========================================================================
+   Less brown: brown kept for buttons, the footer and small details only
+   ========================================================================== */
+.hero__visual { background: var(--cream); }
+.work { background: var(--sage-light); color: var(--walnut-3); }
+.work .label { color: rgba(42, 31, 23, 0.6); }
+.work .label--accent { color: var(--sage-ink); }
+.work .h2, .work .project__name { color: var(--walnut-3); }
+.work .h2 em { color: var(--sage-ink); }
+.work .lead, .work .muted { color: rgba(42, 31, 23, 0.76); }
+.work .ticks { color: rgba(42, 31, 23, 0.82); }
+.work .ticks li::before { border-color: var(--sage-ink); }
+.work .project__stack span { color: var(--walnut-3); border-color: rgba(42, 31, 23, 0.2); background: rgba(244, 239, 230, 0.6); }
+.work .tlink { color: var(--walnut-3); border-color: rgba(42, 31, 23, 0.3); }
+.work .tlink:hover { border-color: var(--walnut-3); }
+.project--eifa-couture .project__stage { background: var(--cream); }
+.cta-band { background: var(--sage); color: var(--walnut-3); }
+.cta-band .statement { color: var(--walnut-3); }
+.cta-band .statement em { color: var(--walnut-2); }
+.cta-band .btn { background: var(--walnut); color: var(--cream); }
+.cta-band .btn:hover { background: var(--walnut-3); }
+.cta-band .btn--outline { color: var(--walnut-3); border-color: rgba(42, 31, 23, 0.4); }
+.cta-band .btn--outline:hover { background: rgba(42, 31, 23, 0.08); }
+
+/* ==========================================================================
+   Theme toggle
+   ========================================================================== */
+.hdr__actions { display: flex; align-items: center; gap: 10px; }
+.theme-toggle { width: 38px; height: 38px; border-radius: var(--radius); display: grid; place-items: center; border: 1px solid var(--line-2); color: var(--text); transition: background 0.2s, border-color 0.2s; }
+.theme-toggle:hover { background: var(--surface); }
+.theme-toggle__moon { display: none; }
+html[data-theme='dark'] .theme-toggle__sun { display: none; }
+html[data-theme='dark'] .theme-toggle__moon { display: block; }
+::view-transition-old(root), ::view-transition-new(root) { mix-blend-mode: normal; }
+
+/* ==========================================================================
+   DARK MODE: deep walnut base, deep sage sections, cream text
+   ========================================================================== */
+html[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #17120e;
+  --bg-2: #1d1712;
+  --surface: #241c16;
+  --surface-2: #2c231b;
+  --line: rgba(239, 233, 223, 0.1);
+  --line-2: rgba(239, 233, 223, 0.2);
+  --text: #efe9df;
+  --text-2: rgba(239, 233, 223, 0.74);
+  --text-3: rgba(239, 233, 223, 0.52);
+  --sage-ink: #a7c48c;
+  --deep-sage: #263420;
+  --card: #211a14;
+}
+html[data-theme='dark'] body { background: var(--bg); color: var(--text); }
+html[data-theme='dark'] .hdr { background: rgba(23, 18, 14, 0.9); }
+html[data-theme='dark'] .menu-btn { color: var(--text); }
+html[data-theme='dark'] .btn, html[data-theme='dark'] .hdr .btn { background: var(--sage); color: #17120e; }
+html[data-theme='dark'] .btn:hover { background: var(--sage-2); }
+html[data-theme='dark'] .btn--outline { background: transparent; color: var(--text); border-color: var(--line-2); }
+html[data-theme='dark'] .btn--outline:hover { background: rgba(239, 233, 223, 0.06); }
+html[data-theme='dark'] .tlink { color: var(--text); border-color: var(--line-2); }
+html[data-theme='dark'] .tlink:hover { border-color: var(--sage); }
+html[data-theme='dark'] .h1 em, html[data-theme='dark'] .h2 em, html[data-theme='dark'] .statement em { color: var(--sage-ink); }
+
+/* Sage sections become deep sage */
+html[data-theme='dark'] .hero,
+html[data-theme='dark'] .studio,
+html[data-theme='dark'] .phero,
+html[data-theme='dark'] .cta-band { background: var(--deep-sage); color: var(--text); }
+html[data-theme='dark'] .hero .h1, html[data-theme='dark'] .phero .h1,
+html[data-theme='dark'] .studio .statement, html[data-theme='dark'] .cta-band .statement,
+html[data-theme='dark'] .studio .principle h3, html[data-theme='dark'] .hero .proof li { color: var(--text); }
+html[data-theme='dark'] .hero .h1 em, html[data-theme='dark'] .studio .statement em,
+html[data-theme='dark'] .cta-band .statement em, html[data-theme='dark'] .principle__n { color: var(--sage-ink); }
+html[data-theme='dark'] .hero .label, html[data-theme='dark'] .hero .status, html[data-theme='dark'] .hero .lead,
+html[data-theme='dark'] .hero__note, html[data-theme='dark'] .studio .label, html[data-theme='dark'] .studio .muted,
+html[data-theme='dark'] .studio .principle p, html[data-theme='dark'] .phero .lead, html[data-theme='dark'] .phero .crumbs,
+html[data-theme='dark'] .phero .label, html[data-theme='dark'] .phero .muted { color: var(--text-2); }
+html[data-theme='dark'] .phero .label--accent { color: var(--sage-ink); }
+html[data-theme='dark'] .hero .status::before, html[data-theme='dark'] .hero__note span::before,
+html[data-theme='dark'] .hero .proof li + li::before { background: var(--sage); }
+html[data-theme='dark'] .hero .btn, html[data-theme='dark'] .cta-band .btn { background: var(--sage); color: #17120e; }
+html[data-theme='dark'] .hero .btn--outline, html[data-theme='dark'] .cta-band .btn--outline { background: transparent; color: var(--text); border-color: var(--line-2); }
+html[data-theme='dark'] .hero .proof, html[data-theme='dark'] .studio .principles,
+html[data-theme='dark'] .studio .principle { border-color: var(--line); }
+html[data-theme='dark'] .hero__visual { background: #1b2617; }
+html[data-theme='dark'] .chip-static { color: var(--text); border-color: var(--line-2); background: transparent; }
+
+/* Light sections become walnut-dark */
+html[data-theme='dark'] #services, html[data-theme='dark'] #packages, html[data-theme='dark'] #contact { background: var(--bg); }
+html[data-theme='dark'] #process, html[data-theme='dark'] #faq { background: var(--bg-2); }
+html[data-theme='dark'] .work { background: var(--bg-2); color: var(--text); }
+html[data-theme='dark'] .work .h2, html[data-theme='dark'] .work .project__name { color: var(--text); }
+html[data-theme='dark'] .work .label { color: var(--text-3); }
+html[data-theme='dark'] .work .lead, html[data-theme='dark'] .work .muted, html[data-theme='dark'] .work .ticks { color: var(--text-2); }
+html[data-theme='dark'] .work .project__stack span { color: var(--text-2); border-color: var(--line-2); background: transparent; }
+html[data-theme='dark'] .work .tlink { color: var(--text); border-color: var(--line-2); }
+html[data-theme='dark'] .project--eifa-couture .project__stage { background: #263420; }
+html[data-theme='dark'] .project--campusbite .project__stage { background: #0f0c09; }
+html[data-theme='dark'] .svc, html[data-theme='dark'] .tier { background: var(--card); border-color: var(--line); }
+html[data-theme='dark'] .svc:hover { background: var(--card); border-color: var(--line-2); }
+html[data-theme='dark'] .sart { background: #263420; border-color: var(--line); }
+html[data-theme='dark'] .tabs { border-color: var(--line-2); }
+html[data-theme='dark'] .tabs button[aria-selected='true'] { background: var(--sage); color: #17120e; }
+html[data-theme='dark'] .tstep__dot { background: var(--bg); color: var(--text); border-color: var(--line-2); }
+html[data-theme='dark'] .tstep:first-child .tstep__dot { background: var(--sage); color: #17120e; border-color: var(--sage); }
+html[data-theme='dark'] .timeline::before { background: var(--line-2); }
+html[data-theme='dark'] .form { background: var(--card); border-color: var(--line); }
+html[data-theme='dark'] .field input, html[data-theme='dark'] .field textarea { background: var(--bg); color: var(--text); border-color: var(--line-2); }
+html[data-theme='dark'] .field input:focus, html[data-theme='dark'] .field textarea:focus { border-color: var(--sage); }
+html[data-theme='dark'] .chip { background: transparent; color: var(--text-2); border-color: var(--line-2); }
+html[data-theme='dark'] .chip[aria-pressed='true'] { background: var(--sage); color: #17120e; border-color: var(--sage); }
+html[data-theme='dark'] .ftr { background: #0f0c09; }
+html[data-theme='dark'] .mnav { background: var(--bg); }
+html[data-theme='dark'] .fmsg.ok { color: var(--sage-ink); }
+html[data-theme='dark'] .browser { border-color: rgba(0, 0, 0, 0.3); }
+.cta-band .btn--outline { background: transparent; }
+html[data-theme='dark'] .cta-band .btn--outline { background: transparent; }
+/* Illustrated screens stay light in dark mode, so keep their text dark */
+html[data-theme='dark'] .composite, html[data-theme='dark'] .pscreen, html[data-theme='dark'] .sart { color: #2a1f17; }
+html[data-theme='dark'] .composite .phone, html[data-theme='dark'] .cb { color: #f1ebe0; }
+/* Mock screens keep their light-theme tokens inside dark mode */
+html[data-theme='dark'] .composite > :not(.phone), html[data-theme='dark'] .pscreen, html[data-theme='dark'] .sart {
+  --text: #2a1f17; --text-2: #5f5248; --text-3: #8b7e71;
+  --line: rgba(58, 42, 30, 0.12); --line-2: rgba(58, 42, 30, 0.22); --sage-ink: #3f5a2e;
+}

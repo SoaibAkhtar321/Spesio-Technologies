@@ -3,7 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <script>document.documentElement.classList.add('js')</script>
+    <script>
+      (function () {
+        var d = document.documentElement, t = null;
+        d.classList.add('js');
+        try { t = localStorage.getItem('spesio-theme'); } catch (e) {}
+        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        d.dataset.theme = t;
+      })();
+    </script>
 
     <title>Website and App Development Company in Greater Noida | Spesio Technologies</title>
     <meta name="description" content="Spesio Technologies designs and builds websites, online stores, web apps and Android apps for growing businesses. Based in Greater Noida, working across India." />
@@ -11,7 +19,7 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
     <link rel="canonical" href="https://spesio-technologies.vercel.app/" />
     <meta name="theme-color" content="#F4EFE6" />
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="light dark" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="geo.region" content="IN-UP" />
     <meta name="geo.placename" content="Greater Noida" />
@@ -36,7 +44,7 @@
     <meta name="twitter:title" content="Spesio Technologies" />
     <meta name="twitter:description" content="Websites, online stores, web apps and Android apps for growing businesses." />
     <meta name="twitter:image" content="https://spesio-technologies.vercel.app/og/home.png" />
-    <style>html{background:#f4efe6;color:#2a1f17}</style>
+    <style>html{background:#f4efe6;color:#2a1f17}html[data-theme=dark]{background:#17120e;color:#efe9df}</style>
   </head>
   <body>
     <div id="root"><!--app--></div>

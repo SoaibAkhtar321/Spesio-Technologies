@@ -3,6 +3,59 @@ import { Link, useRouter } from '../router';
 import { NAV, SITE, SERVICES, PROJECTS } from '../content/site';
 import { Btn } from './ui';
 
+function getTheme(): 'light' | 'dark' {
+  return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+}
+
+function applyTheme(t: 'light' | 'dark') {
+  document.documentElement.dataset.theme = t;
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', t === 'dark' ? '#17120E' : '#F4EFE6');
+}
+
+/** Follows the device setting until the visitor picks a theme; their choice then wins. */
+export function ThemeToggle() {
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const onChange = () => {
+      let saved: string | null = null;
+      try {
+        saved = localStorage.getItem('spesio-theme');
+      } catch {
+        /* storage unavailable */
+      }
+      if (saved !== 'light' && saved !== 'dark') applyTheme(mq.matches ? 'dark' : 'light');
+    };
+    applyTheme(getTheme());
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+
+  const toggle = () => {
+    const next = getTheme() === 'dark' ? 'light' : 'dark';
+    const swap = () => applyTheme(next);
+    const doc = document as Document & { startViewTransition?: (cb: () => void) => unknown };
+    if (doc.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) doc.startViewTransition(swap);
+    else swap();
+    try {
+      localStorage.setItem('spesio-theme', next);
+    } catch {
+      /* storage unavailable */
+    }
+  };
+
+  return (
+    <button type="button" className="theme-toggle" onClick={toggle} aria-label="Switch between light and dark mode">
+      <svg className="theme-toggle__sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.2" />
+        <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" />
+      </svg>
+      <svg className="theme-toggle__moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" />
+      </svg>
+    </button>
+  );
+}
+
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -30,14 +83,17 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <div className="hdr__cta">
-          <Btn href="/#contact" size="sm">
-            Start a project
-          </Btn>
-        </div>
-        <button className="menu-btn" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-controls="mobile-nav">
+        <div className="hdr__actions">
+          <ThemeToggle />
+          <div className="hdr__cta">
+            <Btn href="/#contact" size="sm">
+              Start a project
+            </Btn>
+          </div>
+          <button className="menu-btn" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-controls="mobile-nav">
           {open ? 'Close' : 'Menu'}
-        </button>
+          </button>
+        </div>
       </div>
       <div id="mobile-nav" className={`mnav${open ? ' open' : ''}`}>
         <nav className="wrap" aria-label="Mobile">
