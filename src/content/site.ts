@@ -38,9 +38,9 @@ export const SITE = {
 /* ---------------------------------------------------------------- Hero */
 
 export const HERO = {
-  eyebrow: 'Web design and development studio in Greater Noida',
-  headline: 'We design and build websites, web apps and Android apps for growing businesses.',
-  sub: 'From a fast business website to a full online store, booking system or mobile app. Designed, coded and launched by one accountable team, with six months of free maintenance.',
+  eyebrow: 'Web and app development studio · Greater Noida',
+  headline: 'Websites and apps built to grow your business.',
+  sub: 'We design, build and launch business websites, online stores, web apps and Android apps. One team from the first call to launch day, with six months of free support after.',
   primaryCta: 'Start a project',
   secondaryCta: 'See our work',
 };

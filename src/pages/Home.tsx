@@ -15,8 +15,7 @@ function Hero() {
         <div className="hero__text">
           <span className="label status">{HERO.eyebrow}</span>
           <h1 id="hero-title" className="h1">
-            {HERO.headline.replace(/businesses\.$/, '')}
-            <em>businesses.</em>
+            Websites and apps built to <em>grow</em> your business.
           </h1>
           <p className="lead">{HERO.sub}</p>
           <div className="hero__ctas">

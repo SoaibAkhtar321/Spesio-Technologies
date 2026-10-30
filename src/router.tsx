@@ -11,6 +11,7 @@ import {
   type MouseEvent,
   type ReactNode,
 } from 'react';
+import { flushSync } from 'react-dom';
 import { getLegal, getProject, getService } from './content/site';
 
 export type Route =
@@ -56,6 +57,14 @@ export function scrollToTarget(target: string | HTMLElement | number, immediate 
   else window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 72, behavior });
 }
 
+/** Animates a route change with the View Transitions API where supported; falls back to a CSS fade. */
+function runTransition(update: () => void) {
+  const doc = document as Document & { startViewTransition?: (cb: () => void) => unknown };
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (doc.startViewTransition && !reduce) doc.startViewTransition(update);
+  else update();
+}
+
 export function Router({ children, initialPath = '/' }: { children: ReactNode; initialPath?: string }) {
   const [loc, setLoc] = useState(() =>
     typeof window === 'undefined'
@@ -65,7 +74,7 @@ export function Router({ children, initialPath = '/' }: { children: ReactNode; i
   const isFirst = useRef(true);
 
   useEffect(() => {
-    const onPop = () => setLoc({ path: window.location.pathname, hash: window.location.hash });
+    const onPop = () => runTransition(() => flushSync(() => setLoc({ path: window.location.pathname, hash: window.location.hash })));
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
   }, []);
@@ -78,7 +87,11 @@ export function Router({ children, initialPath = '/' }: { children: ReactNode; i
       scrollToTarget(decodeURIComponent(url.hash.slice(1)));
       return;
     }
-    setLoc({ path: url.pathname, hash: url.hash });
+    const update = () => {
+      flushSync(() => setLoc({ path: url.pathname, hash: url.hash }));
+      if (!url.hash) window.scrollTo(0, 0);
+    };
+    runTransition(update);
   }, []);
 
   useEffect(() => {

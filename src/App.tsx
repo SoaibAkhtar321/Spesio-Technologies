@@ -27,7 +27,7 @@ function Shell() {
         Skip to content
       </a>
       <Header />
-      <main id="main">
+      <main id="main" key={path} className="page">
         {route.name === 'home' && <Home />}
         {route.name === 'case-study' && <CaseStudy key={route.slug} slug={route.slug} />}
         {route.name === 'service' && <ServicePage key={route.slug} slug={route.slug} />}
