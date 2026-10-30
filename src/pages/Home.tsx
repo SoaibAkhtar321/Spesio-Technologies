@@ -25,6 +25,11 @@ function Hero() {
               {HERO.secondaryCta}
             </Btn>
           </div>
+          <div className="hero__note">
+            <span>Quote within one working day</span>
+            <span>You own the code</span>
+            <span>6 months free support</span>
+          </div>
         </div>
         <div className="hero__visual" data-rv="">
           <HeroComposite />

@@ -728,3 +728,34 @@ a.channel:hover b { color: var(--walnut-2); }
   .composite__dash { top: 0; right: auto; left: 46%; }
   .composite__toast { right: auto; left: 4%; bottom: 14px; }
 }
+
+/* ==========================================================================
+   Typography fix: open up the serif (normal spacing, text-optimised size)
+   ========================================================================== */
+.h1 { font-weight: 380; letter-spacing: -0.012em; line-height: 1.06; font-variation-settings: 'opsz' 60; }
+.h2, .statement, .project__name { letter-spacing: -0.006em; font-variation-settings: 'opsz' 48; font-weight: 400; }
+.h3, .card__title { letter-spacing: 0; font-variation-settings: 'opsz' 24; }
+.h1 em, .h2 em, .statement em { font-variation-settings: 'opsz' 60; letter-spacing: -0.005em; }
+
+/* ==========================================================================
+   Hero v5: calm cream page, one solid walnut panel, amber only for action
+   ========================================================================== */
+.hero { background: var(--bg); color: var(--text); }
+.hero .label { color: var(--text-3); }
+.hero .status::before { background: var(--sage-ink); }
+.hero .h1 { color: var(--text); font-size: clamp(40px, 5vw, 68px); max-width: 13em; }
+.hero .h1 em { color: var(--walnut-2); }
+.hero .lead { color: var(--text-2); }
+.hero .btn--outline { color: var(--text); border-color: var(--line-2); }
+.hero .btn--outline:hover { background: var(--surface); border-color: var(--text-3); }
+.hero .proof { border-top-color: var(--line); }
+.hero .proof li { color: var(--text); }
+.hero__visual { background: var(--walnut); border-radius: 14px; }
+.hero__visual .composite { color: var(--text); }
+.hero__visual .phone { background: #2a1f17; border-color: #1c140e; }
+.hero__visual .phone__cta { background: var(--sage); }
+.hero__visual .browser, .hero__visual .dash, .hero__visual .toast { box-shadow: 0 16px 32px -14px rgba(0, 0, 0, 0.5); border-color: rgba(0, 0, 0, 0.08); }
+.hero__visual .gsite__h i { color: var(--walnut-2); }
+.hero__note { display: flex; gap: 28px; flex-wrap: wrap; margin-top: 8px; color: var(--text-3); font-size: 14px; }
+.hero__note span { display: inline-flex; gap: 8px; align-items: center; }
+.hero__note span::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--sage-ink); }
