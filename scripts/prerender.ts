@@ -11,7 +11,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { SITE, PROJECTS, SERVICES, FAQS, PROCESS, PRINCIPLES, PACKAGES, HERO, STUDIO, LEGAL, routes } from '../src/content/site';
+import { SITE, PROJECTS, SERVICES, FAQS, PROCESS, PHASED_NOTE, PRINCIPLES, PACKAGES, HERO, STUDIO, ABOUT, STACK_GROUPS, DELIVERY, SCALE, LEGAL, isPlaceholder, routes } from '../src/content/site';
 import { getRouteMeta, type RouteMeta } from '../src/seo';
 
 const dist = path.resolve(process.cwd(), 'dist');
@@ -20,7 +20,16 @@ if (!fs.existsSync(templatePath)) {
   console.error('[prerender] dist/index.html not found. Run `vite build` first.');
   process.exit(1);
 }
-const template = fs.readFileSync(templatePath, 'utf-8');
+let template = fs.readFileSync(templatePath, 'utf-8');
+
+// Preload the two fonts used above the fold so headings render without a late swap.
+const assetFiles = fs.readdirSync(path.join(dist, 'assets'));
+const preloads = [/^geist-latin-wght-normal-.*\.woff2$/, /^fraunces-latin-opsz-normal-.*\.woff2$/]
+  .map((re) => assetFiles.find((f) => re.test(f)))
+  .filter(Boolean)
+  .map((f) => `<link rel="preload" href="/assets/${f}" as="font" type="font/woff2" crossorigin />`)
+  .join('\n    ');
+if (!template.includes('rel="preload"')) template = template.replace('</head>', `    ${preloads}\n  </head>`);
 
 const ssrEntry = ['entry-server.js', 'entry-server.mjs'].map((f) => path.resolve('dist-ssr', f)).find(fs.existsSync);
 if (!ssrEntry) {
@@ -44,7 +53,7 @@ function headBlock(m: RouteMeta): string {
     `<title>${esc(m.title)}</title>`,
     `<meta name="description" content="${esc(m.description)}" />`,
     `<meta name="robots" content="${m.noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}" />`,
-    `<link rel="canonical" href="${esc(m.canonical)}" />`,
+    ...(m.noindex ? [] : [`<link rel="canonical" href="${esc(m.canonical)}" />`]),
     `<meta property="og:type" content="${m.ogType}" />`,
     `<meta property="og:site_name" content="${esc(SITE.name)}" />`,
     `<meta property="og:locale" content="${SITE.locale}" />`,
@@ -59,6 +68,7 @@ function headBlock(m: RouteMeta): string {
     `<meta name="twitter:title" content="${esc(m.title)}" />`,
     `<meta name="twitter:description" content="${esc(m.description)}" />`,
     `<meta name="twitter:image" content="${esc(m.ogImage)}" />`,
+    `<meta name="twitter:image:alt" content="${esc(m.title)}" />`,
     ...m.jsonLd.map((d) => `<script type="application/ld+json">${JSON.stringify(d).replace(/</g, '\\u003c')}</script>`),
   ]
     .map((l) => `    ${l}`)
@@ -89,7 +99,7 @@ fs.writeFileSync(path.join(dist, '404.html'), page('/404', getRouteMeta('/404'))
 
 /* ---------------------------------------------------------------- sitemap */
 const today = new Date().toISOString().slice(0, 10);
-const prio = (r: string) => (r === '/' ? '1.0' : r.startsWith('/services') ? '0.9' : r.startsWith('/work') ? '0.8' : '0.3');
+const prio = (r: string) => (r === '/' ? '1.0' : r.startsWith('/services') ? '0.9' : r.startsWith('/work') ? '0.8' : r === '/about' || r === '/contact' ? '0.7' : '0.3');
 const sitemap =
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n` +
   routes()
@@ -118,7 +128,11 @@ const llms = `# ${SITE.name}
 
 Key facts:
 - Founder: ${SITE.founder.name} (${SITE.founder.role}); clients work directly with the engineer building their product.
-- Clients own their code, data, domain and accounts. Every package includes six months of free maintenance.
+- Delivery: phased (launch early, add features step by step); full source code, server access and documentation handed over on full payment.
+- Support: six months of bug and security support included after launch; paid support plans after that.
+- Architecture: serverless (Supabase or Firebase) for fast launches; VPS with Docker or AWS for larger custom systems.
+- Stack: ${STACK_GROUPS.map((g) => `${g.title}: ${g.items.join(', ')}`).join('; ')}.
+- Business type: ${SITE.legal.entity}${isPlaceholder(SITE.legal.udyam) ? '' : `, Udyam registration ${SITE.legal.udyam}`}.
 - Contact: ${SITE.email} · ${SITE.phone} (call / WhatsApp) · ${SITE.hours}
 
 ## Services
@@ -128,11 +142,13 @@ ${SERVICES.map((s) => `- [${s.seoTitle}](${SITE.url}/services/${s.slug}): ${s.li
 ${PROJECTS.map((p) => `- [${p.name}](${SITE.url}/work/${p.slug}): ${p.type} for ${p.category.toLowerCase()}. ${p.summary}`).join('\n')}
 
 ## Company pages
+- [About](${SITE.url}/about)
+- [Contact](${SITE.url}/contact)
 ${LEGAL.map((l) => `- [${l.title}](${SITE.url}/${l.slug})`).join('\n')}
 
 ## More
 - [Full details for LLMs](${SITE.url}/llms-full.txt)
-- [Contact form](${SITE.url}/#contact)
+- [Contact form](${SITE.url}/contact)
 `;
 fs.writeFileSync(path.join(dist, 'llms.txt'), llms);
 
@@ -144,9 +160,15 @@ ${HERO.sub}
 ${STUDIO.heading}
 ${STUDIO.body.join(' ')}
 
+## About
+${ABOUT.intro}
+${ABOUT.story.join(' ')}
+${ABOUT.team}
+
 ## Company
 - Name: ${SITE.name}
-- Type: Digital product studio (web, Android, AI)
+- Type: Web and app development studio (web, Android, AI)
+- Business type: ${SITE.legal.entity}${isPlaceholder(SITE.legal.udyam) ? '' : `, Udyam registration ${SITE.legal.udyam}`}
 - Founded: ${SITE.foundingYear}
 - Founder: ${SITE.founder.name}, ${SITE.founder.role}
 - Location: ${SITE.location}; serves clients across India and internationally (remote)
@@ -156,13 +178,24 @@ ${STUDIO.body.join(' ')}
 - Website: ${SITE.url}/
 
 ## Services
-${SERVICES.map((s) => `### ${s.seoTitle}\n${s.description}\nCapabilities: ${s.capabilities.join(', ')}.\nTechnology: ${s.stack.join(', ')}.\nDeliverables: ${s.deliverables.join('; ')}.\nURL: ${SITE.url}/services/${s.slug}`).join('\n\n')}
+${SERVICES.map((s) => `### ${s.seoTitle}\n${s.description}\nCapabilities: ${s.capabilities.join(', ')}.\nTechnology: ${s.stack.join(', ')}.\nDeliverables: ${s.deliverables.join('; ')}.\nURL: ${SITE.url}/services/${s.slug}\n${s.faqs.map((f) => `Q: ${f.question}\nA: ${f.answer}`).join('\n')}`).join('\n\n')}
 
 ## Case studies
 ${PROJECTS.map((p) => `### ${p.name} (${p.category})\n${p.overview}\nChallenge: ${p.challenge}\nBuilt: ${p.capabilities.join('; ')}.\nStack: ${p.stack.join(', ')}.${p.liveUrl ? `\nLive: ${p.liveUrl}` : ''}\nURL: ${SITE.url}/work/${p.slug}`).join('\n\n')}
 
+## Technology stack
+${STACK_GROUPS.map((g) => `- ${g.title}: ${g.items.join(', ')}. ${g.line}`).join('\n')}
+
 ## How we work
 ${PROCESS.map((s) => `${s.number}. ${s.title} (${s.duration}): ${s.line}`).join('\n')}
+${PHASED_NOTE}
+
+## Architecture and scalability
+${SCALE.intro}
+${SCALE.options.map((o) => `- ${o.title} (${o.tools}): ${o.line}`).join('\n')}
+
+## Delivery and support
+${DELIVERY.items.map((d) => `- ${d.title}: ${d.line}`).join('\n')}
 
 ## Principles
 ${PRINCIPLES.map((p) => `- ${p.title}: ${p.line}`).join('\n')}
@@ -178,3 +211,18 @@ fs.writeFileSync(path.join(dist, 'llms-full.txt'), full);
 
 fs.rmSync(path.resolve('dist-ssr'), { recursive: true, force: true });
 console.log('[prerender] sitemap.xml, robots.txt, llms.txt, llms-full.txt, 404.html written');
+
+// List every [PLACEHOLDER: ...] still visible on the built pages, so none go live by accident.
+const found = new Map<string, Set<string>>();
+for (const route of routes()) {
+  const file = route === '/' ? templatePath : path.join(dist, route, 'index.html');
+  const html = fs.readFileSync(file, 'utf-8');
+  for (const m of html.matchAll(/\[PLACEHOLDER:[^\]]*\]/g)) {
+    if (!found.has(m[0])) found.set(m[0], new Set());
+    found.get(m[0])!.add(route);
+  }
+}
+if (found.size) {
+  console.warn(`[prerender] ${found.size} placeholder(s) still to fill in (src/content/site.ts):`);
+  for (const [ph, pages] of found) console.warn(`  ${ph}  ->  ${[...pages].join(', ')}`);
+}

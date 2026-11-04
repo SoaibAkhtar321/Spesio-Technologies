@@ -4,7 +4,8 @@ import { applyMeta, getRouteMeta } from './seo';
 import { Header, Footer, WhatsAppFloat } from './components/layout';
 import { useReveals } from './components/effects';
 import Home from './pages/Home';
-import { CaseStudy, LegalPage, NotFound, ServicePage } from './pages/Detail';
+import { AboutPage, CaseStudy, ContactPage, LegalPage, NotFound, ServicePage } from './pages/Detail';
+import { CookieConsent } from './components/consent';
 
 function Shell() {
   const route = useRoute();
@@ -32,10 +33,13 @@ function Shell() {
         {route.name === 'case-study' && <CaseStudy key={route.slug} slug={route.slug} />}
         {route.name === 'service' && <ServicePage key={route.slug} slug={route.slug} />}
         {route.name === 'legal' && <LegalPage key={route.slug} slug={route.slug} />}
+        {route.name === 'about' && <AboutPage />}
+        {route.name === 'contact' && <ContactPage />}
         {route.name === 'not-found' && <NotFound />}
       </main>
       <Footer />
       <WhatsAppFloat />
+      <CookieConsent />
     </>
   );
 }

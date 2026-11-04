@@ -1,4 +1,4 @@
-import { SITE, HOME_META, FAQS, SERVICES, PROJECTS, getProject, getService, getLegal } from './content/site';
+import { SITE, HOME_META, FAQS, SERVICES, PROJECTS, ABOUT, STACK_GROUPS, getProject, getService, getLegal, isPlaceholder } from './content/site';
 
 export interface RouteMeta {
   path: string;
@@ -61,10 +61,13 @@ const organization = {
     availableLanguage: ['English', 'Hindi'],
   },
   knowsAbout: [
-    'Website development', 'Web design', 'Web application development', 'Android app development', 'Kotlin', 'Next.js',
-    'React', 'E-commerce development', 'AI integration', 'Chatbot development', 'Workflow automation',
-    'ERP development', 'Technical SEO',
+    'Website development', 'Web design', 'Web application development', 'Android app development', 'E-commerce development',
+    'AI integration', 'Chatbot development', 'Email and WhatsApp automation', 'Technical SEO', 'Core Web Vitals',
+    ...STACK_GROUPS.flatMap((g) => g.items),
   ],
+  ...(isPlaceholder(SITE.legal.udyam)
+    ? {}
+    : { identifier: { '@type': 'PropertyValue', propertyID: 'Udyam Registration Number', value: SITE.legal.udyam } }),
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Digital product services',
@@ -156,11 +159,11 @@ export function getRouteMeta(rawPath: string): RouteMeta {
   const pm = path.match(/^\/work\/([^/]+)$/);
   const project = pm ? getProject(pm[1]) : undefined;
   if (project) {
-    const title = `${project.name}: ${project.type} for ${project.category.toLowerCase()} | ${SITE.name}`;
+    const title = `${project.name} Case Study: ${project.type} | Spesio`;
     return {
       path,
       title,
-      description: `${project.summary} Built by ${SITE.name} with ${project.stack.join(', ')}.`,
+      description: `${project.summary} Built by Spesio Technologies.`,
       canonical,
       ogImage: og(`work-${project.slug}`),
       ogType: 'article',
@@ -188,7 +191,7 @@ export function getRouteMeta(rawPath: string): RouteMeta {
   const sm = path.match(/^\/services\/([^/]+)$/);
   const service = sm ? getService(sm[1]) : undefined;
   if (service) {
-    const title = `${service.seoTitle} in Greater Noida | ${SITE.name}`;
+    const title = `${service.titleKey} in Greater Noida | Spesio`;
     return {
       path,
       title,
@@ -219,6 +222,50 @@ export function getRouteMeta(rawPath: string): RouteMeta {
           },
         },
         crumbs([['Home', `${U}/`], ['Services', `${U}/#services`], [service.seoTitle, canonical]]),
+        {
+          '@type': 'FAQPage',
+          '@id': `${canonical}#faq`,
+          mainEntity: service.faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })),
+        },
+      ),
+    };
+  }
+
+  if (path === '/about') {
+    const title = 'About Spesio Technologies | Founder-led Web & App Studio';
+    return {
+      path,
+      title,
+      description: 'Founded in 2023 by software engineer Soaib Akhtar. A remote, founder-led studio building websites, web apps and Android apps on a production grade stack.',
+      canonical,
+      ogImage: OG_IMAGE,
+      ogType: 'website',
+      noindex: false,
+      jsonLd: graph(
+        organization,
+        founder,
+        website,
+        { '@type': 'AboutPage', '@id': `${canonical}#webpage`, url: canonical, name: title, description: ABOUT.intro, about: { '@id': ORG_ID }, isPartOf: { '@id': SITE_ID }, inLanguage: SITE.lang },
+        crumbs([['Home', `${U}/`], ['About', canonical]]),
+      ),
+    };
+  }
+
+  if (path === '/contact') {
+    const title = 'Contact Spesio Technologies | Email, WhatsApp, Enquiry Form';
+    return {
+      path,
+      title,
+      description: `Start a website, web app or Android app project. Email or WhatsApp ${SITE.phone}, or send the enquiry form. Reply within one working day.`,
+      canonical,
+      ogImage: OG_IMAGE,
+      ogType: 'website',
+      noindex: false,
+      jsonLd: graph(
+        organization,
+        website,
+        { '@type': 'ContactPage', '@id': `${canonical}#webpage`, url: canonical, name: title, about: { '@id': ORG_ID }, isPartOf: { '@id': SITE_ID }, inLanguage: SITE.lang },
+        crumbs([['Home', `${U}/`], ['Contact', canonical]]),
       ),
     };
   }
@@ -245,7 +292,7 @@ export function getRouteMeta(rawPath: string): RouteMeta {
   return {
     path,
     title: `Page not found | ${SITE.name}`,
-    description: 'This page does not exist.',
+    description: 'The page you are looking for could not be found. Visit the Spesio Technologies home page to see our services and work.',
     canonical: `${U}/`,
     ogImage: OG_IMAGE,
     ogType: 'website',

@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties, type FormEvent } from 'react';
 import { Link, scrollToTarget } from '../router';
-import { HERO, BUILD_LIST, SERVICES, PROJECTS, PROCESS, PRINCIPLES, STACK, PACKAGES, FAQS, CONTACT, SITE, STUDIO } from '../content/site';
+import { HERO, BUILD_LIST, SERVICES, PROJECTS, PROCESS, PHASED_NOTE, PRINCIPLES, STACK, STACK_GROUPS, DELIVERY, SCALE, PACKAGES, FAQS, CONTACT, SITE, STUDIO } from '../content/site';
 import { Btn, Arrow, ArrowUpRight, SectionHead } from '../components/ui';
 import { BrowserFrame, HeroComposite, LiveShot, ProjectScreen, ServiceArt } from '../components/Mockups';
 import { CoverArt } from '../components/CoverArt';
@@ -81,8 +81,8 @@ function Services() {
                     <li key={c}>{c}</li>
                   ))}
                 </ul>
-                <Link className="tlink" href={`/services/${s.slug}`} aria-label={`More about ${s.title.toLowerCase()}`}>
-                  Learn more <Arrow />
+                <Link className="tlink" href={`/services/${s.slug}`}>
+                  More on {s.title.toLowerCase()} <Arrow />
                 </Link>
               </div>
             </article>
@@ -120,7 +120,7 @@ function Work() {
       <div className="wrap">
         <div className="sec-row">
           <div className="sec-head">
-            <span className="label label--accent">02 · Selected work</span>
+            <span className="label label--accent">03 · Selected work</span>
             <h2 className="h2" id="work-title">
               Products that are <em>live</em> and in use.
             </h2>
@@ -182,14 +182,14 @@ function Process() {
       <div className="wrap">
         <div className="sec-row">
           <div className="sec-head">
-            <span className="label label--accent">03 · Process</span>
+            <span className="label label--accent">04 · Process</span>
             <h2 className="h2" id="process-title">
               A clear process, <em>start to launch.</em>
             </h2>
           </div>
-          <p className="lead">A written scope before we start, a working link to review every week, and support after launch.</p>
+          <p className="lead">Five clear stages, a written scope before we start, and a working link to review every week.</p>
         </div>
-        <ol className="timeline">
+        <ol className="timeline timeline--5">
           {PROCESS.map((s) => (
             <li className="tstep" key={s.number} data-rv="">
               <span className="tstep__dot">{s.number}</span>
@@ -199,6 +199,88 @@ function Process() {
             </li>
           ))}
         </ol>
+        <p className="phased-note">
+          <strong>Why phases?</strong> {PHASED_NOTE}
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------ Tech stack */
+
+function TechStack() {
+  return (
+    <section className="section" id="stack" aria-labelledby="stack-title">
+      <div className="wrap">
+        <div className="sec-row">
+          <div className="sec-head">
+            <span className="label label--accent">02 · Technology</span>
+            <h2 className="h2" id="stack-title">
+              A <em>production grade</em> stack, end to end.
+            </h2>
+          </div>
+          <p className="lead">The same tools used by large product teams, chosen for speed, security and room to grow. Here is what we build with.</p>
+        </div>
+        <div className="stack-grid">
+          {STACK_GROUPS.map((g) => (
+            <article className="stack-card" key={g.title} data-rv="">
+              <h3>{g.title}</h3>
+              <p className="muted">{g.line}</p>
+              <ul>
+                {g.items.map((t) => (
+                  <li key={t}>{t}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------- Scalability and handover */
+
+function ScaleAndDelivery() {
+  return (
+    <section className="section" id="scale" aria-labelledby="scale-title">
+      <div className="wrap">
+        <div className="sec-row">
+          <div className="sec-head">
+            <span className="label label--accent">05 · Scale and handover</span>
+            <h2 className="h2" id="scale-title">
+              {SCALE.heading.replace('fits your project', '')}
+              <em>fits your project.</em>
+            </h2>
+          </div>
+          <p className="lead">{SCALE.intro}</p>
+        </div>
+        <div className="scale-grid">
+          {SCALE.options.map((o, i) => (
+            <article className="scale-card" key={o.title} data-rv="">
+              <span className="label">Option {i + 1}</span>
+              <h3 className="h3">{o.title}</h3>
+              <p className="scale-card__tools">{o.tools}</p>
+              <p className="muted">{o.line}</p>
+            </article>
+          ))}
+        </div>
+        <div className="handover">
+          <h3 className="h3">{DELIVERY.heading}</h3>
+          <ul className="handover__list">
+            {DELIVERY.items.map((d) => (
+              <li key={d.title}>
+                <b>{d.title}</b>
+                <span className="muted">{d.line}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="muted handover__links">
+            Details are in our <Link className="tlink" href="/support-and-maintenance-policy">Support and Maintenance Policy</Link> and{' '}
+            <Link className="tlink" href="/terms-and-conditions">Terms and Conditions</Link>.
+          </p>
+        </div>
       </div>
     </section>
   );
@@ -210,7 +292,7 @@ function Studio() {
   return (
     <section className="section studio" id="studio" aria-labelledby="studio-title">
       <div className="wrap">
-        <span className="label">04 · About the studio</span>
+        <span className="label">06 · About the studio</span>
         <h2 className="statement" id="studio-title">
           You work <em>directly</em> with the engineer who builds your product. No account managers, no hand offs.
         </h2>
@@ -253,7 +335,7 @@ function Packages() {
       <div className="wrap">
         <SectionHead
           id="packages-title"
-          label="05 · Packages"
+          label="07 · Packages"
           title="Packages for websites and Android apps"
           intro="Start with what you need today and upgrade later. Every package includes six months of free maintenance."
         />
@@ -306,7 +388,7 @@ function FAQ() {
     <section className="section" id="faq" aria-labelledby="faq-title">
       <div className="wrap faq">
         <div className="sec-head" style={{ marginBottom: 0 }}>
-          <span className="label label--accent">06 · FAQ</span>
+          <span className="label label--accent">08 · FAQ</span>
           <h2 id="faq-title" className="h2">
             Frequently asked questions
           </h2>
@@ -393,7 +475,7 @@ export function Contact() {
     <section className="section" id="contact" aria-labelledby="contact-title">
       <div className="wrap contact__grid">
         <div>
-          <span className="label label--accent">07 · Contact</span>
+          <span className="label label--accent">09 · Contact</span>
           <h2 id="contact-title" className="h2" style={{ marginTop: 14 }}>
             Tell us about your project
           </h2>
@@ -518,8 +600,10 @@ export default function Home() {
     <>
       <Hero />
       <Services />
+      <TechStack />
       <Work />
       <Process />
+      <ScaleAndDelivery />
       <Studio />
       <Packages />
       <FAQ />

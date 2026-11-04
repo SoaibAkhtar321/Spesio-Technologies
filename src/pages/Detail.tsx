@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 import { Link } from '../router';
-import { PROJECTS, SERVICES, SITE, getLegal, getProject, getService } from '../content/site';
+import { ABOUT, PRINCIPLES, PROJECTS, SERVICES, SITE, getLegal, getProject, getService } from '../content/site';
 import { Arrow, Breadcrumbs, Btn } from '../components/ui';
 import { CoverArt } from '../components/CoverArt';
 import { LiveShot } from '../components/Mockups';
@@ -169,6 +169,20 @@ export function ServicePage({ slug }: { slug: string }) {
           </div>
         </div>
 
+        <section className="svc-faq" aria-labelledby="svc-faq-title">
+          <h2 className="h2" id="svc-faq-title">
+            {s.title} questions
+          </h2>
+          <div>
+            {s.faqs.map((f) => (
+              <div className="svc-faq__item" key={f.question}>
+                <h3>{f.question}</h3>
+                <p className="muted">{f.answer}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <div style={{ marginBottom: 'clamp(48px,6vw,80px)' }}>
           <h2 className="label" style={{ marginBottom: 12 }}>
             Other services
@@ -241,5 +255,114 @@ export function NotFound() {
         </div>
       </div>
     </section>
+  );
+}
+
+export function AboutPage() {
+  const L = SITE.legal;
+  return (
+    <article>
+      <header className="phero">
+        <div className="wrap">
+          <Breadcrumbs items={[['Home', '/'], ['About']]} />
+          <span className="label label--accent">About us</span>
+          <h1 className="h1">{ABOUT.title}</h1>
+          <p className="lead">{ABOUT.intro}</p>
+        </div>
+      </header>
+      <div className="wrap">
+        <div className="about-grid">
+          <div>
+            <h2>Our story</h2>
+            {ABOUT.story.map((p) => (
+              <p className="lead" key={p}>
+                {p}
+              </p>
+            ))}
+            <h2>How our team works</h2>
+            <p className="lead">{ABOUT.team}</p>
+            <h2>What we stand for</h2>
+            <ul className="blist">
+              {PRINCIPLES.map((p, i) => (
+                <li key={p.title}>
+                  <span>{String(i + 1).padStart(2, '0')}</span>
+                  <div>
+                    <b>{p.title}.</b> {p.line}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <aside className="info-card" aria-label="Company details">
+            <div>
+              <span className="label">Founder</span>
+              <span>
+                {SITE.founder.name}, {SITE.founder.role}
+              </span>
+            </div>
+            <div>
+              <span className="label">Founded</span>
+              <span>{SITE.foundingYear}</span>
+            </div>
+            <div>
+              <span className="label">Business type</span>
+              <span>{L.entity}</span>
+            </div>
+            <div>
+              <span className="label">Udyam registration</span>
+              <span>{L.udyam}</span>
+            </div>
+            <div>
+              <span className="label">Based in</span>
+              <span>{SITE.city}, India. Working remotely with clients across India.</span>
+            </div>
+            <div>
+              <span className="label">Contact</span>
+              <a className="tlink" href={`mailto:${SITE.email}`} style={{ justifySelf: 'start' }}>
+                {SITE.email}
+              </a>
+            </div>
+          </aside>
+        </div>
+        <div className="more-links" style={{ marginBottom: 'clamp(48px,6vw,80px)' }}>
+          <Link href="/#stack">
+            Our technology stack <Arrow size={16} />
+          </Link>
+          <Link href="/#process">
+            How we work <Arrow size={16} />
+          </Link>
+          <Link href="/#work">
+            Our work <Arrow size={16} />
+          </Link>
+        </div>
+      </div>
+      <Contact />
+    </article>
+  );
+}
+
+export function ContactPage() {
+  return (
+    <article>
+      <header className="phero">
+        <div className="wrap">
+          <Breadcrumbs items={[['Home', '/'], ['Contact']]} />
+          <span className="label label--accent">Contact</span>
+          <h1 className="h1">Contact Spesio Technologies</h1>
+          <p className="lead">
+            Email, WhatsApp or the form below. We reply within one working day, {SITE.hours}.
+          </p>
+          <div className="phero__ctas">
+            <Btn href={SITE.whatsappHref} external>
+              WhatsApp us
+            </Btn>
+            <Btn href={`mailto:${SITE.email}`} external variant="outline">
+              Email us
+            </Btn>
+          </div>
+        </div>
+      </header>
+      <Contact />
+    </article>
   );
 }

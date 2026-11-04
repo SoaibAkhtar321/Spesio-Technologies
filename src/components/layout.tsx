@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useRouter } from '../router';
-import { NAV, SITE, SERVICES, PROJECTS } from '../content/site';
+import { NAV, SITE, SERVICES, PROJECTS, LEGAL } from '../content/site';
+import { GA_ID, openCookieSettings } from './consent';
 import { Btn } from './ui';
 
 function getTheme(): 'light' | 'dark' {
@@ -134,11 +135,17 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h2>Work</h2>
+            <h2>Company</h2>
             <ul>
+              <li>
+                <Link href="/about">About us</Link>
+              </li>
+              <li>
+                <Link href="/contact">Contact</Link>
+              </li>
               {PROJECTS.map((p) => (
                 <li key={p.slug}>
-                  <Link href={`/work/${p.slug}`}>{p.name}</Link>
+                  <Link href={`/work/${p.slug}`}>{p.name} case study</Link>
                 </li>
               ))}
             </ul>
@@ -165,16 +172,22 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        <p className="ftr__mark" aria-hidden="true">
-          Spesio Technologies
-        </p>
+        <div className="ftr__mark" data-text="Spesio Technologies" aria-hidden="true" />
         <div className="ftr__base">
           <span suppressHydrationWarning>
             © {new Date().getFullYear()} {SITE.name}. {SITE.location}.
           </span>
           <nav aria-label="Legal">
-            <Link href="/privacy-policy">Privacy policy</Link>
-            <Link href="/terms-and-conditions">Terms and conditions</Link>
+            {LEGAL.map((l) => (
+              <Link key={l.slug} href={`/${l.slug}`}>
+                {l.title}
+              </Link>
+            ))}
+            {GA_ID && (
+              <button type="button" onClick={openCookieSettings}>
+                Cookie settings
+              </button>
+            )}
           </nav>
         </div>
       </div>

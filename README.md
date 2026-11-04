@@ -33,3 +33,14 @@ The build also generates `sitemap.xml`, `robots.txt`, `llms.txt` and `llms-full.
 ## Environment variables
 
 See `.env.example`.
+
+## After each deploy
+
+```bash
+npm run indexnow   # tells Bing and other IndexNow engines that pages changed
+```
+
+## Placeholders
+
+Business details that still need to be filled in are written as `[PLACEHOLDER: ...]` in
+`src/content/site.ts`. Every build prints a list of any that remain and which pages show them.

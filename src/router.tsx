@@ -19,6 +19,8 @@ export type Route =
   | { name: 'case-study'; slug: string }
   | { name: 'service'; slug: string }
   | { name: 'legal'; slug: string }
+  | { name: 'about' }
+  | { name: 'contact' }
   | { name: 'not-found' };
 
 export function matchRoute(rawPath: string): Route {
@@ -28,6 +30,8 @@ export function matchRoute(rawPath: string): Route {
   if (w && getProject(w[1])) return { name: 'case-study', slug: w[1] };
   const s = path.match(/^\/services\/([^/]+)$/);
   if (s && getService(s[1])) return { name: 'service', slug: s[1] };
+  if (path === '/about') return { name: 'about' };
+  if (path === '/contact') return { name: 'contact' };
   if (getLegal(path.slice(1))) return { name: 'legal', slug: path.slice(1) };
   return { name: 'not-found' };
 }
