@@ -1188,3 +1188,9 @@ html[data-theme='dark'] .phased-note, html[data-theme='dark'] .handover { backgr
 html[data-theme='dark'] .handover__list .muted, html[data-theme='dark'] .handover .muted { color: var(--text-2); }
 html[data-theme='dark'] .handover .tlink { color: var(--text); }
 html[data-theme='dark'] .handover__list li, html[data-theme='dark'] .phased-note { border-color: var(--sage); }
+
+/* ------------------------------------------------ answer-first + areas */
+.answer { margin-top: 18px; max-width: 42em; padding-left: 16px; border-left: 3px solid var(--sage-ink); color: var(--text); font-size: clamp(16px, 1.25vw, 18px); line-height: 1.6; }
+.areas { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px 32px; margin-top: 16px; }
+.areas h3 { font-size: 14px; font-weight: 600; margin: 0 0 4px; }
+.areas p { margin: 0; color: var(--text-2); }

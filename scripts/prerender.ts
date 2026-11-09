@@ -11,6 +11,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { GUIDES, AREAS, AREA_GROUPS, AREAS_PATH, GUIDES_PATH } from '../src/content/guides';
 import { SITE, PROJECTS, SERVICES, FAQS, PROCESS, PHASED_NOTE, PRINCIPLES, PACKAGES, HERO, STUDIO, ABOUT, STACK_GROUPS, DELIVERY, SCALE, LEGAL, isPlaceholder, routes } from '../src/content/site';
 import { getRouteMeta, type RouteMeta } from '../src/seo';
 
@@ -98,14 +99,14 @@ for (const route of routes()) {
 fs.writeFileSync(path.join(dist, '404.html'), page('/404', getRouteMeta('/404')), 'utf-8');
 
 /* ---------------------------------------------------------------- sitemap */
-const today = new Date().toISOString().slice(0, 10);
-const prio = (r: string) => (r === '/' ? '1.0' : r.startsWith('/services') ? '0.9' : r.startsWith('/work') ? '0.8' : r === '/about' || r === '/contact' ? '0.7' : '0.3');
+const lastmodFor = (r: string) => (r.startsWith(`${GUIDES_PATH}/`) ? GUIDES.find((g) => `${GUIDES_PATH}/${g.slug}` === r)?.updated : undefined) ?? SITE.updated;
+const prio = (r: string) => (r === '/' ? '1.0' : r.startsWith('/services') ? '0.9' : r.startsWith('/work') ? '0.8' : r.startsWith('/guides') || r === AREAS_PATH ? '0.8' : r === '/about' || r === '/contact' ? '0.7' : '0.3');
 const sitemap =
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n` +
   routes()
     .map(
       (r) =>
-        `  <url>\n    <loc>${SITE.url}${r === '/' ? '/' : r}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${r === '/' ? 'weekly' : 'monthly'}</changefreq>\n    <priority>${prio(r)}</priority>` +
+        `  <url>\n    <loc>${SITE.url}${r === '/' ? '/' : r}</loc>\n    <lastmod>${lastmodFor(r)}</lastmod>\n    <changefreq>${r === '/' ? 'weekly' : 'monthly'}</changefreq>\n    <priority>${prio(r)}</priority>` +
         `\n    <image:image><image:loc>${getRouteMeta(r).ogImage}</image:loc></image:image>` +
         `\n  </url>`,
     )
@@ -114,7 +115,7 @@ const sitemap =
 fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap);
 
 /* ----------------------------------------------------------------- robots */
-const aiBots = ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User', 'anthropic-ai', 'PerplexityBot', 'Perplexity-User', 'Google-Extended', 'Applebot-Extended', 'Bingbot', 'CCBot', 'Meta-ExternalAgent', 'DuckAssistBot', 'cohere-ai'];
+const aiBots = ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User', 'anthropic-ai', 'PerplexityBot', 'Perplexity-User', 'Google-Extended', 'Applebot-Extended', 'Bingbot', 'CCBot', 'Meta-ExternalAgent', 'DuckAssistBot', 'cohere-ai', 'Amazonbot', 'MistralAI-User', 'YouBot'];
 const robots =
   `# ${SITE.name}: crawlers and AI assistants are welcome.\n\nUser-agent: *\nAllow: /\nDisallow: /api/\n\n` +
   aiBots.map((b) => `User-agent: ${b}\nAllow: /\nDisallow: /api/`).join('\n\n') +
@@ -141,8 +142,12 @@ ${SERVICES.map((s) => `- [${s.seoTitle}](${SITE.url}/services/${s.slug}): ${s.li
 ## Selected work
 ${PROJECTS.map((p) => `- [${p.name}](${SITE.url}/work/${p.slug}): ${p.type} for ${p.category.toLowerCase()}. ${p.summary}`).join('\n')}
 
+## Guides
+${GUIDES.map((g) => `- [${g.title}](${SITE.url}${GUIDES_PATH}/${g.slug}): ${g.description}`).join('\n')}
+
 ## Company pages
 - [About](${SITE.url}/about)
+- [Areas we serve](${SITE.url}${AREAS_PATH}): remote service to businesses in every Indian city
 - [Contact](${SITE.url}/contact)
 ${LEGAL.map((l) => `- [${l.title}](${SITE.url}/${l.slug})`).join('\n')}
 
@@ -203,6 +208,14 @@ ${PRINCIPLES.map((p) => `- ${p.title}: ${p.line}`).join('\n')}
 ## Packages (scope; pricing on request)
 Websites: ${PACKAGES.website.map((t) => `${t.name} (${t.features.join(', ')})`).join('; ')}.
 Android apps: ${PACKAGES.android.map((t) => `${t.name} (${t.features.join(', ')})`).join('; ')}.
+
+## Areas we serve
+${AREAS.answer}
+Cities: ${AREA_GROUPS.map((g) => `${g.region}: ${g.cities.join(', ')}`).join('; ')}.
+URL: ${SITE.url}${AREAS_PATH}
+
+## Guides
+${GUIDES.map((g) => `### ${g.title}\n${g.answer}\n${g.sections.map((s) => `${s.heading}\n${s.body.join(' ')}`).join('\n')}\n${g.faqs.map((f) => `Q: ${f.question}\nA: ${f.answer}`).join('\n')}\nURL: ${SITE.url}${GUIDES_PATH}/${g.slug}`).join('\n\n')}
 
 ## FAQ
 ${FAQS.map((f) => `Q: ${f.question}\nA: ${f.answer}`).join('\n\n')}

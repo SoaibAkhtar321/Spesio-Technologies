@@ -24,6 +24,14 @@ All copy, services, projects, packages, FAQs and legal text live in `src/content
 Page titles, descriptions, canonical URLs and structured data are generated from it in `src/seo.ts`.
 The build also generates `sitemap.xml`, `robots.txt`, `llms.txt` and `llms-full.txt`.
 
+## Guides, areas page and entity links
+
+Guides and the "areas we serve" page live in `src/content/guides.ts`. Each guide opens with a short direct answer,
+then sections and FAQs; schema, sitemap, `llms.txt` and `llms-full.txt` pick them up automatically.
+Fill `SITE.socials.linkedin`, `github`, `googleBusinessProfile`, `clutch` and `SITE.founder.sameAs` in
+`src/content/site.ts` with real profile URLs: they feed the schema `sameAs` links. Empty values are skipped.
+When you change content, update `SITE.updated` (and a guide's `updated`) so `dateModified` and sitemap `lastmod` stay honest.
+
 ## Custom domain
 
 1. Add the domain in Vercel: Project, Settings, Domains.

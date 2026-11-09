@@ -143,6 +143,12 @@ export function Footer() {
               <li>
                 <Link href="/contact">Contact</Link>
               </li>
+              <li>
+                <Link href="/areas-we-serve">Areas we serve</Link>
+              </li>
+              <li>
+                <Link href="/guides">Guides</Link>
+              </li>
               {PROJECTS.map((p) => (
                 <li key={p.slug}>
                   <Link href={`/work/${p.slug}`}>{p.name} case study</Link>
@@ -169,6 +175,20 @@ export function Footer() {
                   Instagram
                 </a>
               </li>
+              {SITE.socials.linkedin && (
+                <li>
+                  <a href={SITE.socials.linkedin} target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                  </a>
+                </li>
+              )}
+              {SITE.socials.github && (
+                <li>
+                  <a href={SITE.socials.github} target="_blank" rel="noopener noreferrer">
+                    GitHub
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
         </div>

@@ -1,3 +1,5 @@
+import { GUIDES, AREAS_PATH, GUIDES_PATH, CONTENT_PUBLISHED, CONTENT_UPDATED } from './guides';
+
 // Single source of truth for all site copy and facts.
 // Used by the UI, by src/seo.ts, by the SSR prerender and by the generated llms.txt.
 // Keep this file free of DOM/React imports. Style rule: no em dashes in copy.
@@ -24,26 +26,41 @@ export const SITE = {
   timezone: 'Asia/Kolkata',
   foundingYear: '2023',
   hours: 'Monday to Saturday, 9 am to 8 pm IST',
+  /** Dates used for schema dateModified and sitemap lastmod. Change only when content really changes. */
+  published: CONTENT_PUBLISHED,
+  updated: CONTENT_UPDATED,
+  updatedLabel: '9 November 2026',
   socials: {
     instagram: 'https://instagram.com/spesio_technologies',
     youtube: 'https://youtube.com/@spesiotechnologies',
+    // Fill these in with the real profile URLs. Empty values are skipped everywhere (schema sameAs, footer).
+    linkedin: '',
+    github: '',
+    googleBusinessProfile: '',
+    clutch: '',
   },
   founder: {
     name: 'Soaib Akhtar',
     role: 'Founder and Software Engineer',
+    // Founder's own profile URLs (LinkedIn, GitHub). Empty list is skipped.
+    sameAs: [] as readonly string[],
   },
   legal: {
     entity: 'Sole proprietorship',
     udyam: '[PLACEHOLDER: Udyam registration number]',
     grievanceOfficer: 'Soaib Akhtar',
-    grievanceEmail: '[PLACEHOLDER: grievance or privacy email, can be the same as the main email]',
-    jurisdiction: '[PLACEHOLDER: city for courts and jurisdiction]',
+    grievanceEmail: 'spesiotechnologies@gmail.com',
+    // Confirm with your legal adviser that this is the court jurisdiction you want.
+    jurisdiction: 'Greater Noida, Uttar Pradesh',
   },
-  legalUpdated: '[PLACEHOLDER: effective date of policies]',
+  legalUpdated: '9 November 2026',
 } as const;
 
 /** True for values the owner still has to fill in. */
 export const isPlaceholder = (v: string) => v.startsWith('[PLACEHOLDER');
+
+/** Non empty social profile URLs, for schema sameAs and footer links. */
+export const socialLinks = (): string[] => Object.values(SITE.socials).filter(Boolean) as string[];
 
 /* ---------------------------------------------------------------- Hero */
 
@@ -66,6 +83,8 @@ export interface Service {
   seoTitle: string;
   /** Short keyword for the page title (kept under 60 characters). */
   titleKey: string;
+  /** Direct answer (40 to 60 words) shown first on the page and used in schema. */
+  answer: string;
   faqs: { question: string; answer: string }[];
   line: string;
   description: string;
@@ -81,10 +100,14 @@ export const SERVICES: Service[] = [
     title: 'Website development',
     seoTitle: 'Website Development',
     titleKey: 'Website Development',
+    answer:
+      'Spesio Technologies designs and builds business websites, landing pages and online stores with React and Next.js. Each site is mobile first, fast, and set up for Google and AI search from day one, with a sitemap and structured data. You receive the full source code and hosting access on full payment.',
     faqs: [
       { question: 'How much does a business website cost?', answer: 'It depends on the number of pages and features. A simple business website costs less than an online store with payments and an admin panel. Share your requirements and we send a written quote within one working day.' },
       { question: 'Will my website rank on Google?', answer: 'Every site we build is set up for search from day one: fast loading, mobile friendly, clean page titles and descriptions, a sitemap and structured data. Ranking also depends on your content and competition, and we guide you on both.' },
       { question: 'Can I update the website myself?', answer: 'Yes. Gold and Diamond packages include an admin panel where you can add and edit products, services and content without writing code.' },
+      { question: 'How long does it take to build a business website?', answer: 'Most business websites launch in two to four weeks. Online stores with payments and an admin panel usually take longer, depending on scope. You receive a written timeline after the discovery call.' },
+      { question: 'Do you build websites for businesses outside Greater Noida?', answer: 'Yes. We work remotely with businesses in every Indian city, including Delhi, Mumbai, Ahmedabad, Indore, Jaipur, Lucknow and Bhubaneswar, over calls, WhatsApp and shared links.' },
     ],
     line: 'Business websites and online stores that load fast, rank on Google and bring in enquiries.',
     description:
@@ -106,10 +129,14 @@ export const SERVICES: Service[] = [
     title: 'Web app development',
     seoTitle: 'Web Application and Custom Software Development',
     titleKey: 'Web App Development',
+    answer:
+      'Spesio Technologies builds custom web applications such as customer portals, dashboards, booking systems and ERP or CRM tools. We map your workflow first, design the database, then build secure software with role based access and backups. The source code, database and hosting accounts are set up in your name.',
     faqs: [
       { question: 'What kind of web apps do you build?', answer: 'Dashboards, customer portals, booking systems, ERP and CRM tools, inventory and order management, and internal tools that replace spreadsheets and manual work.' },
       { question: 'Can you connect the app to tools we already use?', answer: 'Yes. We integrate with payment gateways, WhatsApp, email, Google services and most systems that offer an API.' },
       { question: 'How do you keep business data secure?', answer: 'We use role based access, secure authentication, encrypted connections and regular backups, and the database is set up in your own account.' },
+      { question: 'How is a web app different from a website?', answer: 'A website mainly shows information to visitors. A web app lets people log in to manage data, such as bookings, orders, customers or inventory, with different access for different roles.' },
+      { question: 'Will I own the source code?', answer: 'Yes. On full payment we hand over the complete source code, database and hosting access, and documentation, so you can move to any developer later.' },
     ],
     line: 'Dashboards, portals, ERP and booking systems built around how your business runs.',
     description:
@@ -131,10 +158,14 @@ export const SERVICES: Service[] = [
     title: 'Android app development',
     seoTitle: 'Android App Development',
     titleKey: 'Android App Development',
+    answer:
+      'Spesio Technologies builds native Android apps in Kotlin with Jetpack Compose, backed by Firebase or your own server. Apps include login, ordering, payments and push notifications, and we publish them on the Google Play Store under your own account. You receive the full source code on handover.',
     faqs: [
       { question: 'Do you build native Android apps?', answer: 'Yes. We build native Android apps in Kotlin with Jetpack Compose, which gives smooth performance and full access to device features.' },
       { question: 'Will you publish the app on the Google Play Store?', answer: 'Yes. We prepare the store listing, screenshots and release, and publish the app under your own Play Console account.' },
       { question: 'Can the app share data with my website?', answer: 'Yes. The app and website can use the same backend, so products, orders and users stay in sync across both.' },
+      { question: 'How long does it take to build an Android app?', answer: 'Most Android apps take four to ten weeks depending on scope. We build in phases, so you can launch the core features first and add more after release.' },
+      { question: 'Do you build iPhone apps?', answer: 'Our focus is native Android apps. If you need iPhone users covered as well, a responsive web app is a practical option, and we can discuss other approaches after the discovery call.' },
     ],
     line: 'Native Android apps with login, ordering, payments and push notifications.',
     description:
@@ -155,10 +186,14 @@ export const SERVICES: Service[] = [
     title: 'AI integration',
     seoTitle: 'AI Chatbot and Automation Development',
     titleKey: 'AI Chatbot Development',
+    answer:
+      'Spesio Technologies adds AI chatbots and automations to websites and apps, using the OpenAI, Google Gemini and Anthropic Claude APIs. Chatbots answer customer questions from your own content, process documents and automate email and WhatsApp tasks, with usage limits, logging and cost controls so spending stays predictable.',
     faqs: [
       { question: 'Can an AI chatbot answer questions about my business?', answer: 'Yes. We train the chatbot on your own content, such as your services, prices, policies and FAQs, so it gives accurate answers to your customers.' },
       { question: 'Which AI models do you use?', answer: 'We work with the OpenAI, Google Gemini and Anthropic Claude APIs and choose the one that best fits your use case and budget.' },
       { question: 'What tasks can be automated with AI?', answer: 'Common examples are answering customer enquiries, extracting data from documents and invoices, sorting emails and generating reports.' },
+      { question: 'Can the chatbot work on WhatsApp?', answer: 'Yes. We can connect a chatbot or automation to WhatsApp through the WhatsApp Business platform, where WhatsApp approval and messaging rules apply.' },
+      { question: 'How do you stop the chatbot from giving wrong answers?', answer: 'We limit it to your approved content, test it with real customer questions before launch, add logging and usage limits, and let it hand over to a person when it is unsure.' },
     ],
     line: 'Chatbots and automations added to your website or app where they save real time.',
     description:
@@ -450,6 +485,21 @@ export const FAQS = [
       'Yes. We can add a support chatbot trained on your own content, or automate tasks such as document processing, using the OpenAI, Google Gemini or Anthropic Claude APIs.',
   },
   {
+    question: 'How do I choose the best website developer in India?',
+    answer:
+      'No developer is best for everyone, so check six things: live projects you can open, a written scope and price, who owns the code after payment, what support is included after launch, whether you speak directly to the person building it, and whether the site is set up for search. Spesio provides a written quote within one working day, hands over the full source code, includes six months of free support and puts you in direct contact with the engineer.',
+  },
+  {
+    question: 'Which is better for my business: a website, a web app or an Android app?',
+    answer:
+      'Choose a website when customers need to find and contact you, a web app when staff or customers need to log in and manage data, and an Android app when you need phone features or daily repeat use. Many businesses start with a website and add the others in phases.',
+  },
+  {
+    question: 'Can you build a website or app for a business in Delhi, Mumbai, Lucknow, Jaipur, Indore or Bhubaneswar?',
+    answer:
+      'Yes. Spesio is based in Greater Noida and works remotely with businesses in every Indian city over calls, WhatsApp and shared links. The process and the quality are the same wherever you are, and in person meetings are possible in Delhi NCR.',
+  },
+  {
     question: 'Do you work with clients outside Greater Noida?',
     answer:
       'Yes. We work with businesses across India and abroad over calls, WhatsApp and shared links, and can meet in person in Delhi NCR.',
@@ -508,6 +558,7 @@ export interface LegalPage {
 }
 
 const L = SITE.legal;
+const UDYAM_NOTE = isPlaceholder(L.udyam) ? '' : ` (Udyam registration: ${L.udyam})`;
 
 export const LEGAL: LegalPage[] = [
   {
@@ -519,7 +570,7 @@ export const LEGAL: LegalPage[] = [
       {
         heading: 'Who we are',
         body: [
-          `This website is operated by Spesio Technologies, a ${L.entity.toLowerCase()} based in India (Udyam registration: ${L.udyam}). For this policy, Spesio Technologies is the data fiduciary for personal data collected through this website.`,
+          `This website is operated by Spesio Technologies, a ${L.entity.toLowerCase()} based in India${UDYAM_NOTE}. For this policy, Spesio Technologies is the data fiduciary for personal data collected through this website.`,
           `Contact: ${SITE.email}, ${SITE.phone}.`,
         ],
       },
@@ -595,7 +646,7 @@ export const LEGAL: LegalPage[] = [
       {
         heading: 'About these terms',
         body: [
-          `These terms apply to your use of this website and to projects carried out by Spesio Technologies, a ${L.entity.toLowerCase()} (Udyam registration: ${L.udyam}). Each project is also covered by a written proposal that sets out the scope, price, timeline and payment schedule. If the proposal and these terms differ, the proposal applies.`,
+          `These terms apply to your use of this website and to projects carried out by Spesio Technologies, a ${L.entity.toLowerCase()}${UDYAM_NOTE}. Each project is also covered by a written proposal that sets out the scope, price, timeline and payment schedule. If the proposal and these terms differ, the proposal applies.`,
         ],
       },
       {
@@ -609,7 +660,7 @@ export const LEGAL: LegalPage[] = [
         heading: 'Payments',
         body: [
           'Work begins after the proposal is accepted and the advance payment is received. Remaining payments are due at the milestones set out in the proposal.',
-          'Invoices are payable within [PLACEHOLDER: number of days] days. Work may pause if a payment is overdue.',
+          'Invoices are payable by the due date stated in your proposal or invoice. Work may pause if a payment is overdue.',
           'Third party costs such as domains, hosting, paid APIs, app store fees and paid plugins are billed to you or paid directly by you, unless the proposal says otherwise.',
         ],
       },
@@ -673,8 +724,8 @@ export const LEGAL: LegalPage[] = [
       {
         heading: 'Advance payment',
         body: [
-          'Projects start after an advance payment of [PLACEHOLDER: advance percentage, for example 40%] of the project price. The advance reserves our time and covers discovery and planning work.',
-          'If you cancel before any work has started, [PLACEHOLDER: refund percentage of advance, for example 50%] of the advance is refunded. Once discovery or design work has started, the advance is non refundable.',
+          'Projects start after an advance payment, which is a percentage of the project price stated in your written proposal. The advance reserves our time and covers discovery and planning work.',
+          'If you cancel before any work has started, the part of the advance that is refunded is stated in your written proposal. Once discovery or design work has started, the advance is non refundable.',
         ],
       },
       {
@@ -712,7 +763,7 @@ export const LEGAL: LegalPage[] = [
       {
         heading: 'How refunds are paid',
         body: [
-          `Approved refunds are paid to the original payment method or bank account within [PLACEHOLDER: number of working days] working days. To request a refund or cancellation, email ${SITE.email}.`,
+          `Approved refunds are paid to the original payment method or bank account on the date we confirm in writing when the refund is approved. To request a refund or cancellation, email ${SITE.email}.`,
         ],
       },
     ],
@@ -729,7 +780,7 @@ export const LEGAL: LegalPage[] = [
           'Every website and app package includes six months of free support, starting from the launch date. This covers:',
           'Bug fixes: anything that does not work as agreed in the proposal.',
           'Security updates: updating frameworks and libraries when security fixes are released, and fixing security issues in code we wrote.',
-          'Small changes: minor text, image and layout updates that take under [PLACEHOLDER: hours, for example 2] hours per month.',
+          'Small changes: minor text, image and layout updates that take a small amount of time each month, as agreed in your proposal.',
         ],
       },
       {
@@ -746,13 +797,13 @@ export const LEGAL: LegalPage[] = [
         heading: 'Paid support plans',
         body: [
           'After the free period, you can choose a monthly or yearly support plan. Plans can include ongoing bug and security fixes, framework and dependency updates, uptime and backup checks, performance and SEO reviews, and a set number of hours for small changes each month.',
-          'Pricing: [PLACEHOLDER: support plan names and prices].',
+          'Plan names and prices are shared on request and confirmed in writing before you sign up.',
         ],
       },
       {
         heading: 'Response times',
         body: [
-          `Support requests can be sent to ${SITE.email} or on WhatsApp at ${SITE.phone} during ${SITE.hours}. We aim to respond to urgent issues, such as the site being down, within [PLACEHOLDER: hours] hours, and to other requests within [PLACEHOLDER: working days] working days.`,
+          `Support requests can be sent to ${SITE.email} or on WhatsApp at ${SITE.phone} during ${SITE.hours}. We prioritise urgent issues, such as the site being down, and reply to other requests in the order we receive them. Target response times are confirmed in your proposal or support plan.`,
         ],
       },
       {
@@ -772,6 +823,9 @@ export const routes = (): string[] => [
   '/',
   '/about',
   '/contact',
+  AREAS_PATH,
+  GUIDES_PATH,
+  ...GUIDES.map((g) => `${GUIDES_PATH}/${g.slug}`),
   ...SERVICES.map((s) => `/services/${s.slug}`),
   ...PROJECTS.map((p) => `/work/${p.slug}`),
   ...LEGAL.map((l) => `/${l.slug}`),

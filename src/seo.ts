@@ -1,4 +1,5 @@
-import { SITE, HOME_META, FAQS, SERVICES, PROJECTS, ABOUT, STACK_GROUPS, getProject, getService, getLegal, isPlaceholder } from './content/site';
+import { SITE, HOME_META, FAQS, SERVICES, PROJECTS, ABOUT, STACK_GROUPS, getProject, getService, getLegal, isPlaceholder, socialLinks } from './content/site';
+import { AREAS, AREAS_PATH, AREA_GROUPS, GUIDES, GUIDES_PATH, getGuide } from './content/guides';
 
 export interface RouteMeta {
   path: string;
@@ -17,6 +18,10 @@ const og = (name: string) => `${U}/og/${name}.png`;
 const ORG_ID = `${U}/#organization`;
 const SITE_ID = `${U}/#website`;
 const FOUNDER_ID = `${U}/#founder`;
+
+const DATES = { datePublished: SITE.published, dateModified: SITE.updated };
+const SPEAKABLE = { '@type': 'SpeakableSpecification', cssSelector: ['h1', '.answer'] };
+const allCities = AREA_GROUPS.flatMap((g) => g.cities);
 
 const organization = {
   '@type': ['Organization', 'LocalBusiness', 'ProfessionalService'],
@@ -39,14 +44,8 @@ const organization = {
     addressRegion: SITE.region,
     addressCountry: SITE.country,
   },
-  hasMap: 'https://www.google.com/maps/search/?api=1&query=Greater+Noida%2C+Uttar+Pradesh',
-  areaServed: [
-    { '@type': 'City', name: 'Greater Noida' },
-    { '@type': 'City', name: 'Noida' },
-    { '@type': 'City', name: 'New Delhi' },
-    { '@type': 'Country', name: 'India' },
-    'Worldwide',
-  ],
+  // Service-area business: remote studio based in Greater Noida, serving clients across India.
+  areaServed: [{ '@type': 'Country', name: 'India' }, ...allCities.map((name) => ({ '@type': 'City', name }))],
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
     dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
@@ -76,7 +75,7 @@ const organization = {
       itemOffered: { '@type': 'Service', name: s.seoTitle, url: `${U}/services/${s.slug}` },
     })),
   },
-  sameAs: [SITE.socials.instagram, SITE.socials.youtube],
+  sameAs: socialLinks(),
 };
 
 const founder = {
@@ -85,7 +84,8 @@ const founder = {
   name: SITE.founder.name,
   jobTitle: SITE.founder.role,
   worksFor: { '@id': ORG_ID },
-  url: `${U}/#studio`,
+  url: `${U}/about`,
+  ...(SITE.founder.sameAs.length ? { sameAs: [...SITE.founder.sameAs] } : {}),
 };
 
 const website = {
@@ -132,6 +132,8 @@ export function getRouteMeta(rawPath: string): RouteMeta {
           about: { '@id': ORG_ID },
           primaryImageOfPage: OG_IMAGE,
           inLanguage: SITE.lang,
+          ...DATES,
+          speakable: SPEAKABLE,
         },
         {
           '@type': 'ItemList',
@@ -181,6 +183,7 @@ export function getRouteMeta(rawPath: string): RouteMeta {
           keywords: project.stack.join(', '),
           creator: { '@id': ORG_ID },
           url: canonical,
+          ...DATES,
           ...(project.liveUrl ? { sameAs: project.liveUrl } : {}),
         },
         crumbs([['Home', `${U}/`], ['Work', `${U}/#work`], [project.name, canonical]]),
@@ -208,9 +211,9 @@ export function getRouteMeta(rawPath: string): RouteMeta {
           '@id': `${canonical}#service`,
           name: service.seoTitle,
           serviceType: service.title,
-          description: service.description,
+          description: `${service.answer} ${service.description}`,
           provider: { '@id': ORG_ID },
-          areaServed: ['India', 'Worldwide'],
+          areaServed: { '@type': 'Country', name: 'India' },
           url: canonical,
           hasOfferCatalog: {
             '@type': 'OfferCatalog',
@@ -222,6 +225,18 @@ export function getRouteMeta(rawPath: string): RouteMeta {
           },
         },
         crumbs([['Home', `${U}/`], ['Services', `${U}/#services`], [service.seoTitle, canonical]]),
+        {
+          '@type': 'WebPage',
+          '@id': `${canonical}#webpage`,
+          url: canonical,
+          name: title,
+          description: service.answer,
+          isPartOf: { '@id': SITE_ID },
+          about: { '@id': `${canonical}#service` },
+          inLanguage: SITE.lang,
+          ...DATES,
+          speakable: SPEAKABLE,
+        },
         {
           '@type': 'FAQPage',
           '@id': `${canonical}#faq`,
@@ -245,7 +260,7 @@ export function getRouteMeta(rawPath: string): RouteMeta {
         organization,
         founder,
         website,
-        { '@type': 'AboutPage', '@id': `${canonical}#webpage`, url: canonical, name: title, description: ABOUT.intro, about: { '@id': ORG_ID }, isPartOf: { '@id': SITE_ID }, inLanguage: SITE.lang },
+        { '@type': 'AboutPage', '@id': `${canonical}#webpage`, url: canonical, name: title, description: ABOUT.intro, about: { '@id': ORG_ID }, isPartOf: { '@id': SITE_ID }, inLanguage: SITE.lang, ...DATES },
         crumbs([['Home', `${U}/`], ['About', canonical]]),
       ),
     };
@@ -264,8 +279,85 @@ export function getRouteMeta(rawPath: string): RouteMeta {
       jsonLd: graph(
         organization,
         website,
-        { '@type': 'ContactPage', '@id': `${canonical}#webpage`, url: canonical, name: title, about: { '@id': ORG_ID }, isPartOf: { '@id': SITE_ID }, inLanguage: SITE.lang },
+        { '@type': 'ContactPage', '@id': `${canonical}#webpage`, url: canonical, name: title, about: { '@id': ORG_ID }, isPartOf: { '@id': SITE_ID }, inLanguage: SITE.lang, ...DATES },
         crumbs([['Home', `${U}/`], ['Contact', canonical]]),
+      ),
+    };
+  }
+
+  if (path === AREAS_PATH) {
+    return {
+      path,
+      title: AREAS.seoTitle,
+      description: AREAS.description,
+      canonical,
+      ogImage: OG_IMAGE,
+      ogType: 'website',
+      noindex: false,
+      jsonLd: graph(
+        organization,
+        website,
+        { '@type': 'WebPage', '@id': `${canonical}#webpage`, url: canonical, name: AREAS.seoTitle, description: AREAS.answer, about: { '@id': ORG_ID }, isPartOf: { '@id': SITE_ID }, inLanguage: SITE.lang, ...DATES, speakable: SPEAKABLE },
+        crumbs([['Home', `${U}/`], ['Areas we serve', canonical]]),
+        { '@type': 'FAQPage', '@id': `${canonical}#faq`, mainEntity: AREAS.faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })) },
+      ),
+    };
+  }
+
+  if (path === GUIDES_PATH) {
+    const title = 'Guides: Website, App and AI Projects for Businesses | Spesio';
+    return {
+      path,
+      title,
+      description: 'Plain guides on choosing a website developer, website vs web app vs Android app, AI chatbots, and SEO for AI search, from Spesio Technologies.',
+      canonical,
+      ogImage: OG_IMAGE,
+      ogType: 'website',
+      noindex: false,
+      jsonLd: graph(
+        organization,
+        website,
+        { '@type': 'CollectionPage', '@id': `${canonical}#webpage`, url: canonical, name: title, isPartOf: { '@id': SITE_ID }, inLanguage: SITE.lang, ...DATES },
+        { '@type': 'ItemList', itemListElement: GUIDES.map((g, i) => ({ '@type': 'ListItem', position: i + 1, url: `${U}${GUIDES_PATH}/${g.slug}`, name: g.title })) },
+        crumbs([['Home', `${U}/`], ['Guides', canonical]]),
+      ),
+    };
+  }
+
+  const gm = path.match(/^\/guides\/([^/]+)$/);
+  const guide = gm ? getGuide(gm[1]) : undefined;
+  if (guide) {
+    const title = `${guide.title} | Spesio`;
+    return {
+      path,
+      title: title.length > 62 ? `${guide.title.slice(0, 55).replace(/\s+\S*$/, '')}... | Spesio` : title,
+      description: guide.description,
+      canonical,
+      ogImage: OG_IMAGE,
+      ogType: 'article',
+      noindex: false,
+      jsonLd: graph(
+        organization,
+        founder,
+        website,
+        {
+          '@type': 'Article',
+          '@id': `${canonical}#article`,
+          headline: guide.title,
+          description: guide.answer,
+          mainEntityOfPage: canonical,
+          url: canonical,
+          datePublished: guide.published,
+          dateModified: guide.updated,
+          author: { '@id': FOUNDER_ID },
+          publisher: { '@id': ORG_ID },
+          image: OG_IMAGE,
+          inLanguage: SITE.lang,
+          isPartOf: { '@id': SITE_ID },
+          speakable: SPEAKABLE,
+        },
+        crumbs([['Home', `${U}/`], ['Guides', `${U}${GUIDES_PATH}`], [guide.title, canonical]]),
+        { '@type': 'FAQPage', '@id': `${canonical}#faq`, mainEntity: guide.faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })) },
       ),
     };
   }
@@ -283,7 +375,7 @@ export function getRouteMeta(rawPath: string): RouteMeta {
       jsonLd: graph(
         organization,
         website,
-        { '@type': 'WebPage', '@id': `${canonical}#webpage`, url: canonical, name: legal.title, description: legal.description, isPartOf: { '@id': SITE_ID }, inLanguage: SITE.lang },
+        { '@type': 'WebPage', '@id': `${canonical}#webpage`, url: canonical, name: legal.title, description: legal.description, isPartOf: { '@id': SITE_ID }, inLanguage: SITE.lang, ...DATES },
         crumbs([['Home', `${U}/`], [legal.title, canonical]]),
       ),
     };

@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react';
 import { Link } from '../router';
-import { ABOUT, PRINCIPLES, PROJECTS, SERVICES, SITE, getLegal, getProject, getService } from '../content/site';
+import { ABOUT, PRINCIPLES, PROJECTS, SERVICES, SITE, getLegal, getProject, getService, isPlaceholder } from '../content/site';
+import { AREAS, AREA_GROUPS, GUIDES, getGuide } from '../content/guides';
 import { Arrow, Breadcrumbs, Btn } from '../components/ui';
 import { CoverArt } from '../components/CoverArt';
 import { LiveShot } from '../components/Mockups';
@@ -111,6 +112,10 @@ export function ServicePage({ slug }: { slug: string }) {
           <span className="label label--accent">Service {s.number}</span>
           <h1 className="h1">{s.seoTitle} in Greater Noida</h1>
           <p className="lead">{s.line}</p>
+          <p className="answer">{s.answer}</p>
+          <p className="label" style={{ marginTop: 18 }}>
+            Last updated {SITE.updatedLabel}
+          </p>
           <div className="phero__ctas">
             <Btn href="#contact">Discuss your project</Btn>
             <Btn href={SITE.whatsappHref} external variant="outline">
@@ -268,6 +273,9 @@ export function AboutPage() {
           <span className="label label--accent">About us</span>
           <h1 className="h1">{ABOUT.title}</h1>
           <p className="lead">{ABOUT.intro}</p>
+          <p className="label" style={{ marginTop: 18 }}>
+            Last updated {SITE.updatedLabel}
+          </p>
         </div>
       </header>
       <div className="wrap">
@@ -308,10 +316,12 @@ export function AboutPage() {
               <span className="label">Business type</span>
               <span>{L.entity}</span>
             </div>
-            <div>
-              <span className="label">Udyam registration</span>
-              <span>{L.udyam}</span>
-            </div>
+            {!isPlaceholder(L.udyam) && (
+              <div>
+                <span className="label">Udyam registration</span>
+                <span>{L.udyam}</span>
+              </div>
+            )}
             <div>
               <span className="label">Based in</span>
               <span>{SITE.city}, India. Working remotely with clients across India.</span>
@@ -362,6 +372,163 @@ export function ContactPage() {
           </div>
         </div>
       </header>
+      <Contact />
+    </article>
+  );
+}
+
+const fmtDate = (iso: string) =>
+  new Date(iso + 'T00:00:00Z').toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+
+function QA({ items }: { items: { question: string; answer: string }[] }) {
+  return (
+    <div>
+      {items.map((f) => (
+        <div className="svc-faq__item" key={f.question}>
+          <h3>{f.question}</h3>
+          <p className="muted">{f.answer}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export function AreasPage() {
+  return (
+    <article>
+      <header className="phero">
+        <div className="wrap">
+          <Breadcrumbs items={[['Home', '/'], ['Areas we serve']]} />
+          <span className="label label--accent">Areas we serve</span>
+          <h1 className="h1">{AREAS.title}</h1>
+          <p className="answer">{AREAS.answer}</p>
+          <p className="label" style={{ marginTop: 18 }}>
+            Last updated {SITE.updatedLabel}
+          </p>
+        </div>
+      </header>
+      <div className="wrap">
+        <div className="legal" style={{ maxWidth: 860 }}>
+          <h2>How a project works when you are in another city</h2>
+          <ol className="blist">
+            {AREAS.steps.map((t, i) => (
+              <li key={t}>
+                <span>{String(i + 1).padStart(2, '0')}</span>
+                {t}
+              </li>
+            ))}
+          </ol>
+          <h2>Cities we work with</h2>
+          <p>
+            We are based in {SITE.city} and work remotely. These are some of the cities our clients can be in. If yours is not listed, we can still work with you.
+          </p>
+          <div className="areas">
+            {AREA_GROUPS.map((g) => (
+              <div key={g.region}>
+                <h3>{g.region}</h3>
+                <p>{g.cities.join(', ')}</p>
+              </div>
+            ))}
+          </div>
+          <h2>Services available in every city</h2>
+          <div className="more-links">
+            {SERVICES.map((sv) => (
+              <Link key={sv.slug} href={`/services/${sv.slug}`}>
+                {sv.title}
+                <Arrow size={16} />
+              </Link>
+            ))}
+          </div>
+        </div>
+        <section className="svc-faq" aria-labelledby="areas-faq-title">
+          <h2 className="h2" id="areas-faq-title">
+            Working with clients in other cities
+          </h2>
+          <QA items={AREAS.faqs} />
+        </section>
+      </div>
+      <Contact />
+    </article>
+  );
+}
+
+export function GuidesIndex() {
+  return (
+    <article>
+      <header className="phero">
+        <div className="wrap">
+          <Breadcrumbs items={[['Home', '/'], ['Guides']]} />
+          <span className="label label--accent">Guides</span>
+          <h1 className="h1">Guides for businesses planning a website, app or AI project</h1>
+          <p className="lead">Plain answers to the questions we hear most, written by the engineer who builds the projects.</p>
+        </div>
+      </header>
+      <div className="wrap">
+        <div className="more-links" style={{ marginBottom: 'clamp(48px,6vw,80px)', maxWidth: 820 }}>
+          {GUIDES.map((g) => (
+            <Link key={g.slug} href={`/guides/${g.slug}`}>
+              <span>
+                <span className="label" style={{ display: 'block' }}>
+                  Updated {fmtDate(g.updated)}
+                </span>
+                {g.title}
+              </span>
+              <Arrow size={16} />
+            </Link>
+          ))}
+        </div>
+      </div>
+    </article>
+  );
+}
+
+export function GuidePage({ slug }: { slug: string }) {
+  const g = getGuide(slug)!;
+  const more = GUIDES.filter((x) => x.slug !== slug);
+  return (
+    <article>
+      <header className="phero">
+        <div className="wrap">
+          <Breadcrumbs items={[['Home', '/'], ['Guides', '/guides'], [g.title]]} />
+          <span className="label label--accent">Guide</span>
+          <h1 className="h1">{g.title}</h1>
+          <p className="answer">{g.answer}</p>
+          <p className="label" style={{ marginTop: 18 }}>
+            By {SITE.founder.name}, {SITE.founder.role}. Published {fmtDate(g.published)}. Updated {fmtDate(g.updated)}.
+          </p>
+        </div>
+      </header>
+      <div className="wrap">
+        <div className="legal">
+          {g.sections.map((sec) => (
+            <section key={sec.heading}>
+              <h2>{sec.heading}</h2>
+              {sec.body.map((b) => (
+                <p key={b}>{b}</p>
+              ))}
+            </section>
+          ))}
+        </div>
+        <section className="svc-faq" aria-labelledby="guide-faq-title">
+          <h2 className="h2" id="guide-faq-title">
+            Common questions
+          </h2>
+          <QA items={g.faqs} />
+        </section>
+        <div style={{ marginBottom: 'clamp(48px,6vw,80px)' }}>
+          <h2 className="label" style={{ marginBottom: 12 }}>
+            More guides
+          </h2>
+          <div className="more-links">
+            {more.map((m) => (
+              <Link key={m.slug} href={`/guides/${m.slug}`}>
+                {m.title}
+                <Arrow size={16} />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
       <Contact />
     </article>
   );
