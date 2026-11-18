@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react';
 import { Link } from '../router';
 import { ABOUT, PRINCIPLES, PROJECTS, SERVICES, SITE, getLegal, getProject, getService, isPlaceholder } from '../content/site';
-import { AREAS, AREA_GROUPS, GUIDES, getGuide } from '../content/guides';
+import { AREAS, AREA_GROUPS } from '../content/guides';
 import { Arrow, Breadcrumbs, Btn } from '../components/ui';
 import { CoverArt } from '../components/CoverArt';
 import { LiveShot } from '../components/Mockups';
@@ -446,88 +446,6 @@ export function AreasPage() {
           </h2>
           <QA items={AREAS.faqs} />
         </section>
-      </div>
-      <Contact />
-    </article>
-  );
-}
-
-export function GuidesIndex() {
-  return (
-    <article>
-      <header className="phero">
-        <div className="wrap">
-          <Breadcrumbs items={[['Home', '/'], ['Guides']]} />
-          <span className="label label--accent">Guides</span>
-          <h1 className="h1">Guides for businesses planning a website, app or AI project</h1>
-          <p className="lead">Plain answers to the questions we hear most, written by the engineer who builds the projects.</p>
-        </div>
-      </header>
-      <div className="wrap">
-        <div className="more-links" style={{ marginBottom: 'clamp(48px,6vw,80px)', maxWidth: 820 }}>
-          {GUIDES.map((g) => (
-            <Link key={g.slug} href={`/guides/${g.slug}`}>
-              <span>
-                <span className="label" style={{ display: 'block' }}>
-                  Updated {fmtDate(g.updated)}
-                </span>
-                {g.title}
-              </span>
-              <Arrow size={16} />
-            </Link>
-          ))}
-        </div>
-      </div>
-    </article>
-  );
-}
-
-export function GuidePage({ slug }: { slug: string }) {
-  const g = getGuide(slug)!;
-  const more = GUIDES.filter((x) => x.slug !== slug);
-  return (
-    <article>
-      <header className="phero">
-        <div className="wrap">
-          <Breadcrumbs items={[['Home', '/'], ['Guides', '/guides'], [g.title]]} />
-          <span className="label label--accent">Guide</span>
-          <h1 className="h1">{g.title}</h1>
-          <p className="answer">{g.answer}</p>
-          <p className="label" style={{ marginTop: 18 }}>
-            By {SITE.founder.name}, {SITE.founder.role}. Published {fmtDate(g.published)}. Updated {fmtDate(g.updated)}.
-          </p>
-        </div>
-      </header>
-      <div className="wrap">
-        <div className="legal">
-          {g.sections.map((sec) => (
-            <section key={sec.heading}>
-              <h2>{sec.heading}</h2>
-              {sec.body.map((b) => (
-                <p key={b}>{b}</p>
-              ))}
-            </section>
-          ))}
-        </div>
-        <section className="svc-faq" aria-labelledby="guide-faq-title">
-          <h2 className="h2" id="guide-faq-title">
-            Common questions
-          </h2>
-          <QA items={g.faqs} />
-        </section>
-        <div style={{ marginBottom: 'clamp(48px,6vw,80px)' }}>
-          <h2 className="label" style={{ marginBottom: 12 }}>
-            More guides
-          </h2>
-          <div className="more-links">
-            {more.map((m) => (
-              <Link key={m.slug} href={`/guides/${m.slug}`}>
-                {m.title}
-                <Arrow size={16} />
-              </Link>
-            ))}
-          </div>
-        </div>
       </div>
       <Contact />
     </article>

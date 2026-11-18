@@ -1,4 +1,4 @@
-import { GUIDES, AREAS_PATH, GUIDES_PATH, CONTENT_PUBLISHED, CONTENT_UPDATED } from './guides';
+import { AREAS_PATH, CONTENT_PUBLISHED, CONTENT_UPDATED } from './guides';
 
 // Single source of truth for all site copy and facts.
 // Used by the UI, by src/seo.ts, by the SSR prerender and by the generated llms.txt.
@@ -65,14 +65,15 @@ export const socialLinks = (): string[] => Object.values(SITE.socials).filter(Bo
 /* ---------------------------------------------------------------- Hero */
 
 export const HERO = {
-  eyebrow: 'Web and app development studio · Greater Noida',
-  headline: 'Websites and apps built to grow your business.',
-  sub: 'We design, build and launch business websites, online stores, web apps and Android apps on a production grade stack. Launch early, grow in phases, and own the full source code.',
+  eyebrow: 'Web and app studio · Greater Noida, serving all India',
+  headline: 'Websites and apps that bring you customers.',
+  sub: 'Tell us what you need. We design, build and launch it, and you own everything we make.',
   primaryCta: 'Start a project',
   secondaryCta: 'See our work',
+  trust: ['Reply within one working day', 'You own the code', '3 months free support'],
 };
 
-export const BUILD_LIST = ['Business websites', 'Online stores', 'Web applications', 'Android apps', 'Admin dashboards', 'AI chatbots'];
+export const BUILD_LIST = ['Websites', 'Online stores', 'Android apps', 'Custom software and ERP', 'AI chatbots'];
 
 /* ------------------------------------------------------------ Services */
 
@@ -109,10 +110,10 @@ export const SERVICES: Service[] = [
       { question: 'How long does it take to build a business website?', answer: 'Most business websites launch in two to four weeks. Online stores with payments and an admin panel usually take longer, depending on scope. You receive a written timeline after the discovery call.' },
       { question: 'Do you build websites for businesses outside Greater Noida?', answer: 'Yes. We work remotely with businesses in every Indian city, including Delhi, Mumbai, Ahmedabad, Indore, Jaipur, Lucknow and Bhubaneswar, over calls, WhatsApp and shared links.' },
     ],
-    line: 'Business websites and online stores that load fast, rank on Google and bring in enquiries.',
+    line: 'Choose this when customers need to find you and get in touch. Fast sites and online stores that bring in enquiries.',
     description:
       'We design and build business websites, landing pages and e-commerce stores with React and Next.js. Every site is mobile first, accessible, tuned for Core Web Vitals and set up for Google from day one, with a sitemap, structured data and clean page titles.',
-    capabilities: ['Business websites', 'E-commerce stores', 'Landing pages', 'SEO setup'],
+    capabilities: ['Business websites and landing pages', 'Online stores with payments', 'Set up for Google search'],
     stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Supabase', 'Razorpay'],
     deliverables: [
       'Custom design for desktop and mobile',
@@ -138,10 +139,10 @@ export const SERVICES: Service[] = [
       { question: 'How is a web app different from a website?', answer: 'A website mainly shows information to visitors. A web app lets people log in to manage data, such as bookings, orders, customers or inventory, with different access for different roles.' },
       { question: 'Will I own the source code?', answer: 'Yes. On full payment we hand over the complete source code, database and hosting access, and documentation, so you can move to any developer later.' },
     ],
-    line: 'Dashboards, portals, ERP and booking systems built around how your business runs.',
+    line: 'Choose this when your team or customers log in to manage data. Dashboards, ERP and booking systems built around how you work.',
     description:
       'Internal tools, customer portals, dashboards, ERP and CRM systems, and the APIs behind them. We map your workflow first, design the database, then build software that removes manual work instead of adding it.',
-    capabilities: ['Custom web apps', 'ERP and CRM', 'Dashboards', 'APIs and integrations'],
+    capabilities: ['Custom software and ERP', 'Dashboards and customer portals', 'Connects to the tools you use'],
     stack: ['Next.js', 'Node.js', 'TypeScript', 'PostgreSQL', 'Prisma', 'Drizzle', 'Redis', 'Docker', 'AWS'],
     deliverables: [
       'Workflow and database design',
@@ -167,10 +168,10 @@ export const SERVICES: Service[] = [
       { question: 'How long does it take to build an Android app?', answer: 'Most Android apps take four to ten weeks depending on scope. We build in phases, so you can launch the core features first and add more after release.' },
       { question: 'Do you build iPhone apps?', answer: 'Our focus is native Android apps. If you need iPhone users covered as well, a responsive web app is a practical option, and we can discuss other approaches after the discovery call.' },
     ],
-    line: 'Native Android apps with login, ordering, payments and push notifications.',
+    line: 'Choose this for daily repeat use or phone features. Native Android apps your customers keep on their phone.',
     description:
       'Native Android apps written in Kotlin with Jetpack Compose, backed by Firebase or your own server. Login, catalogues, ordering, payments, push notifications and Play Store publishing, from first release to ongoing updates.',
-    capabilities: ['Native Android', 'Firebase backend', 'Push notifications', 'Play Store release'],
+    capabilities: ['Login, ordering and payments', 'Push notifications', 'Published on Google Play'],
     stack: ['Kotlin', 'Jetpack Compose', 'Firebase', 'Cloud Functions'],
     deliverables: [
       'Native Kotlin and Jetpack Compose code',
@@ -195,11 +196,11 @@ export const SERVICES: Service[] = [
       { question: 'Can the chatbot work on WhatsApp?', answer: 'Yes. We can connect a chatbot or automation to WhatsApp through the WhatsApp Business platform, where WhatsApp approval and messaging rules apply.' },
       { question: 'How do you stop the chatbot from giving wrong answers?', answer: 'We limit it to your approved content, test it with real customer questions before launch, add logging and usage limits, and let it hand over to a person when it is unsure.' },
     ],
-    line: 'Chatbots and automations added to your website or app where they save real time.',
+    line: 'A chatbot that answers customers from your own content and hands over to a person when it is unsure.',
     description:
       'Customer support chatbots trained on your own content, automatic document and data processing, and workflow automation, built on the OpenAI, Gemini and Claude APIs and connected to the tools you already use.',
-    capabilities: ['AI chatbots', 'Document processing', 'Email and WhatsApp automation', 'LLM API integration'],
-    stack: ['FastAPI', 'Python', 'OpenAI', 'Gemini', 'Claude', 'LangChain'],
+    capabilities: ['Chatbot on your website or WhatsApp', 'Document and data processing', 'Email and WhatsApp automation'],
+    stack: ['FastAPI', 'Python', 'OpenAI', 'Gemini', 'Claude'],
     deliverables: [
       'Chatbot trained on your business content',
       'Automated document and data pipelines',
@@ -240,7 +241,7 @@ export const PROJECTS: Project[] = [
     name: 'Property Planet',
     category: 'Real estate',
     type: 'Website and web app',
-    summary: 'A marketplace for plots and land, with map browsing and an admin approved listing flow.',
+    summary: 'A land and plot marketplace with map browsing and admin approved listings.',
     overview:
       'A property marketplace where sellers and agents list plots and land, and buyers browse on a map and send enquiries. Every listing is reviewed by an admin before it goes public, and seller phone numbers are never shown automatically.',
     challenge:
@@ -265,7 +266,7 @@ export const PROJECTS: Project[] = [
     name: 'CampusBite',
     category: 'Food ordering',
     type: 'Android app',
-    summary: 'A native Android app for ordering food on campus and managing pickup time slots.',
+    summary: 'An Android app for ordering campus food and booking pickup slots.',
     overview:
       'A native Android app that lets students order food on campus and helps outlets manage queues and pickup slots. Orders are created on the server, so prices and slot capacity cannot be changed from the phone.',
     challenge:
@@ -287,7 +288,7 @@ export const PROJECTS: Project[] = [
     name: 'Eifa Couture',
     category: 'Fashion e-commerce',
     type: 'Online store',
-    summary: 'An online store for a Chikankari fashion label, with Razorpay payments and a full admin back office.',
+    summary: 'An online store for a Chikankari label, with payments and an admin back office.',
     overview:
       'An e-commerce store for a Chikankari fashion label, with online payments, order history and an admin back office for inventory, refunds and finance reports.',
     challenge:
@@ -301,7 +302,7 @@ export const PROJECTS: Project[] = [
       'Sign in with Google',
     ],
     stack: ['Next.js', 'TypeScript', 'Supabase', 'Razorpay'],
-    liveUrl: 'https://eifa-couture-ds3d-git-main-campus-bite-s-projects.vercel.app/',
+    liveUrl: 'https://eifacouture.com',
     screenshot: '/work/eifa-couture.jpg',
     service: 'website-development',
     hue: ['#E2C29A', '#3A2A1E'],
@@ -338,44 +339,18 @@ export const PRINCIPLES = [
   { title: 'Written scope and quote', line: 'You know what is being built, what it costs and when it ships before we start.' },
   { title: 'You own everything', line: 'Full source code, server access, domain and accounts are handed over in your name.' },
   { title: 'Launch early, grow in phases', line: 'Go live with the essentials first, then add features in planned phases.' },
-  { title: 'Support after launch', line: 'Bug and security support is included for six months, with paid plans after that.' },
+  { title: 'Support after launch', line: 'Bug and security support is free for three months, with paid plans after that.' },
 ];
 
 export const PROCESS = [
-  {
-    number: '01',
-    title: 'Discovery',
-    duration: 'Before we start',
-    line: 'We learn how your business works, agree the goals and the first release, and send a written scope, timeline and quote.',
-  },
-  {
-    number: '02',
-    title: 'Design',
-    duration: 'Wireframes and UX',
-    line: 'We map the pages and user flows as wireframes, then turn them into a visual design you approve before development starts.',
-  },
-  {
-    number: '03',
-    title: 'Build in phases',
-    duration: 'Weekly progress',
-    line: 'We build the most important features first and share a working link every week, so you can review and give feedback early.',
-  },
-  {
-    number: '04',
-    title: 'Launch',
-    duration: 'Go live',
-    line: 'We deploy to production with SSL, backups and monitoring, connect your domain, set up analytics and submit the site to Google.',
-  },
-  {
-    number: '05',
-    title: 'Scale',
-    duration: 'After launch',
-    line: 'We add features in planned phases, improve speed and SEO using real data, and upgrade the infrastructure as your traffic grows.',
-  },
+  { number: '01', title: 'Talk', duration: 'Day 1', line: 'Tell us your idea. We send a written scope and timeline.' },
+  { number: '02', title: 'Design', duration: 'Week 1', line: 'You approve the look before we build.' },
+  { number: '03', title: 'Build', duration: 'Weekly links', line: 'We build in phases and share a live link each week.' },
+  { number: '04', title: 'Launch and support', duration: 'Go live', line: 'We launch, hand over the code and support you for three months.' },
 ];
 
 export const PHASED_NOTE =
-  'Phased delivery means you do not wait months for everything at once. You launch with the core features, start getting customers and feedback, and we add the next set of features step by step.';
+  'Launch with the core features first, then add more step by step.';
 
 export interface StackGroup {
   title: string;
@@ -406,7 +381,7 @@ export const DELIVERY = {
     { title: 'Full source code', line: 'The complete code in a repository you own, with nothing held back.' },
     { title: 'Server and account access', line: 'Hosting, database, domain and third party accounts set up in your name.' },
     { title: 'Documentation', line: 'How the system is set up, how to deploy it and how to manage content.' },
-    { title: 'Bug and security support', line: 'Six months included after launch, then optional support plans.' },
+    { title: 'Bug and security support', line: 'Three months included after launch, then optional support plans.' },
   ],
 };
 
@@ -439,20 +414,22 @@ export interface Tier {
   name: string;
   tagline: string;
   features: string[];
+  /** Technologies included in this package. */
+  tech: string[];
 }
 
 export const PACKAGES: Record<'website' | 'android', Tier[]> = {
   website: [
-    { id: 'bronze', name: 'Bronze', tagline: 'A professional online presence', features: ['Up to 8 pages', 'Contact form and Google Maps', 'Mobile responsive', 'Basic SEO setup'] },
-    { id: 'silver', name: 'Silver', tagline: 'Built to bring in enquiries', features: ['Up to 12 pages', 'Product or service listing', 'WhatsApp, Instagram and email', 'Subtle animations'] },
-    { id: 'gold', name: 'Gold', tagline: 'Manage your business online', features: ['Admin panel', 'Manage products and services', 'Enquiry management', 'Dashboard'] },
-    { id: 'diamond', name: 'Diamond', tagline: 'A complete online store', features: ['Full e-commerce', 'Payment gateway', 'Orders and inventory', 'Analytics and ERP'] },
+    { id: 'bronze', name: 'Bronze', tagline: 'A professional online presence', features: ['Up to 8 pages', 'Contact form and Google Maps', 'Mobile friendly with basic SEO'], tech: ['Next.js', 'React', 'Tailwind CSS'] },
+    { id: 'silver', name: 'Silver', tagline: 'Built to bring in enquiries', features: ['Up to 12 pages', 'Product or service listing', 'WhatsApp, Instagram and email'], tech: ['Next.js', 'TypeScript', 'Framer Motion'] },
+    { id: 'gold', name: 'Gold', tagline: 'Manage your business online', features: ['Admin panel and dashboard', 'Manage products and services', 'Enquiry management'], tech: ['Supabase', 'PostgreSQL', 'Google login'] },
+    { id: 'diamond', name: 'Diamond', tagline: 'A complete online store', features: ['Full e-commerce with payments', 'Orders and inventory', 'Analytics and ERP'], tech: ['Razorpay', 'Supabase', 'GA4'] },
   ],
   android: [
-    { id: 'bronze', name: 'Bronze', tagline: 'Your business in an app', features: ['8 to 10 screens', 'Services, about and contact', 'WhatsApp and social links', 'Push notifications'] },
-    { id: 'silver', name: 'Silver', tagline: 'Accounts and orders', features: ['Up to 15 screens', 'Login with Firebase', 'Catalogue and search', 'WhatsApp ordering'] },
-    { id: 'gold', name: 'Gold', tagline: 'Run operations from the app', features: ['Web admin panel', 'Orders and users', 'Notification panel', 'Analytics'] },
-    { id: 'diamond', name: 'Diamond', tagline: 'A complete mobile business', features: ['Payment gateway', 'Inventory management', 'ERP integration', 'Reports'] },
+    { id: 'bronze', name: 'Bronze', tagline: 'Your business in an app', features: ['8 to 10 screens', 'Services, about and contact', 'Push notifications'], tech: ['Kotlin', 'Jetpack Compose'] },
+    { id: 'silver', name: 'Silver', tagline: 'Accounts and orders', features: ['Up to 15 screens', 'Login, catalogue and search', 'WhatsApp ordering'], tech: ['Kotlin', 'Firebase Auth'] },
+    { id: 'gold', name: 'Gold', tagline: 'Run operations from the app', features: ['Web admin panel', 'Orders and users', 'Notification panel'], tech: ['Firebase', 'Cloud Functions'] },
+    { id: 'diamond', name: 'Diamond', tagline: 'A complete mobile business', features: ['Payment gateway', 'Inventory and reports', 'ERP integration'], tech: ['Razorpay', 'Firebase', 'Cloud Functions'] },
   ],
 };
 
@@ -461,82 +438,39 @@ export const PACKAGES: Record<'website' | 'android', Tier[]> = {
 export const FAQS = [
   {
     question: 'What does Spesio Technologies build?',
-    answer:
-      'Spesio Technologies is a web design and development studio in Greater Noida, India. We build business websites, online stores, web applications, native Android apps, custom dashboards and ERP systems, and AI chatbots and automations.',
+    answer: 'Websites, online stores, Android apps, custom software and ERP, and AI chatbots, for businesses across India.',
   },
   {
-    question: 'How long does it take to build a website?',
-    answer:
-      'Most business websites launch in two to four weeks. Online stores, web applications and Android apps usually take four to ten weeks depending on scope. You receive a written timeline after the discovery call.',
+    question: 'How long does a project take?',
+    answer: 'Most business websites launch in two to four weeks. Stores, software and apps take four to ten weeks. You get a written timeline first.',
   },
   {
-    question: 'Do you provide maintenance after launch?',
-    answer:
-      'Yes. Every website and app package includes six months of free bug and security support after launch. After that, you can choose a paid support and maintenance plan.',
+    question: 'Will I own the code?',
+    answer: 'Yes. On full payment you get the source code, hosting, database and domain in your name, so you can move to any developer later.',
   },
   {
-    question: 'Will I own the website and the code?',
-    answer:
-      'Yes. The source code, database, domain and hosting accounts are set up in your name. You can move the project to any developer at any time.',
+    question: 'Do you support the project after launch?',
+    answer: 'Yes. Every package includes three months of free bug and security support. After that you can pick a paid plan.',
   },
   {
-    question: 'Can you add an AI chatbot to my existing website?',
-    answer:
-      'Yes. We can add a support chatbot trained on your own content, or automate tasks such as document processing, using the OpenAI, Google Gemini or Anthropic Claude APIs.',
+    question: 'Which should I start with: a website, software or an app?',
+    answer: 'Start with a website if customers need to find you. Choose software if your team or customers log in to manage data. Choose an Android app for daily use or phone features. You can add the rest in phases.',
   },
   {
-    question: 'How do I choose the best website developer in India?',
-    answer:
-      'No developer is best for everyone, so check six things: live projects you can open, a written scope and price, who owns the code after payment, what support is included after launch, whether you speak directly to the person building it, and whether the site is set up for search. Spesio provides a written quote within one working day, hands over the full source code, includes six months of free support and puts you in direct contact with the engineer.',
-  },
-  {
-    question: 'Which is better for my business: a website, a web app or an Android app?',
-    answer:
-      'Choose a website when customers need to find and contact you, a web app when staff or customers need to log in and manage data, and an Android app when you need phone features or daily repeat use. Many businesses start with a website and add the others in phases.',
-  },
-  {
-    question: 'Can you build a website or app for a business in Delhi, Mumbai, Lucknow, Jaipur, Indore or Bhubaneswar?',
-    answer:
-      'Yes. Spesio is based in Greater Noida and works remotely with businesses in every Indian city over calls, WhatsApp and shared links. The process and the quality are the same wherever you are, and in person meetings are possible in Delhi NCR.',
-  },
-  {
-    question: 'Do you work with clients outside Greater Noida?',
-    answer:
-      'Yes. We work with businesses across India and abroad over calls, WhatsApp and shared links, and can meet in person in Delhi NCR.',
-  },
-  {
-    question: 'Will I get the source code and server access?',
-    answer:
-      'Yes. On full payment we hand over the complete source code, access to the hosting, database and domain, and documentation on how everything is set up.',
-  },
-  {
-    question: 'Can my website or app handle more users as my business grows?',
-    answer:
-      'Yes. We choose the architecture to fit your project, such as Supabase or Firebase for fast launches and VPS, Docker or AWS setups for larger custom systems, and we can upgrade the setup as your traffic grows.',
-  },
-  {
-    question: 'Can we launch with fewer features and add more later?',
-    answer:
-      'Yes. We build in phases. You can launch with the core features first and add new features step by step after launch.',
-  },
-  {
-    question: 'Do you set up payment gateways?',
-    answer:
-      'Yes. Online stores and Diamond packages include payment gateway integration such as Razorpay, along with order, refund and inventory management.',
+    question: 'Do you work with businesses in other cities?',
+    answer: 'Yes, all over India. We work over calls, WhatsApp and shared links, and can meet in person in Delhi NCR.',
   },
 ];
 
 /* ------------------------------------------------------------- Contact */
 
 export const CONTACT = {
-  services: ['Website', 'Online store', 'Web app', 'Android app', 'AI integration', 'Not sure yet'],
-  budgets: ['Under ₹25,000', '₹25,000 to ₹75,000', '₹75,000 to ₹2,00,000', 'Above ₹2,00,000', 'Not sure yet'],
+  services: ['Website', 'Online store', 'Software or ERP', 'Android app', 'AI chatbot', 'Not sure yet'],
 };
 
 export const NAV = [
   { label: 'Services', href: '/#services' },
   { label: 'Work', href: '/#work' },
-  { label: 'Process', href: '/#process' },
   { label: 'Packages', href: '/#packages' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
@@ -777,7 +711,7 @@ export const LEGAL: LegalPage[] = [
       {
         heading: 'Included after launch',
         body: [
-          'Every website and app package includes six months of free support, starting from the launch date. This covers:',
+          'Every website and app package includes three months of free support, starting from the launch date. This covers:',
           'Bug fixes: anything that does not work as agreed in the proposal.',
           'Security updates: updating frameworks and libraries when security fixes are released, and fixing security issues in code we wrote.',
           'Small changes: minor text, image and layout updates that take a small amount of time each month, as agreed in your proposal.',
@@ -824,8 +758,6 @@ export const routes = (): string[] => [
   '/about',
   '/contact',
   AREAS_PATH,
-  GUIDES_PATH,
-  ...GUIDES.map((g) => `${GUIDES_PATH}/${g.slug}`),
   ...SERVICES.map((s) => `/services/${s.slug}`),
   ...PROJECTS.map((p) => `/work/${p.slug}`),
   ...LEGAL.map((l) => `/${l.slug}`),

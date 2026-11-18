@@ -33,6 +33,31 @@
       "source": "/terms",
       "destination": "/terms-and-conditions",
       "permanent": true
+    },
+    {
+      "source": "/guides",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/guides/how-to-choose-a-website-developer-in-india",
+      "destination": "/#faq",
+      "permanent": true
+    },
+    {
+      "source": "/guides/website-vs-web-app-vs-android-app",
+      "destination": "/#services",
+      "permanent": true
+    },
+    {
+      "source": "/guides/ai-chatbot-for-business-website",
+      "destination": "/services/ai-integration",
+      "permanent": true
+    },
+    {
+      "source": "/guides/website-seo-and-ai-search-checklist",
+      "destination": "/services/website-development",
+      "permanent": true
     }
   ],
   "headers": [

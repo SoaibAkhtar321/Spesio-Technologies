@@ -4,7 +4,7 @@ import { applyMeta, getRouteMeta } from './seo';
 import { Header, Footer, WhatsAppFloat } from './components/layout';
 import { useReveals } from './components/effects';
 import Home from './pages/Home';
-import { AboutPage, AreasPage, CaseStudy, ContactPage, GuidePage, GuidesIndex, LegalPage, NotFound, ServicePage } from './pages/Detail';
+import { AboutPage, AreasPage, CaseStudy, ContactPage, LegalPage, NotFound, ServicePage } from './pages/Detail';
 import { CookieConsent } from './components/consent';
 
 function Shell() {
@@ -35,8 +35,6 @@ function Shell() {
         {route.name === 'legal' && <LegalPage key={route.slug} slug={route.slug} />}
         {route.name === 'about' && <AboutPage />}
         {route.name === 'areas' && <AreasPage />}
-        {route.name === 'guides' && <GuidesIndex />}
-        {route.name === 'guide' && <GuidePage key={route.slug} slug={route.slug} />}
         {route.name === 'contact' && <ContactPage />}
         {route.name === 'not-found' && <NotFound />}
       </main>

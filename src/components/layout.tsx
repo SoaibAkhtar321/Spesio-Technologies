@@ -146,9 +146,6 @@ export function Footer() {
               <li>
                 <Link href="/areas-we-serve">Areas we serve</Link>
               </li>
-              <li>
-                <Link href="/guides">Guides</Link>
-              </li>
               {PROJECTS.map((p) => (
                 <li key={p.slug}>
                   <Link href={`/work/${p.slug}`}>{p.name} case study</Link>

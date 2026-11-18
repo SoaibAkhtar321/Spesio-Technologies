@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties, type FormEvent } from 'react';
 import { Link, scrollToTarget } from '../router';
-import { HERO, BUILD_LIST, SERVICES, PROJECTS, PROCESS, PHASED_NOTE, PRINCIPLES, STACK, STACK_GROUPS, DELIVERY, SCALE, PACKAGES, FAQS, CONTACT, SITE, STUDIO } from '../content/site';
+import { HERO, BUILD_LIST, SERVICES, PROJECTS, PROCESS, PACKAGES, FAQS, CONTACT, SITE } from '../content/site';
 import { Btn, Arrow, ArrowUpRight, SectionHead } from '../components/ui';
 import { BrowserFrame, HeroComposite, LiveShot, ProjectScreen, ServiceArt } from '../components/Mockups';
 import { CoverArt } from '../components/CoverArt';
@@ -15,7 +15,7 @@ function Hero() {
         <div className="hero__text">
           <span className="label status">{HERO.eyebrow}</span>
           <h1 id="hero-title" className="h1">
-            Websites and apps built to <em>grow</em> your business.
+            Websites and apps that <em>bring you</em> customers.
           </h1>
           <p className="lead">{HERO.sub}</p>
           <div className="hero__ctas">
@@ -25,9 +25,9 @@ function Hero() {
             </Btn>
           </div>
           <div className="hero__note">
-            <span>Quote within one working day</span>
-            <span>You own the code</span>
-            <span>6 months free support</span>
+            {HERO.trust.map((t) => (
+              <span key={t}>{t}</span>
+            ))}
           </div>
         </div>
         <div className="hero__visual" data-rv="">
@@ -56,11 +56,11 @@ function Services() {
       <div className="wrap split">
         <div className="split__aside">
           <div className="sticky">
-            <span className="label label--accent">01 · Services</span>
+            <span className="label label--accent">What we build</span>
             <h2 className="h2" id="services-title">
-              Everything you need to <em>get online</em> and grow.
+              Everything you need to <em>get online.</em>
             </h2>
-            <p className="lead">Four services under one roof. Most projects pair a customer facing website or app with an admin panel your team uses every day.</p>
+            <p className="lead">Four services, one team. Pick one or combine them.</p>
             <Link className="tlink" href="/#contact">
               Discuss your project <Arrow />
             </Link>
@@ -82,7 +82,7 @@ function Services() {
                   ))}
                 </ul>
                 <Link className="tlink" href={`/services/${s.slug}`}>
-                  More on {s.title.toLowerCase()} <Arrow />
+                  Learn more <Arrow />
                 </Link>
               </div>
             </article>
@@ -120,12 +120,12 @@ function Work() {
       <div className="wrap">
         <div className="sec-row">
           <div className="sec-head">
-            <span className="label label--accent">03 · Selected work</span>
+            <span className="label label--accent">Selected work</span>
             <h2 className="h2" id="work-title">
-              Products that are <em>live</em> and in use.
+              Products we have <em>built and launched.</em>
             </h2>
           </div>
-          <p className="lead">A property marketplace, a fashion store with online payments, and a campus food ordering app. Each one designed, built and launched by us.</p>
+          <p className="lead">A property marketplace, a campus food app and a fashion store.</p>
         </div>
         <div className="projects">
           {PROJECTS.map((p, i) => (
@@ -144,7 +144,7 @@ function Work() {
                 <h3 className="project__name">
                   <Link href={`/work/${p.slug}`}>{p.name}</Link>
                 </h3>
-                <p className="muted">{p.overview}</p>
+                <p className="muted">{p.summary}</p>
                 <ul className="ticks">
                   {p.capabilities.slice(0, 3).map((c) => (
                     <li key={c}>{c}</li>
@@ -182,14 +182,14 @@ function Process() {
       <div className="wrap">
         <div className="sec-row">
           <div className="sec-head">
-            <span className="label label--accent">04 · Process</span>
+            <span className="label label--accent">How we work</span>
             <h2 className="h2" id="process-title">
-              A clear process, <em>start to launch.</em>
+              Four steps, <em>start to launch.</em>
             </h2>
           </div>
-          <p className="lead">Five clear stages, a written scope before we start, and a working link to review every week.</p>
+          <p className="lead">A written scope first, then a live link to review every week.</p>
         </div>
-        <ol className="timeline timeline--5">
+        <ol className="timeline">
           {PROCESS.map((s) => (
             <li className="tstep" key={s.number} data-rv="">
               <span className="tstep__dot">{s.number}</span>
@@ -199,128 +199,6 @@ function Process() {
             </li>
           ))}
         </ol>
-        <p className="phased-note">
-          <strong>Why phases?</strong> {PHASED_NOTE}
-        </p>
-      </div>
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------ Tech stack */
-
-function TechStack() {
-  return (
-    <section className="section" id="stack" aria-labelledby="stack-title">
-      <div className="wrap">
-        <div className="sec-row">
-          <div className="sec-head">
-            <span className="label label--accent">02 · Technology</span>
-            <h2 className="h2" id="stack-title">
-              A <em>production grade</em> stack, end to end.
-            </h2>
-          </div>
-          <p className="lead">The same tools used by large product teams, chosen for speed, security and room to grow. Here is what we build with.</p>
-        </div>
-        <div className="stack-grid">
-          {STACK_GROUPS.map((g) => (
-            <article className="stack-card" key={g.title} data-rv="">
-              <h3>{g.title}</h3>
-              <p className="muted">{g.line}</p>
-              <ul>
-                {g.items.map((t) => (
-                  <li key={t}>{t}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ------------------------------------------------- Scalability and handover */
-
-function ScaleAndDelivery() {
-  return (
-    <section className="section" id="scale" aria-labelledby="scale-title">
-      <div className="wrap">
-        <div className="sec-row">
-          <div className="sec-head">
-            <span className="label label--accent">05 · Scale and handover</span>
-            <h2 className="h2" id="scale-title">
-              {SCALE.heading.replace('fits your project', '')}
-              <em>fits your project.</em>
-            </h2>
-          </div>
-          <p className="lead">{SCALE.intro}</p>
-        </div>
-        <div className="scale-grid">
-          {SCALE.options.map((o, i) => (
-            <article className="scale-card" key={o.title} data-rv="">
-              <span className="label">Option {i + 1}</span>
-              <h3 className="h3">{o.title}</h3>
-              <p className="scale-card__tools">{o.tools}</p>
-              <p className="muted">{o.line}</p>
-            </article>
-          ))}
-        </div>
-        <div className="handover">
-          <h3 className="h3">{DELIVERY.heading}</h3>
-          <ul className="handover__list">
-            {DELIVERY.items.map((d) => (
-              <li key={d.title}>
-                <b>{d.title}</b>
-                <span className="muted">{d.line}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="muted handover__links">
-            Details are in our <Link className="tlink" href="/support-and-maintenance-policy">Support and Maintenance Policy</Link> and{' '}
-            <Link className="tlink" href="/terms-and-conditions">Terms and Conditions</Link>.
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------------------------------------------------------- Studio */
-
-function Studio() {
-  return (
-    <section className="section studio" id="studio" aria-labelledby="studio-title">
-      <div className="wrap">
-        <span className="label">06 · About the studio</span>
-        <h2 className="statement" id="studio-title">
-          You work <em>directly</em> with the engineer who builds your product. No account managers, no hand offs.
-        </h2>
-        <div className="studio__grid">
-          <div className="prose muted">
-            {STUDIO.body.map((p) => (
-              <p key={p}>{p}</p>
-            ))}
-            <div className="stack" aria-label="Technologies we use">
-              {STACK.map((t) => (
-                <span className="chip-static" key={t}>
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className="principles">
-            {PRINCIPLES.map((p, i) => (
-              <div className="principle" key={p.title}>
-                <span className="principle__n">0{i + 1}</span>
-                <div>
-                  <h3>{p.title}</h3>
-                  <p className="muted">{p.line}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -335,9 +213,9 @@ function Packages() {
       <div className="wrap">
         <SectionHead
           id="packages-title"
-          label="07 · Packages"
-          title="Packages for websites and Android apps"
-          intro="Start with what you need today and upgrade later. Every package includes six months of free maintenance."
+          label="Packages"
+          title="Pick a package, upgrade any time"
+          intro="Every package includes three months of free support after launch."
         />
         <div className="tabs" role="tablist" aria-label="Package type">
           {(['website', 'android'] as const).map((k) => (
@@ -360,6 +238,9 @@ function Packages() {
                   <li key={f}>{f}</li>
                 ))}
               </ul>
+              <p className="label" style={{ margin: 0 }}>
+                Built with {t.tech.join(', ')}
+              </p>
               <a
                 className="tlink"
                 href="/#contact"
@@ -374,7 +255,7 @@ function Packages() {
             </article>
           ))}
         </div>
-        <p className="note">Pricing depends on scope. Share your requirements and we will send a written quote within one working day.</p>
+        <p className="note">Tell us what you need and we will send a written quote within one working day.</p>
       </div>
     </section>
   );
@@ -383,12 +264,12 @@ function Packages() {
 /* ------------------------------------------------------------------- FAQ */
 
 function FAQ() {
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState<number | null>(null);
   return (
     <section className="section" id="faq" aria-labelledby="faq-title">
       <div className="wrap faq">
         <div className="sec-head" style={{ marginBottom: 0 }}>
-          <span className="label label--accent">08 · FAQ</span>
+          <span className="label label--accent">FAQ</span>
           <h2 id="faq-title" className="h2">
             Frequently asked questions
           </h2>
@@ -426,7 +307,6 @@ function FAQ() {
 
 export function Contact() {
   const [service, setService] = useState<string>(CONTACT.services[0]);
-  const [budget, setBudget] = useState<string>(CONTACT.budgets[4]);
   const [pkg, setPkg] = useState('');
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'err'>('idle');
   const [msg, setMsg] = useState('');
@@ -456,7 +336,6 @@ export function Contact() {
           email: String(fd.get('email') || ''),
           phone: String(fd.get('phone') || ''),
           service: pkg ? `${service} (${pkg})` : service,
-          budget,
           message: String(fd.get('message') || ''),
         }),
       });
@@ -475,12 +354,12 @@ export function Contact() {
     <section className="section" id="contact" aria-labelledby="contact-title">
       <div className="wrap contact__grid">
         <div>
-          <span className="label label--accent">09 · Contact</span>
+          <span className="label label--accent">Contact</span>
           <h2 id="contact-title" className="h2" style={{ marginTop: 14 }}>
-            Tell us about your project
+            Have an idea? Let us build it.
           </h2>
           <p className="lead" style={{ marginTop: 14 }}>
-            Share what you want to build. We reply within one working day with questions or a written quote.
+            Share a few details. We reply within one working day.
           </p>
           <div className="channels">
             <a className="channel" href={`mailto:${SITE.email}`}>
@@ -530,16 +409,6 @@ export function Contact() {
               ))}
             </div>
           </fieldset>
-          <fieldset className="fgroup">
-            <span>Budget</span>
-            <div className="chips">
-              {CONTACT.budgets.map((b) => (
-                <button type="button" key={b} className="chip" aria-pressed={budget === b} onClick={() => setBudget(b)}>
-                  {b}
-                </button>
-              ))}
-            </div>
-          </fieldset>
           {pkg && (
             <p className="label">
               Selected: {pkg}.{' '}
@@ -549,7 +418,7 @@ export function Contact() {
             </p>
           )}
           <div className="field">
-            <label htmlFor="f-msg">Project details</label>
+            <label htmlFor="f-msg">Tell us about your project</label>
             <textarea id="f-msg" name="message" rows={5} />
           </div>
           <div className="form__foot">
@@ -577,37 +446,15 @@ export function Contact() {
   );
 }
 
-function CtaBand() {
-  return (
-    <section className="cta-band" aria-label="Start a project">
-      <div className="wrap cta-band__in">
-        <p className="statement">
-          Have a project in mind? <em>Let us build it properly.</em>
-        </p>
-        <div className="hero__ctas">
-          <Btn href="/#contact">Start a project</Btn>
-          <Btn href={SITE.whatsappHref} external variant="outline">
-            WhatsApp us
-          </Btn>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export default function Home() {
   return (
     <>
       <Hero />
       <Services />
-      <TechStack />
       <Work />
-      <Process />
-      <ScaleAndDelivery />
-      <Studio />
       <Packages />
+      <Process />
       <FAQ />
-      <CtaBand />
       <Contact />
     </>
   );

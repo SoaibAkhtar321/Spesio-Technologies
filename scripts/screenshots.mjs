@@ -5,7 +5,7 @@ import { mkdirSync } from 'node:fs';
 
 const shots = {
   'property-planet': 'https://propertyplanet.vercel.app/',
-  'eifa-couture': 'https://eifa-couture-ds3d-git-main-campus-bite-s-projects.vercel.app/',
+  'eifa-couture': 'https://eifacouture.com',
 };
 
 mkdirSync('public/work', { recursive: true });

@@ -1,5 +1,5 @@
 import { SITE, HOME_META, FAQS, SERVICES, PROJECTS, ABOUT, STACK_GROUPS, getProject, getService, getLegal, isPlaceholder, socialLinks } from './content/site';
-import { AREAS, AREAS_PATH, AREA_GROUPS, GUIDES, GUIDES_PATH, getGuide } from './content/guides';
+import { AREAS, AREAS_PATH, AREA_GROUPS } from './content/guides';
 
 export interface RouteMeta {
   path: string;
@@ -37,7 +37,6 @@ const organization = {
   founder: { '@id': FOUNDER_ID },
   email: SITE.email,
   telephone: SITE.phoneE164,
-  priceRange: '₹₹',
   address: {
     '@type': 'PostalAddress',
     addressLocality: SITE.city,
@@ -300,64 +299,6 @@ export function getRouteMeta(rawPath: string): RouteMeta {
         { '@type': 'WebPage', '@id': `${canonical}#webpage`, url: canonical, name: AREAS.seoTitle, description: AREAS.answer, about: { '@id': ORG_ID }, isPartOf: { '@id': SITE_ID }, inLanguage: SITE.lang, ...DATES, speakable: SPEAKABLE },
         crumbs([['Home', `${U}/`], ['Areas we serve', canonical]]),
         { '@type': 'FAQPage', '@id': `${canonical}#faq`, mainEntity: AREAS.faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })) },
-      ),
-    };
-  }
-
-  if (path === GUIDES_PATH) {
-    const title = 'Guides: Website, App and AI Projects for Businesses | Spesio';
-    return {
-      path,
-      title,
-      description: 'Plain guides on choosing a website developer, website vs web app vs Android app, AI chatbots, and SEO for AI search, from Spesio Technologies.',
-      canonical,
-      ogImage: OG_IMAGE,
-      ogType: 'website',
-      noindex: false,
-      jsonLd: graph(
-        organization,
-        website,
-        { '@type': 'CollectionPage', '@id': `${canonical}#webpage`, url: canonical, name: title, isPartOf: { '@id': SITE_ID }, inLanguage: SITE.lang, ...DATES },
-        { '@type': 'ItemList', itemListElement: GUIDES.map((g, i) => ({ '@type': 'ListItem', position: i + 1, url: `${U}${GUIDES_PATH}/${g.slug}`, name: g.title })) },
-        crumbs([['Home', `${U}/`], ['Guides', canonical]]),
-      ),
-    };
-  }
-
-  const gm = path.match(/^\/guides\/([^/]+)$/);
-  const guide = gm ? getGuide(gm[1]) : undefined;
-  if (guide) {
-    const title = `${guide.title} | Spesio`;
-    return {
-      path,
-      title: title.length > 62 ? `${guide.title.slice(0, 55).replace(/\s+\S*$/, '')}... | Spesio` : title,
-      description: guide.description,
-      canonical,
-      ogImage: OG_IMAGE,
-      ogType: 'article',
-      noindex: false,
-      jsonLd: graph(
-        organization,
-        founder,
-        website,
-        {
-          '@type': 'Article',
-          '@id': `${canonical}#article`,
-          headline: guide.title,
-          description: guide.answer,
-          mainEntityOfPage: canonical,
-          url: canonical,
-          datePublished: guide.published,
-          dateModified: guide.updated,
-          author: { '@id': FOUNDER_ID },
-          publisher: { '@id': ORG_ID },
-          image: OG_IMAGE,
-          inLanguage: SITE.lang,
-          isPartOf: { '@id': SITE_ID },
-          speakable: SPEAKABLE,
-        },
-        crumbs([['Home', `${U}/`], ['Guides', `${U}${GUIDES_PATH}`], [guide.title, canonical]]),
-        { '@type': 'FAQPage', '@id': `${canonical}#faq`, mainEntity: guide.faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })) },
       ),
     };
   }

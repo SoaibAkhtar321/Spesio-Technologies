@@ -257,7 +257,7 @@ export function ProjectScreen({ slug }: { slug: string }) {
     );
   if (slug === 'eifa-couture')
     return (
-      <BrowserFrame url="eifa-couture-ds3d-theta.vercel.app" className="pscreen">
+      <BrowserFrame url="eifacouture.com" className="pscreen">
         <div className="ec">
           <div className="ec__nav">
             <span>New in</span>

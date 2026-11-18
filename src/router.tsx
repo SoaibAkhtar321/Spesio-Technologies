@@ -13,7 +13,7 @@ import {
 } from 'react';
 import { flushSync } from 'react-dom';
 import { getLegal, getProject, getService } from './content/site';
-import { AREAS_PATH, GUIDES_PATH, getGuide } from './content/guides';
+import { AREAS_PATH } from './content/guides';
 
 export type Route =
   | { name: 'home' }
@@ -22,8 +22,6 @@ export type Route =
   | { name: 'legal'; slug: string }
   | { name: 'about' }
   | { name: 'areas' }
-  | { name: 'guides' }
-  | { name: 'guide'; slug: string }
   | { name: 'contact' }
   | { name: 'not-found' };
 
@@ -35,9 +33,6 @@ export function matchRoute(rawPath: string): Route {
   const s = path.match(/^\/services\/([^/]+)$/);
   if (s && getService(s[1])) return { name: 'service', slug: s[1] };
   if (path === AREAS_PATH) return { name: 'areas' };
-  if (path === GUIDES_PATH) return { name: 'guides' };
-  const g = path.match(/^\/guides\/([^/]+)$/);
-  if (g && getGuide(g[1])) return { name: 'guide', slug: g[1] };
   if (path === '/about') return { name: 'about' };
   if (path === '/contact') return { name: 'contact' };
   if (getLegal(path.slice(1))) return { name: 'legal', slug: path.slice(1) };
