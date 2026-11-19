@@ -25,7 +25,7 @@ let template = fs.readFileSync(templatePath, 'utf-8');
 
 // Preload the two fonts used above the fold so headings render without a late swap.
 const assetFiles = fs.readdirSync(path.join(dist, 'assets'));
-const preloads = [/^geist-latin-wght-normal-.*\.woff2$/, /^fraunces-latin-opsz-normal-.*\.woff2$/]
+const preloads = [/^inter-latin-wght-normal-.*\.woff2$/, /^manrope-latin-wght-normal-.*\.woff2$/]
   .map((re) => assetFiles.find((f) => re.test(f)))
   .filter(Boolean)
   .map((f) => `<link rel="preload" href="/assets/${f}" as="font" type="font/woff2" crossorigin />`)
