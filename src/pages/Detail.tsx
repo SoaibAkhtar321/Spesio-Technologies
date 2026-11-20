@@ -1,10 +1,26 @@
-import type { CSSProperties } from 'react';
-import { Link } from '../router';
-import { ABOUT, PRINCIPLES, PROJECTS, SERVICES, SITE, getLegal, getProject, getService, isPlaceholder } from '../content/site';
+import { useState, type CSSProperties } from 'react';
+import { Link, scrollToTarget } from '../router';
+import {
+  ABOUT,
+  DELIVERY,
+  PACKAGE_COMPARISON,
+  PACKAGES,
+  PHASED_NOTE,
+  PRINCIPLES,
+  PROCESS_STEPS,
+  PROJECTS,
+  SERVICE_PILLARS,
+  SERVICES,
+  SITE,
+  getLegal,
+  getProject,
+  getService,
+  isPlaceholder,
+} from '../content/site';
 import { AREAS, AREA_GROUPS } from '../content/guides';
 import { Arrow, Breadcrumbs, Btn } from '../components/ui';
 import { CoverArt } from '../components/CoverArt';
-import { LiveShot } from '../components/Mockups';
+import { LiveShot, ProjectScreen, ServiceArt } from '../components/Mockups';
 import { Contact } from './Home';
 
 export function CaseStudy({ slug }: { slug: string }) {
@@ -35,8 +51,25 @@ export function CaseStudy({ slug }: { slug: string }) {
 
       <div className="wrap">
         {p.screenshot && p.liveUrl ? (
-          <div className="cs-shot" data-rv="">
-            <LiveShot src={p.screenshot} url={p.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')} alt={`Screenshot of the ${p.name} website`} />
+          <div className={`cs-gallery${p.secondaryScreenshot ? ' cs-gallery--dual' : ''}`} data-rv="">
+            <figure className="cs-gallery__item">
+              <LiveShot
+                src={p.screenshot}
+                url={p.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+                alt={`Homepage screenshot of the ${p.name} website`}
+              />
+              <figcaption className="cs-gallery__cap">Screen 01 · Homepage</figcaption>
+            </figure>
+            {p.secondaryScreenshot && (
+              <figure className="cs-gallery__item">
+                <LiveShot
+                  src={p.secondaryScreenshot.src}
+                  url={p.secondaryScreenshot.url}
+                  alt={p.secondaryScreenshot.alt}
+                />
+                <figcaption className="cs-gallery__cap">Screen 02 · {p.secondaryScreenshot.label}</figcaption>
+              </figure>
+            )}
           </div>
         ) : (
           <div className="cs-media" data-rv="">
@@ -99,6 +132,435 @@ export function CaseStudy({ slug }: { slug: string }) {
   );
 }
 
+export function ServicesPage() {
+  return (
+    <article>
+      <header className="phero">
+        <div className="wrap">
+          <Breadcrumbs items={[['Home', '/'], ['Services']]} />
+          <span className="label label--accent">Services</span>
+          <h1 className="h1">Websites, Android apps, custom software, ERP &amp; AI.</h1>
+          <p className="lead">
+            End-to-end engineering for growing businesses across Uttar Pradesh, Delhi NCR and all over India. Scoped in writing, built directly with the engineer, and handed over with full source code.
+          </p>
+          <div className="phero__ctas">
+            <Btn href="#contact">Start a Project</Btn>
+            <Btn href="/packages" variant="outline">
+              View packages
+            </Btn>
+          </div>
+        </div>
+      </header>
+
+      <section className="section">
+        <div className="wrap">
+          <div className="svc-pillars">
+            {SERVICE_PILLARS.map((pillar) => {
+              const linkedProject = pillar.projectSlug ? getProject(pillar.projectSlug) : undefined;
+              const isLiveShot = Boolean(
+                pillar.visualType === 'screenshot' && linkedProject?.screenshot && linkedProject?.liveUrl,
+              );
+
+              return (
+                <article key={pillar.id} className="svc-pillar" data-rv="">
+                  <div className="svc-pillar__content">
+                    <span className="label label--accent">Service {pillar.number}</span>
+                    <h2 className="h2">{pillar.title}</h2>
+                    <p className="lead">{pillar.summary}</p>
+                    <p className="muted">{pillar.details}</p>
+                    <ul className="ticks">
+                      {pillar.useCases.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                    <div className="svc-pillar__actions">
+                      <Link className="tlink" href={`/services/${pillar.slug}`}>
+                        Service details <Arrow />
+                      </Link>
+                      {linkedProject && (
+                        <Link className="tlink" href={`/work/${linkedProject.slug}`}>
+                          View {linkedProject.name} case study <Arrow />
+                        </Link>
+                      )}
+                      <a
+                        className="tlink"
+                        href="#contact"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          scrollToTarget('contact');
+                        }}
+                      >
+                        Discuss your project <Arrow />
+                      </a>
+                    </div>
+                  </div>
+
+                  <figure className="svc-pillar__media">
+                    {isLiveShot && linkedProject?.screenshot && linkedProject.liveUrl ? (
+                      <LiveShot
+                        src={linkedProject.screenshot}
+                        url={linkedProject.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+                        alt={`Live screenshot of ${linkedProject.name}`}
+                      />
+                    ) : pillar.id === 'android-applications' ? (
+                      <div className="svc-pillar__mockup">
+                        <ProjectScreen slug="campusbite" />
+                      </div>
+                    ) : pillar.image ? (
+                      <div className="svc-pillar__photo-wrap">
+                        <img
+                          className="svc-pillar__photo"
+                          src={pillar.image}
+                          alt={`${pillar.title} preview`}
+                          width={1200}
+                          height={900}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+                    ) : (
+                      <div className="svc-pillar__art">
+                        <ServiceArt kind={pillar.id} />
+                      </div>
+                    )}
+                    <figcaption className="svc-pillar__caption">
+                      {isLiveShot && linkedProject
+                        ? `Live client project: ${linkedProject.name}`
+                        : pillar.id === 'android-applications'
+                          ? 'Illustrative Android UI preview (CampusBite workflow)'
+                          : `Illustrative ${pillar.title.toLowerCase()} preview`}
+                    </figcaption>
+                  </figure>
+                </article>
+              );
+            })}
+          </div>
+
+          <div className="svc-deep-links">
+            <h2 className="label" style={{ marginBottom: 12 }}>
+              Detailed service guides
+            </h2>
+            <div className="more-links">
+              {SERVICES.map((s) => (
+                <Link key={s.slug} href={`/services/${s.slug}`}>
+                  <span>
+                    <span className="label" style={{ marginRight: 10 }}>
+                      {s.number}
+                    </span>
+                    {s.seoTitle}
+                  </span>
+                  <Arrow size={16} />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Contact />
+    </article>
+  );
+}
+
+export function PackagesPage() {
+  const [kind, setKind] = useState<'website' | 'android'>('website');
+  const tiers = PACKAGES[kind];
+  const rows = PACKAGE_COMPARISON[kind];
+
+  return (
+    <article>
+      <header className="phero">
+        <div className="wrap">
+          <Breadcrumbs items={[['Home', '/'], ['Packages']]} />
+          <span className="label label--accent">Packages</span>
+          <h1 className="h1">Website &amp; Android app packages built around clear scope.</h1>
+          <p className="lead">
+            Every tier defines deliverables, what you provide, what Spesio handles, and full source code handover. Free maintenance and support are included for up to 3 months.
+          </p>
+          <div className="phero__ctas">
+            <Btn href="#contact">Discuss Your Project</Btn>
+            <Btn href="/process" variant="outline">
+              See our 4-step process
+            </Btn>
+          </div>
+        </div>
+      </header>
+
+      <section className="section">
+        <div className="wrap">
+          <div className="pkg-toolbar">
+            <div className="tabs" role="tablist" aria-label="Package type">
+              {(['website', 'android'] as const).map((k) => (
+                <button
+                  key={k}
+                  type="button"
+                  role="tab"
+                  id={`pkg-tab-${k}`}
+                  aria-controls="pkg-panel"
+                  aria-selected={kind === k}
+                  onClick={() => setKind(k)}
+                >
+                  {k === 'website' ? 'Websites' : 'Android apps'}
+                </button>
+              ))}
+            </div>
+            <p className="muted" style={{ fontSize: 15 }}>
+              Need custom software, an ERP system or AI integration?{' '}
+              <a
+                className="tlink"
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToTarget('contact');
+                }}
+              >
+                Request a custom scope
+              </a>
+              .
+            </p>
+          </div>
+
+          <div id="pkg-panel" role="tabpanel" aria-labelledby={`pkg-tab-${kind}`}>
+            <div className="pkg-detail-grid">
+              {tiers.map((t) => (
+                <article key={t.id} className="pkg-detail-card" data-rv="">
+                  <div className="pkg-detail-card__head">
+                    <div>
+                      <span className="label label--accent">{kind === 'website' ? 'Website' : 'Android app'} package</span>
+                      <h2 className="h3" style={{ marginTop: 6 }}>
+                        {t.name}: {t.tagline}
+                      </h2>
+                    </div>
+                    <p className="pkg-detail-card__tech">{t.tech.join(' · ')}</p>
+                  </div>
+
+                  <p className="muted">{t.suitableFor}</p>
+
+                  <div className="pkg-detail-card__block">
+                    <h3 className="label">Deliverables</h3>
+                    <ul className="ticks">
+                      {t.deliverables.map((d) => (
+                        <li key={d}>{d}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="pkg-resp">
+                    <div>
+                      <h3 className="label">What you provide</h3>
+                      <ul className="pkg-resp__list">
+                        {t.clientProvides.map((c) => (
+                          <li key={c}>{c}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h3 className="label">What Spesio handles</h3>
+                      <ul className="pkg-resp__list">
+                        {t.spesioHandles.map((s) => (
+                          <li key={s}>{s}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="pkg-notes">
+                    <p>
+                      <b>Third-party costs:</b> {t.thirdPartyNotes}
+                    </p>
+                    <p>
+                      <b>Handover &amp; support:</b> {t.handoverSupport}
+                    </p>
+                  </div>
+
+                  <div className="pkg-detail-card__foot">
+                    <a
+                      className="btn btn--sm"
+                      href="#contact"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.dispatchEvent(new CustomEvent('spesio:package', { detail: { kind, name: t.name } }));
+                        scrollToTarget('contact');
+                      }}
+                    >
+                      Ask about {t.name}
+                      <Arrow />
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="pkg-cmp">
+              <div className="sec-head" style={{ marginBottom: 20 }}>
+                <span className="label label--accent">Comparison</span>
+                <h2 className="h2">{kind === 'website' ? 'Website packages side by side' : 'Android app packages side by side'}</h2>
+              </div>
+              <div className="table-wrap">
+                <table className="cmp-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Capability</th>
+                      {tiers.map((t) => (
+                        <th key={t.id} scope="col">
+                          {t.name}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {rows.map((row) => (
+                      <tr key={row.label}>
+                        <th scope="row">{row.label}</th>
+                        {tiers.map((t) => (
+                          <td key={t.id}>{row.values[t.id]}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div className="pkg-guide">
+            <div className="sec-head" style={{ marginBottom: 24 }}>
+              <span className="label label--accent">Choosing a tier</span>
+              <h2 className="h2">How to decide which package fits best</h2>
+              <p className="lead">
+                You do not have to guess. Share what you need today, and we recommend the right tier or phased roadmap before writing a proposal.
+              </p>
+            </div>
+            <div className="pkg-guide__grid">
+              <div>
+                <h3>Bronze</h3>
+                <p className="muted">Best when you need a credible digital presence quickly with core pages and direct contact channels.</p>
+              </div>
+              <div>
+                <h3>Silver</h3>
+                <p className="muted">Best when you showcase a structured service or product catalogue and take direct WhatsApp or email enquiries.</p>
+              </div>
+              <div>
+                <h3>Gold</h3>
+                <p className="muted">Best when your team wants to manage products, orders, users or enquiries directly inside an admin panel.</p>
+              </div>
+              <div>
+                <h3>Diamond</h3>
+                <p className="muted">Best when you run full online commerce with Razorpay checkout, inventory, finance reports or ERP workflows.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Contact />
+    </article>
+  );
+}
+
+export function ProcessPage() {
+  return (
+    <article>
+      <header className="phero">
+        <div className="wrap">
+          <Breadcrumbs items={[['Home', '/'], ['Process']]} />
+          <span className="label label--accent">How we work</span>
+          <h1 className="h1">Four steps from written scope to launch &amp; support.</h1>
+          <p className="lead">
+            Every project follows the same structured workflow: clear written scope first, direct access to the engineer, shared preview builds, full handover, and up to 3 months of free support.
+          </p>
+          <div className="phero__ctas">
+            <Btn href="#contact">Start a Project</Btn>
+            <Btn href="/packages" variant="outline">
+              Explore packages
+            </Btn>
+          </div>
+        </div>
+      </header>
+
+      <section className="section">
+        <div className="wrap">
+          <ol className="proc-steps">
+            {PROCESS_STEPS.map((step) => (
+              <li key={step.number} className="proc-step" data-rv="">
+                <div className="proc-step__head">
+                  <span className="tstep__dot">{step.number}</span>
+                  <div>
+                    <span className="label">{step.duration}</span>
+                    <h2 className="h2" style={{ marginTop: 4 }}>
+                      {step.title}
+                    </h2>
+                  </div>
+                </div>
+
+                <p className="lead">{step.summary}</p>
+
+                <div className="proc-step__cols">
+                  <div>
+                    <h3 className="label">What Spesio handles</h3>
+                    <ul className="ticks">
+                      {step.spesioHandles.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="label">What you provide</h3>
+                    <ul className="pkg-resp__list">
+                      {step.clientProvides.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <p className="proc-step__outcome">
+                  <span className="label label--accent">Outcome</span>
+                  <span>{step.outcome}</span>
+                </p>
+              </li>
+            ))}
+          </ol>
+
+          <div className="support-box" data-rv="">
+            <div>
+              <span className="label label--accent">Post-launch policy</span>
+              <h2 className="h3" style={{ marginTop: 6 }}>
+                Up to 3 months of free maintenance &amp; support
+              </h2>
+              <p className="muted" style={{ marginTop: 8 }}>
+                {PHASED_NOTE}
+              </p>
+              <div style={{ marginTop: 14 }}>
+                <Link className="tlink" href="/support-and-maintenance-policy">
+                  Read full support &amp; maintenance policy <Arrow />
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="handover" style={{ marginTop: 'clamp(36px, 4vw, 56px)' }}>
+            <span className="label label--accent">Handover</span>
+            <h2 className="h2" style={{ marginTop: 8 }}>
+              {DELIVERY.heading}
+            </h2>
+            <ul className="handover__list">
+              {DELIVERY.items.map((item) => (
+                <li key={item.title}>
+                  <b>{item.title}</b>
+                  <span className="muted">{item.line}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <Contact />
+    </article>
+  );
+}
+
 export function ServicePage({ slug }: { slug: string }) {
   const s = getService(slug)!;
   const others = SERVICES.filter((x) => x.slug !== slug);
@@ -108,9 +570,9 @@ export function ServicePage({ slug }: { slug: string }) {
     <article>
       <header className="phero">
         <div className="wrap">
-          <Breadcrumbs items={[['Home', '/'], ['Services', '/#services'], [s.title]]} />
+          <Breadcrumbs items={[['Home', '/'], ['Services', '/services'], [s.title]]} />
           <span className="label label--accent">Service {s.number}</span>
-          <h1 className="h1">{s.seoTitle} in Greater Noida</h1>
+          <h1 className="h1">{s.seoTitle}</h1>
           <p className="lead">{s.line}</p>
           <p className="answer">{s.answer}</p>
           <p className="label" style={{ marginTop: 18 }}>
@@ -138,7 +600,7 @@ export function ServicePage({ slug }: { slug: string }) {
             </div>
             <div>
               <span className="label">Location</span>
-              <span>{SITE.city}, working with clients across India</span>
+              <span>Based in {SITE.city}, Uttar Pradesh, serving clients across India</span>
             </div>
           </aside>
           <div>
@@ -159,9 +621,23 @@ export function ServicePage({ slug }: { slug: string }) {
                 <div className="related">
                   {related.map((p) => (
                     <Link key={p.slug} href={`/work/${p.slug}`} className="card">
-                      <div className="card__media">
-                        <CoverArt project={p} />
-                      </div>
+                      {p.screenshot && p.liveUrl ? (
+                        <div className="card__media card__media--shot">
+                          <img
+                            className="liveshot"
+                            src={p.screenshot}
+                            alt={`Live screenshot of ${p.name}`}
+                            width={1440}
+                            height={900}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </div>
+                      ) : (
+                        <div className="card__media">
+                          <CoverArt project={p} />
+                        </div>
+                      )}
                       <div className="card__meta">
                         <h3 className="card__title">{p.name}</h3>
                       </div>
@@ -248,13 +724,19 @@ export function NotFound() {
           <Link href="/">
             Home <Arrow size={16} />
           </Link>
-          <Link href="/#services">
+          <Link href="/services">
             Services <Arrow size={16} />
+          </Link>
+          <Link href="/packages">
+            Packages <Arrow size={16} />
+          </Link>
+          <Link href="/process">
+            Process <Arrow size={16} />
           </Link>
           <Link href="/#work">
             Our work <Arrow size={16} />
           </Link>
-          <Link href="/#contact">
+          <Link href="/contact">
             Contact us <Arrow size={16} />
           </Link>
         </div>
@@ -324,7 +806,7 @@ export function AboutPage() {
             )}
             <div>
               <span className="label">Based in</span>
-              <span>{SITE.city}, India. Working remotely with clients across India.</span>
+              <span>Based in {SITE.city}, {SITE.region}. Serving businesses across Delhi NCR and all over India remotely.</span>
             </div>
             <div>
               <span className="label">Contact</span>
@@ -335,14 +817,20 @@ export function AboutPage() {
           </aside>
         </div>
         <div className="more-links" style={{ marginBottom: 'clamp(48px,6vw,80px)' }}>
-          <Link href="/#stack">
-            Our technology stack <Arrow size={16} />
+          <Link href="/services">
+            Services <Arrow size={16} />
           </Link>
-          <Link href="/#process">
+          <Link href="/packages">
+            Packages <Arrow size={16} />
+          </Link>
+          <Link href="/process">
             How we work <Arrow size={16} />
           </Link>
+          <Link href="/areas-we-serve">
+            Areas we serve <Arrow size={16} />
+          </Link>
           <Link href="/#work">
-            Our work <Arrow size={16} />
+            Selected work <Arrow size={16} />
           </Link>
         </div>
       </div>
@@ -377,8 +865,6 @@ export function ContactPage() {
   );
 }
 
-const fmtDate = (iso: string) =>
-  new Date(iso + 'T00:00:00Z').toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 
 function QA({ items }: { items: { question: string; answer: string }[] }) {
   return (

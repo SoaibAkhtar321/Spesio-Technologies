@@ -23,28 +23,28 @@ export const AREA_GROUPS: { region: string; cities: string[] }[] = [
 ];
 
 export const AREAS = {
-  title: "Website, app and AI development for businesses across India",
-  seoTitle: "Areas We Serve: Website and App Developers Across India",
+  title: "Website, app and AI development across Uttar Pradesh, Delhi NCR and all of India",
+  seoTitle: "Areas We Serve: Uttar Pradesh, Delhi NCR and All Over India | Spesio",
   description:
-    "Spesio Technologies builds websites, Android apps, custom software and AI integrations for businesses all over India, from Greater Noida.",
+    "Based in Uttar Pradesh. Spesio Technologies serves businesses in Greater Noida, Noida, Delhi, Delhi NCR, Gorakhpur, Kushinagar and all over India.",
   answer:
-    "We serve businesses all over India, from Greater Noida, Delhi NCR and Uttar Pradesh to Mumbai, Bengaluru, Kolkata and beyond. Every project runs over calls, WhatsApp and shared links, so the experience is the same wherever you are.",
+    "Based in Uttar Pradesh. Serving businesses across Delhi NCR and all over India. From Greater Noida, Noida and Delhi to Gorakhpur, Kushinagar, Mumbai, Bengaluru and beyond, every project runs remotely over calls, WhatsApp and shared live links.",
   steps: [
-    "A short call to understand your business and goals.",
-    "A written scope, timeline and quote.",
-    "Progress shared through live links you can review from your own city.",
-    "Handover of the full source code, followed by three months of free support.",
+    "A discovery call to understand your business, goals and project requirements.",
+    "A written project scope, timeline and milestone plan.",
+    "Progress shared through live preview links you can review from any city.",
+    "Full source code and account handover, followed by up to 3 months of free maintenance and support.",
   ],
   faqs: [
     {
       question: "Can you build for a business in my city?",
       answer:
-        "Yes. We work with clients in every Indian city, including Delhi, Mumbai, Gorakhpur, Kushinagar and Bhubaneswar. We meet in person in Delhi NCR.",
+        "Yes. We work remotely with businesses across India, including Greater Noida, Noida, Delhi, Delhi NCR, Gorakhpur, Kushinagar, Lucknow, Mumbai and Bengaluru, and can meet in person in Delhi NCR when needed.",
     },
     {
-      question: "Do you have an office in my city?",
+      question: "Do you have physical offices in every city listed?",
       answer:
-        "No. We are a remote studio based in Greater Noida. You get the same service and direct access to the engineer wherever you are.",
+        "No. Spesio Technologies operates as a remote studio based in Greater Noida, Uttar Pradesh. Remote collaboration gives you direct access to the engineer building your product without agency overhead.",
     },
     {
       question: "Does working remotely make the project slower?",

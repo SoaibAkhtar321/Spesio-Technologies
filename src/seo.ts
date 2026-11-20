@@ -245,12 +245,69 @@ export function getRouteMeta(rawPath: string): RouteMeta {
     };
   }
 
-  if (path === '/about') {
-    const title = 'About Spesio Technologies | Founder-led Web & App Studio';
+  if (path === '/services') {
+    const title = 'Services: Websites, Android Apps, Software, ERP & AI | Spesio';
     return {
       path,
       title,
-      description: 'Founded in 2023 by software engineer Soaib Akhtar. A remote, founder-led studio building websites, web apps and Android apps on a production grade stack.',
+      description: 'Websites and e-commerce, native Android applications, custom software, ERP and admin dashboards, and AI integrations. Based in Uttar Pradesh, serving all India.',
+      canonical,
+      ogImage: OG_IMAGE,
+      ogType: 'website',
+      noindex: false,
+      jsonLd: graph(
+        organization,
+        website,
+        { '@type': 'WebPage', '@id': `${canonical}#webpage`, url: canonical, name: title, description: 'Full-cycle website, Android app, custom software, ERP dashboard and AI integration services from Spesio Technologies.', about: { '@id': ORG_ID }, isPartOf: { '@id': SITE_ID }, inLanguage: SITE.lang, ...DATES },
+        crumbs([['Home', `${U}/`], ['Services', canonical]]),
+      ),
+    };
+  }
+
+  if (path === '/packages') {
+    const title = 'Website & Android App Packages | Spesio Technologies';
+    return {
+      path,
+      title,
+      description: 'Compare Bronze, Silver, Gold and Diamond packages for websites and native Android apps. Clear scope, responsibilities, and up to 3 months free support.',
+      canonical,
+      ogImage: OG_IMAGE,
+      ogType: 'website',
+      noindex: false,
+      jsonLd: graph(
+        organization,
+        website,
+        { '@type': 'WebPage', '@id': `${canonical}#webpage`, url: canonical, name: title, description: 'Compare website and Android app packages, deliverables, client and Spesio responsibilities, and post-launch support.', about: { '@id': ORG_ID }, isPartOf: { '@id': SITE_ID }, inLanguage: SITE.lang, ...DATES },
+        crumbs([['Home', `${U}/`], ['Packages', canonical]]),
+      ),
+    };
+  }
+
+  if (path === '/process') {
+    const title = 'Our 4-Step Development Process | Spesio Technologies';
+    return {
+      path,
+      title,
+      description: 'How Spesio Technologies delivers websites, custom software and Android apps in four steps: Discovery, Planning & Design, Development & Testing, Launch & Support.',
+      canonical,
+      ogImage: OG_IMAGE,
+      ogType: 'website',
+      noindex: false,
+      jsonLd: graph(
+        organization,
+        website,
+        { '@type': 'WebPage', '@id': `${canonical}#webpage`, url: canonical, name: title, description: 'Four-step delivery process from discovery and written scope to launch and up to 3 months of free maintenance and support.', about: { '@id': ORG_ID }, isPartOf: { '@id': SITE_ID }, inLanguage: SITE.lang, ...DATES },
+        crumbs([['Home', `${U}/`], ['Process', canonical]]),
+      ),
+    };
+  }
+
+  if (path === '/about') {
+    const title = 'About Spesio Technologies | Founder-led Tech Studio';
+    return {
+      path,
+      title,
+      description: 'Founded in 2023 by software engineer Soaib Akhtar. Based in Uttar Pradesh, serving Delhi NCR and all over India with websites, Android apps, ERP and AI.',
       canonical,
       ogImage: OG_IMAGE,
       ogType: 'website',

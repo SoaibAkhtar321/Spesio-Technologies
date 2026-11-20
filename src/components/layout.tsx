@@ -65,10 +65,23 @@ export function Header() {
   useEffect(() => setOpen(false), [path]);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener('keydown', onKey);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('keydown', onKey);
+    };
   }, []);
+
+  const isNavActive = (href: string) => {
+    if (href.startsWith('/#')) return false;
+    if (href === '/services') return path === '/services' || path.startsWith('/services/');
+    return path === href;
+  };
 
   return (
     <header className={`hdr${scrolled ? ' scrolled' : ''}`}>
@@ -79,7 +92,7 @@ export function Header() {
         </Link>
         <nav className="nav" aria-label="Primary">
           {NAV.map((n) => (
-            <Link key={n.href} href={n.href}>
+            <Link key={n.href} href={n.href} aria-current={isNavActive(n.href) ? 'page' : undefined}>
               {n.label}
             </Link>
           ))}
@@ -87,24 +100,27 @@ export function Header() {
         <div className="hdr__actions">
           <ThemeToggle />
           <div className="hdr__cta">
-            <Btn href="/#contact" size="sm">
-              Start a project
+            <Btn href="/contact" size="sm">
+              Start a Project
             </Btn>
           </div>
-          <button className="menu-btn" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-controls="mobile-nav">
-          {open ? 'Close' : 'Menu'}
+          <button type="button" className="menu-btn" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-controls="mobile-nav">
+            {open ? 'Close' : 'Menu'}
           </button>
         </div>
       </div>
       <div id="mobile-nav" className={`mnav${open ? ' open' : ''}`}>
         <nav className="wrap" aria-label="Mobile">
           {NAV.map((n) => (
-            <Link key={n.href} href={n.href} onClick={() => setOpen(false)}>
+            <Link key={n.href} href={n.href} onClick={() => setOpen(false)} aria-current={isNavActive(n.href) ? 'page' : undefined}>
               {n.label}
             </Link>
           ))}
-          <Btn href="/#contact" onClick={() => setOpen(false)}>
-            Start a project
+          <Link href="/contact" onClick={() => setOpen(false)}>
+            Contact
+          </Link>
+          <Btn href="/contact" onClick={() => setOpen(false)}>
+            Start a Project
           </Btn>
         </nav>
       </div>
@@ -122,11 +138,16 @@ export function Footer() {
               <img src="/brand/spesio-mark-96.png" alt="Spesio Technologies logo" width="30" height="30" loading="lazy" />
               <span>Spesio Technologies</span>
             </Link>
-            <p className="muted">Websites, web apps and Android apps for growing businesses. Based in {SITE.city}, working across India.</p>
+            <p className="muted">
+              Websites, e-commerce stores, Android apps, custom ERP software and AI integrations. Based in Uttar Pradesh, serving businesses across Delhi NCR and all over India.
+            </p>
           </div>
           <div>
             <h2>Services</h2>
             <ul>
+              <li>
+                <Link href="/services">All services</Link>
+              </li>
               {SERVICES.map((s) => (
                 <li key={s.slug}>
                   <Link href={`/services/${s.slug}`}>{s.title}</Link>
@@ -138,13 +159,19 @@ export function Footer() {
             <h2>Company</h2>
             <ul>
               <li>
+                <Link href="/packages">Packages</Link>
+              </li>
+              <li>
+                <Link href="/process">Process</Link>
+              </li>
+              <li>
                 <Link href="/about">About us</Link>
               </li>
               <li>
-                <Link href="/contact">Contact</Link>
+                <Link href="/areas-we-serve">Areas we serve</Link>
               </li>
               <li>
-                <Link href="/areas-we-serve">Areas we serve</Link>
+                <Link href="/contact">Contact</Link>
               </li>
               {PROJECTS.map((p) => (
                 <li key={p.slug}>
@@ -213,15 +240,53 @@ export function Footer() {
 }
 
 export function WhatsAppFloat() {
-  const [show, setShow] = useState(false);
+  const [scrolledPast, setScrolledPast] = useState(false);
+  const [footerVisible, setFooterVisible] = useState(false);
+
   useEffect(() => {
-    const onScroll = () => setShow(window.scrollY > 600);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    const footer = document.querySelector('footer.ftr');
+    const check = () => {
+      setScrolledPast(window.scrollY > 480);
+      if (footer) {
+        const rect = footer.getBoundingClientRect();
+        setFooterVisible(rect.top < window.innerHeight + 24);
+      }
+    };
+    check();
+    window.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('resize', check, { passive: true });
+
+    let io: IntersectionObserver | undefined;
+    if (footer && 'IntersectionObserver' in window) {
+      io = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((e) => e.isIntersecting)) setFooterVisible(true);
+          else check();
+        },
+        { rootMargin: '0px 0px 40px 0px', threshold: 0.01 },
+      );
+      io.observe(footer);
+    }
+
+    return () => {
+      window.removeEventListener('scroll', check);
+      window.removeEventListener('resize', check);
+      io?.disconnect();
+    };
   }, []);
+
+  const visible = scrolledPast && !footerVisible;
+
   return (
-    <a className={`wa${show ? '' : ' hidden'}`} href={SITE.whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="Chat with Spesio Technologies on WhatsApp">
+    <a
+      className={`wa${visible ? '' : ' hidden'}`}
+      href={SITE.whatsappHref}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat with Spesio Technologies on WhatsApp"
+      aria-hidden={!visible}
+      tabIndex={visible ? 0 : -1}
+    >
       <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 2.5 1 3 .8 3.6.8.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.6 2.2 13.8 2.2 12 2.2 6.6 6.6 2.2 12 2.2c2.6 0 5.1 1 6.9 2.9 1.8 1.8 2.9 4.3 2.9 6.9 0 5.4-4.4 9.8-9.8 9.8zm8.4-18.2C18.1 1.3 15.2.1 12 .1 5.5.1.1 5.4.1 12c0 2.1.5 4.1 1.6 5.9L0 24l6.3-1.6c1.7.9 3.7 1.4 5.7 1.4 6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.5-8.3z" />
       </svg>

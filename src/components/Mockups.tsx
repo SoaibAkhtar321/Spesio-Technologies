@@ -22,89 +22,93 @@ export function BrowserFrame({ url, children, className = '' }: { url: string; c
   );
 }
 
-/** Hero composite: a general business website, a mobile app and an admin dashboard working together. */
+/** Hero composite: website, Android app, admin dashboard and incoming enquiry working together across all screen sizes. */
 export function HeroComposite() {
   return (
-    <div className="composite" role="img" aria-label="Illustration of a business website, a mobile app and an admin dashboard built by Spesio Technologies">
-      <BrowserFrame url="yourbusiness.com" className="composite__browser">
-        <div className="gsite">
-          <div className="gsite__nav">
-            <span className="gsite__logo" />
-            <span>Home</span>
-            <span>Services</span>
-            <span>About</span>
-            <em>Contact</em>
-          </div>
-          <div className="gsite__hero">
-            <div>
-              <p className="gsite__h">
-                Your business,
-                <br />
-                <i>beautifully</i> online.
-              </p>
-              <span className="gsite__p" />
-              <span className="gsite__p short" />
-              <div className="gsite__btns">
-                <em>Get a quote</em>
-                <span>Our work</span>
-              </div>
+    <div className="composite" role="img" aria-label="Illustration of a business website, an Android app, an admin dashboard and an enquiry notification built by Spesio Technologies">
+      <div className="composite__top">
+        <BrowserFrame url="yourbusiness.com" className="composite__browser">
+          <div className="gsite">
+            <div className="gsite__nav">
+              <span className="gsite__logo" />
+              <span>Home</span>
+              <span>Services</span>
+              <span>About</span>
+              <em>Contact</em>
             </div>
-            <div className="gsite__img">
-              <span className="sun" />
-              <span className="hill h1" />
-              <span className="hill h2" />
-            </div>
-          </div>
-          <div className="gsite__cards">
-            {['Fast', 'Secure', 'Mobile ready'].map((t, i) => (
-              <div key={t}>
-                <span className={`gsite__icon c${i}`} />
-                <b>{t}</b>
+            <div className="gsite__hero">
+              <div>
+                <p className="gsite__h">
+                  Your business,
+                  <br />
+                  <i>built</i> for growth.
+                </p>
                 <span className="gsite__p" />
+                <span className="gsite__p short" />
+                <div className="gsite__btns">
+                  <em>Start a project</em>
+                  <span>Our work</span>
+                </div>
               </div>
+              <div className="gsite__img">
+                <span className="sun" />
+                <span className="hill h1" />
+                <span className="hill h2" />
+              </div>
+            </div>
+            <div className="gsite__cards">
+              {['Fast', 'Secure', 'Mobile ready'].map((t, i) => (
+                <div key={t}>
+                  <span className={`gsite__icon c${i}`} />
+                  <b>{t}</b>
+                  <span className="gsite__p" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </BrowserFrame>
+
+        <div className="phone composite__phone" aria-hidden="true">
+          <div className="phone__notch" />
+          <p className="phone__title">Orders</p>
+          {[0, 1, 2].map((i) => (
+            <div key={i} className="gapp__row">
+              <span className={`gapp__img c${i}`} />
+              <span className="gapp__lines">
+                <i />
+                <i className="short" />
+              </span>
+              <em className={i === 0 ? 'new' : ''}>{i === 0 ? 'New' : 'Done'}</em>
+            </div>
+          ))}
+          <div className="phone__cta">Track order</div>
+        </div>
+      </div>
+
+      <div className="composite__bottom" aria-hidden="true">
+        <div className="dash composite__dash">
+          <div className="dash__head">
+            <b>Admin dashboard</b>
+            <small>This week</small>
+          </div>
+          <div className="dash__bars">
+            {[38, 52, 46, 70, 62, 84, 76].map((h, i) => (
+              <i key={i} style={{ height: `${h}%` }} />
             ))}
           </div>
         </div>
-      </BrowserFrame>
 
-      <div className="phone composite__phone" aria-hidden="true">
-        <div className="phone__notch" />
-        <p className="phone__title">Orders</p>
-        {[0, 1, 2].map((i) => (
-          <div key={i} className="gapp__row">
-            <span className={`gapp__img c${i}`} />
-            <span className="gapp__lines">
-              <i />
-              <i className="short" />
-            </span>
-            <em className={i === 0 ? 'new' : ''}>{i === 0 ? 'New' : 'Done'}</em>
-          </div>
-        ))}
-        <div className="phone__cta">Track order</div>
-      </div>
-
-      <div className="dash composite__dash" aria-hidden="true">
-        <div className="dash__head">
-          <b>Dashboard</b>
-          <small>This week</small>
+        <div className="toast composite__toast">
+          <span className="toast__icon">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path d="M2 4h12v8H2zM2 4l6 5 6-5" stroke="currentColor" strokeWidth="1.4" />
+            </svg>
+          </span>
+          <span>
+            <b>New enquiry</b>
+            <small>From your website · Reply today</small>
+          </span>
         </div>
-        <div className="dash__bars">
-          {[38, 52, 46, 70, 62, 84, 76].map((h, i) => (
-            <i key={i} style={{ height: `${h}%` }} />
-          ))}
-        </div>
-      </div>
-
-      <div className="toast composite__toast" aria-hidden="true">
-        <span className="toast__icon">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-            <path d="M2 4h12v8H2zM2 4l6 5 6-5" stroke="currentColor" strokeWidth="1.4" />
-          </svg>
-        </span>
-        <span>
-          <b>New enquiry</b>
-          <small>From your website</small>
-        </span>
       </div>
     </div>
   );
@@ -112,7 +116,7 @@ export function HeroComposite() {
 
 /** Small illustration for each service card. */
 export function ServiceArt({ kind }: { kind: string }) {
-  if (kind === 'website-development')
+  if (kind === 'website-development' || kind === 'websites-ecommerce')
     return (
       <div className="sart" aria-hidden="true">
         <div className="sart__browser">
@@ -124,7 +128,7 @@ export function ServiceArt({ kind }: { kind: string }) {
         </div>
       </div>
     );
-  if (kind === 'web-app-development')
+  if (kind === 'web-app-development' || kind === 'custom-software' || kind === 'erp-dashboards')
     return (
       <div className="sart" aria-hidden="true">
         <div className="sart__dash">
@@ -138,7 +142,7 @@ export function ServiceArt({ kind }: { kind: string }) {
         </div>
       </div>
     );
-  if (kind === 'android-app-development')
+  if (kind === 'android-app-development' || kind === 'android-applications')
     return (
       <div className="sart" aria-hidden="true">
         <div className="sart__phone">

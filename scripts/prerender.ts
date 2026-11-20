@@ -100,7 +100,16 @@ fs.writeFileSync(path.join(dist, '404.html'), page('/404', getRouteMeta('/404'))
 
 /* ---------------------------------------------------------------- sitemap */
 const lastmodFor = (_r: string) => SITE.updated;
-const prio = (r: string) => (r === '/' ? '1.0' : r.startsWith('/services') ? '0.9' : r.startsWith('/work') ? '0.8' : r === AREAS_PATH ? '0.8' : r === '/about' || r === '/contact' ? '0.7' : '0.3');
+const prio = (r: string) =>
+  r === '/'
+    ? '1.0'
+    : r === '/services' || r.startsWith('/services/')
+      ? '0.9'
+      : r === '/packages' || r === '/process' || r.startsWith('/work') || r === AREAS_PATH
+        ? '0.8'
+        : r === '/about' || r === '/contact'
+          ? '0.7'
+          : '0.3';
 const sitemap =
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n` +
   routes()
@@ -130,21 +139,24 @@ const llms = `# ${SITE.name}
 Key facts:
 - Founder: ${SITE.founder.name} (${SITE.founder.role}); clients work directly with the engineer building their product.
 - Delivery: phased (launch early, add features step by step); full source code, server access and documentation handed over on full payment.
-- Support: three months of bug and security support included after launch; paid support plans after that.
+- Support: free maintenance and support are included for up to 3 months after launch; paid support plans after that.
 - Architecture: serverless (Supabase or Firebase) for fast launches; VPS with Docker or AWS for larger custom systems.
 - Stack: ${STACK_GROUPS.map((g) => `${g.title}: ${g.items.join(', ')}`).join('; ')}.
 - Business type: ${SITE.legal.entity}${isPlaceholder(SITE.legal.udyam) ? '' : `, Udyam registration ${SITE.legal.udyam}`}.
 - Contact: ${SITE.email} · ${SITE.phone} (call / WhatsApp) · ${SITE.hours}
 
 ## Services
+- [All services overview](${SITE.url}/services)
 ${SERVICES.map((s) => `- [${s.seoTitle}](${SITE.url}/services/${s.slug}): ${s.line}`).join('\n')}
 
 ## Selected work
 ${PROJECTS.map((p) => `- [${p.name}](${SITE.url}/work/${p.slug}): ${p.type} for ${p.category.toLowerCase()}. ${p.summary}`).join('\n')}
 
 ## Company pages
+- [Packages](${SITE.url}/packages): compare Bronze, Silver, Gold and Diamond scopes
+- [Process](${SITE.url}/process): four-step delivery from written scope to launch and support
 - [About](${SITE.url}/about)
-- [Areas we serve](${SITE.url}${AREAS_PATH}): remote service to businesses in every Indian city
+- [Areas we serve](${SITE.url}${AREAS_PATH}): Uttar Pradesh, Delhi NCR and all over India (remote)
 - [Contact](${SITE.url}/contact)
 ${LEGAL.map((l) => `- [${l.title}](${SITE.url}/${l.slug})`).join('\n')}
 

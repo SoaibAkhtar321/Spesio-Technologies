@@ -4,21 +4,39 @@ import { applyMeta, getRouteMeta } from './seo';
 import { Header, Footer, WhatsAppFloat } from './components/layout';
 import { useReveals } from './components/effects';
 import Home from './pages/Home';
-import { AboutPage, AreasPage, CaseStudy, ContactPage, LegalPage, NotFound, ServicePage } from './pages/Detail';
+import {
+  AboutPage,
+  AreasPage,
+  CaseStudy,
+  ContactPage,
+  LegalPage,
+  NotFound,
+  PackagesPage,
+  ProcessPage,
+  ServicePage,
+  ServicesPage,
+} from './pages/Detail';
 import { CookieConsent } from './components/consent';
 
 function Shell() {
   const route = useRoute();
-  const { path } = useRouter();
+  const { path, navigate } = useRouter();
   const first = useRef(true);
 
   useReveals(path);
+
+  useEffect(() => {
+    if (route.name === 'redirect') {
+      navigate(route.to, { replace: true });
+    }
+  }, [route, navigate]);
 
   useEffect(() => {
     if (first.current) {
       first.current = false;
       return;
     }
+    if (route.name === 'redirect') return;
     applyMeta(getRouteMeta(route.name === 'not-found' ? '/404' : path));
   }, [path, route.name]);
 
@@ -30,6 +48,9 @@ function Shell() {
       <Header />
       <main id="main" key={path} className="page">
         {route.name === 'home' && <Home />}
+        {route.name === 'services' && <ServicesPage />}
+        {route.name === 'packages' && <PackagesPage />}
+        {route.name === 'process' && <ProcessPage />}
         {route.name === 'case-study' && <CaseStudy key={route.slug} slug={route.slug} />}
         {route.name === 'service' && <ServicePage key={route.slug} slug={route.slug} />}
         {route.name === 'legal' && <LegalPage key={route.slug} slug={route.slug} />}

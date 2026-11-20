@@ -17,17 +17,38 @@ import { AREAS_PATH } from './content/guides';
 
 export type Route =
   | { name: 'home' }
+  | { name: 'services' }
+  | { name: 'packages' }
+  | { name: 'process' }
   | { name: 'case-study'; slug: string }
   | { name: 'service'; slug: string }
   | { name: 'legal'; slug: string }
   | { name: 'about' }
   | { name: 'areas' }
   | { name: 'contact' }
+  | { name: 'redirect'; to: string }
   | { name: 'not-found' };
+
+const LEGACY_REDIRECTS: Record<string, string> = {
+  '/work': '/#work',
+  '/services/web-development': '/services/website-development',
+  '/services/custom-software': '/services/web-app-development',
+  '/privacy': '/privacy-policy',
+  '/terms': '/terms-and-conditions',
+  '/guides': '/',
+  '/guides/how-to-choose-a-website-developer-in-india': '/#faq',
+  '/guides/website-vs-web-app-vs-android-app': '/services',
+  '/guides/ai-chatbot-for-business-website': '/services/ai-integration',
+  '/guides/website-seo-and-ai-search-checklist': '/services/website-development',
+};
 
 export function matchRoute(rawPath: string): Route {
   const path = rawPath.length > 1 ? rawPath.replace(/\/+$/, '') : rawPath;
   if (path === '/') return { name: 'home' };
+  if (path === '/services') return { name: 'services' };
+  if (path === '/packages') return { name: 'packages' };
+  if (path === '/process') return { name: 'process' };
+  if (LEGACY_REDIRECTS[path]) return { name: 'redirect', to: LEGACY_REDIRECTS[path] };
   const w = path.match(/^\/work\/([^/]+)$/);
   if (w && getProject(w[1])) return { name: 'case-study', slug: w[1] };
   const s = path.match(/^\/services\/([^/]+)$/);
